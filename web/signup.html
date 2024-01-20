@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans"">
+    <title>Homeowner Registration</title>
+</head>
+<body>
+    <!-- <header>
+        <img src="logo copy.png" alt="LOGO">
+        <div class="options">
+            <a href="">OPTION1</a>
+            <a href="">OPTION2</a>
+            <a href="">OPTION3</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                <rect width="110" height="110" rx="55" fill="#172113"/>
+                <path d="M91.6668 96.25V87.0833C91.6668 82.221 89.7353 77.5579 86.2971 74.1197C82.859 70.6815 78.1958 68.75 73.3335 68.75H36.6668C31.8045 68.75 27.1414 70.6815 23.7032 74.1197C20.265 77.5579 18.3335 82.221 18.3335 87.0833V96.25" stroke="#4A5C46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M54.9998 50.4167C65.1251 50.4167 73.3332 42.2086 73.3332 32.0833C73.3332 21.9581 65.1251 13.75 54.9998 13.75C44.8746 13.75 36.6665 21.9581 36.6665 32.0833C36.6665 42.2086 44.8746 50.4167 54.9998 50.4167Z" stroke="#4A5C46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </header> -->
+    <h1 class="center">Homeowner Registration Form</h1>
+    <form action="">
+        <div class="basic_info">
+            <h1>Homeowner Information</h1>
+            <label for="HO_LN">Last Name:</label><input type="text" name="HO_LN" placeholder="Last Name" required>
+            <label for="HO_FN">First Name:</label><input type="text" name="HO_FN" placeholder="First Name" required>
+            <label for="HO_MI">Middle Initial:</label><input type="text" name="HO_MI" placeholder="Middle Initial">
+            <label for="HO_AGE">Age:</label><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required>
+            <label for="HO_ADDRESS">Address:</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)" required>
+            <label for="HO_DATE">Address:</label><input type="date" name="HO_DATE" id="" required>    
+        </div>
+        <div class="contact_info">
+            <h1>Homeowner Contact Information</h1>
+            <label for="HO_EMAIL">Age:</label><input type="email" name="HO_EMAIL" placeholder="Email Address" required>
+            <label for="HO_CONTACTNUM">Landline/Mobile Number:</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required>
+        </div>
+        <div class="residents">
+            <h1>Other Persons Staying in the Home Property</h1>
+            <label for="HO_LN">Last Name:</label><input type="text" name="HO_LN" placeholder="Last Name" required>
+            <label for="HO_FN">First Name:</label><input type="text" name="HO_FN" placeholder="First Name" required>
+            <label for="HO_MI">Middle Initial:</label><input type="text" name="HO_MI" placeholder="Middle Initial">
+            <label for="HO_AGE">Age:</label><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required>
+            <label for="RES_REL">Relationship with resident</label>
+            <select name="RES_REL" id="">
+                <option value="" selected>Relationship</option>
+                <option value="">Spouse</option>
+                <option value="">Son/Daughter</option>
+                <option value="">Grandchild</option>
+                <option value="">Househelp</option>
+                <option value="">Renter</option>
+                <option value="">Parent</option>
+                <option value="">Friend</option>
+            </select>
+            <div class="add_more">
+                <button class="res_add" onclick="">Add more</button>
+            </div>   
+        </div>
+        <div class="lot_info">
+            <h1>Lot/Property Information</h1>
+            <h2>Title Information</h2>
+            <div class="input_grid">
+                <div class="input_grp"><label for="TIT_NUM">Title No:</label><input type="text" name="TIT_NUM" placeholder="Title No." required></div>
+                <div class="input_grp"><label for="TIT_NAME">Registered Name:</label><input type="text" name="TIT_NAME" placeholder="Full Name" required></div>
+                <div class="input_grp"><label for="TIT_SURNUM">Survey No:</label><input type="text" name="TIT_SURNUM" placeholder="Survey No." required></div>
+                <div class="input_grp"><label for="TIT_LOTNUM">Lot No:</label><input type="text" name="TIT_LOTNUM" placeholder="Lot No." required></div>
+                <div class="input_grp"><label for="TIT_DATE">Date Registered:</label><input type="date" name="TIT_DATE" placeholder="" required></div>
+                <div class="input_grp"><label for="TIT_AREA">Area:</label><input type="number" name="TIT_AREA" placeholder="Area sq. m" min=1 required></div>
+            </div>
+            
+            <h2>Tax Declaration Information</h2>
+            <div class="input_grid">
+                <div class="input_grp"><label for="TAX_NUM">Tax Declaration No:</label><input type="text" name="TAX_NUM" placeholder="Tax Declaration No." required></div>
+                <div class="input_grp"><label for="PRP_INDEX">Property Index No:</label><input type="text" name="PRP_INDEX" placeholder="Property Index No." required></div>
+            </div>
+            
+            <h2>KHA Membership</h2>
+            <div class="input_grid">
+                <div class="input_grp">
+                    <fieldset>
+                        <legend>Paid Membership Fee?</legend>                       
+                        <label for="PAID_YES"><input type="radio" name="PAID_MEM" id="PAID_YES" value="yes">Yes</label>
+                        <label for="PAID_NO"><input type="radio" name="PAID_MEM" id="PAID_NO" value="no">No</label>
+                    </fieldset>
+                </div>
+                <div class="input_grp"><label for="PAID_DATE">If paid, date paid:</label><input type="date" name="PAID_DATE" placeholder="" required></div>
+            </div>
+            <label for="MEM_NAME">Name used in Membership:</label><input type="text" name="MEM_NAME" placeholder="Full Name" required>
+            
+            <h2>Use of Property</h2>
+            <fieldset>                      
+                <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_RES" value="residential">Residential</label>
+                <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_BUS" value="business">Business</label>
+                <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_BOTH" value="both">Both</label>
+            </fieldset>
+            <label for="BUS_NAME">If used for business, registered name of business:</label><input type="text" name="BUS_NAME" placeholder="Business Name" required>
+            <label for="BUS_TYPE">Type of business:</label><input type="text" name="BUS_TYPE" placeholder="Business Type" required>
+            
+        </div>
+        
+        <div class="vehicle_info">
+            <h1>Vehicle Information</h1>
+            <div class="input_grid">
+                <div class="input_grp"><label for="VEH_PLATE">Plate No:</label><input type="text" name="VEH_PLATE" placeholder="Plate No." required></div>
+                <div class="input_grp"><label for="VEH_TYPE">Type of Vehicle:</label><input type="text" name="VEH_TYPE" placeholder="Type of Vehicle." required></div>
+                <div class="input_grp"><label for="VEH_BRAND">Brand:</label><input type="text" name="VEH_BRAND" placeholder="Brand" required></div>
+                <div class="input_grp"><label for="VEH_MODEL">Year/Model:</label><input type="text" name="VEH_MODEL" placeholder="Year/Model" required></div>
+            </div>
+            <label for="BUS_NAME">If used for business, registered name of business:</label><input type="text" name="BUS_NAME" placeholder="Business Name" required>
+            <div class="add_more">
+                <button class="res_add" onclick="">Add more</button>
+            </div>   
+        </div>
+        <div class="upload_files">
+            <p>Upload Digital Copy of Required Documents (Image Files, PDF)</p>
+            <input type="file" class="file_button" name="FILES_UPLOAD" id="" accept="image/*,.pdf" multiple>
+        </div>
+        <input type="submit" class="submit_button" value="Apply">
+    </form>
+</body>
+<style>
+    * {
+        margin: 0;
+        font-family: "Noto Sans";
+    }
+    body {
+        background-color: #939992;
+    }
+
+</style>
+</html>
