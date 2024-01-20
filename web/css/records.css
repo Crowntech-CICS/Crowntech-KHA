@@ -1,0 +1,79 @@
+@import url(https://fonts.cdnfonts.com/css/mesa-grande);
+@import url(https://fonts.cdnfonts.com/css/marvelan);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
+@font-face {font-family: "Mesa Grande";
+            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot");
+            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot?#iefix")
+                format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff2")
+                format("woff2"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff")
+                format("woff"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.ttf")
+                format("truetype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.svg#Mesa Grande")
+                format("svg"); 
+}
+body{
+    background: #939992;
+}
+.tableContent {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    min-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+th, td {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.tableTitle {
+    font-size: 25px;
+}
+
+.tableContentText {
+    font-size: 28px;
+    font-family: Sulphur Point;
+}
+
+.tableContent thead tr {
+    background-color: #D9D9D9;
+    font-family: 'Noto Sans Bengali', sans-serif;
+    color: #4a4237;
+}
+
+.tableContent tbody tr {
+    border-bottom: 1px solid #4d4539;
+}
+
+.tableContent tbody tr:nth-of-type(odd) {
+    background-color: #bdaa8f;
+}
+
+.tableContent tbody tr:nth-of-type(even) {
+    background-color: #a6957c;
+}
+
+tbody {
+    font-family: Roboto;
+}
+
+.searchIcon {
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
+.searchBar {
+    margin-top: 51px;
+    width: 1817px;
+    margin-left: 10px;
+    height: 68px;
+    font-size: 17px;
+    display: in-line;
+    border-radius: 5px;
+}
