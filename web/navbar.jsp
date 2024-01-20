@@ -24,9 +24,10 @@
                 <img src="images/khalogo.png" alt="no image" class="logo">
                 <ul class="nav-links">
                     <%
-                    if((2+2) > 5) {
-                    
-                        out.println("<li><a href=\"login.jsp\">Login</a></li>");
+                    String user = "nolog";
+                    if(user.equals("nolog")) {
+                        response.sendRedirect("login.jsp");
+                    //    out.println("<li><a href=\"login.jsp\">Login</a></li>");
                     }
                     else {
                         out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");

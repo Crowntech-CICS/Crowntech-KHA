@@ -1,0 +1,106 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&amp;display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap);
+@import url(https://fonts.cdnfonts.com/css/mesa-grande);
+@import url(https://fonts.cdnfonts.com/css/marvelan);
+@font-face {font-family: "Mesa Grande";
+            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot");
+            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot?#iefix")
+                format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff2")
+                format("woff2"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff")
+                format("woff"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.ttf")
+                format("truetype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.svg#Mesa Grande")
+                format("svg"); }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #939992;
+}
+
+h1 {
+  font-family: 'Marvelan', sans-serif;
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 60px;
+}
+
+p {
+    font-family: 'Sulphur Point';
+    margin-bottom: -10px;
+    font-size: 20px;
+}
+
+
+.login-title {
+  color: black;
+  margin-left: 100px;
+  font-size: 24px;
+  font-family: 'Sulphur Point';
+}
+
+.login-box {
+    background-color: #D9D9D9;
+    height: 500px;
+    width: 850px;
+    border-radius: 5%;
+}
+
+.login-content {
+    padding-top: 50px;
+}
+.login-form {
+  margin-left: 100px;
+  height: 75px;
+  width: 650px;
+  color: #ffffff;
+  border-color: #747474;
+  border-width: 2px;
+  border-radius: 8px;
+}
+.main-body {
+  top: 150px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  display: flex;
+  z-index: 100;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+}
+.button-container {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.button-design{
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 52px; 
+  width: 300px;
+  background: #4A5C46;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: 24px;  
+  font-family: Sulphur Point;
+  text-align: center;
+  display: inline-block;
+  transition: background 0.2s ease-out;
+}
+
+.button-design:hover {
+  background-color: #252f23;
+}
