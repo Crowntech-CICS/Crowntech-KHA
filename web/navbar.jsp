@@ -24,12 +24,12 @@
                 <img src="images/khalogo.png" alt="no image" class="logo">
                 <ul class="nav-links">
                     <%
-                    String user = "nolog";
+                    String user = "staff";
                     if(user.equals("nolog")) {
                         response.sendRedirect("login.jsp");
                     //    out.println("<li><a href=\"login.jsp\">Login</a></li>");
                     }
-                    else {
+                    else if(user.equals("staff")){
                         out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
                         out.println("<li><a href=\"finances.jsp\">HOA Finances</a></li>");
                         out.println("<li><a href=\"LogoutServlet\">Logout</a></li>");

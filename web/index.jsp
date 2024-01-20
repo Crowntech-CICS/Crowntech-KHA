@@ -10,11 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Kingsville Homeowners Association</title>
-        <link rel="icon" type="image/x-icon" href="images/ApolloLogoOnly.png"/>
-    </head>
     <body>
         <%@include file="navbar.jsp" %>
         
-        <h1>Hello World!</h1>
+        <h1>insert welcome here (staff view)</h1>
     </body>
 </html>
