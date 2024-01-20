@@ -11,8 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA NAVBAR</title>
-        <link rel="icon" type="image/x-icon" href="images/KHA_Logo.png"/>
-        <link href="CSS/navbar.css" rel="stylesheet"/>
+        <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <% 
@@ -22,7 +21,7 @@
         %>
         <header>
             <nav>
-                <img src="images/navbar/KHA_Logo.png" class="logo">
+                <img src="images/khalogo.png" alt="no image" class="logo">
                 <ul class="nav-links">
                     <%
                     if((2+2) > 5) {
@@ -30,11 +29,11 @@
                         out.println("<li><a href=\"login.jsp\">Login</a></li>");
                     }
                     else {
-                        out.println("<li><a href=\"index.jsp\">Records Viewing</a></li>");
-                        out.println("<li><a href=\"about-us.jsp\">HOA Finances</a></li>");
+                        out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
+                        out.println("<li><a href=\"finances.jsp\">HOA Finances</a></li>");
                         out.println("<li><a href=\"LogoutServlet\">Logout</a></li>");
-                    //    out.println("<li><a href=\"ShoppingCart\">"+ session.getAttribute("newUsername") + 
-                    //    " <img src=\"https://www.pngkey.com/png/full/231-2317482_white-shopping-cart-png-download-buy-icon-white.png\" alt=\"star\" class=\"logo-cart\"></a></li>");
+                        out.println("<li><a href=\"profile.jsp\">"+
+                        " <img src=\"images/profile.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
                         }
                     %>
                 </ul>
