@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,29 +14,14 @@ import javax.servlet.http.HttpSession;
 
 public class Login extends HttpServlet {
 
-    public static Connection con;
-    public static ResultSet rs;
-    protected int ctr = 1;
-    protected String encrpytKey = "SECRETKEY";//getServletContext().getInitParameter("key");
+    protected static Connection con;
+    protected static ResultSet rs;
+    protected static PreparedStatement ps;
+    protected int allowedTries = 3;
+    protected int ctr;
+    protected String encrpytKey = "RECORDKINGSVILLE";//getServletContext().getInitParameter("key");
     protected String cipher = "AES/ECB/PKCS5Padding"; //getServletContext().getInitParameter("cipher");
-    
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-
-        try {
-            Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-            String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                   password = getServletContext().getInitParameter("dbPassword"),
-                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-            con = DriverManager.getConnection(driverURL, username, password); //create connection object
-        } catch (SQLException sqle) {
-            System.out.println("SQLException error occured - " + sqle.getMessage());
-        } catch (ClassNotFoundException nfe) {
-            System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-    }
-    
+       
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,49 +33,89 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();       
-        boolean temp = false;
+        
+        HttpSession session = request.getSession();
+        boolean logState = session.getAttribute("username") != null;
+        if(logState) {
+            response.sendRedirect("index.jsp");
+        }
+        
+        //Establish Connection
+        try {
+            Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
+            String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
+                   password = getServletContext().getInitParameter("dbPassword"),
+                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
+            con = DriverManager.getConnection(driverURL, username, password); //create connection
+        } catch (SQLException sqle) {
+            System.out.println("SQLException error occured - " + sqle.getMessage());
+        } catch (ClassNotFoundException nfe) {
+            System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
+        }
+                
+               
+        boolean found = false;
+        ctr = (int) session.getAttribute("tries");
         String userEmail = request.getParameter("email"),
                userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
 
         try{
-//            Statement stmt = con.createStatement();
-//            rs = stmt.executeQuery("SELECT USERNAME, EMAIL, PASSWORD FROM USERS");
-            PreparedStatement ps = con.prepareStatement("SELECT EMAIL, PASSWORD FROM USERS WHERE EMAIL = ? AND PASSWORD = ?");
+            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, LEVEL FROM LOGIN WHERE EMAIL = ? AND PASSWORD = ?");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();
             
             while(rs.next()){
                 String emailDB = rs.getString("EMAIL").trim(),
-                       passwordDB = rs.getString("PASSWORD").trim();
+                       passwordDB = rs.getString("PASSWORD").trim(),
+                       levelDB = rs.getString("LEVEL").trim();
                 
-                System.out.println(String.format("Email: %s || Password: %s", emailDB, passwordDB)); //print the contents resultset row
+                System.out.println(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equals(emailDB) && userPass.equals(passwordDB)){
-                    session.setAttribute("username", rs.getString("USERNAME"));
+                    session.setAttribute("username", userEmail);
+                    session.setAttribute("level", levelDB);
                     System.out.println("Found user in the database");
-                    temp = true;
+                    found = true;
                     break;
                 }
             }
             
-            if(temp){ //verifies if the user is in the database and redirect them to the homepage
+            if(found){ //verifies if the user is in the database and redirect them to the homepage
+                if(!con.isClosed())
+                    con.close();
                 ctr = 0;
+                session.removeAttribute("tries");
                 response.sendRedirect("index.jsp");
             }
-            else if(ctr < 3){ //shows a message that the email or password is wrong (total of 3 tries)
+            else if(ctr < allowedTries - 1){ //shows a message that the email or password is wrong (total of 3 tries)
                 ctr++;
+                session.setAttribute("tries", ctr);
                 request.setAttribute("succ", "true"); //NOTE: FOR VERIFICATION FOR POPUP IN THE LOGIN PAGE
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("login.jsp");
+                //request.getRequestDispatcher("login.jsp").forward(request, response);
             }
             else{ //throw an error message which will redirect the user to error 440 page
                 ctr = 0;
+                session.removeAttribute("tries");
                 response.sendError(440);
+                //response.sendRedirect("login.jsp"); //for testing purposes to be removed later
             }
-        } catch(SQLException e){
-            e.printStackTrace();
+        } catch(SQLException sqle){
+            System.out.println("SQLException IN error occured - " + sqle.getMessage());
             response.sendError(500);
+        } finally {
+            try {
+                if(rs != null)
+                    rs.close();
+                if(ps != null)
+                    ps.close();
+                if(con != null)
+                    con.close();
+            } catch (SQLException sqle) {
+                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+                response.sendError(500);
+            }
         }
     }
 
