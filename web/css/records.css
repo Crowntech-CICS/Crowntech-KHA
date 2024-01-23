@@ -15,23 +15,19 @@ body{
 }
 .tableContent {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 25px 0 20px 20px;
     font-size: 20px;
     min-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: auto;
     border-radius: 10px 10px 0 0;
+    width: 1840px;
+    height: 680px;
 }
 
 th, td {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
-
 .tableTitle {
     font-size: 25px;
 }
