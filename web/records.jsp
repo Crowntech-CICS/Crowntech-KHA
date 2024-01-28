@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Current Members</title>
         <link href="css/records.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -26,16 +27,18 @@
             System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
         }
         try{
-            ps = con.prepareStatement("SELECT * FROM LOGIN");
+            ps = con.prepareStatement("SELECT * FROM RESIDENTS");
             rs = ps.executeQuery();       
         %>
-        <div> <%--search bar thingie lang dito--%> 
-            <form>
-                <img src="images/SearchIcon.png" class="searchIcon">
-                <input type="text" placeholder="Search" class="searchBar">
-                <input type="button" hidden />
+        <%--search bar thingie lang dito--%> 
+        <div>
+            <form class="query" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
             </form>
+            <
         </div>
+
         <div class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
 	<table class="tableContent"> 
         <thead>
@@ -50,15 +53,17 @@
          <tbody>
              <%
                   while(rs.next()){
-                String emailDB = rs.getString("EMAIL").trim(),
-                       passwordDB = rs.getString("PASSWORD").trim(),
-                       levelDB = rs.getString("LEVEL").trim();
+                String nameDB = rs.getString("NAME").trim(),
+                       addDB = rs.getString("ADDRESS").trim(),
+                       numDB = rs.getString("CONTACT").trim(),
+                       statDB = rs.getString("ROLE").trim(),
+                       paidDB = rs.getString("PAID").trim();
                        // tbh i just copy pasted everything, aadjust nalang syntax here for real db
-                       out.print("<tr><td class=\"tableContentText\">" + emailDB + "</td>");
-                       out.print("<td class=\"tableContentText\">" + passwordDB + "</td>");
-                       out.print("<td class=\"tableContentText\">" + levelDB + "</td>");
-                       out.print("<td class=\"tableContentText\">" + emailDB + "</td>");
-                       out.println("<td class=\"tableContentText\">" + emailDB + "</td></tr>");
+                       out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
+                       out.print("<td class=\"tableContentText\">" + addDB + "</td>");
+                       out.print("<td class=\"tableContentText\">" + numDB + "</td>");
+                       out.print("<td class=\"tableContentText\">" + statDB + "</td>");
+                       out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                 }
             }catch(SQLException sqle){
             System.out.println("SQLException IN error occured - " + sqle.getMessage());
