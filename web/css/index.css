@@ -1,0 +1,10 @@
+h1 {
+}
+
+body {
+    background-color: #939992;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

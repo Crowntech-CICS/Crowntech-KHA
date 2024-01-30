@@ -13,10 +13,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Kingsville Homeowners Association</title>
+        <link href="css/index.css" rel="stylesheet"/>
     <body>
         <%@include file="navbar.jsp" %>
-        
+        <div class="test">
+            
+        </div>
         <h1>Welcome ${username} , Access Level: ${level}</h1>
-        
     </body>
 </html>
