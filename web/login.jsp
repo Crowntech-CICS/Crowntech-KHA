@@ -45,6 +45,7 @@
 
                             <label for="password" class="login-title"> Password:</label><br>
                             <input type="password" name="password" class="login-form" required><br/><br/>
+                            <a href="." class="login-ref">Forgot Password?</a>
                             <br>
                             <c:if test = "${tries > 0}">
                                 <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries); %> tries left</span></p> 
@@ -52,6 +53,7 @@
                             <br>
                             <div class="button-container">
                                 <input class="button-design" type="submit" value="Login">
+                                <a href="signup-homeowners.jsp" class="sign-up login-ref">Not yet a member? Apply Here.</a>      
                             </div>
                         </form>      
                     </div>
