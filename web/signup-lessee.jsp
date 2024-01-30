@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="form.css">
+    <!--<link rel="stylesheet" href="form.css">-->
     <link href="css/form.css" rel="stylesheet"/>
     <link href="css/navbar.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans"">
@@ -114,6 +114,9 @@
     body {
         background-color: #939992;
     }
-
+    .center {
+    text-align:center;
+    font-size: 2.5rem;
+    }
 </style>
 </html>

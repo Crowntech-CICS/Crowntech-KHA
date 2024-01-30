@@ -54,14 +54,14 @@ p {
 
 .form-box-homeowner {
     background-color: #D9D9D9;
-    height: 3625px;
+    /*height: 3625px;*/
     width: 850px;
     border-radius: 0.5%;
     margin: auto;
 }
 .form-box-lessee {
     background-color: #D9D9D9;
-    height: 3925px;
+    /*height: 3925px;*/
     width: 850px;
     border-radius: 0.5%;
     margin: auto;
