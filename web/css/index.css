@@ -1,9 +1,12 @@
 h1 {
+    padding-top: 250px;
+    margin: auto;
+    text-align: center;
 }
 
 body {
     background-color: #939992;
-    background-image: url("../images/background.jpg");
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), #bac8b6),url("../images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
