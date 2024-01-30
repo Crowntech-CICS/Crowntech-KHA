@@ -23,7 +23,7 @@
                     //Staff/Admin/Board Access Level
                     if(level.equals("admin") ||level.equals("staff") || level.equals("board")){
                         out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
-                        out.println("<li><a href=\"finances.jsp\">HOA Finances</a></li>");
+                        out.println("<li><a href=\"finances.jsp\">Monthly Dues Tracker</a></li>");
                         out.println("<li><a href=\"Logout\">Logout</a></li>");
                         out.println("<li><a href=\"profile.jsp\">"+
                                     "<img src=\"images/profile.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
