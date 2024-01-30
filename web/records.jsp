@@ -11,7 +11,8 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            Connection con = null;
+        <%            
+            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             try {

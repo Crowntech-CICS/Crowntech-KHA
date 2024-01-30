@@ -157,3 +157,26 @@ tbody {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+.tableB {
+    width: 200px;
+    height: 75px;
+    border-radius: 15px;
+    font-size: 24px;
+}
+
+.accept {
+    background-color: #84ff79;
+}
+.reject {
+    background-color: #ff7979;
+}
+
+a:visited { 
+    text-decoration: none;
+    color: black;    
+}
+
+a{
+    text-decoration: none;
+}
