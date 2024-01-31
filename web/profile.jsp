@@ -15,8 +15,8 @@
                 <h1 class="infoText">HOMEOWNER</h1>
             </div>
             <div class="profileB">
-                <button class="buttonP">Vehicles Information</button><br/>
-                <button class="buttonP">Edit Information</button>
+                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/>
+                <button class="buttonP" >Edit Information</button>
             </div>
         </div>
         <h2>Area </h2>

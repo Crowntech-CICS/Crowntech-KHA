@@ -24,14 +24,14 @@ html, body {
 }
 
 h1 {
-  font-family: 'Marvelan', sans-serif;
+  /* font-family: 'Marvelan', sans-serif; */
   color: black;
   margin-top: 10px;
   margin-bottom: 31px;
   font-size: 36px;
 }
 h2 {
-  font-family: 'Marvelan', sans-serif;
+  /*font-family: 'Marvelan', sans-serif;*/
   color: black;
   margin-top: 10px;
   margin-bottom: 31px;
