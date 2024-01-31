@@ -68,6 +68,14 @@ body {
     margin-top: 10px;
     text-align: center;
 }
+.infoB {
+    flex: 1;
+}
+.houseInfo {
+    display: flex;
+    flex: 1;
+    margin: auto;
+}
 h1 {
     margin-top: 0px;
 }

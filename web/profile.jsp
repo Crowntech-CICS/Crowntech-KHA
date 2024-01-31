@@ -32,10 +32,10 @@
                 </div>
                 <button class="buttonA" onclick="openForm()"> V </button>
             </div>
-            <div class="houseInfo" id="infoForm" style="display: none;">
-                INFOMRATION HERE LOL
-                <button class="buttonA" onclick="closeForm()"> X </button>
-            </div>
+        </div>
+        <div class="houseInfo" id="infoForm" style="display: none;">
+            INFOMRATION HERE LOL
+            <button class="buttonA infoB" onclick="closeForm()"> X </button>
         </div>
         <script>
             function openForm() {
