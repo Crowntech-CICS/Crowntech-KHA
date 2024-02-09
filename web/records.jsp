@@ -27,7 +27,7 @@
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
-                ps = con.prepareStatement("SELECT * FROM RESIDENTS");
+                ps = con.prepareStatement("SELECT * FROM HOMEOWNER");
                 rs = ps.executeQuery();
         %>
         <%--search bar thingie lang dito--%> 
@@ -97,9 +97,11 @@
                 <tbody>
                     <%
                             while (rs.next()) {
-                                String nameDB = rs.getString("NAME").trim(),
+                                String nameDB = rs.getString("FIRSTNAME").trim() + " " 
+                                + rs.getString("MIDDLEINITIAL").trim() + " " 
+                                + rs.getString("LASTNAME"),
                                         addDB = rs.getString("ADDRESS").trim(),
-                                        numDB = rs.getString("CONTACT").trim(),
+                                        numDB = rs.getString("MOBILENO").trim(),
                                         statDB = rs.getString("ROLE").trim(),
                                         paidDB = rs.getString("PAID").trim();
                                 // tbh i just copy pasted everything, aadjust nalang syntax here for real db
