@@ -76,8 +76,8 @@
             </div>
         </div>
 
-        <div id="displayTable" class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
-            <table class="tableContent sortable"> 
+        <div class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
+            <table class="tableContent sortable" id="displayTable"> 
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>

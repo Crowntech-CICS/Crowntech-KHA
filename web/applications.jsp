@@ -16,8 +16,7 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            
-            Connection con = null;
+        <%            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             try {
@@ -32,29 +31,29 @@
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
-                ps = con.prepareStatement("SELECT * FROM RESIDENTS");
+                ps = con.prepareStatement("SELECT * FROM HOMEOWNER");
                 rs = ps.executeQuery();
         %>
         <h1>Membership Applications</h1>
         <div>
-             <form class="sortSearch" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
-                <input type="text" placeholder="Search for Member..." name="search">
+            <form class="sortSearch" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
+                <input type="text" placeholder="Search for Application..." name="search" id="nameSearch" onkeyup="searchFunc()">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
         <div class="tableContain" style="overflow-y: scroll; height: 620px;">
-            <table class="tableContent">
+            <table class="tableContent sortable" id="displayTable">
                 <thead>
-                <tr>
-                    <th class="tableTitle">Name</th>
-                    <th class="tableTitle">Information</th>
-                    <th colspan="2" class="tableTitle">Accept/Reject</th>
-                </tr>
+                    <tr>
+                        <th class="tableTitle">Name</th>
+                        <th class="tableTitle">Information</th>
+                        <th colspan="2" class="tableTitle">Accept/Reject</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <%
                             while (rs.next()) {
-                                String nameDB = rs.getString("NAME").trim();
+                                String nameDB = rs.getString("FIRSTNAME").trim();
                                 // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                 out.print("<td class=\"tableContentText info\"><a href=\"profile.jsp\">Information</a></td>");
@@ -84,5 +83,26 @@
                 </tbody>
             </table>
         </div>
+        <script src="scripts/sorttable.js"></script>
+        <script>
+            function searchFunc() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("nameSearch");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("displayTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
