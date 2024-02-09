@@ -102,6 +102,12 @@
                                         numDB = rs.getString("MOBILENO").trim(),
                                         statDB = "Homeowner",
                                         paidDB = rs.getString("PAID").trim();
+                                        
+                                        if(paidDB.equals("true")){
+                                            paidDB = "Paid";
+                                        } else if(paidDB.equals("false")) {
+                                            paidDB = "Unpaid";
+                                        }
                                 // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                 out.print("<td class=\"tableContentText\">" + addDB + "</td>");
