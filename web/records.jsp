@@ -19,21 +19,25 @@
             String addQuery = null;
             String[] hold = null;
             addQuery = request.getParameter("find");
-            System.out.println("Parameter gotten: " + addQuery);
+            
+            System.out.println("Parameter gotten: " + addQuery); // shows parameter gotten
+            
             if(addQuery != null){ // checks if there are additional parameters
-                hold = addQuery.split("\\s+");
-                if(hold != null && addQuery.substring(0,4).equals("AREA")) {
-                    addQuery = " WHERE AREA = '" + hold[1] + "'";
-                    System.out.println("Area Check: " + hold[1]);
-                    if(hold.length == 3) {
-                        addQuery += " AND PAID = " + hold[2];
+                hold = addQuery.split("\\s+"); // splits parameters based on whitespace
+                
+                if(hold != null && addQuery.substring(0,4).equals("AREA")) { // checks if AREA parameter is used
+                
+                    addQuery = " WHERE AREA = '" + hold[1] + "'"; // sets which specific area will be filtered in query
+                    System.out.println("Area Check: " + hold[1]); // checks which area was taken from param
+                    
+                    if(hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
+                        addQuery += " AND PAID = " + hold[2]; // adds payment status to query
                     }
                     QUERY += addQuery;
                     System.out.println(QUERY);
-                }else if(!addQuery.substring(0,4).equals("AREA")){
-                    QUERY += " WHERE PAID =" + addQuery;
+                } else if(!addQuery.substring(0,4).equals("AREA")){ // AREA parameter not used
+                    QUERY += " WHERE PAID =" + addQuery; // only adds payment status to query
                 }
-                System.out.println("QUERY CHECK " + QUERY);
             }
             try {
                 Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
@@ -48,7 +52,7 @@
             }
             try {
                 ps = con.prepareStatement(QUERY);
-                System.out.println("Current Query: " + QUERY);
+                System.out.println("Current Query: " + QUERY); // checks query about to be executed
                 rs = ps.executeQuery();
         %>
         <%--search bar thingie lang dito--%> 
