@@ -20,7 +20,7 @@
             String[] hold = null;
             addQuery = request.getParameter("find");
             System.out.println("Parameter gotten: " + addQuery);
-            if(addQuery != null){
+            if(addQuery != null){ // checks if there are additional parameters
                 hold = addQuery.split("\\s+");
                 if(hold != null && addQuery.substring(0,4).equals("AREA")) {
                     addQuery = " WHERE AREA = '" + hold[1] + "'";
