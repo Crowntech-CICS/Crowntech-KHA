@@ -100,9 +100,13 @@
                                 String nameDB = rs.getString("FIRSTNAME").trim() + " " 
                                 + rs.getString("MIDDLEINITIAL").trim() + " " 
                                 + rs.getString("LASTNAME"),
-                                        addDB = rs.getString("ADDRESS").trim(),
+                                        addDB = rs.getString("HOUSENO").trim() + " " 
+                                        + rs.getString("VILLAGE").trim() + " "
+                                        + rs.getString("BARANGAY").trim() + " "
+                                        + rs.getString("CITY").trim() + " "
+                                        + rs.getString("PROVINCE").trim(),
                                         numDB = rs.getString("MOBILENO").trim(),
-                                        statDB = rs.getString("ROLE").trim(),
+                                        statDB = "Homeowner",
                                         paidDB = rs.getString("PAID").trim();
                                 // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
