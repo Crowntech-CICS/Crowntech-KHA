@@ -11,10 +11,11 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            
-            Connection con = null;
+        <%            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
+            String QUERY = "SELECT * FROM HOMEOWNER";
+            session.setAttribute("query", QUERY);
             try {
                 Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
                 String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
@@ -27,39 +28,31 @@
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
-                ps = con.prepareStatement("SELECT * FROM HOMEOWNER");
+                ps = con.prepareStatement((String) session.getAttribute("query"));
+                System.out.println("Current Query: " + (String) session.getAttribute("query"));
                 rs = ps.executeQuery();
         %>
         <%--search bar thingie lang dito--%> 
         <div>
             <form class="sortSearch" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" placeholder="Search for name.." name="search" id="nameSearch" onkeyup="searchFunc()">
             </form>
             <br/>
             <!-- A button to open the popup form -->
             <button class="openSortB" onclick="openForm()">More Sort Options</button>
 
-            <!-- The form -->
+            <!-- The sorting form -->
             <div class="sortPopup" id="sortForm" style="display: none;">
-                <form action="SortHandler" class="form-container">
+                <form action="SortHandler" class="form-container" method="POST">
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                     <h1>Sort By:</h1>
 
-                    <label for="before"><b>Before:</b></label>
-                    <input type="date"  name="before" ><br>
-                    <label for="after"><b>After:</b></label>
-                    <input type="date"  name="after" ><br>
-                    <label for="during"><b>During:</b></label>
-                    <input type="date"  name="during" ><br>
-                    
-                    <br/>
                     <b>Status:</b><br>
                     <input type="radio" id="paid" name="status" value="true">
                     <label for="paid">Paid</label><br>
                     <input type="radio" id="unpaid" name="status" value="false">
                     <label for="unpaid">Unpaid</label><br><br><br>
-                    
+
                     <label for="area">Area:</label>
                     <select name="area" id="area">
                         <option value="1">Area 1</option>
@@ -83,8 +76,8 @@
             </div>
         </div>
 
-        <div class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
-            <table class="tableContent"> 
+        <div id="displayTable" class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
+            <table class="tableContent sortable"> 
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
@@ -97,10 +90,11 @@
                 <tbody>
                     <%
                             while (rs.next()) {
-                                String nameDB = rs.getString("FIRSTNAME").trim() + " " 
-                                + rs.getString("MIDDLEINITIAL").trim() + " " 
-                                + rs.getString("LASTNAME"),
-                                        addDB = rs.getString("HOUSENO").trim() + " " 
+                                String nameDB = rs.getString("FIRSTNAME").trim() + " "
+                                        + rs.getString("MIDDLEINITIAL").trim() + " "
+                                        + rs.getString("LASTNAME"),
+                                        addDB = rs.getString("HOUSENO").trim() + " "
+                                        + rs.getString("STREETNAME") + " "
                                         + rs.getString("VILLAGE").trim() + " "
                                         + rs.getString("BARANGAY").trim() + " "
                                         + rs.getString("CITY").trim() + " "
@@ -141,14 +135,34 @@
         <div> <%--div for buttons--%>
 
         </div>
+        <script src="scripts/sorttable.js"></script>
         <script>
             function openForm() {
-                document.getElementById("sortForm").style.display = "block";
-            }
+                            document.getElementById("sortForm").style.display = "block";
+                        }
 
-            function closeForm() {
-                document.getElementById("sortForm").style.display = "none";
-            }
+                        function closeForm() {
+                            document.getElementById("sortForm").style.display = "none";
+                        }
+
+                        function searchFunc() {
+                            var input, filter, table, tr, td, i, txtValue;
+                            input = document.getElementById("nameSearch");
+                            filter = input.value.toUpperCase();
+                            table = document.getElementById("displayTable");
+                            tr = table.getElementsByTagName("tr");
+                            for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[0];
+                                if (td) {
+                                    txtValue = td.textContent || td.innerText;
+                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
         </script>
     </body>
 </html>
