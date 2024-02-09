@@ -53,8 +53,7 @@
                 <tbody>
                     <%
                             while (rs.next()) {
-                                String nameDB = rs.getString("FIRSTNAME").trim();
-                                // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                String nameDB = rs.getString("FIRSTNAME").trim() + " " + rs.getString("LASTNAME").trim();
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                 out.print("<td class=\"tableContentText info\"><a href=\"profile.jsp\">Information</a></td>");
                                 out.print("<td class=\"tableContentText\"><button class=\"tableB accept\">Accept</button></td>");
