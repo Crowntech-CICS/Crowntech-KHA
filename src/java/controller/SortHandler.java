@@ -40,11 +40,21 @@ public class SortHandler extends HttpServlet {
        
         // Checking Form Inputs
         System.out.println(String.format("Status: %s || Area: %s",stat, area));
-        String testQuery ="SELECT * FROM HOMEOWNER ORDER BY FIRSTNAME ASC";
-        session.setAttribute("query", testQuery );
-        
-        response.sendRedirect("records.jsp");
+        try {
+        if(area != null && stat != null && !area.equals("null")) {
+            response.sendRedirect("records.jsp?find=AREA " + area + " " + stat);
+        } else if(area != null && !area.equals("null")){
+            response.sendRedirect("records.jsp?find=AREA " + area);
+            System.out.println("Condition check: " + !area.equals("null"));
+        } else if(stat != null) {
+            response.sendRedirect("records.jsp?find= " + stat);
+        } else {
+            response.sendRedirect("records.jsp");
         }
+        } catch(IllegalStateException ise) {
+            System.out.println("IllegalStateException: " + ise.getMessage());
+        }
+    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

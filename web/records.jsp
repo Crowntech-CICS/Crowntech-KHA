@@ -11,11 +11,30 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            Connection con = null;
+        <%            
+            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             String QUERY = "SELECT * FROM HOMEOWNER";
-            session.setAttribute("query", QUERY);
+            String addQuery = null;
+            String[] hold = null;
+            addQuery = request.getParameter("find");
+            System.out.println("Parameter gotten: " + addQuery);
+            if(addQuery != null){
+                hold = addQuery.split("\\s+");
+                if(hold != null && addQuery.substring(0,4).equals("AREA")) {
+                    addQuery = " WHERE AREA = '" + hold[1] + "'";
+                    System.out.println("Area Check: " + hold[1]);
+                    if(hold.length == 3) {
+                        addQuery += " AND PAID = " + hold[2];
+                    }
+                    QUERY += addQuery;
+                    System.out.println(QUERY);
+                }else if(!addQuery.substring(0,4).equals("AREA")){
+                    QUERY += " WHERE PAID =" + addQuery;
+                }
+                System.out.println("QUERY CHECK " + QUERY);
+            }
             try {
                 Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
                 String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
@@ -28,8 +47,8 @@
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
-                ps = con.prepareStatement((String) session.getAttribute("query"));
-                System.out.println("Current Query: " + (String) session.getAttribute("query"));
+                ps = con.prepareStatement(QUERY);
+                System.out.println("Current Query: " + QUERY);
                 rs = ps.executeQuery();
         %>
         <%--search bar thingie lang dito--%> 
@@ -55,6 +74,7 @@
 
                     <label for="area">Area:</label>
                     <select name="area" id="area">
+                        <option value ="null">-----</option>
                         <option value="1">Area 1</option>
                         <option value="1A">Area 1A</option>
                         <option value="2">Area 2</option>
