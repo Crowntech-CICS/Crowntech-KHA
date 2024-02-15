@@ -11,8 +11,8 @@
         <%@include file="navbar.jsp" %>
         <div class="profileStrip">
             <div class="profileText">
-                <p class="infoText">LASTNAME, Firstname M.I.</p>
-                <h1 class="infoText">HOMEOWNER</h1>
+                <p class="infoText">${username}</p>
+                <h1 class="infoText">${level}</h1>
             </div>
             <div class="profileB">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/>
