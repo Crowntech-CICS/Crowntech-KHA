@@ -57,7 +57,9 @@ public class Login extends HttpServlet {
         boolean found = false;
         ctr = (int) session.getAttribute("tries");
         String userEmail = request.getParameter("email"),
-               userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
+               userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher),
+               userID = request.getParameter("USERID"),
+               userName;
 
         try{
             ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM LOGIN WHERE EMAIL = ? AND PASSWORD = ?");
@@ -69,17 +71,21 @@ public class Login extends HttpServlet {
                 String emailDB = rs.getString("EMAIL").trim(),
                        passwordDB = rs.getString("PASSWORD").trim();
                 //Get user access level in USERS table (RESIDENTCLASS)
-                ps = con.prepareStatement("SELECT RESIDENTCLASS FROM USERS WHERE USERID = ?");
+                ps = con.prepareStatement("SELECT RESIDENTCLASS, FIRSTNAME FROM USERS WHERE USERID = ?");
+                userID = rs.getString("USERID").trim();
                 ps.setString(1, rs.getString("USERID").trim());
                 rs = ps.executeQuery();
                 rs.next();
                 String levelDB = rs.getString("RESIDENTCLASS").trim();
+                userName = rs.getString("FIRSTNAME").trim();
                 
                 System.out.println(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equals(emailDB) && userPass.equals(passwordDB)){
-                    session.setAttribute("username", userEmail);
+                    session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB.toLowerCase());
+                    session.setAttribute("currID", userID);
+                    System.out.println("Current userID: " + userID);
                     System.out.println("Found user in the database");
                     found = true;
                     break;
