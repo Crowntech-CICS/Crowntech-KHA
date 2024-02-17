@@ -16,6 +16,7 @@
             PreparedStatement ps = null;
             String fullName = null;
             String hoID = null;
+            String resClass = null;
             try {
                 Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
                 String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
@@ -35,6 +36,7 @@
                 
                 while(rs.next()){
                     fullName = rs.getString("FIRSTNAME") + " " + rs.getString("MIDDLEINITIAL") + " " + rs.getString("LASTNAME");
+                    resClass = rs.getString("RESIDENTCLASS").trim();
                     hoID = rs.getString("HOMEOWNERID");
                 }   
                 
@@ -43,7 +45,7 @@
         <div class="profileStrip">
             <div class="profileText">
                 <p class="infoText"><%= fullName%></p>
-                <h1 class="infoText">${level}</h1>
+                <h1 class="infoText"><%= resClass%></h1>
             </div>
             <div class="profileB">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/>
@@ -56,22 +58,27 @@
             rs = ps.executeQuery();
             
             while(rs.next()) {
-            out.print("<h2> Area" + rs.getString("AREA") + "</h2>");
+            out.print("<h2> Area " + rs.getString("AREA") + "</h2>");
             out.print("<div class=\"profileStrip\">"
             + "<div class=\"profileText\">" 
             + "<h1 class=\"infoText\">"
             + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME")
             + "</h1>"
             + "</div>"
-            + "<div class=\"profileB area\">"
-            + "<div class=\"green\">"
-            + "<h1 class=\"panelText\">");
+            + "<div class=\"profileB area\">");
+            if(rs.getBoolean("PAID")) {
+                out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID");
+            } else if(!rs.getBoolean("PAID")) {
+                out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
+            }
             out.print("</h1>"
             + "</div>"
             + "<button class=\"buttonA\" onclick=\"openForm()\"> V </button>"
             + "</div>"
             + "</div>"
             + "<div class=\"houseInfo\" id=\"infoForm\" style=\"display: none;\">");
+            out.print(rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " " + rs.getString("BARANGAY")
+            + " " + rs.getString("CITY") + " " + rs.getString("PROVINCE"));
             out.print("<button class=\"buttonA infoB\" onclick=\"closeForm()\"> X </button>"
             + "</div>");
         %>

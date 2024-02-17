@@ -64,6 +64,16 @@ body {
     flex: 1;
     border-radius: 15px;
 }
+.red {
+    text-align: center;
+    margin: auto;
+    margin-right: 10px;
+    background-color: #ff7979;
+    width: 288px;
+    height: 64px;
+    flex: 1;
+    border-radius: 15px;
+}
 .panelText{
     margin-top: 10px;
     text-align: center;
