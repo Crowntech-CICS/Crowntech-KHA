@@ -45,7 +45,7 @@
 
                             <label for="password" class="login-title"> Password:</label><br>
                             <input type="password" name="password" class="login-form" required><br/><br/>
-                            <a href="." class="login-ref">Forgot Password?</a>
+                            <a href="./accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
                             <br>
                             <c:if test = "${tries > 0}">
                                 <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries); %> tries left</span></p> 

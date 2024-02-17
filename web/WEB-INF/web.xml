@@ -32,6 +32,10 @@
         <servlet-name>SortHandler</servlet-name>
         <servlet-class>controller.SortHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PasswordReset</servlet-name>
+        <servlet-class>controller.PasswordReset</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>SortHandler</servlet-name>
         <url-pattern>/SortHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordReset</servlet-name>
+        <url-pattern>/PasswordReset</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

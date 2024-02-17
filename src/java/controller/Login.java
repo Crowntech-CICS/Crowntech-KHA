@@ -60,21 +60,26 @@ public class Login extends HttpServlet {
                userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
 
         try{
-            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, LEVEL FROM LOGIN WHERE EMAIL = ? AND PASSWORD = ?");
+            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM LOGIN WHERE EMAIL = ? AND PASSWORD = ?");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();
             
             while(rs.next()){
                 String emailDB = rs.getString("EMAIL").trim(),
-                       passwordDB = rs.getString("PASSWORD").trim(),
-                       levelDB = rs.getString("LEVEL").trim();
+                       passwordDB = rs.getString("PASSWORD").trim();
+                //Get user access level in USERS table (RESIDENTCLASS)
+                ps = con.prepareStatement("SELECT RESIDENTCLASS FROM USERS WHERE USERID = ?");
+                ps.setString(1, rs.getString("USERID").trim());
+                rs = ps.executeQuery();
+                rs.next();
+                String levelDB = rs.getString("RESIDENTCLASS").trim();
                 
                 System.out.println(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equals(emailDB) && userPass.equals(passwordDB)){
                     session.setAttribute("username", userEmail);
-                    session.setAttribute("level", levelDB);
+                    session.setAttribute("level", levelDB.toLowerCase());
                     System.out.println("Found user in the database");
                     found = true;
                     break;
