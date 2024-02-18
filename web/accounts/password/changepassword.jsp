@@ -90,8 +90,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Password</title>
-    <link href="../../css/login.css" rel="stylesheet"/>
+    <title>KHA | Change Password</title>
+    <link href="../../css/main-format.css" rel="stylesheet"/>
+    <link href="../../css/form-format.css" rel="stylesheet"/>
     <link href="../../css/navbar.css" rel="stylesheet"/>
 </head>
 <body>
@@ -151,48 +152,24 @@
     <nav> 
         <a href="/Crowntech-KHA/"><img src="../../images/khalogo.png" class="logo"></a>
     </nav>
-    <div class="container">
-        <form action="?rt=<%=resetToken%>" method="POST">
-            <h1>Change Password</h1>
-            <h2>Name of User: <%=fullName%></h2>
-            <h2>Email of User: <%=userEmail%></h2>
-            <label for="newPassword">New Password:</label><input type="text" name="newPassword" required>
-            <label for="newPasswordConfirm">Confirm Password:</label><input type="text" name="newPasswordConfirm" required>
-            <p>On successful password change, you will be redirected to the login page.</p>
-            <div class="button-container" style="margin-top: 1rem;">
-                <button>Change Password</button>
-            </div>
-        </form>
+    <div class="main-body">
+        <div class="changepass-box">
+            <form action="?rt=<%=resetToken%>" method="POST">
+                <h1 class="h1-bold">Change Password</h1>
+                <h2 class="changepass-text"><span class="h2-bold">Username:</span> <%=fullName%></h2>
+                <h2 class="changepass-text"><span class="h2-bold">Email:</span>  <%=userEmail%></h2>
+                <div class="changepass-label-container">
+                <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" class="form" required><br>
+                <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" class="form" required>
+                <br><br>
+                <p>Upon successful password change, you will be redirected back to the login page.</p>
+                </div>
+                <div class="button-container" style="margin-top: 1rem;">
+                    <button class="button-design">Change Password</button>
+                </div>
+            </form>
+        </div>
     </div>
 </header>
 </body>
-<style>
-    * {
-        font-family: sans-serif;
-    }
-    h1 {
-        color: black;
-    }
-    nav{
-        min-width: 100vw;
-        background: #4a5c46;
-    }
-    .container{
-        padding: 2rem;
-        display: grid;
-        width: 100%;
-        justify-items: center;
-        align-items: center;
-    }
-    form{
-        border-radius: 0.5rem;
-        padding: 1rem;
-        width: 40%;
-        min-width: 600px;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        background-color: white;
-    }
-</style>
 </html>

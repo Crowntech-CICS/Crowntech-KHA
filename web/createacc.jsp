@@ -3,37 +3,45 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Account</title>
-        <link href="css/createacc.css" rel="stylesheet"/>
+        <title>KHA | Create Account</title>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
-        <h1>Create Account</h1>
-        <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
-            <div class="tableContain"> <%--dito yun table--%> 
-                <table class="tableContent"> 
-                    <thead>
-                        <tr>
-                            <th class="tableTitle">Name</th>
-                            <th class="tableTitle">Role</th>
-                            <th class="tableTitle">Email</th>
-                            <th class="tableTitle">Password</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" class="tableContentText" placeholder="Insert text here..."></td>
-                            <td><input type="text" class="tableContentText" placeholder="Insert text here..."></td>
-                            <td><input type="text" class="tableContentText" placeholder="Insert text here..."></td>
-                            <td><input type="text" class="tableContentText" placeholder="Insert text here..."></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                <div class="buttons">
-                    <button class="tableB accept">Create</button>
-                    <button class="tableB reject">Cancel</button>
+        <div class="greetingBanner">
+            <%@include file="navbar.jsp" %>
+            <div class="main-body">
+                <div class="createacc-box">
+                    <h1 class="h1-bold">Create Account</h1>
+                    <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
+                    <div class="tableContain"> <%--dito yun table--%> 
+                        <table class="tableContent"> 
+                            <thead>
+                                <tr>
+                                    <th class="tableTitle">Name</th>
+                                    <th class="tableTitle">Role</th>
+                                    <th class="tableTitle">Email</th>
+                                    <th class="tableTitle">Password</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
+                                    <td><select><option value="Admin">Admin</option><option value="User">User</option></select></td>
+                                    <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
+                                    <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br><br>
+                    <div class="button-container">
+                        <button class="button-design">Create</button>
+                        <button class="button-design-reject">Cancel</button>
+                    </div>
+                    </form>
                 </div>
-        </form>
+            </div>
+        </div>
     </body>
 </html>

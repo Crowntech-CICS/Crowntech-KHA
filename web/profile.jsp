@@ -5,8 +5,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profile</title>
-        <link href="css/profile.css" rel="stylesheet"/>
+        <title>KHA | Profile</title>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/profile-format.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -44,10 +46,10 @@
         %>
         <div class="profileStrip">
             <div class="profileText">
-                <p class="infoText"><%= fullName%></p>
-                <h1 class="infoText"><%= resClass%></h1>
+                <p><%= fullName%></p>
+                <h1 class="h1-bold" style="margin-top: -8%; text-align: left; font-size: 60px"><%= resClass%></h1>
             </div>
-            <div class="profileB">
+            <div id="profileB" align="right" style="margin-top: auto; margin-bottom: auto;">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/>
                 <button class="buttonP" >Edit Information</button>
             </div>
@@ -58,23 +60,62 @@
             rs = ps.executeQuery();
             
             while(rs.next()) {
-            out.print("<h2> Area " + rs.getString("AREA") + "</h2>");
-            out.print("<div class=\"profileStrip\">"
+            out.print("<h1 class=\"h1-bold\" style=\"margin-left: -68%\"> Area " + rs.getString("AREA") + "</h1>");
+            out.print("<div class=\"d-flex main justify-content-between\" class=\"profileStrip\">"
             + "<div class=\"profileText\">" 
-            + "<h1 class=\"infoText\">"
+            + "<h1 class=\"h1-bold\" style=\"text-align: left; font-size: 60px\">"
             + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME")
             + "</h1>"
             + "</div>"
-            + "<div class=\"profileB area\">");
+            + "<div class=\"d-flex main justify-content-between\" id=\"profileB\" style=\"margin-top: auto; margin-bottom: auto;\">");
             if(rs.getBoolean("PAID")) {
                 out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID");
             } else if(!rs.getBoolean("PAID")) {
                 out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
             }
-            out.print("</h1>"
-            + "</div>"
-            + "<button class=\"buttonA\" onclick=\"openForm()\"> V </button>"
-            + "</div>"
+            out.print("</h1>"%>
+            <%--+ "</div>"
+            //+ "<button class=\"buttonA\" onclick=\"openForm()\"> V </button>"
+            //+ "</div>"--%>
+            <ul class="nav-links" style="vertical-align: top">
+                    <li>
+                        <a href="#" class="buttonA">V</a>
+                        <div class="mega-box">
+                            <div class="content">
+                                <div class="row">
+                                    <h1 class="h1-bold" style="font-size: 26px; margin-top: -1%; margin-left: -1%; margin-bottom: 2%">Homeowner Info</h1>
+                                    <ul class="mega-links">
+                                        <li><p><span class="h2-bold">Name:</span> Jeldric Rasa</p></li><br>
+                                        <li><p><span class="h2-bold">Email:</span> jeldricrasa@gmail.com</p></li><br>
+                                        <li><p><span class="h2-bold">Phone Number:</span> 5555-555-5555</p></li><br>
+                                        <li><p><span class="h2-bold">Current Address:</span> Jupiter Jeldric StreetJupiter Jeldric StreetJupiter Jeldric StreetJupiter Jeldric StreetJupiter Jeldric StreetJupiter Jeldric Street</p></li><br><br>
+                                        <h1 class="h1-bold" style="font-size: 26px; margin-top: -2%; margin-left: 5%; text-align: left; margin-bottom: 2%">Representative/Caretaker</h1>
+                                        <li><p><span class="h2-bold">Name:</span> Alden Richards</p></li><br>
+                                        <li><p><span class="h2-bold">Phone Number:</span> 9999-999-9999</p></li><br>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <h1 class="h1-bold" style="font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%">Lot Residents</h1>
+                                    <ul class="mega-links">
+                                        <li><span class="h2-bold">Jeldric Rasa</span><p>Relationship: Cousin</p></li>
+                                        <li><span class="h2-bold">Jeldric Rasa</span><p>Relationship: Cousin</p></li>
+                                        <li><span class="h2-bold">Jeldric Rasa</span><p>Relationship: Cousin</p></li>
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <h1 class="h1-bold" style="font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%">Balance Dues</h1>
+                                    <ul class="mega-links">
+                                        <li>PHP 300.00</li>
+                                        <li>Status: Unpaid</li>
+                                        <li>Button</li>
+                                        <li>Button</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+<%
             + "</div>"
             + "<div class=\"houseInfo\" id=\"infoForm\" style=\"display: none;\">");
             out.print(rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " " + rs.getString("BARANGAY")
@@ -102,6 +143,7 @@
             INFOMRATION HERE LOL
             <button class="buttonA infoB" onclick="closeForm()"> X </button>
         </div> --%>
+        
         <%
             }
             } catch (SQLException sqle) {

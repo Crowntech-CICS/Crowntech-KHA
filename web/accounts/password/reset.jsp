@@ -3,9 +3,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Forgot Password</title>
+        <title>KHA | Forgot Password</title>
         <link rel="icon" type="image/x-icon" href="images/ApolloLogoOnly.png"/>
-        <link href="../../css/login.css" rel="stylesheet"/>
+        <link href="../../css/main-format.css" rel="stylesheet"/>
+        <link href="../../css/form-format.css" rel="stylesheet"/>
         <link href="../../css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
@@ -16,19 +17,20 @@
         </header>
                 <div class="greetingBanner">
             <div class="main-body">
-                <div class="container2">
-                    <div class="login-box">
-                        <h2>Trouble Logging in?</h2>
-                        <p>Enter your email and we will send you a link to reset your account password.</p>
-                        <form action="../../PasswordReset" class="login-content" method="POST">
-                            <label for="email" class="login-title">Email:</label><br>
-                            <input type="text" name="email" class="login-form" required/><br/><br/>
-                            <br>
-                            <div class="button-container">
-                                <input class="button-design" type="submit" value="Login"> 
-                            </div>
-                        </form>      
+                <div class="forgot-box">
+                    <form action="" method="POST">
+                    <h1 class="h1-bold">Forgot Password</h1>
+                    <div class="changepass-label-container">
+                    <p>Having trouble logging in? Enter your email and we will send you a link to reset your account password.</p>
+                    <br><br>
+                        <label for="email" class="form">Enter Email Address:</label><br>
+                        <input type="text" name="email" class="form" required/><br/><br/>
+                        <br>
+                        <div class="button-container">
+                            <input class="button-design" type="submit" value="Login"> 
+                        </div>
                     </div>
+                    </form>      
                 </div>
             </div>
         </div>
