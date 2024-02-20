@@ -2,7 +2,8 @@
     background-color: #f0f5f3;
     height: 420px;
     width: 70%;
-    border-radius: 1%;
+    border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .tableContent {
@@ -13,6 +14,7 @@
     width: 90%;
     border: 2px solid #377d60;
     border-radius: 0.2%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 th, td {
@@ -25,6 +27,8 @@ th, td {
     font-size: 20px;
     font-family: 'Inter';
     color: #ffffff;
+    background-color: #48a37d;
+    font-weight: 600;
 }
 
 .tableContentText {
@@ -49,10 +53,30 @@ th, td {
     text-align: center;
     font-size: 20px;
     font-family: 'Inter';
-    background-color: #377d60;
     border: 0px none;
     height: 152px;
     color: #ffffff;
+    background-color: #48a37d;
+}
+
+.tableContentText4 {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Inter';
+    border: 0px none;
+    height: 152px;
+    color: #ffffff;
+    background-color: #3d8968;
+}
+
+.tableContentText5 {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Inter';
+    border: 0px none;
+    height: 152px;
+    color: #ffffff;
+    background-color: #377d60;
 }
 
 .tableContent thead tr {

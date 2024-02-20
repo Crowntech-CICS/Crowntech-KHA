@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Forgot Password</title>
-        <link rel="icon" type="image/x-icon" href="images/ApolloLogoOnly.png"/>
+        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png"> <%-- change to <link rel="icon" type="image/x-icon" href="images/khaicon.png"> --%>
         <link href="../../css/main-format.css" rel="stylesheet"/>
         <link href="../../css/form-format.css" rel="stylesheet"/>
         <link href="../../css/navbar.css" rel="stylesheet"/>
@@ -12,7 +12,7 @@
     <body>
         <header>
             <nav> 
-                <a href="/Crowntech-KHA/"><img src="../../images/khalogo.png" class="logo"></a>
+                <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a> <%-- CHANGE TO INCLUDE NAVBAR LATER --%>
             </nav>
         </header>
                 <div class="greetingBanner">
@@ -35,7 +35,4 @@
             </div>
         </div>
     </body>
-    <style>
-        
-    </style>
 </html>

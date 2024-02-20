@@ -1,20 +1,11 @@
-.login-title {
-  color: black;
-  margin-left: 100px;
-  font-size: 24px;
-  font-family: 'Sulphur Point';
-}
-
 .login-box {
-    background-color: #D9D9D9;
+    background-color: #f0f5f3;
     height: 500px;
-    width: 850px;
-    border-radius: 5%;
+    width: 600px;
+    border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
-.login-content {
-    padding-top: 50px;
-}
 .login-form {
   margin-left: 100px;
   height: 75px;
@@ -33,6 +24,7 @@
     height: 500px;
     width: 600px;
     border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .changepass-text {
@@ -54,6 +46,7 @@
     height: 400px;
     width: 600px;
     border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 
@@ -70,9 +63,9 @@
 
 .login-ref {
   color: gray;
-  margin-left: 100px;
-  font-size: 24px;
-  font-family: 'Sulphur Point';
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Inter';
 }
 
 .sign-up {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHA | Finances</title>
+    <link rel="icon" type="image/x-icon" href="images/khaicon.png">
     <link href="css/main-format.css" rel="stylesheet"/>
     <link href="css/table-format.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -69,9 +70,9 @@
         </table>
 
         <table class="tableContent" style="margin-left: -10%; width: 10%;height: 120%;">
-            <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p style="text-align: center; color: white;">89/102</p></td></tr>
-            <tr><td class="tableContentText3">Number of Paid Lessees: <br><p style="text-align: center; color: white;">20/23</p></td></tr>
-            <tr><td class="tableContentText3">Number of Residents: <br><p style="text-align: center; color: white;">1502</p></td></tr>
+            <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">89/102</p></td></tr>
+            <tr><td class="tableContentText4">Number of Paid Lessees: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">20/23</p></td></tr>
+            <tr><td class="tableContentText5">Number of Residents: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">1502</p></td></tr>
         </table>
     </div>
     <br><br>

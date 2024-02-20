@@ -91,6 +91,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHA | Change Password</title>
+    <link rel="icon" type="image/x-icon" href="../../images/khaicon.png"> <%-- change to <link rel="icon" type="image/x-icon" href="images/khaicon.png"> --%>
     <link href="../../css/main-format.css" rel="stylesheet"/>
     <link href="../../css/form-format.css" rel="stylesheet"/>
     <link href="../../css/navbar.css" rel="stylesheet"/>
@@ -150,7 +151,7 @@
         }
     %>
     <nav> 
-        <a href="/Crowntech-KHA/"><img src="../../images/khalogo.png" class="logo"></a>
+        <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a> <%-- CHANGE TO INCLUDE NAVBAR LATER --%>
     </nav>
     <div class="main-body">
         <div class="changepass-box">

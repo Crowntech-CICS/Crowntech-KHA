@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Create Account</title>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/table-format.css" rel="stylesheet"/>
     </head>
@@ -27,7 +28,7 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
-                                    <td><select><option value="Admin">Admin</option><option value="User">User</option></select></td>
+                                    <td><select class="select-box"><option value="Admin">Admin</option><option value="User">User</option></select></td>
                                     <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
                                     <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
                                 </tr>

@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
+@import url(https://fonts.googleapis.com/css?family=Noto Sans);
+
 
 * {
   margin: 0;
@@ -40,6 +42,8 @@ h1 {
   font-weight: 900;
   margin-top: 20px;
   margin-bottom: 16px;
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: #377d60;
 }
 
 h2 {
@@ -54,7 +58,7 @@ h2 {
 .h2-bold {
   font-family: 'Inter';
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 label {
@@ -62,8 +66,12 @@ label {
   text-align: left;
   color: #377d60;
   font-size: 20px;
-  font-weight: 100;
-  font-weight: 900;
+  font-weight: 600;
+}
+
+input {
+  border-color: #48a37d;
+  border: solid 2px;
 }
 
 p {
@@ -71,6 +79,22 @@ p {
     font-family: 'Inter';
     font-size: 20px;
     color: #90ad9d;
+}
+
+select:focus,
+input:focus {
+  outline: 1px solid #757575;
+}
+
+.select-box {
+    border: none;
+    appearance: none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: #757575;
+    font-size: 20px;
+    height: 60px;
+    text-align: center;
 }
 
 .button-container {
@@ -87,8 +111,9 @@ p {
   margin-left: 20px;
   margin-right: 20px;
   height: 52px; 
-  width: 300px;
+  width: 280px;
   background: #48a37d;
+  border-radius: 50px;
   color: #FFFFFF;
   font-size: 20px;  
   font-family: 'Inter';
@@ -96,6 +121,7 @@ p {
   display: inline-block;
   transition: background 0.2s ease-out;
   border: none;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .button-design-reject{
@@ -111,22 +137,36 @@ p {
   font-family: 'Inter';
   text-align: center;
   display: inline-block;
-  transition: background 0.2s ease-out;
+  transition: background 0.5s ease-out;
+  border: none;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .button-design:hover {
-  background-color: #252f23;
+  background-color: #ffffff;
+  color: #48a37d;
+  border-color: #48a37d;
+  border: solid 2px;
+}
+
+.button-design-reject:hover {
+  background-color: #ffffff;
+  color: #a34848;
+  border-color: #a34848;
+  border: solid 2px;
 }
 
 .sortSearch input[type=text] {
   margin-left: 12.5%;
   padding: 10px;
   font-size: 20px;
-  border: 1px solid grey;
+  border: 2px solid grey;
   float: left;
-  width: 52.7%;
+  width: 75%;
   background: #f1f1f1;
   font-family: 'Inter';
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  border-radius: 50px;
 }
 
 .sortSearch button {
@@ -136,14 +176,20 @@ p {
   background: #48a37d;
   color: white;
   font-size: 20px;
-  border: 1px solid #377d60;
-  border-left: none;
+  border: 2px solid #377d60;
   cursor: pointer;
   font-family: 'Inter';
+  transition: background 0.2s ease-out;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  border-radius: 50px;
+  margin-left: -22.3%;
 }
 
 .sortSearch button:hover {
-  background: #377d60;
+  background-color: #ffffff;
+  color: #48a37d;
+  border-color: #48a37d;
+  border: solid 2px;
 }
 
 .sortSearch::after {
