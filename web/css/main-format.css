@@ -81,6 +81,10 @@ p {
     color: #90ad9d;
 }
 
+.p-right {
+    text-align: right;
+}
+
 select:focus,
 input:focus {
   outline: 1px solid #757575;
@@ -91,7 +95,7 @@ input:focus {
     appearance: none;
     padding: 0 30px 0 15px;
     width: 100%;
-    color: #757575;
+    color: black;
     font-size: 20px;
     height: 60px;
     text-align: center;
@@ -197,3 +201,7 @@ input:focus {
   clear: both;
   display: table;
 }
+
+    .line{
+        border-bottom: 2px gray solid;
+    }
