@@ -1,6 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*" %>
+<% 
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires","0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if(!logState) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>

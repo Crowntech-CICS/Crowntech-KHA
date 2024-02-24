@@ -1,6 +1,15 @@
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires","0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if(!logState) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,20 +101,27 @@
             + rs.getString("CITY") + " " 
             + rs.getString("PROVINCE")
             + "</p></li>");
-            if(true) {
+            if(rs.getString("REPRESENTATIVE") != null) {
                 out.print(""
                 + "<li><h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: 5%; text-align: left; margin-bottom: 2%\">Representative/Caretaker</h1></li>"
-                + "<li><p><span class=\"h2-bold\">Name: </span> Alden Richards</p></li>"
-                + "<li><p><span class=\"h2-bold\">Phone Number: </span> 9999-999-9999</p></li>");
+                + "<li><p><span class=\"h2-bold\">Name: </span>" + rs.getString("REPRESENTATIVE") + "</p></li>"
+                + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rs.getString("REPMOBILENO") + "</p></li>");
             }
             out.print("</ul>"
             + "</div>"
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%\">Lot Residents</h1>"
             + " <ul class=\"mega-links\">");
-            for(int x = 0; x < 2; x++) {
-                out.print("<li><span class=\"h2-bold\">Jeldric Rasa</span><p>Relationship: Cousin</p></li>");
+            ResultSet rsTemp;
+             ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
+                ps.setString(1, (String) session.getAttribute("currID"));
+                rsTemp = ps.executeQuery();
+            while(rsTemp.next()) {
+                out.print("<li><span class=\"h2-bold\">" + rsTemp.getString("FIRSTNAME") + " " + rsTemp.getString("MIDDLEINITIAL") + " " + 
+                rsTemp.getString("LASTNAME") + "</span><p>Relationship: " + rsTemp.getString("RELATIONSHIP")
+                + "</p></li>");
             }
+            rsTemp.close();
             out.print("</ul> </div>"
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%\">Balance Dues</h1>"
@@ -117,7 +133,8 @@
                 out.print("<li>Status: UNPAID</li>");
             }
                 out.print("<li>Button</li>"
-                + "<li>Button</li></ul></div></div></div></li> </ul>");
+                + "<li>Button</li>"
+                + "</ul></div></div></div></li></ul></div></div>");
             }   
             } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
