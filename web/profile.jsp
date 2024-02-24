@@ -126,7 +126,7 @@
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%\">Balance Dues</h1>"
             + "<ul class=\"mega-links\">"
-            + "<li>PHP 300.00</li>");
+            + "<li>" + rs.getString("BALANCE") + "</li>");
             if(rs.getBoolean("PAID")) {
                 out.print("<li>Status: PAID</li>");
             } else {
