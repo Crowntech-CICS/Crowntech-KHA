@@ -28,6 +28,13 @@
     font-size: 20px;
     margin-top: auto;
     margin-bottom: auto;
+    transition: background 0.5s ease-out;
+}
+.buttonP:hover {
+  background-color: #ffffff;
+  color: #48a37d;
+  border-color: #48a37d;
+  border: solid 2px;
 }
 .buttonA {
     width: 64px;
@@ -68,7 +75,7 @@
     flex: 1;
     margin: auto;
 }
-
+/*
 ul {
     vertical-align: top;
 }
@@ -80,7 +87,7 @@ li{
     font-size: 20px;
     width: 90%;
 }
-
+*/
 .mega-box{
   position: absolute;
   left: 10.8%;
@@ -135,7 +142,7 @@ li{
 .vehicle-box {
     background-color: #f0f5f3;
     height: 400px;
-    width: 100%;
+    width: 897px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }

@@ -42,7 +42,7 @@ h1 {
   font-weight: 900;
   margin-top: 20px;
   margin-bottom: 16px;
-  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #377d60;
 }
 
@@ -79,6 +79,10 @@ p {
     font-family: 'Inter';
     font-size: 20px;
     color: #90ad9d;
+}
+
+#p-dark {
+    color: #377d60;
 }
 
 .p-right {
@@ -202,6 +206,6 @@ input:focus {
   display: table;
 }
 
-    .line{
-        border-bottom: 2px gray solid;
-    }
+.line{
+    border-bottom: 2px #d2d2d2 solid;
+}

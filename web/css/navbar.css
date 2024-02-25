@@ -1,13 +1,4 @@
-@import url(https://fonts.cdnfonts.com/css/mesa-grande);
-@import url(https://fonts.cdnfonts.com/css/marvelan);
-@font-face {font-family: "Mesa Grande";
-            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot");
-            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot?#iefix")
-                format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff2")
-                format("woff2"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff")
-                format("woff"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.ttf")
-                format("truetype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.svg#Mesa Grande")
-                format("svg"); }
+@import url(https://fonts.googleapis.com/css?family=Inter);
 
 .logo {
     margin: 10px;
@@ -19,42 +10,45 @@ body{
 }
 nav {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #4a5c46;
+    background-color: #48a37d;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 .logo-profile{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 28px;
+    height: 28px;
     display: inline-block;
-    background: #252f23;
+    background: #48a37d;
+    margin-bottom: -17%;
+    border-radius: 50%;
 }
 .nav-links{
-    margin-top: 10px;
-    padding: 28px 10px;
-    font-family: 'Mesa Grande', sans-serif;
+    margin-top: 1.4%;
+    margin-bottom: auto;
+    margin-left: auto; 
+    margin-right: 0;
+    font-family: 'Inter';
+    font-weight: 600;
 }
 .nav-links li{
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 20px;
 }
 .nav-links li a{
     text-decoration: none;
     color: white;
-    padding: 5px 0;
     position: relative;
-    font-size: 20px;
+    font-size: 28px;
 }
 .nav-links li a::after{
     content: '';
-    background: #252f23;
+    background: white;
     width: 0;
     height: 2px;
     position: absolute;
     bottom: 0;
     left: 0;
     transition: width 0.5s;
+    text-shadow: 2px 3px 5px rgba(255,255,255,1);
 }
 .nav-links li a:hover::after{
     width: 100%;
