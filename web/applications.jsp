@@ -1,6 +1,17 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires","0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if(!logState) {
+        response.sendRedirect("login.jsp");
+    } else if(!session.getAttribute("level").equals("admin")){
+        response.sendRedirect("index.jsp");
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
