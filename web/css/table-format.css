@@ -17,6 +17,10 @@
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
+#tableContent-fit {
+    width: 75%;
+}
+
 th, td {
   text-align: center;
   padding-top: 5px;

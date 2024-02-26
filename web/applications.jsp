@@ -1,18 +1,14 @@
-<%-- 
-    Document   : applications
-    Created on : 01 30, 24, 10:43:51 PM
-    Author     : ejlu1
---%>
-
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/records.css" rel="stylesheet"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Applications</title>
+        <title>KHA | Membership Approval</title>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -34,15 +30,15 @@
                 ps = con.prepareStatement("SELECT * FROM HOMEOWNER");
                 rs = ps.executeQuery();
         %>
-        <h1>Membership Applications</h1>
+        <h1 class="h1-bold">Membership Applications</h1>
         <div>
             <form class="sortSearch" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
                 <input type="text" placeholder="Search for Application..." name="search" id="nameSearch" onkeyup="searchFunc()">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-        <div class="tableContain" style="overflow-y: scroll; height: 620px;">
-            <table class="tableContent sortable" id="displayTable">
+        <div class="tableContain">
+            <table class="tableContent sortable" id="displayTable" style="overflow-y: scroll;">
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
@@ -55,9 +51,9 @@
                             while (rs.next()) {
                                 String nameDB = rs.getString("FIRSTNAME").trim() + " " + rs.getString("LASTNAME").trim();
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                out.print("<td class=\"tableContentText info\"><a href=\"profile.jsp\">Information</a></td>");
-                                out.print("<td class=\"tableContentText\"><button class=\"tableB accept\">Accept</button></td>");
-                                out.println("<td class=\"tableContentText\"><button class=\"tableB reject\">Reject</button></td></tr>");
+                                out.print("<td class=\"tableContentText info\"><a href=\"profile.jsp\" style=\"color: black\">Information</a></td>");
+                                out.print("<td class=\"tableContentText\"><button class=\"button-design\" id=\"button-small\" style=\"margin-right: -20%\">Accept</button></td>");
+                                out.println("<td class=\"tableContentText\"><button class=\"button-design-reject\" id=\"button-small\" style=\"margin-left: -20%\">Reject</button></td></tr>");
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
