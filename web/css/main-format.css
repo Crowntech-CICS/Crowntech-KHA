@@ -69,9 +69,25 @@ label {
   font-weight: 600;
 }
 
+#label-margin {
+    margin-right: 48.4%;
+}
+
+#label-margin-medium {
+    margin-right: 38.4%;
+}
+
+fieldset {
+    border: 0;
+}
+
 input {
   border-color: #48a37d;
   border: solid 2px;
+}
+
+#input-none {
+  border: none;
 }
 
 p {
