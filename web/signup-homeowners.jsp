@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Homeowner Information</title>
+        <title>KHA | Homeowner Signup</title>
         <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/form-format.css" rel="stylesheet"/>
@@ -41,8 +41,8 @@
                 
                 <form id='form2'>
                     <h1 class="h1-bold">Homeowner Contact Information</h1>
-                        <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Last Name" required class="form"><br>
-                        <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="First Name" required class="form"><br>
+                        <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                        <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
                         <div class="button-container">
                             <input id="Next2" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                             <input id="Back2" class="button-design-reject" type="button" value="Back">

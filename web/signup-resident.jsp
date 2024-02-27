@@ -1,122 +1,219 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="header.css">
-    <!--<link rel="stylesheet" href="form.css">-->
-    <link href="css/form.css" rel="stylesheet"/>
-    <link href="css/navbar.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans"">
-    <title>Resident Registration Form | Kingsville Homeowner Association</title>
-</head>
-<body>
-    <header>
-        <nav> 
-            <a href="."><img src="images/khalogo.png" class="logo"></a>
-        </nav>
-    </header>
-    <h1 class="center">Resident Registration</h1>
-    <div class="form-box-lessee">
-    <form action="">
-        <div class="basic_info" id="form_container">
-            <h1>Resident Information</h1><br>
-            <label for="HO_LN" id="form_input_title">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="login-form"><br>
-            <label for="HO_FN" id="form_input_title">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="login-form"><br>
-            <label for="HO_MI" id="form_input_title-md">Middle Initial</label><label for="HO_AGE" id="form_input_title">Age</label>
-            <input type="text" name="HO_MI" placeholder="Middle Initial" class="login-md-form">
-            <input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="login-age-form"><br>
-            <label for="HO_ADDRESS" id="form_input_title">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification" required class="login-form"><br>
-            <label for="HO_ADDRESS" id="form_input_title">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)" required class="login-form"><br>
-            <label for="HO_DATE" id="form_input_title">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id="" required class="login-form">    
-        </div>
-        <div class="contact_info" id="form_container">
-            <h1>Resident Contact Information</h1><br>
-            <label for="HO_EMAIL" id="form_input_title">Email Address</label><input type="email" name="HO_EMAIL" placeholder="Email Address" required class="login-form">
-            <label for="HO_CONTACTNUM" id="form_input_title">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="login-form">
-        </div>
-        <div class="residents" id="form_container">
-            <h1>Other Persons Staying in the Home Property</h1><br>
-            <label for="HO_LN" id="form_input_title">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="login-form"><br>
-            <label for="HO_FN" id="form_input_title">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="login-form"><br>
-            <label for="HO_MI" id="form_input_title-md">Middle Initial</label><label for="HO_AGE" id="form_input_title">Age:</label>
-            <input type="text" name="HO_MI" placeholder="Middle Initial" class="login-md-form">
-            <input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="login-age-form">
-            <label for="RES_REL" id="form_input_title">Relationship with Resident</label>
-            <select name="RES_REL" id="" class="login-form">
-                <option value="" selected>Relationship</option>
-                <option value="">Spouse</option>
-                <option value="">Son/Daughter</option>
-                <option value="">Grandchild</option>
-                <option value="">Househelp</option>
-                <option value="">Renter</option>
-                <option value="">Parent</option>
-                <option value="">Friend</option>
-            </select>
-            <div class="add_more">
-                <button class="res_add" onclick="">Add more</button>
-            </div>   
-        </div>
-        <div class="lot_info" id="form_container">
-            <h1>Homeowner Information</h1>
-            <p>(Information about the owner of the property/lot)</p><br>
-            <h2>Homeowner</h2>
-            <div class="input_grid">
-                <label for="HO_LN" id="form_input_title">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="login-form"><br>
-                <label for="HO_FN" id="form_input_title">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="login-form"><br>
-                <label for="HO_MI" id="form_input_title-md">Middle Initial</label>
-                <input type="text" name="HO_MI" placeholder="Middle Initial" class="login-md-form"><br>
-                <label for="HO_ADDRESS" id="form_input_title">Email Address</label><input type="text" name="HO_ADDRESS" placeholder="Email Address" required class="login-form"><br>
-                <label for="HO_ADDRESS" id="form_input_title">Landline/Mobile No.</label><input type="text" name="HO_ADDRESS" placeholder="Phone Number" required class="login-form"><br>
-                <label for="HO_DATE" id="form_input_title">Current Address</label><input type="text" name="HO_ADDRESS" placeholder="Address" required class="login-form">  
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>KHA | Resident Signup</title>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/form-format.css" rel="stylesheet"/>
+        <link href="css/navbar.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <%@include file="navbar.jsp" %>
+        <div class="main-body">
+            <div class="signup-box">
+                <div class="step-row">
+                    <div id="progress"></div>
+                    <div class="step-col">Step 1</div>
+                    <div class="step-col">Step 2</div>
+                    <div class="step-col">Step 3</div>
+                    <div class="step-col">Step 4</div>
+                    <div class="step-col">Step 5</div>
+                    <div class="step-col">Step 6</div>
+                </div>
+                <form id='form1'>
+                    <h1 class="h1-bold">Resident Information</h1>
+                        <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" class="form"><br>
+                        <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" class="form"><br>
+                        <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE">Age</label><br>
+                        <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
+                        <label for="LE_ADDRESS">Resident Classification</label><input type="text" name="LE_ADDRESS" placeholder="Select Classification"  class="form"><br>
+                        <label for="LE_ADDRESS">Address In Kingsville</label><input type="text" name="LE_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
+                        <label for="LE_DATE">Date Home Property Was Occupied</label><input type="date" name="LE_DATE" id=""  class="form">
+                        <div class="button-container">
+                            <input id="Next1" class="button-design" type="button" value="Next" style="margin-right: 10%;">
+                            <input class="button-design-reject" type="button" value="Cancel" id="button-small">
+                        </div>
+                        <br>
+                </form>
+                
+                <form id='form2'>
+                    <h1 class="h1-bold">Resident Contact Information</h1>
+                        <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Last Name" required class="form"><br>
+                        <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
+                        <div class="button-container">
+                            <input id="Next2" class="button-design" type="button" value="Next" style="margin-right: 10%;">
+                            <input id="Back2" class="button-design-reject" type="button" value="Back">
+                        </div>
+                    <br>
+                </form>  
+                
+                <form id='form3'>
+                    <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
+                    
+                        <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" required class="form"><br>
+                        <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" required class="form"><br>
+                        <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE">Age</label><br>
+                        <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
+                        <label for="LE_REL"">Relationship with Resident</label>
+                        <select name="LE_REL" id="" class="form">
+                            <option value="" selected>Relationship</option>
+                            <option value="">Spouse</option>
+                            <option value="">Son/Daughter</option>
+                            <option value="">Grandchild</option>
+                            <option value="">Househelp</option>
+                            <option value="">Renter</option>
+                            <option value="">Parent</option>
+                            <option value="">Friend</option>
+                        </select>
+                        <div class="add_more">
+                            <button class="res_add" onclick="">Add more</button>
+                        </div>   
+                    
+                        <div class="button-container">
+                            <input id="Next3" class="button-design" type="button" value="Next" style="margin-right: 10%;">
+                            <input id="Back3" class="button-design-reject" type="button" value="Back">
+                        </div>
+                        <br>
+                </form>     
+                
+                <form id="form4">
+                    <h1 class="h1-bold">Homeowner Information</h1>
+                        <label for="LE_HO_LN">Last Name</label><input type="text" name="LE_HO_LN" placeholder="Last Name" class="form"><br>
+                        <label for="LE_HO_FN">First Name</label><input type="text" name="LE_HO_FN" placeholder="First Name" class="form"><br>
+                        <label for="LE_HO_MI" id="label-margin">Middle Initial</label>
+                        <input type="text" name="LE_HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
+                        <label for="LE_HO_ADDRESS">Email Address</label><input type="text" name="LE_HO_ADDRESS" placeholder="Email Address"  class="form"><br>
+                        <label for="LE_HO_ADDRESS">Landline/Mobile No.</label><input type="text" name="LE_HO_ADDRESS" placeholder="Phone Number" class="form"><br>
+                        <label for="LE_HO_DATE">Current Address</label><input type="text" name="LE_HO_DATE" placeholder="Current Address" class="form">
+                                    <div class="button-container">
+                        <input id="Next4" class="button-design" type="button" value="Next" style="margin-right: 10%;">
+                        <input id="Back4" class="button-design-reject" type="button" value="Back">
+                    </div>
+                </form>
+                <form id="form5">
+                    <h1 class="h1-bold">Representative / Caretaker</h1>
+                        <label for="LE_REP_LN">Last Name</label><input type="text" name="LE_REP_LN" placeholder="Last Name" class="form"><br>
+                        <label for="LE_REP_FN">First Name</label><input type="text" name="LE_REP_FN" placeholder="First Name" class="form"><br>
+                        <label for="LE_REP_MI" id="label-margin">Middle Initial</label>
+                        <input type="text" name="LE_REP_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
+                        <label for="LE_REP_PHONE">Landline/Mobile No.</label><input type="text" name="LE_REP_PHONE" placeholder="Phone Number" class="form"><br>
+                    <div class="button-container">
+                        <input id="Next5" class="button-design" type="button" value="Next" style="margin-right: 10%;">
+                        <input id="Back5" class="button-design-reject" type="button" value="Back">
+                    </div>
+                    <br>
+                </form>
+                
+                <form id="form6">
+                    <h1 class="h1-bold">Vehicle Information</h1>
+                    <div class="changepass-label-container">
+                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 6.3%;">Type of Vehicle</label><br>
+                        <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
+                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 12%;">Year/Model</label><br>
+                        <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
+                        <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
+                    
+                    <div class="add_more">
+                        <button class="res_add" onclick="">Add more</button>
+                    </div>   
+                    <br>
+                    <div class="upload_files" id="form_container" class="form_input_title">
+                        <p style="text-align: center">Upload Digital Copy of Required Documents</p>
+                        <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
+                    </div>
+                        </div>
+                    <div class="button-container">
+                        <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
+                        <input id="Back6" class="button-design-reject" type="button" value="Cancel">
+                    </div>
+                    <br>
+                </form>    
+                
             </div>
+        </div>
+        <script>
+            var form1 = document.getElementById("form1");
+            var form2 = document.getElementById("form2");
+            var form3 = document.getElementById("form3");
+            var form4 = document.getElementById("form4");
+            var form5 = document.getElementById("form5");
+            var form6 = document.getElementById("form6");
             
-            <h2>Representative/Caretaker</h2>
-            <div class="input_grid">
-                <label for="HO_LN" id="form_input_title">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="login-form"><br>
-                <label for="HO_FN" id="form_input_title">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="login-form"><br>
-                <label for="HO_MI" id="form_input_title-md">Middle Initial</label>
-                <input type="text" name="HO_MI" placeholder="Middle Initial" class="login-md-form"><br>
-                <label for="HO_ADDRESS" id="form_input_title">Email Address</label><input type="text" name="HO_ADDRESS" placeholder="Email Address" required class="login-form"><br>
-                <label for="HO_ADDRESS" id="form_input_title">Landline/Mobile No.</label><input type="text" name="HO_ADDRESS" placeholder="Phone Number" required class="login-form"><br>
-            </div>
-        </div>
-        
-        <div class="vehicle_info" id="form_container">
-            <h1>Vehicle Information</h1>
-            <div class="input_grid">
-                <label for="VEH_PLATE" id="form_input_title-plate">Plate No.</label><label for="VEH_TYPE" id="form_input_title">Type of Vehicle</label><br>
-                <input type="text" name="VEH_PLATE" placeholder="Plate No." required class="login-lot-form">
-                <input type="text" name="VEH_TYPE" placeholder="Type of Vehicle." required class="login-lot-form">
-                <label for="VEH_BRAND" id="form_input_title-brand">Brand</label><label for="VEH_MODEL" id="form_input_title">Year/Model</label><br>
-                <input type="text" name="VEH_BRAND" placeholder="Brand" required class="login-lot-form">
-                <input type="text" name="VEH_MODEL" placeholder="Year/Model" required class="login-lot-form">
-            </div>
-            <label for="BUS_NAME" id="form_input_title">Registered Owner</label><input type="text" name="BUS_NAME" placeholder="Business Name" required class="login-form">
-            <div class="add_more">
-                <button class="res_add" onclick="">Add more</button>
-            </div>   
-        </div>
-        <div class="upload_files" id="form_container" class="form_input_title">
-            <p>Upload Digital Copy of Required Documents</p>
-            <input type="file" class="file_button" name="FILES_UPLOAD" id="" accept="image/*,.pdf" multiple>
-        </div>
-        <input type="submit" class="button-design" value="Apply">
-    </form>
-    </div>
-</body>
-<style>
-    * {
-        margin: 0;
-        font-family: "Noto Sans";
-    }
-    body {
-        background-color: #939992;
-    }
-    .center {
-    text-align:center;
-    font-size: 2.5rem;
-    }
-</style>
+            var Next1 = document.getElementById("Next1");
+            var Back1 = document.getElementById("Back1");
+            var Next2 = document.getElementById("Next2");
+            var Back2 = document.getElementById("Back2");
+            var Next3 = document.getElementById("Next3");
+            var Back3 = document.getElementById("Back3");
+            var Next4 = document.getElementById("Next4");
+            var Back4 = document.getElementById("Back4");
+            var Next5 = document.getElementById("Next5");
+            var Back5 = document.getElementById("Back5");
+            var Next6 = document.getElementById("Next6");
+            var Back6 = document.getElementById("Back6");
+            
+            Next1.onclick = function(){
+                form1.style.left = "-1000px";
+                form2.style.left = "32.5%";
+                progress.style.width = "32%";
+            }
+            
+            Back2.onclick = function(){
+                form1.style.left = "32.5%";
+                form2.style.left = "1000px";
+                progress.style.width = "16.66%";
+            }
+            
+            Next2.onclick = function(){
+                form2.style.left = "-1000px";
+                form3.style.left = "32.5%";
+                progress.style.width = "48%";
+            }
+            
+            Back3.onclick = function(){
+                form2.style.left = "32.5%";
+                form3.style.left = "1000px";
+                progress.style.width = "32%";
+            }
+            
+            Next3.onclick = function(){
+                form3.style.left = "-1000px";
+                form4.style.left = "32.5%";
+                progress.style.width = "64%";
+            }
+            
+            Back4.onclick = function(){
+                form3.style.left = "32.5%";
+                form4.style.left = "1000px";
+                progress.style.width = "48%";
+            }
+            
+            Next4.onclick = function(){
+                form4.style.left = "-1000px";
+                form5.style.left = "32.5%";
+                progress.style.width = "82%";
+            }
+            
+            Back5.onclick = function(){
+                form4.style.left = "32.5%";
+                form5.style.left = "1000px";
+                progress.style.width = "64%";
+            }
+            
+            Next5.onclick = function(){
+                form5.style.left = "-1000px";
+                form6.style.left = "32.5%";
+                progress.style.width = "100%";
+            }
+            
+            Back6.onclick = function(){
+                form5.style.left = "32.5%";
+                form6.style.left = "1000px";
+                progress.style.width = "82%";
+            }
+        </script>
+    </body>
 </html>
