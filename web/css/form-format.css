@@ -106,10 +106,19 @@
 /* Homeowner Signup */
 .signup-box {
     background-color: #f0f5f3;
-    height: 55%;
-    width: 35%;
+    height: 750px;
+    width: 620px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-box form {
+    width: 90%;
+    position: absolute;
+    margin-left: -27.5%;
+    transition: 0.5s;
 }
 
 .login-md-form {
@@ -122,4 +131,54 @@
   margin-top: 5px;
   margin-bottom: 16px;
   margin-right: 251px;
+}
+
+.step-row {
+    font-family: 'Inter';
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #f0f5f3;
+}
+
+.step-col {
+    width: 120px;
+    text-align: center;
+    color: #f0f5f3;
+    position: relative;
+}
+
+#progress {
+    position: absolute;
+    height: 100%;
+    width: 16.66%;
+    background: #48a37d;
+    transition: 0.5s;
+}
+
+#progress:after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #48a37d;
+}
+
+#Next1, #Next2, #Next3, #Next4, #Next5, #Next6, #Back2, #Back3, #Back4, #Back5, #Back6 {
+    width: 150px;
+}
+
+#form1 {
+    left: 32.5%;
+}
+
+#form2, #form3, #form4, #form5, #form6 {
+    left: 1000px;
 }
