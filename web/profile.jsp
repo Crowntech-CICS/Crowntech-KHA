@@ -67,8 +67,8 @@
         </div>
         <br>
         <%
-            ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
-            ps.setString(1, hoID);
+            ps = con.prepareStatement("SELECT * FROM USERLOT WHERE USERID = ?");
+            ps.setString(1, (String) session.getAttribute("currID"));
             rs = ps.executeQuery();
             
            while(rs.next()) {
@@ -93,26 +93,30 @@
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -1%; margin-left: -1%; margin-bottom: 2%\">Homeowner Info</h1>"
             + "<ul class=\"mega-links\">"
-            + "<li><p><span class=\"h2-bold\">Name: </span>" + fullName + "</p></li>"
-            + "<li><p><span class=\"h2-bold\">Email: </span>" + rs.getString("EMAIL") + "</p></li>"
-            + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rs.getString("MOBILENO") + "</p></li>"
+            + "<li><p><span class=\"h2-bold\">Name: </span>" + fullName + "</p></li>");
+            ResultSet rsTemp;
+            ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
+                ps.setString(1, hoID);
+                rsTemp = ps.executeQuery();
+            while(rsTemp.next()){
+            out.print("<li><p><span class=\"h2-bold\">Email: </span>" + rsTemp.getString("EMAIL") + "</p></li>"
+            + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rsTemp.getString("MOBILENO"));
+            out.print("</p></li>"
             + "<li><p><span class=\"h2-bold\">Current Address: </span> "
-            + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " " + rs.getString("BARANGAY") + " "
-            + rs.getString("CITY") + " " 
-            + rs.getString("PROVINCE")
+            + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("BARANGAY")
             + "</p></li>");
-            if(rs.getString("REPRESENTATIVE") != null) {
+            if(rsTemp.getString("REPRESENTATIVE") != null) {
                 out.print(""
                 + "<li><h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: 5%; text-align: left; margin-bottom: 2%\">Representative/Caretaker</h1></li>"
-                + "<li><p><span class=\"h2-bold\">Name: </span>" + rs.getString("REPRESENTATIVE") + "</p></li>"
-                + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rs.getString("REPMOBILENO") + "</p></li>");
+                + "<li><p><span class=\"h2-bold\">Name: </span>" + rsTemp.getString("REPRESENTATIVE") + "</p></li>"
+                + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rsTemp.getString("REPMOBILENO") + "</p></li>");
+            }
             }
             out.print("</ul>"
             + "</div>"
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%\">Lot Residents</h1>"
             + " <ul class=\"mega-links\">");
-            ResultSet rsTemp;
              ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
                 ps.setString(1, (String) session.getAttribute("currID"));
                 rsTemp = ps.executeQuery();
@@ -121,12 +125,17 @@
                 rsTemp.getString("LASTNAME") + "</span><p>Relationship: " + rsTemp.getString("RELATIONSHIP")
                 + "</p></li>");
             }
-            rsTemp.close();
             out.print("</ul> </div>"
             + "<div class=\"row\">"
             + "<h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: -1%; margin-bottom: 2%\">Balance Dues</h1>"
             + "<ul class=\"mega-links\">"
-            + "<li>" + rs.getString("BALANCE") + "</li>");
+            + "<li>");
+            ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
+                ps.setString(1, hoID);
+                rsTemp = ps.executeQuery();
+            while(rsTemp.next()) {
+                out.print(rsTemp.getString("BALANCE") + "</li>");
+            } rsTemp.close();
             if(rs.getBoolean("PAID")) {
                 out.print("<li>Status: PAID</li>");
             } else {
