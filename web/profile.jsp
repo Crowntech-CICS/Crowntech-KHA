@@ -107,7 +107,7 @@
             + "</p></li>");
             if(rsTemp.getString("REPRESENTATIVE") != null) {
                 out.print(""
-                + "<li><h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: 5%; text-align: left; margin-bottom: 2%\">Representative/Caretaker</h1></li>"
+                + "<li><h1 class=\"h1-bold\" style=\"font-size: 26px; margin-top: -2%; margin-left: 5%; text-align: left; margin-bottom: 2%\">Representative/Caretaker</h1></li><br>"
                 + "<li><p><span class=\"h2-bold\">Name: </span>" + rsTemp.getString("REPRESENTATIVE") + "</p></li>"
                 + "<li><p><span class=\"h2-bold\">Phone Number: </span>" + rsTemp.getString("REPMOBILENO") + "</p></li>");
             }
