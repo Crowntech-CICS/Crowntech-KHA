@@ -159,6 +159,14 @@
     transition: 0.5s;
 }
 
+#progressEDIT {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #48a37d;
+    transition: 0.5s;
+}
+
 #progress:after {
     content: '';
     height: 0;
@@ -173,6 +181,7 @@
 
 #Next1, #Next2, #Next3, #Next4, #Next5, #Next6, #Back2, #Back3, #Back4, #Back5, #Back6 {
     width: 150px;
+    cursor: pointer;
 }
 
 #form1 {

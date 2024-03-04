@@ -32,6 +32,7 @@
                         <label for="LE_ADDRESS">Resident Classification</label><input type="text" name="LE_ADDRESS" placeholder="Select Classification"  class="form"><br>
                         <label for="LE_ADDRESS">Address In Kingsville</label><input type="text" name="LE_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
                         <label for="LE_DATE">Date Home Property Was Occupied</label><input type="date" name="LE_DATE" id=""  class="form">
+                        <br><br><br><br><br><br><br>
                         <div class="button-container">
                             <input id="Next1" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                             <input class="button-design-reject" type="button" value="Cancel" id="button-small">
@@ -43,6 +44,7 @@
                     <h1 class="h1-bold">Lessee Contact Information</h1>
                         <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Email Address" required class="form"><br>
                         <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                         <div class="button-container">
                             <input id="Next2" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                             <input id="Back2" class="button-design-reject" type="button" value="Back">
@@ -71,7 +73,7 @@
                         <div class="add_more">
                             <button class="res_add" onclick="">Add more</button>
                         </div>   
-                    
+                        <br><br><br><br><br>
                         <div class="button-container">
                             <input id="Next3" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                             <input id="Back3" class="button-design-reject" type="button" value="Back">
@@ -88,19 +90,21 @@
                         <label for="LE_HO_ADDRESS">Email Address</label><input type="text" name="LE_HO_ADDRESS" placeholder="Email Address"  class="form"><br>
                         <label for="LE_HO_ADDRESS">Landline/Mobile No.</label><input type="text" name="LE_HO_ADDRESS" placeholder="Phone Number" class="form"><br>
                         <label for="LE_HO_DATE">Current Address</label><input type="text" name="LE_HO_DATE" placeholder="Current Address" class="form">
-                                    <div class="button-container">
+                        <br><br><br>
+                        <div class="button-container">
                         <input id="Next4" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                         <input id="Back4" class="button-design-reject" type="button" value="Back">
                     </div>
                 </form>
                 <form id="form5">
-                    <h1 class="h1-bold">Representative / Caretaker</h1>
+                    <h1 class="h1-bold">Representative or Caretaker</h1>
                         <label for="LE_REP_LN">Last Name</label><input type="text" name="LE_REP_LN" placeholder="Last Name" class="form"><br>
                         <label for="LE_REP_FN">First Name</label><input type="text" name="LE_REP_FN" placeholder="First Name" class="form"><br>
                         <label for="LE_REP_MI" id="label-margin">Middle Initial</label>
                         <input type="text" name="LE_REP_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
                         <label for="LE_REP_PHONE">Landline/Mobile No.</label><input type="text" name="LE_REP_PHONE" placeholder="Phone Number" class="form"><br>
-                    <div class="button-container">
+                        <br><br><br><br><br><br><br><br><br><br>
+                        <div class="button-container">
                         <input id="Next5" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                         <input id="Back5" class="button-design-reject" type="button" value="Back">
                     </div>
@@ -110,9 +114,9 @@
                 <form id="form6">
                     <h1 class="h1-bold">Vehicle Information</h1>
                     <div class="changepass-label-container">
-                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 6.3%;">Type of Vehicle</label><br>
+                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
                         <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 12%;">Year/Model</label><br>
+                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
                     
@@ -125,6 +129,7 @@
                         <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
                     </div>
                         </div>
+                    <br><br><br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
                         <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
                         <input id="Back6" class="button-design-reject" type="button" value="Cancel">
