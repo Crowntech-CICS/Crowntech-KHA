@@ -23,15 +23,16 @@
                     <div class="step-col">Step 5</div>
                     <div class="step-col">Step 6</div>
                 </div>
-                <form id='form1'>
+                <form id='form1' action="SignupServlet" method="POST">
                     <h1 class="h1-bold">Homeowner Information</h1>
                         <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                         <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
-                        <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE">Age</label><br>
-                        <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
+                        <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE">Age</label>
+                        <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin">
+                        <input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
                         <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification"  class="form"><br>
                         <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
-                        <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
+                        <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
                         <br><br><br>
                         <div class="button-container">
                             <input id="Next1" class="button-design" type="button" value="Next" style="margin-right: 10%;">
@@ -39,7 +40,7 @@
                         </div>
                 </form>
                 
-                <form id='form2'>
+                <form id='form2' action="SignupServlet"  method="POST">
                     <h1 class="h1-bold">Homeowner Contact Information</h1>
                         <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
                         <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
@@ -51,15 +52,15 @@
                     <br>
                 </form>  
                 
-                <form id='form3'>
+                <form id='form3' action="SignupServlet"  method="POST">
                     <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
                     
-                        <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
-                        <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
-                        <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE">Age</label><br>
-                        <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                        <label for="RES_REL"">Relationship with Resident</label>
-                        <select name="RES_REL" id="" class="form">
+                        <label for="HO_LN_B">Last Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" required class="form"><br>
+                        <label for="HO_FN_B">First Name</label><input type="text" name="HO_FN_B" placeholder="First Name" required class="form"><br>
+                        <label for="HO_MI_B" id="label-margin">Middle Initial</label><label for="HO_AGE_B">Age</label><br>
+                        <input type="text" name="HO_MI_B" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE_B" placeholder="Age" min="1" max="200" required class="form-small"><br>
+                        <label for="RES_REL">Relationship with Resident</label>
+                        <select name="RES_REL" class="form">
                             <option value="" selected>Relationship</option>
                             <option value="">Spouse</option>
                             <option value="">Son/Daughter</option>
@@ -80,7 +81,7 @@
                         <br>
                 </form>     
                 
-                <form id="form4">
+                <form id="form4" action="SignupServlet"  method="POST">
                     <h1 class="h1-bold">Lot/Property Information</h1>
                     
                         <p>Title Information</p><br>
@@ -99,7 +100,7 @@
                         <input id="Back4" class="button-design-reject" type="button" value="Back">
                     </div>
                 </form>
-                <form id="form5">
+                <form id="form5" action="SignupServlet"  method="POST">
                     <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
                         <p>KHA Membership</p><br>
                         <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" style="margin-left: -17%;">If paid, input date:</label><br>
@@ -125,7 +126,7 @@
                     <br>
                 </form>
                 
-                <form id="form6">
+                <form id="form6" action="SignupServlet"  method="POST">
                     <h1 class="h1-bold">Vehicle Information</h1>
                     <div class="changepass-label-container">
                         <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
@@ -138,19 +139,18 @@
                         <button class="res_add" onclick="">Add more</button>
                     </div>   
                     <br>
-                    <div class="upload_files" id="form_container" class="form_input_title">
+                    <div class="upload_files form_input_title" id="form_container">
                         <p style="text-align: center">Upload Digital Copy of Required Documents</p>
                         <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
                     </div>
                         </div>
-                    <br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
                         <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
                         <input id="Back6" class="button-design-reject" type="button" value="Cancel">
                     </div>
                     <br>
-                </form>    
-                
+                </form>
             </div>
         </div>
         <script>

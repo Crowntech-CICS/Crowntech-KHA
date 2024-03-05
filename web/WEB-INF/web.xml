@@ -36,6 +36,10 @@
         <servlet-name>PasswordReset</servlet-name>
         <servlet-class>controller.PasswordReset</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignupServlet</servlet-name>
+        <servlet-class>controller.SignupServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>PasswordReset</servlet-name>
         <url-pattern>/PasswordReset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignupServlet</servlet-name>
+        <url-pattern>/SignupServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
