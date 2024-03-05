@@ -64,9 +64,9 @@ public class SignupServlet extends HttpServlet {
             ageB = Integer.parseInt(request.getParameter("HO_AGE_B"));
         }
         
-        System.out.println("Page 1 Details: \nName: " + lastName + firstName + middleIni + "\nDate: " + date + "\nAddress: " + address
+        System.out.println("Page 1 \nDetails: \nName: " + lastName + firstName + middleIni + "\nDate: " + date + "\nAddress: " + address
         + "\nAge: " + age + "");
-        System.out.println("Page 6: Details: \nPlate No: " + plateNo + "\nCar Type: " + carType + "\nModel: " + carMod + "\nBrand: " + carBrand + "\nOwner: " + carOwner);
+        System.out.println("Page 6: \nDetails: \nPlate No: " + plateNo + "\nCar Type: " + carType + "\nModel: " + carMod + "\nBrand: " + carBrand + "\nOwner: " + carOwner);
         response.sendRedirect("signup-homeowners.jsp");
     }
 

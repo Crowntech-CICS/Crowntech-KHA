@@ -146,7 +146,7 @@
                         </div>
                     <br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
-                        <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
+                        <input id="Next6" class="button-design" value="Apply" style="margin-right: 10%;" onclick="submitForms()">
                         <input id="Back6" class="button-design-reject" type="button" value="Cancel">
                     </div>
                     <br>
@@ -232,6 +232,16 @@
                 form5.style.left = "32.5%";
                 form6.style.left = "1000px";
                 progress.style.width = "82%";
+            }
+        </script>
+        <script>
+            submitForms = function(){
+                document.getElementById("form1").submit();
+                document.getElementById("form2").submit();
+                document.getElementById("form3").submit();
+                document.getElementById("form4").submit();
+                document.getElementById("form5").submit();
+                document.getElementById("form6").submit();
             }
         </script>
     </body>
