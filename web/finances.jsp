@@ -22,7 +22,7 @@
 </head>
 <body>
     <%@include file="navbar.jsp" %>
-    <br><br>
+    <br><br><br><br><br><br>
     <div>
         <form class="sortSearch" action="" style="margin:auto; margin-top: 5px; max-width: 1800px;">
             <input type="text" placeholder="Search.." name="search">

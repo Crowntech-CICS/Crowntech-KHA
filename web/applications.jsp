@@ -23,6 +23,7 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
+        <br><br><br><br><br>
         <%            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;

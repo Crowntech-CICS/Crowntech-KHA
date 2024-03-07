@@ -17,6 +17,7 @@
         <link href="css/main-format.css" rel="stylesheet"/>
     <body>
         <%@include file="navbar.jsp" %>
+        <br><br><br><br><br><br>
         <div class="test">
             
         </div>

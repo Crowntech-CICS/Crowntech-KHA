@@ -68,6 +68,42 @@
             </div>
             <br>
         </ul>
+        <br>
+                <ul id="profileStrip" class="accordion">
+            <br>
+            <div class="d-flex main justify-content-between">
+                <h1 class="h1-bold" id="profileAddress"> 123123, San Jose Street</h1>
+                <div class="green">
+                    <h1 class="panelText"> PAID </h1>
+                </div>
+            </div>
+            <button class="accordion"></button>
+            <div class="moreinfo">
+                <li class="accordion-content-width-two">
+                    <h1 class="h1-bold" id="profileInfoHeader">Homeowner Info</h1>
+                    <div class="line"></div><br>
+                    <ul>
+                        <li class="accordion-content">Name: Eldric B. Basa</li><br>
+                        <li class="accordion-content">Email: eldricbasa@gmail.com</li><br>
+                        <li class="accordion-content">Phone: 0917 125 6277</li><br>
+                        <li class="accordion-content">Address: Block 7 Lot 13 Q.C.VILLE Townhomes Culiat Quezon City</li>
+                    </ul>
+                </li>
+                <li class="accordion-content-width-two">
+                    <h1 class="h1-bold" id="profileInfoHeader">Balance Dues</h1>
+                    <div class="line"></div><br>
+                    <ul>
+                        <h1 class="h1-bold" id="profileCashHeader">PHP 300</h1><br>
+                        <li class="accordion-content" style="text-align: center;">Status: Paid</li><br>
+                        <div class="d-flex main justify-content-between">
+                            <button type="button" class="button-design" id="button-small">How To Pay</button>
+                            <button type="button" class="button-design" id="button-small" style="margin-right: 0%">Pay Now</button>
+                        </div>
+                    </ul>
+                </li>
+            </div>
+            <br>
+        </ul>
     </body>
     <script>
         var acc = document.getElementsByClassName("accordion");

@@ -144,6 +144,16 @@
     border-radius: 15px;
 }
 
+.accordion-content-width-two{
+    list-style: none;
+    width: 43.99%;
+    float: left;
+    padding: 2%;
+    background: white;
+    margin: 2%;
+    border-radius: 15px;
+}
+
 .accordion-content{
     list-style: none;
     font-family: 'Inter';
