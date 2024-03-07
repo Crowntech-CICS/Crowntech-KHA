@@ -57,17 +57,20 @@ public class SignupServlet extends HttpServlet {
                carOwner = request.getParameter("VEH_OWNER");
         int age = 0,
             ageB = 0;
-        if(request.getParameter("HO_AGE") != null) {
+        if(request.getParameter("HO_AGE") != null && !request.getParameter("HO_AGE").equals("")) {
             age = Integer.parseInt(request.getParameter("HO_AGE"));
         }
-        if(request.getParameter("HO_AGE_B") != null) {
+        if(request.getParameter("HO_AGE_B") != null && !request.getParameter("HO_AGE_B").equals("")) {
             ageB = Integer.parseInt(request.getParameter("HO_AGE_B"));
         }
-        
-        System.out.println("Page 1 \nDetails: \nName: " + lastName + firstName + middleIni + "\nDate: " + date + "\nAddress: " + address
-        + "\nAge: " + age + "");
-        System.out.println("Page 6: \nDetails: \nPlate No: " + plateNo + "\nCar Type: " + carType + "\nModel: " + carMod + "\nBrand: " + carBrand + "\nOwner: " + carOwner);
-        response.sendRedirect("signup-homeowners.jsp");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
+        System.out.println("Page 1\nName: " + lastName + firstName + middleIni + "\nDate: " + date + "\nAddress: " + address
+        + "\nAge: " + age + "" + "\nDate: " + date);
+        System.out.println("Page 2:\nEmail: " + email + "\nMobile No: " + mobileNo);
+        System.out.println("Page 6:\nPlate No: " + plateNo + "\nCar Type: " + carType + "\nModel: " + carMod + "\nBrand: " + carBrand + "\nOwner: " + carOwner);
+       System.out.println("------------------------------------------------------------------------------------------------------------");
+        //request.getRequestDispatcher("signup-homeowners.jsp").forward(request, response);
+        response.sendRedirect("index.jsp");
     }
 
    
