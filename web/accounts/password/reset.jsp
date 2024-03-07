@@ -18,7 +18,7 @@
                 <div class="greetingBanner">
             <div class="main-body">
                 <div class="forgot-box">
-                    <form action="" method="POST">
+                    <form action="../../PasswordReset" method="POST">
                     <h1 class="h1-bold">Forgot Password</h1>
                     <div class="changepass-label-container">
                     <p>Having trouble logging in? Enter your email and we will send you a link to reset your account password.</p>

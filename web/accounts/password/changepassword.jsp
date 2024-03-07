@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%
-    System.out.println("--------------------------------------------------------------------------");
+    System.out.println("-[CHG-PW]-------------------------------------------------------------------------");
     String resetToken = request.getParameter("rt");
     String rt_userId = resetToken.substring(0, 10).trim();
     String rt_date = resetToken.substring(10).trim();
@@ -17,13 +17,12 @@
     System.out.println("RT: " + resetToken);
     System.out.println("RT_UID: " + rt_userId);
     System.out.println("RT_DATE: " + rt_date);
-    System.out.println("UID: " + userId);
     
     LocalDateTime exp_date = new Timestamp(Long.parseLong(rt_date)).toLocalDateTime();
     System.out.println("Exp Date: " + exp_date.toString());
     
     if(LocalDateTime.now().isAfter(exp_date)){
-        //response.sendRedirect("/Crowntech-KHA/");
+        response.sendRedirect("/Crowntech-KHA/");
         System.out.println("Token Expired.");
     } else {System.out.println("Token Still Valid.");}
     
@@ -63,13 +62,14 @@
             if(rs.next()) {
                 System.out.println("Found UserId in Users");
                 fullName = rs.getString("LASTNAME").trim() + ", " + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();;
+                System.out.println("Name: " + fullName);
             } else {
-                //response.sendRedirect("/Crowntech-KHA/");
+                response.sendRedirect("/Crowntech-KHA/");
                 System.out.println("UserID not Found in Users");
             }
         } catch(SQLException sqle){
             System.out.println("[PR] SQLException IN error occured - " + sqle.getMessage());
-            //response.sendError(500);
+            response.sendError(500);
         } finally {
             try {
                 if(rs != null)
@@ -80,7 +80,7 @@
                     con.close();
             } catch (SQLException sqle) {
                 System.out.println("[PR] SQLException OUT error occured - " + sqle.getMessage());
-                //response.sendError(500);
+                response.sendError(500);
             }
         }    
 %>
@@ -145,7 +145,7 @@
                         con.close();
                 } catch (SQLException sqle) {
                     System.out.println("[PR] SQLException OUT error occured - " + sqle.getMessage());
-                    //response.sendError(500);
+                    response.sendError(500);
                 }
             }
         }
