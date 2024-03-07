@@ -126,7 +126,8 @@
     height: 400px;
     background: #f0f5f3;
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-    border-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
