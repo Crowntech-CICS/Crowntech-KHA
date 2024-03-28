@@ -238,25 +238,25 @@
             var serialized = [];
             var query = "";
             var Next6 = document.getElementById("Next6");
-            $(".button-design").on('click',function () { // changed
-            //    e.preventDefault();
+            $(".button-design").on('click', function () { // changed
+                //    e.preventDefault();
                 var myForm = $(this).closest("form");
-            //    $("#placeholderdiv").text(myForm.serialize())
+                //    $("#placeholderdiv").text(myForm.serialize())
                 var stringHold = (myForm.serialize() + "&")
                 serialized.push(stringHold);
                 return false; // avoid to execute the actual form submission.
             });
-            $(".button-design-reject").on('click',function(){
+            $(".button-design-reject").on('click', function () {
                 var myForm = $(this).closest("form");
-            //    $("#placeholderdiv").text(myForm.serialize())
+                //    $("#placeholderdiv").text(myForm.serialize())
                 query = "";
                 serialized.pop();
             });
-            $("#Next6").click( function() {
-                for(x = 0; x < serialized.length; x++){
+            $("#Next6").click(function () {
+                for (x = 0; x < serialized.length; x++) {
                     query += serialized[x];
                 }
-            //    $("#placeholderdiv").text(query)
+                //    $("#placeholderdiv").text(query)
                 $.ajax({
                     type: "POST",
                     url: "SignupServlet?" + query,
@@ -265,6 +265,6 @@
                 });
             });
         </script>
-        
+
     </body>
 </html>

@@ -1,12 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*" %>
-<% 
+<%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Expires","0");
+    response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
-    if(!logState) {
+    if (!logState) {
         response.sendRedirect("login.jsp");
     }
 %>
@@ -20,31 +20,30 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            
-            Connection con = null;
+        <%            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             String QUERY = "SELECT * FROM HOMEOWNER";
             String addQuery = null;
             String[] hold = null;
             addQuery = request.getParameter("find");
-            
+
             System.out.println("Parameter gotten: " + addQuery); // shows parameter gotten
-            
-            if(addQuery != null){ // checks if there are additional parameters
+
+            if (addQuery != null) { // checks if there are additional parameters
                 hold = addQuery.split("\\s+"); // splits parameters based on whitespace
-                
-                if(hold != null && addQuery.substring(0,4).equals("AREA")) { // checks if AREA parameter is used
-                
+
+                if (hold != null && addQuery.substring(0, 4).equals("AREA")) { // checks if AREA parameter is used
+
                     addQuery = " WHERE AREA = '" + hold[1] + "'"; // sets which specific area will be filtered in query
                     System.out.println("Area Check: " + hold[1]); // checks which area was taken from param
-                    
-                    if(hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
+
+                    if (hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
                         addQuery += " AND PAID = " + hold[2]; // adds payment status to query
                     }
                     QUERY += addQuery;
                     System.out.println(QUERY);
-                } else if(!addQuery.substring(0,4).equals("AREA")){ // AREA parameter not used
+                } else if (!addQuery.substring(0, 4).equals("AREA")) { // AREA parameter not used
                     QUERY += " WHERE PAID =" + addQuery; // only adds payment status to query
                 }
             }
@@ -135,12 +134,12 @@
                                         numDB = rs.getString("MOBILENO").trim(),
                                         statDB = "Homeowner",
                                         paidDB = rs.getString("PAID").trim();
-                                        
-                                        if(paidDB.equals("true")){
-                                            paidDB = "Paid";
-                                        } else if(paidDB.equals("false")) {
-                                            paidDB = "Unpaid";
-                                        }
+
+                                if (paidDB.equals("true")) {
+                                    paidDB = "Paid";
+                                } else if (paidDB.equals("false")) {
+                                    paidDB = "Unpaid";
+                                }
                                 // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                 out.print("<td class=\"tableContentText\">" + addDB + "</td>");
@@ -176,7 +175,7 @@
         </div>
         <script src="scripts/sorttable.js"></script>
         <script>
-            function openForm() {
+                        function openForm() {
                             document.getElementById("sortForm").style.display = "block";
                         }
 

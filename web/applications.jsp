@@ -1,14 +1,14 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% 
+<%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Expires","0");
+    response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
-    if(!logState) {
+    if (!logState) {
         response.sendRedirect("login.jsp");
-    } else if(!session.getAttribute("level").equals("admin")){
+    } else if (!session.getAttribute("level").equals("admin")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -92,24 +92,24 @@
         </div>
         <script src="scripts/sorttable.js"></script>
         <script>
-            function searchFunc() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("nameSearch");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("displayTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
+                    function searchFunc() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("nameSearch");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("displayTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[0];
+                            if (td) {
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
                         }
                     }
-                }
-            }
         </script>
     </body>
 </html>

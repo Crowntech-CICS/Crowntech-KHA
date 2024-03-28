@@ -15,31 +15,31 @@
                 <div class="createacc-box">
                     <h1 class="h1-bold">Create Account</h1>
                     <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
-                    <div class="tableContain"> <%--dito yun table--%> 
-                        <table class="tableContent"> 
-                            <thead>
-                                <tr>
-                                    <th class="tableTitle">Name</th>
-                                    <th class="tableTitle">Role</th>
-                                    <th class="tableTitle">Email</th>
-                                    <th class="tableTitle">Password</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
-                                    <td><select class="select-box"><option value="Admin">Admin</option><option value="User">User</option></select></td>
-                                    <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
-                                    <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br><br>
-                    <div class="button-container">
-                        <button class="button-design">Create</button>
-                        <button class="button-design-reject">Cancel</button>
-                    </div>
+                        <div class="tableContain"> <%--dito yun table--%> 
+                            <table class="tableContent"> 
+                                <thead>
+                                    <tr>
+                                        <th class="tableTitle">Name</th>
+                                        <th class="tableTitle">Role</th>
+                                        <th class="tableTitle">Email</th>
+                                        <th class="tableTitle">Password</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
+                                        <td><select class="select-box"><option value="Admin">Admin</option><option value="User">User</option></select></td>
+                                        <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
+                                        <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br><br>
+                        <div class="button-container">
+                            <button class="button-design">Create</button>
+                            <button class="button-design-reject">Cancel</button>
+                        </div>
                     </form>
                 </div>
             </div>

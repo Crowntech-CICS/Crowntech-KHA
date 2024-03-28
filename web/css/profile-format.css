@@ -60,10 +60,10 @@
     transition: background 0.5s ease-out;
 }
 .buttonP:hover {
-  background-color: #ffffff;
-  color: #48a37d;
-  border-color: #48a37d;
-  border: solid 2px;
+    background-color: #ffffff;
+    color: #48a37d;
+    border-color: #48a37d;
+    border: solid 2px;
 }
 .buttonA {
     width: 64px;
@@ -169,11 +169,44 @@
 .vehicle-box {
     background-color: #f0f5f3;
     height: 400px;
-    width: 897px;
+    width: 800px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .vehicle-container {
     width: 50%;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Responsiveness */
+
+@media only screen and (max-width: 1600px) {
+    .vehicle-box {
+        height: 400px;
+        width: 600px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .vehicle-box {
+        height: 300px;
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 900px) {
+    .vehicle-box {
+        height: 300px;
+        width: 300px;
+    }
 }
