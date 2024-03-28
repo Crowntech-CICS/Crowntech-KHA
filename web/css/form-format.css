@@ -21,7 +21,7 @@
 /* Change Password */
 .changepass-box {
     background-color: #f0f5f3;
-    height: 500px;
+    height: 470px;
     width: 600px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -43,7 +43,7 @@
 /* Forgot Password */
 .forgot-box {
     background-color: #f0f5f3;
-    height: 400px;
+    height: 350px;
     width: 600px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -190,4 +190,82 @@
 
 #form2, #form3, #form4, #form5, #form6 {
     left: 1000px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsiveness */
+
+@media only screen and (max-width: 1600px) {
+    .changepass-box {
+        width: 500px;
+        height: 390px;
+    }
+    
+    .forgot-box {
+        width: 500px;
+        height: 310px;
+    }
+    
+    .changepass-label-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .changepass-box {
+        width: 400px;
+        height: 350px;
+        margin-top: -1.5%;
+    }
+    
+    .forgot-box {
+        margin-top: -1.5%;
+    }
+    
+    .changepass-label-container {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .changepass-box {
+        width: 320px;
+        height: 300px;
+    }
+    
+    .forgot-box {
+        width: 320px;
+        height: 220px;
+    }
+    
+        .changepass-label-container {
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .changepass-box {
+        width: 260px;
+        height: 290px;
+    }
+    
+    .forgot-box {
+        width: 320px;
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .changepass-box {
+        width: 260px;
+        height: 250px;
+    }
+    
+    .forgot-box {
+        width: 260px;
+        height: 180px;
+    }
 }

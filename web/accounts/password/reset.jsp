@@ -22,10 +22,9 @@
                     <h1 class="h1-bold">Forgot Password</h1>
                     <div class="changepass-label-container">
                     <p>Having trouble logging in? Enter your email and we will send you a link to reset your account password.</p>
-                    <br><br>
+                    <br>
                         <label for="email" class="form">Enter Email Address:</label><br>
                         <input type="text" name="email" class="form" required/><br/><br/>
-                        <br>
                         <div class="button-container">
                             <input class="button-design" type="submit" value="Login"> 
                         </div>
