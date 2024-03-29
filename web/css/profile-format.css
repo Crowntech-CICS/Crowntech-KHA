@@ -7,10 +7,24 @@
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
+#profileStripB {
+    background-color: #f0f5f3;
+    height: 15%;
+    width: 75%;
+    border-radius: 25px;
+    margin: auto;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
 .profileText {
     margin-top: auto;
     margin-left: 16px;
     margin-bottom: auto;
+    display: block;
+}
+
+.profileTextsmall {
+    display: none;
 }
 
 #profileHeader {
@@ -44,6 +58,11 @@
     margin-top: auto;
     margin-bottom: auto;
 }
+
+#profileBsmall {
+    display: none;
+}
+
 .area {
     display: flex;
 }
@@ -97,6 +116,7 @@
 .panelText{
     margin-top: 10px;
     text-align: center;
+    font-family: 'Inter';
 }
 .infoB {
     flex: 1;
@@ -134,6 +154,10 @@
     position: sticky;
 }
 
+#profile-margin {
+    margin-top: -40px;
+}
+
 .accordion-content-width{
     list-style: none;
     width: 29.33%;
@@ -162,6 +186,14 @@
     font-size: 20px;
 }
 
+#payment-help-margin {
+    margin-top: -30px;
+}
+
+
+.profileOwnerName, .profileOwnerAddress {
+    display: block;
+}
 
 
 /* -------------------------------------------------------------------------- */
@@ -172,6 +204,8 @@
     width: 800px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    margin-top: -2%;
+    margin-bottom: 2.5%;
 }
 
 .vehicle-container {
@@ -187,26 +221,186 @@
         height: 400px;
         width: 600px;
     }
+
+    #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText {
+        font-size: 40px;
+    }
+    
+    .accordion-content, #profileInfoHeader, #profileCashHeader {
+        font-size: 16px;
+    }
+
+    #profileStrip {
+        margin-top: -2.5%;
+        margin-bottom: 2%;
+    }
+    
+    #profileStrip, #profileStripB {
+        height: 12%;
+        width: 60%;
+    }
+
+    #profileLotHeader {
+        margin-left: -50%;
+    }
+
+    #payment-help-margin {
+        margin-top: -20px;
+    }
+
+    .profileOwnerName, .profileOwnerAddress {
+        display: none;
+    }
+
+    .buttonP {
+        font-size: 16px;
+        width: 170px;
+        height: 30px;
+    }
+    
+    .green {
+        margin-top: 0px;
+        height: 50px;
+    }
+    
+    .panelText {
+        margin-top: 2px;
+    }
+    
+    #profile-margin {
+        margin-top: -30px;
+    }
 }
 
 @media only screen and (max-width: 1400px) {
     .vehicle-box {
         height: 300px;
         width: 500px;
+        margin-top: -3%;
+    }
+
+    #profileAddress, .profileTextsmall, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
+        font-size: 30px;
+    }
+    
+    .profileText {
+        display: none;
+    }
+    
+    .profileTextsmall {
+        display: block;
+        margin-left: 2%;
+        margin-top: 2.5%;
+    }
+
+    #profileStrip, #profileStripB {
+        height: 10%;
+    }
+    
+    #profileLotHeader {
+        margin-left: -54%;
+    }
+    
+    #profileB {
+        display: none;
+    }
+    
+    #profileBsmall {
+        margin-top: 1.65%;
+        margin-right: 0.5%;
+        display: block;
+    }
+    
+    .buttonP {
+        font-size: 16px;
+        width: 160px;
+        height: 40px;
+    }
+    
+    .green {
+        margin-top: -5px;
+        height: 30px;
+        width: 100px;
+    }
+    
+    #profileStrip {
+        margin-top: -4%;
+        margin-bottom: 2%;
     }
 }
 
 @media only screen and (max-width: 1200px) {
+    #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText {
+        font-size: 20px;
+        margin-top: -0.5%;
+    }
+    
+    .accordion-content, #profileInfoHeader {
+        font-size: 12px;
+        margin-top: -0.5%;
+    }
+    
+    #payment-help-margin {
+        margin-top: -23px;
+    }
 
+    .accordion {
+        margin-top: -450px;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
-
+    #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
+        font-size: 14px;
+    }
 }
 
 @media only screen and (max-width: 900px) {
     .vehicle-box {
         height: 300px;
         width: 300px;
+    }
+
+    #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
+        font-size: 12px;
+        margin-top: -1%;
+    }
+    
+    #profileAddress {
+        margin-top: -2.5%;
+    }
+    
+    #profileStrip, #profileStripB {
+        height: 8%;
+    }
+    
+    #profileBsmall {
+        margin-top: 1.4%;
+        margin-right: 0.5%;
+    }
+    
+    .buttonP {
+        font-size: 12px;
+        width: 120px;
+        height: 20px;
+    }
+    
+    .accordion {
+        margin-top: -500px;
+    }
+    
+    .green {
+        margin-top: -2.5%;
+        height: 20px;
+        width: 60px;
+    }
+    
+    .panelText {
+        margin-top: 4%;
+    }
+    
+    #profileStrip {
+        margin-top: -8%;
+        margin-bottom: 2%;
     }
 }

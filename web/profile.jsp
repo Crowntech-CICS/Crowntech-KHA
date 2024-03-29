@@ -15,18 +15,25 @@
         <br><br><br><br><br><br>
         <div class="d-flex main justify-content-between" id="profileStrip">
             <div class="profileText">
-                <p>Eldric B. Basa</p>
+                <p class="profileOwnerName">Eldric B. Basa</p>
                 <h1 class="h1-bold" id="profileHeader">Homeowner</h1>
-                <p>Address</p>
+                <p class="profileOwnerAddress">Address</p>
+            </div>
+            <div class="profileTextsmall">
+                <h1 class="h1-bold" id="profileHeader">Homeowner</h1>
             </div>
             <div id="profileB" align="right">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
                 <button class="buttonP" >Edit Information</button>
             </div>
+            <div id="profileBsmall">
+                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button>
+                <button class="buttonP" >Edit Information</button>
+            </div>
         </div>
         <br>
-        <h1 class="h1-bold" id="profileLotHeader">Area 2</h1>
-        <ul id="profileStrip" class="accordion">
+        <h1 class="h1-bold" id="profileLotHeader">Area 2</h1><br>
+        <ul id="profileStripB" class="accordion">
             <br>
             <div class="d-flex main justify-content-between">
                 <h1 class="h1-bold" id="profileAddress"> 123123, San Jose Street</h1>
@@ -35,14 +42,14 @@
                 </div>
             </div>
             <button class="accordion"></button>
-            <div class="moreinfo">
+            <div class="moreinfo" id="profile-margin">
                 <li class="accordion-content-width">
                     <h1 class="h1-bold" id="profileInfoHeader">Homeowner Info</h1>
                     <div class="line"></div><br>
                     <ul>
-                        <li class="accordion-content">Name: Eldric B. Basa</li><br>
-                        <li class="accordion-content">Email: eldricbasa@gmail.com</li><br>
-                        <li class="accordion-content">Phone: 0917 125 6277</li><br>
+                        <li class="accordion-content">Name: Eldric B. Basa</li>
+                        <li class="accordion-content">Email: eldricbasa@gmail.com</li>
+                        <li class="accordion-content">Phone: 0917 125 6277</li>
                         <li class="accordion-content">Address: Block 7 Lot 13 Q.C.VILLE Townhomes Culiat Quezon City</li>
                     </ul>
                 </li>
@@ -51,7 +58,7 @@
                     <div class="line"></div><br>
                     <ul>
                         <li class="accordion-content">BASA, Eldric B.</li>
-                        <li class="accordion-content">Relationship: Sibling</li><br>
+                        <li class="accordion-content">Relationship: Sibling</li>
                     </ul>
                 </li>
                 <li class="accordion-content-width">
@@ -61,7 +68,7 @@
                         <h1 class="h1-bold" id="profileCashHeader">PHP 300</h1><br>
                         <li class="accordion-content" style="text-align: center;">Status: Paid</li><br>
                         <div class="d-flex main justify-content-between">
-                            <button type="button" class="button-design" id="button-small">How To Pay</button>
+                            <button type="button" class="button-design" id="button-small">Pay Steps</button>
                             <button type="button" class="button-design" id="button-small" style="margin-right: 0%">Pay Now</button>
                         </div>
                     </ul>
@@ -70,7 +77,7 @@
             <br>
         </ul>
         <br>
-        <ul id="profileStrip" class="accordion">
+        <ul id="profileStripB" class="accordion">
             <br>
             <div class="d-flex main justify-content-between">
                 <h1 class="h1-bold" id="profileAddress"> 123123, San Jose Street</h1>
@@ -79,14 +86,14 @@
                 </div>
             </div>
             <button class="accordion"></button>
-            <div class="moreinfo">
+            <div class="moreinfo" id="profile-margin">
                 <li class="accordion-content-width-two">
                     <h1 class="h1-bold" id="profileInfoHeader">Homeowner Info</h1>
                     <div class="line"></div><br>
                     <ul>
-                        <li class="accordion-content">Name: Eldric B. Basa</li><br>
-                        <li class="accordion-content">Email: eldricbasa@gmail.com</li><br>
-                        <li class="accordion-content">Phone: 0917 125 6277</li><br>
+                        <li class="accordion-content">Name: Eldric B. Basa</li>
+                        <li class="accordion-content">Email: eldricbasa@gmail.com</li>
+                        <li class="accordion-content">Phone: 0917 125 6277</li>
                         <li class="accordion-content">Address: Block 7 Lot 13 Q.C.VILLE Townhomes Culiat Quezon City</li>
                     </ul>
                 </li>
@@ -97,7 +104,7 @@
                         <h1 class="h1-bold" id="profileCashHeader">PHP 300</h1><br>
                         <li class="accordion-content" style="text-align: center;">Status: Paid</li><br>
                         <div class="d-flex main justify-content-between">
-                            <button type="button" class="button-design" id="button-small">How To Pay</button>
+                            <button type="button" class="button-design" id="button-small">Pay Steps</button>
                             <button type="button" class="button-design" id="button-small" style="margin-right: 0%">Pay Now</button>
                         </div>
                     </ul>
