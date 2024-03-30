@@ -96,7 +96,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Change Password</title>
-        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png"> <%-- change to <link rel="icon" type="image/x-icon" href="images/khaicon.png"> --%>
+        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png">
         <link href="../../css/main-format.css" rel="stylesheet"/>
         <link href="../../css/form-format.css" rel="stylesheet"/>
         <link href="../../css/navbar.css" rel="stylesheet"/>
@@ -159,18 +159,17 @@
             }
         %>
         <nav> 
-            <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a> <%-- CHANGE TO INCLUDE NAVBAR LATER --%>
+            <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a>
         </nav>
         <div class="main-body">
             <div class="changepass-box">
-                <form action="?rt=<%=resetToken%>" method="POST">
+                <form action="" method="POST">
                     <h1 class="h1-bold">Change Password</h1>
-                    <h2 class="changepass-text"><span class="h2-bold">Username:</span> <%=fullName%></h2>
-                    <h2 class="changepass-text"><span class="h2-bold">Email:</span>  <%=userEmail%></h2>
+                    <h2 class="changepass-text"><span class="h2-bold">Username:</span> Eldric</h2>
+                    <h2 class="changepass-text"><span class="h2-bold">Email:</span> eldricbasa@gmail.com</h2>
                     <div class="changepass-label-container">
                         <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" class="form" required><br>
                         <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" class="form" required>
-                        <br><br>
                         <p>Upon successful password change, you will be redirected back to the login page.</p>
                     </div>
                     <div class="button-container" style="margin-top: 1rem;">
@@ -179,6 +178,5 @@
                 </form>
             </div>
         </div>
-    </header>
-</body>
+    </body>
 </html>

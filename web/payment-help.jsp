@@ -16,7 +16,7 @@
             <br>
             <h1 class="h1-bold" id="profileAddress">How To Pay: Over the Counter</h1>
             <button class="accordion"></button>
-            <div class="moreinfo" style="margin-top: -20px">
+            <div class="moreinfo" id="payment-help-margin">
                 <p>Step 1. Go to the KHA Office in the subdivision clubhouse</p>
                 <p>Step 2. Ask for your current balance through the counter</p>
                 <p>Step 3. Pay the amount through cash</p>
@@ -29,7 +29,7 @@
             <br>
             <h1 class="h1-bold" id="profileAddress">How To Pay: Bank Transfer</h1>
             <button class="accordion"></button>
-            <div class="moreinfo" style="margin-top: -20px">
+            <div class="moreinfo" id="payment-help-margin">
                 <p>Step 1. Log into your bank's website or connect via the bank's app.</p>
                 <p>Step 2. Click on the transfer feature and choose transfer to another bank.</p>
                 <p>Step 3. Enter the routing and account numbers for the account at the other bank.</p>

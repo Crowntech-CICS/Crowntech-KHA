@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Forgot Password</title>
-        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png"> <%-- change to <link rel="icon" type="image/x-icon" href="images/khaicon.png"> --%>
+        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png">
         <link href="../../css/main-format.css" rel="stylesheet"/>
         <link href="../../css/form-format.css" rel="stylesheet"/>
         <link href="../../css/navbar.css" rel="stylesheet"/>
@@ -12,13 +12,13 @@
     <body>
         <header>
             <nav> 
-                <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a> <%-- CHANGE TO INCLUDE NAVBAR LATER --%>
+                <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a>
             </nav>
         </header>
         <div class="greetingBanner">
             <div class="main-body">
                 <div class="forgot-box">
-                    <form action="../../PasswordReset" method="POST">
+                    <form action="" method="POST">
                         <h1 class="h1-bold">Forgot Password</h1>
                         <div class="changepass-label-container">
                             <p>Having trouble logging in? Enter your email and we will send you a link to reset your account password.</p>

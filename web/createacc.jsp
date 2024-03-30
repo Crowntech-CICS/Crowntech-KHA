@@ -28,14 +28,20 @@
                                 <tbody>
                                     <tr>
                                         <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
-                                        <td><select class="select-box"><option value="Admin">Admin</option><option value="User">User</option></select></td>
+                                        <td>
+                                            <select class="select-box">
+                                                <option value="null">-----</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="User">User</option>
+                                            </select>
+                                        </td>
                                         <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
                                         <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <br><br>
+                        <br>
                         <div class="button-container">
                             <button class="button-design">Create</button>
                             <button class="button-design-reject">Cancel</button>

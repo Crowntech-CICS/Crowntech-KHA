@@ -49,8 +49,9 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
+        <br>
         <div class="tableContain">
-            <table class="tableContent sortable" id="displayTable" style="overflow-y: scroll;">
+            <table class="tableContent sortable" id="tableContent-fit" style="overflow-y: scroll;">
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>

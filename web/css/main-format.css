@@ -3,70 +3,70 @@
 
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-    height: 100%;
-    width: 100%;
-    background-color: #ffffff;
-    background-image: linear-gradient(to bottom, rgba(184, 250, 212, 0.7), #bac8b6),url("../images/background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  background-image: linear-gradient(to bottom, rgba(184, 250, 212, 0.7), #bac8b6),url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .main-body {
-    top: 150px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    display: flex;
-    z-index: 100;
-    position: absolute;
-    align-items: center;
-    flex-direction: column;
+  top: 150px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  display: flex;
+  z-index: 100;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
-    font-family: 'Inter';
-    text-align: center;
-    color: #377d60;
-    font-size: 60px;
-    font-weight: 100;
+  font-family: 'Inter';
+  text-align: center;
+  color: #377d60;
+  font-size: 60px;
+  font-weight: 100;
 }
 
 .h1-bold {
-    font-weight: 900;
-    margin-top: 20px;
-    margin-bottom: 16px;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #377d60;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #377d60;
 }
 
 h2 {
-    font-family: 'Inter';
-    margin-top: 6px;
-    text-align: center;
-    color: #90ad9d;
-    font-size: 20px;
-    font-weight: 100;
+  font-family: 'Inter';
+  margin-top: 6px;
+  text-align: center;
+  color: #90ad9d;
+  font-size: 20px;
+  font-weight: 100;
 }
 
 .h2-bold {
-    font-family: 'Inter';
-    font-size: 20px;
-    font-weight: 600;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-weight: 600;
 }
 
 label {
-    font-family: 'Inter';
-    text-align: left;
-    color: #377d60;
-    font-size: 20px;
-    font-weight: 600;
+  font-family: 'Inter';
+  text-align: left;
+  color: #377d60;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 #label-margin {
@@ -82,12 +82,12 @@ fieldset {
 }
 
 input {
-    border-color: #48a37d;
-    border: solid 2px;
+  border-color: #48a37d;
+  border: solid 2px;
 }
 
 #input-none {
-    border: none;
+  border: none;
 }
 
 p {
@@ -107,7 +107,7 @@ p {
 
 select:focus,
 input:focus {
-    outline: 1px solid #757575;
+  outline: 1px solid #757575;
 }
 
 .select-box {
@@ -131,19 +131,18 @@ input:focus {
 }
 
 .button-design{
-    height: 52px;
-    width: 280px;
-    background: #48a37d;
-    border-radius: 50px;
-    color: #FFFFFF;
-    font-size: 20px;
-    font-family: 'Inter';
-    text-align: center;
-    display: inline-block;
-    transition: background 0.2s ease-out;
-    border: none;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-    margin-right: 5%;
+  height: 52px; 
+  width: 280px;
+  background: #48a37d;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: 20px;  
+  font-family: 'Inter';
+  text-align: center;
+  display: inline-block;
+  transition: background 0.2s ease-out;
+  border: none;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 #button-small {
@@ -151,74 +150,75 @@ input:focus {
 }
 
 .button-design-reject{
-    height: 52px;
-    width: 300px;
-    background: #a34848;
-    border-radius: 50px;
-    color: #FFFFFF;
-    font-size: 20px;
-    font-family: 'Inter';
-    text-align: center;
-    display: inline-block;
-    transition: background 0.5s ease-out;
-    border: none;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  margin-left: 5%;
+  height: 52px; 
+  width: 300px;
+  background: #a34848;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: 20px;  
+  font-family: 'Inter';
+  text-align: center;
+  display: inline-block;
+  transition: background 0.5s ease-out;
+  border: none;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .button-design:hover {
-    background-color: #ffffff;
-    color: #48a37d;
-    border-color: #48a37d;
-    border: solid 2px;
+  background-color: #ffffff;
+  color: #48a37d;
+  border-color: #48a37d;
+  border: solid 2px;
 }
 
 .button-design-reject:hover {
-    background-color: #ffffff;
-    color: #a34848;
-    border-color: #a34848;
-    border: solid 2px;
+  background-color: #ffffff;
+  color: #a34848;
+  border-color: #a34848;
+  border: solid 2px;
 }
 
 .sortSearch input[type=text] {
-    margin-left: 12.5%;
-    padding: 10px;
-    font-size: 20px;
-    border: 2px solid grey;
-    float: left;
-    width: 75%;
-    background: #f1f1f1;
-    font-family: 'Inter';
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-    border-radius: 50px;
+  margin-left: 12.5%;
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid grey;
+  float: left;
+  width: 75%;
+  background: #f1f1f1;
+  font-family: 'Inter';
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  border-radius: 50px;
 }
 
 .sortSearch button {
-    float: left;
-    width: 22.3%;
-    padding: 10px;
-    background: #48a37d;
-    color: white;
-    font-size: 20px;
-    border: 2px solid #377d60;
-    cursor: pointer;
-    font-family: 'Inter';
-    transition: background 0.2s ease-out;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-    border-radius: 50px;
-    margin-left: -22.3%;
+  float: left;
+  width: 22.3%;
+  padding: 10px;
+  background: #48a37d;
+  color: white;
+  font-size: 20px;
+  border: 2px solid #377d60;
+  cursor: pointer;
+  font-family: 'Inter';
+  transition: background 0.2s ease-out;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  border-radius: 50px;
+  margin-left: -22.3%;
 }
 
 .sortSearch button:hover {
-    background-color: #ffffff;
-    color: #48a37d;
-    border-color: #48a37d;
-    border: solid 2px;
+  background-color: #ffffff;
+  color: #48a37d;
+  border-color: #48a37d;
+  border: solid 2px;
 }
 
 .sortSearch::after {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .line{
@@ -232,22 +232,22 @@ input:focus {
     h1 {
         font-size: 40px;
     }
-
+    
     .h1-bold {
         margin-top: 5px;
         margin-bottom: 5px;
         -webkit-text-stroke-width: 1px;
     }
-
+    
     .h2-bold {
         font-weight: 200;
     }
-
+    
     .button-design, .button-design-reject{
-        height: 52px;
+        height: 52px; 
         width: 200px;
     }
-
+    
     #button-small {
         width: 100px;
     }
@@ -257,11 +257,11 @@ input:focus {
     h1 {
         font-size: 30px;
     }
-
-    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch {
+    
+    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box {
         font-size: 16px;
     }
-
+    
     .button-container {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -272,24 +272,24 @@ input:focus {
     h1 {
         font-size: 20px;
     }
-
+    
     .h1-bold {
         -webkit-text-stroke-width: 0px;
     }
-
-    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch {
+    
+    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box {
         font-size: 14px;
     }
-
+    
     .button-design, .button-design-reject{
-        height: 30px;
+        height: 30px; 
         width: 140px;
     }
-
+    
     #button-small {
         width: 90px;
     }
-
+    
     .button-container {
         margin-top: -10px;
         margin-bottom: -10px;
@@ -300,8 +300,8 @@ input:focus {
     h1 {
         font-size: 14px;
     }
-
-    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch {
+    
+    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box {
         font-size: 12px;
     }
 }
@@ -310,16 +310,16 @@ input:focus {
     h1{
         font-size: 12px;
     }
-
-    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch  {
+    
+    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box  {
         font-size: 10px;
     }
-
+    
     .button-design, .button-design-reject{
-        height: 20px;
+        height: 20px; 
         width: 100px;
     }
-
+    
     #button-small {
         width: 80px;
     }

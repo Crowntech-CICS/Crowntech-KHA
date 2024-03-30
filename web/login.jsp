@@ -28,11 +28,7 @@
         <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <header>
-            <nav> 
-                <a href="."><img src="images/khalogo_newwhite.png" class="logo"></a>
-            </nav>
-        </header>
+        <%@include file="navbar.jsp" %>
         <div class="main-body">
             <div class="login-box">
                 <form action="Login" method="POST">
@@ -48,7 +44,7 @@
                         <br>
                     </div>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Login">
+                        <input class="button-design" type="submit" value="Login" style="margin-left: 3%">
                     </div>
                     <br>
                     <div class="button-container">

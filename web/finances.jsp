@@ -1,13 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Expires", "0");
-    //Check Logged In State
-    boolean logState = session.getAttribute("username") != null ? true : false;
-    if (!logState) {
-        response.sendRedirect("login.jsp");
-    }
-%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +9,6 @@
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Document</title>
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -30,8 +20,8 @@
             </form>
         </div>
         <br>
-        <div style="display: flex; justify-content: center; max-height: 80%">
-            <table class="tableContent" style="width: 50%;height: 100%;">
+        <div class="financeHolder">
+            <table class="tableContent" id="financesLeft">
                 <thead>
                     <tr>
                         <th class="tableTitle">Month</th>
@@ -78,10 +68,10 @@
                 </tbody>
             </table>
 
-            <table class="tableContent" style="margin-left: -10%; width: 10%;height: 120%;">
-                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">89/102</p></td></tr>
-                <tr><td class="tableContentText4">Number of Paid Lessees: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">20/23</p></td></tr>
-                <tr><td class="tableContentText5">Number of Residents: <br><p style="text-align: center; color: white; font-weight: 100; font-size: 60px">1502</p></td></tr>
+            <table class="tableContentR" id="financesRight">
+                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP">89/102</p></td></tr>
+                <tr><td class="tableContentText4">Number of Paid Lessees: <br><p class="financesP">20/23</p></td></tr>
+                <tr><td class="tableContentText5">Number of Residents: <br><p class="financesP">1502</p></td></tr>
             </table>
         </div>
         <br><br>

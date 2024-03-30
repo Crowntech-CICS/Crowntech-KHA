@@ -19,7 +19,7 @@
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
         <div class="test">
-
+            
         </div>
         <h1>Welcome ${username} , Access Level: ${level}</h1>
     </body>
