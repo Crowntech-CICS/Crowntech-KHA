@@ -14,24 +14,24 @@
     <body>
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
-        <div style="margin:auto; margin-top: 5px; max-width: 1800px; margin-left: 3.2%">
+        <div id="searchRecords">
             <form class="sortSearch" action="" style="display: inline-flex;">
-                <input type="text" placeholder="Search.." name="search" style="width: 1225px;">
-                <button type="submit" style="margin-left: -20.3%;"><i class="fa fa-search"></i></button>
+                <input type="text" placeholder="Search.." name="search" id="searchWidth">
+                <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
             <!-- The sorting form -->
             <div class="sortPopup" id="sortForm" style="display: none;">
                 <form action="SortHandler" class="form-container" method="POST">
-                    <button type="button" class="button-design-reject" id="button-small" onclick="closeForm()" style="width: 251px; margin-left: -11px; margin-top: -10px; height: 48px">Close</button>
+                    <button type="button" class="button-design-reject" id="sortClose" onclick="closeForm()">Close</button>
                     <br><br>
-                    <label>Sort By Status:</label><br>
-                    <input type="radio" id="paid" name="status" value="true">
+                    <label class="sortCenter">Sort By Status:</label><br>
+                    <input type="radio" id="paid" name="status" value="true" class="sortCenterOption">
                     <label for="paid">Paid</label>
                     <input type="radio" id="unpaid" name="status" value="false">
                     <label for="unpaid">Unpaid</label><br><br>
-                    <label for="area">Sort By Area:</label>
-                    <select name="area" id="area">
+                    <label for="area" class="sortCenter2">Sort By Area:</label>
+                    <select name="area" id="select" class="sortCenterSelect">
                         <option value ="null">-----</option>
                         <option value="1">Area 1</option>
                         <option value="1A">Area 1A</option>
