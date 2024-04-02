@@ -86,7 +86,7 @@
     </div>
     <br><br>
 <div class="button-container">
-    <button class="button-design">
+    <button class="button-design" action="ExportPDF">
         Export
     </button>
 </div>
