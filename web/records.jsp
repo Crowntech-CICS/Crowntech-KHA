@@ -49,7 +49,7 @@
                         <option value="11W">Area 11 West</option>
                     </select>
                     <br><br>
-                    <button type="submit" class="button-design" id="button-small" style="width: 230px; height: 48px">Filter Results</button>
+                    <button type="submit" class="button-design" id="sortFilter">Filter Results</button>
                 </form>
             </div>
         </div>

@@ -145,6 +145,21 @@ input:focus {
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
+.button-design-small{
+  height: 52px; 
+  width: 150px;
+  background: #48a37d;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-size: 20px;  
+  font-family: 'Inter';
+  text-align: center;
+  display: inline-block;
+  transition: background 0.2s ease-out;
+  border: none;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
 #button-small {
     width: 150px;
 }
@@ -165,7 +180,7 @@ input:focus {
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
-.button-design:hover {
+.button-design:hover, .button-design-small:hover {
   background-color: #ffffff;
   color: #48a37d;
   border-color: #48a37d;
