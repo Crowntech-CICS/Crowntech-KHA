@@ -21,14 +21,17 @@
                     <div class="step-col-signup">Confirm</div>
                     <div class="step-col-signup">Complete!</div>
                 </div>
-                <form id='form1'>
+                <form id='form1' action="Signup"  method="POST">
                     <h1 class="h1-bold">Personal Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="ex. Smith" class="form"><br>
-                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="ex. John" class="form"><br>
+                    <label for="HO_LN">Last Name</label>
+                    <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
+                    <label for="HO_FN">First Name</label>
+                    <input type="text" id="FN1" onChange="document.form2.HO_FN.value = this.value" placeholder="ex. John" class="form" required><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><br>
-                    <input type="text" name="HO_MI" placeholder="ex. A." class="form-small" id="form-margin"><br>
-                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="ex. johnsmith@email.com" required class="form">
+                    <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
+                    <label for="HO_EMAIL">Email Address</label>
+                    <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
                     <br><br>
                     <div class="button-container">
                         <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;">
@@ -36,13 +39,17 @@
                     </div>
                 </form>
 
-                <form id='form2'>
+                <form id='form2' name="form2" action="Signup"  method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="HO_LN" class="form">
+                    <input type="hidden" name="HO_FN" class="form">
+                    <input type="hidden" name="HO_MI" class="form">
+                    <input type="hidden" name="HO_EMAIL" class="form">
                     <h1 class="h1-bold">Other Information</h1>
                     <div class="line"></div><br>
                     <div class="upload_files" id="form_container" class="form_input_title">
                         <p style="text-align: center; color: black;">Upload Digital Copy of Required Documents:</p>
                         <p style="text-align: center; color: black;">(1) Official Receipt</p><br>
-                        <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
+                        <input type="file" id="FILE_UPLOAD1" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%; border:none;" required>
                     </div>
                     <br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
@@ -70,7 +77,7 @@
                     <p style="color: black;">Your registration is now being processed. For any further questions and concerns, ask for staff assistance, thank you!</p>
                     <br><br><br><br>
                     <div class="button-container">
-                        <input id="Next3" class="button-design" type="button" value="Go Back">
+                        <input id="Next3" class="button-design" type="button" onClick="document.form2.submit()" value="Go Back">
                     </div>
                     <br>
                 </form>  
@@ -89,42 +96,63 @@
             var Back3 = document.getElementById("Back3");
             var Next4 = document.getElementById("Next4");
             var Back4 = document.getElementById("Back4");
-
+            
+            //First text form next button
             Next1.onclick = function () {
-                form1.style.left = "-1000px";
-                form2.style.left = "32.5%";
-                progressSignup.style.width = "50%";
-            }
+                if(document.getElementById("LN1").value !== ""){
+                    if(document.getElementById("FN1").value !== ""){
+                        if(document.getElementById("MI1").value !== ""){
+                            if(document.getElementById("EMAIL1").value !== ""){
+                                form1.style.left = "-1000px";
+                                form2.style.left = "32.5%";
+                                progressSignup.style.width = "50%";
+                            } else {
+                                alert("Fill in the Email Field.");
+                            }
+                        } else {
+                            alert("Fill in the Middle Initial Field.");
+                        }
+                    } else {
+                        alert("Fill in the First Name Field.");
+                    }
+                } else {
+                    alert("Fill in the Last Name Field.");
+                }
+            };
 
             Back2.onclick = function () {
                 form1.style.left = "32.5%";
                 form2.style.left = "1000px";
-                progressSignup.style.width = "25%";
-            }
-
+                progressSignup.style.width = "25%";             
+            };
+            //File upload form next button
             Next2.onclick = function () {
-                form2.style.left = "-1000px";
-                form3.style.left = "32.5%";
-                progressSignup.style.width = "75%";
-            }
+                if(document.getElementById("FILE_UPLOAD1").files.length !== 0){
+                    form2.style.left = "-1000px";
+                    form3.style.left = "32.5%";
+                    progressSignup.style.width = "75%";
+                } else {
+                    alert("Please upload the required file.");
+                }
+            };
 
             Back3.onclick = function () {
                 form2.style.left = "32.5%";
                 form3.style.left = "1000px";
                 progressSignup.style.width = "50%";
-            }
+            };
 
             Next3.onclick = function () {
                 form3.style.left = "-1000px";
                 form4.style.left = "32.5%";
                 progressSignup.style.width = "100%";
-            }
+            };
 
             Back4.onclick = function () {
                 form3.style.left = "32.5%";
                 form4.style.left = "1000px";
                 progressSignup.style.width = "75%";
-            }
+            };
         </script>
     </body>
 </html>

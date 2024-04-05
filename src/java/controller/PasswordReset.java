@@ -56,7 +56,8 @@ public class PasswordReset extends HttpServlet {
                 url = "http://localhost:8080/Crowntech-KHA/accounts/password/changepassword.jsp?rt="+ rt;
             } else {
                 System.out.println("Email not Found in Login");
-                response.sendRedirect("/Crowntech-KHA/");                
+                if(!response.isCommitted())
+                    response.sendRedirect("/Crowntech-KHA/");                
             }
             
             ps = con.prepareStatement("SELECT LASTNAME, FIRSTNAME, MIDDLEINITIAL FROM USERS WHERE USERID = ?");
@@ -70,7 +71,8 @@ public class PasswordReset extends HttpServlet {
                 System.out.println("Name: " + fullName);
             } else {
                 System.out.println("UserID not Found in Users");
-                response.sendRedirect("/Crowntech-KHA/");
+                if(!response.isCommitted())
+                    response.sendRedirect("/Crowntech-KHA/");
             }
             
         } catch(SQLException sqle){
