@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
+<%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,10 +15,54 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
+        <%            Connection con = null;
+            ResultSet rs = null;
+            ResultSet rs2 = null;
+            PreparedStatement ps = null;
+            PreparedStatement ps2 = null;
+            String lotUser = null;
+            String LotQuery = "SELECT * FROM USERLOT";
+            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?";
+            String userLotID = null;
+            String addQuery = null;
+            String[] hold = null;
+            addQuery = request.getParameter("find");
+
+            System.out.println("Parameter gotten: " + addQuery); // shows parameter gotten
+
+            if (addQuery != null) { // checks if there are additional parameters
+                hold = addQuery.split("\\s+"); // splits parameters based on whitespace
+
+                if (hold != null && addQuery.substring(0, 4).equals("AREA")) { // checks if AREA parameter is used
+
+                    addQuery = " WHERE AREA = '" + hold[1] + "'"; // sets which specific area will be filtered in query
+                    System.out.println("Area Check: " + hold[1]); // checks which area was taken from param
+
+                    if (hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
+                        HomeQuery += " AND PAID = " + hold[2]; // adds payment status to query
+                    }
+                    LotQuery += addQuery;
+                    System.out.println(LotQuery);
+                } else if (!addQuery.substring(0, 4).equals("AREA")) { // AREA parameter not used
+                    HomeQuery += " AND PAID =" + addQuery; // only adds payment status to query
+                }
+            }
+            try {
+                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
+                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
+                        password = getServletContext().getInitParameter("dbPassword"),
+                        driverURL = getServletContext().getInitParameter("jdbcDriverURL");
+                con = DriverManager.getConnection(driverURL, username, password); //create connection
+            } catch (SQLException sqle) {
+                System.out.println("SQLException error occured - " + sqle.getMessage());
+            } catch (ClassNotFoundException nfe) {
+                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
+            }
+        %>
         <br><br><br><br><br><br>
         <div id="searchRecords">
-            <form class="sortSearch" action="" style="display: inline-flex;">
-                <input type="text" placeholder="Search.." name="search" id="searchWidth">
+            <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
+                <input type="text" placeholder="Search.." name="search" id="searchWidth" onkeyup="searchFunc()">
                 <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
@@ -54,8 +100,8 @@
             </div>
         </div>
         <br>
-        <div class="recordsHolder">
-            <table class="tableContent">
+        <div class="recordsHolder" style="overflow-y: scroll;">
+            <table class="tableContent sortable">
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
@@ -66,20 +112,69 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="tableContentText">Eldric B. Basa</td>
-                        <td class="tableContentText">Block 7 Lot 13 Q.C.VILLE Townhomes Culiat Quezon City</td>
-                        <td class="tableContentText">0917 125 6277</td>
-                        <td class="tableContentText">Homeowner</td>
-                        <td class="tableContentText">Unpaid</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText">Eldric</td>
-                        <td class="tableContentText">Block</td>
-                        <td class="tableContentText">0917 125 6277</td>
-                        <td class="tableContentText">Homeowner</td>
-                        <td class="tableContentText">Unpaid</td>
-                    </tr>
+                    <%
+                        try {
+                            PreparedStatement ps3 = con.prepareStatement(LotQuery);
+                            ResultSet rs3 = ps3.executeQuery();
+                            while (rs3.next()) {
+                                userLotID = rs3.getString("USERID");
+                                System.out.println("userLotID: " + userLotID);
+                                ps2 = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
+                                ps2.setString(1, userLotID);
+                                rs2 = ps2.executeQuery();
+                                while (rs2.next()) {
+                                    lotUser = rs2.getString("HOMEOWNERID");
+                                    ps = con.prepareStatement(HomeQuery);
+                                    ps.setString(1, lotUser); // checks query about to be executed
+                                    rs = ps.executeQuery();
+                                    while (rs.next()) {
+                                        String nameDB = rs.getString("FIRSTNAME").trim() + " "
+                                                + rs.getString("MIDDLEINITIAL").trim() + " "
+                                                + rs.getString("LASTNAME"),
+                                                addDB = rs.getString("HOUSENO").trim() + " "
+                                                + rs.getString("STREETNAME") + " "
+                                                + rs.getString("VILLAGE").trim() + " "
+                                                + rs.getString("BARANGAY").trim() + " "
+                                                + rs.getString("CITY").trim() + " "
+                                                + rs.getString("PROVINCE").trim(),
+                                                numDB = rs.getString("MOBILENO").trim(),
+                                                statDB = "Homeowner",
+                                                paidDB = rs.getString("PAID").trim();
+
+                                        if (paidDB.equals("true")) {
+                                            paidDB = "Paid";
+                                        } else if (paidDB.equals("false")) {
+                                            paidDB = "Unpaid";
+                                        }
+                                        // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                        out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + addDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">0" + numDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + statDB + "</td>");
+                                        out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
+                                    }
+                                }
+                            }
+                        } catch (SQLException sqle) {
+                            System.out.println("SQLException IN error occured - " + sqle.getMessage());
+                            response.sendError(500);
+                        } finally {
+                            try {
+                                if (rs != null) {
+                                    rs.close();
+                                }
+                                if (ps != null) {
+                                    ps.close();
+                                }
+                                if (con != null) {
+                                    con.close();
+                                }
+                            } catch (SQLException sqle) {
+                                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+                                response.sendError(500);
+                            }
+                        }
+                    %>
                 </tbody>
             </table>
         </div>

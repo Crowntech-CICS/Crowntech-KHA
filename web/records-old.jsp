@@ -24,6 +24,7 @@
             ResultSet rs = null;
             PreparedStatement ps = null;
             String QUERY = "SELECT * FROM HOMEOWNER";
+            String LotQuery = "SELECT * FROM USERLOT";
             String addQuery = null;
             String[] hold = null;
             addQuery = request.getParameter("find");
@@ -41,10 +42,10 @@
                     if (hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
                         addQuery += " AND PAID = " + hold[2]; // adds payment status to query
                     }
-                    QUERY += addQuery;
-                    System.out.println(QUERY);
+                    LotQuery += addQuery;
+                    System.out.println(LotQuery);
                 } else if (!addQuery.substring(0, 4).equals("AREA")) { // AREA parameter not used
-                    QUERY += " WHERE PAID =" + addQuery; // only adds payment status to query
+                    LotQuery += " WHERE PAID =" + addQuery; // only adds payment status to query
                 }
             }
             try {
