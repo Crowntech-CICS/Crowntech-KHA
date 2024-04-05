@@ -19,15 +19,16 @@
                     <div class="step-col" id="Next1">Personal</div>
                     <div class="step-col" id="Next2">Contact</div>
                     <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Property</div>
-                    <div class="step-col" id="Next5">Property(Cont.)</div>
+                    <div class="step-col" id="Next4">Homeowner</div>
+                    <div class="step-col" id="Next5">Caretaker</div>
                     <div class="step-col" id="Next6">Vehicle</div>
                 </div>
                 <form id='form1'>
                     <h1 class="h1-bold">Lessee Information</h1>
+                    <div class="line"></div><br>
                     <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" class="form"><br>
                     <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE">Age</label><br>
+                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
                     <label for="LE_ADDRESS">Resident Classification</label><input type="text" name="LE_ADDRESS" placeholder="Select Classification"  class="form"><br>
                     <label for="LE_ADDRESS">Address In Kingsville</label><input type="text" name="LE_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
@@ -37,6 +38,7 @@
 
                 <form id='form2'>
                     <h1 class="h1-bold">Lessee Contact Information</h1>
+                    <div class="line"></div><br>
                     <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
                     <br>
@@ -44,10 +46,10 @@
 
                 <form id='form3'>
                     <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
-
+                    <div class="line"></div><br>
                     <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" required class="form"><br>
                     <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" required class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE">Age</label><br>
+                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
                     <label for="LE_REL"">Relationship with Resident</label>
                     <select name="LE_REL" id="" class="form">
@@ -68,6 +70,7 @@
 
                 <form id="form4">
                     <h1 class="h1-bold">Homeowner Information</h1>
+                    <div class="line"></div><br>
                     <label for="LE_HO_LN">Last Name</label><input type="text" name="LE_HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="LE_HO_FN">First Name</label><input type="text" name="LE_HO_FN" placeholder="First Name" class="form"><br>
                     <label for="LE_HO_MI" id="label-margin">Middle Initial</label>
@@ -89,9 +92,9 @@
                 <form id="form6">
                     <h1 class="h1-bold">Vehicle Information</h1>
                     <div class="changepass-label-container">
-                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
+                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
                         <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
+                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
 
@@ -106,8 +109,7 @@
                     </div>
                     <br>
                 </form>    
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="button-container">
+                <div class="button-container" id="edit-button">
                     <input class="button-design" type="button" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" type="button" value="Cancel" id="button-small">
                 </div>

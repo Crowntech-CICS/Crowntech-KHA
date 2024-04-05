@@ -129,6 +129,11 @@ option {
     height: 48px
 }
 
+#sortFilter {
+    width: 230px;
+    height: 48px;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* Responsiveness */
@@ -143,9 +148,38 @@ option {
     #searchWidth {
         width: 950px;
     }
-    
+
     .openSortB {
         width: 225px;
+    }
+
+    .form-container {
+        max-width: 223.5px;
+        margin-left: 997px;
+    }
+
+    #sortClose {
+        width: 223.6px;
+    }
+
+    #sortFilter {
+        width: 202.6px;
+    }
+
+    .sortCenter {
+        margin-left: 14%;
+    }
+
+    .sortCenterOption {
+        margin-left: 13%;
+    }
+
+    .sortCenter2 {
+        margin-left: 18%;
+    }
+
+    .sortCenterSelect {
+        margin-left: 21%;
     }
 }
 
@@ -153,9 +187,38 @@ option {
     #searchWidth {
         width: 790px;
     }
-    
+
     .openSortB {
         width: 185px;
+    }
+
+    .form-container {
+        max-width: 153.8px;
+        margin-left: 723.1px;
+    }
+
+    #sortClose {
+        width: 154.2px;
+    }
+
+    #sortFilter {
+        width: 134.2px;
+    }
+
+    .sortCenter {
+        margin-left: 12%;
+    }
+
+    .sortCenterOption {
+        margin-left: 8%;
+    }
+
+    .sortCenter2 {
+        margin-left: 16%;
+    }
+
+    .sortCenterSelect {
+        margin-left: 13%;
     }
 }
 
@@ -163,18 +226,45 @@ option {
     #searchWidth {
         width: 675px;
     }
-    
+
+    #searchRecords {
+        margin-left: 9.2%
+    }
+
     .openSortB {
         width: 155px;
     }
 }
 
+@media only screen and (max-width: 1100px) {
+    #searchRecords {
+        margin-left: 3.2%
+    }
+}
+
 @media only screen and (max-width: 900px) {
+    #searchRecords {
+        margin-left: 3.2%
+    }
+
     #searchWidth {
         width: 575px;
     }
-    
+
     .openSortB {
         width: 140px;
+    }
+    
+    .form-container {
+        max-width: 138.9px;
+        margin-left: 623px;
+    }
+
+    #sortClose {
+        width: 140px;
+    }
+
+    #sortFilter {
+        width: 120px;
     }
 }

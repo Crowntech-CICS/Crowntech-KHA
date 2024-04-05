@@ -25,9 +25,10 @@
                 </div>
                 <form id='form1'>
                     <h1 class="h1-bold">Homeowner Information</h1>
+                    <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
-                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE">Age</label><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
                     <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification"  class="form"><br>
                     <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
@@ -36,6 +37,7 @@
 
                 <form id='form2'>
                     <h1 class="h1-bold">Homeowner Contact Information</h1>
+                    <div class="line"></div><br>
                     <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
                     <br>
@@ -43,10 +45,10 @@
 
                 <form id='form3'>
                     <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
-
+                    <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
-                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE">Age</label><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
                     <label for="RES_REL"">Relationship with Resident</label>
                     <select name="RES_REL" id="" class="form">
@@ -67,29 +69,30 @@
 
                 <form id="form4">
                     <h1 class="h1-bold">Lot/Property Information</h1>
-
+                    <div class="line"></div><br>
                     <p>Title Information</p><br>
-                    <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" style="margin-left: 7.1%;">Registered Name</label><br>
+                    <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" class="marginRegName">Registered Name</label><br>
                     <input type="text" name="TIT_NUM" placeholder="Title No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Full Name" required class="form-medium"><br>
-                    <label for="TIT_SURNOM" id="label-margin-medium">Survey No.</label><label for="TIT_LOTNUM" style="margin-left: 2.5%;">Lot No.</label><br>
+                    <label for="TIT_SURNOM" id="label-margin-medium">Survey No.</label><label for="TIT_LOTNUM" class="marginLot">Lot No.</label><br>
                     <input type="text" name="TIT_SURNOM" placeholder="Survey No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Lot No." required class="form-medium"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Date Registered</label><label for="TIT_AREA" style="margin-left: -6%;">Area</label><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Date Registered</label><label for="TIT_AREA" class="marginArea">Area</label><br>
                     <input type="date" name="TIT_DATE" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_AREA" placeholder="Area" required class="form-medium"><br>
                     <br><br><p>Tax Declaration Information</p><br>
-                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" style="margin-left: -12.2%;">Property Index No.</label><br>
+                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
                     <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No." required class="form-medium"><br>
                 </form>
                 <form id="form5">
                     <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
+                    <div class="line"></div><br>
                     <p>KHA Membership</p><br>
-                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" style="margin-left: -17%;">If paid, input date:</label><br>
+                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" class="marginPaidDate">If paid, input date:</label><br>
                     <fieldset>  
                         <label for="PAID_YES"><input type="radio" name="PAID_MEM" id="PAID_YES" value="yes">Yes</label>
                         <label for="PAID_NO" id="form-margin-medium"><input type="radio" name="PAID_MEM" id="PAID_NO" value="no" style="margin-left: 2%;">No</label>
-                        <input type="date" name="PAID_DATE" placeholder="" required style="margin-left: 21.4%;">
+                        <input type="date" name="PAID_DATE" placeholder="" required id="marginPaidDateButton" class="date_button">
                     </fieldset><br>
                     <label for="MEM_NAME">Name Used in Membership</label><input type="text" name="MEM_NAME" placeholder="Full Name" required class="form"><br>
-                    <br><br><p>Use of Property</p><br>
+                    <p>Use of Property</p><br>
                     <fieldset>  
                         <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_RES" value="yes">Residential</label>
                         <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_BUS" value="no">Business</label>
@@ -102,10 +105,11 @@
 
                 <form id="form6">
                     <h1 class="h1-bold">Vehicle Information</h1>
+                    <div class="line"></div><br>
                     <div class="changepass-label-container">
-                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
+                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
                         <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
+                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
 
@@ -120,8 +124,7 @@
                     </div>
                     <br>
                 </form>    
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="button-container">
+                <div class="button-container" id="edit-button">
                     <input class="button-design" type="button" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" type="button" value="Cancel" id="button-small">
                 </div>
