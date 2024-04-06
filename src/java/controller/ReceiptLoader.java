@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ReceiptLoader extends HttpServlet {
-    protected static Connection con;
-    protected static ResultSet rs;
-    protected static PreparedStatement ps;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,7 +24,8 @@ public class ReceiptLoader extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Connection con = null;
+        PreparedStatement ps;
         
         String appId = request.getParameter("appid");
         System.out.println("-------[RECLOAD]----------------------------");
@@ -37,8 +34,8 @@ public class ReceiptLoader extends HttpServlet {
         try {
             Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
             String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                    password = getServletContext().getInitParameter("dbPassword"),
-                    driverURL = getServletContext().getInitParameter("jdbcDriverURL");
+                   password = getServletContext().getInitParameter("dbPassword"),
+                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
             con = DriverManager.getConnection(driverURL, username, password); //create connection
         } catch (SQLException sqle) {
             System.out.println("SQLException error occured - " + sqle.getMessage());
@@ -47,13 +44,13 @@ public class ReceiptLoader extends HttpServlet {
         }
         
         try {
-                ps = con.prepareStatement("SELECT RECEIPT FROM APPLICATION WHERE APPID = ?");
+                ps = con.prepareStatement("SELECT RECEIPT,FILETYPE FROM APPLICATION WHERE APPID = ?");
                 ps.setString(1, appId);
-                rs = ps.executeQuery();
+                ResultSet rs = ps.executeQuery();
                 if(rs.next())
                 {
                     System.out.println("Found App Id: " + appId);
-                    response.setContentType("application/pdf");
+                    response.setContentType(rs.getString("FILETYPE"));
                     Blob receiptFile = rs.getBlob("RECEIPT");
                     byte[] bytes = receiptFile.getBytes(1, (int) receiptFile.length());
                     response.getOutputStream().write(bytes);
@@ -67,19 +64,20 @@ public class ReceiptLoader extends HttpServlet {
                 System.out.println("SQLException IN error occured - " + sqle.getMessage());
                 response.sendError(500);
             } finally {
-            try {
-                if(rs != null)
-                    rs.close();
-                if(ps != null)
-                    ps.close();
-                if(con != null)
-                    con.close();
-            } catch (SQLException sqle) {
-                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
-                response.sendError(500);
-            }
+//            try {
+////                if(rs != null)
+////                    rs.close();
+//                if(ps != null)
+//                    ps.close();
+//                if(con != null)
+//                    con.close();
+//            } catch (SQLException sqle) {
+//                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+//                response.sendError(500);
+//            }
 
             }
+        System.out.println("-----------------------------------------------");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

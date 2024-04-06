@@ -64,11 +64,14 @@
                             while (rs.next()) {
                                 String nameDB = rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim() + " " + rs.getString("LASTNAME").trim();
                                 String appId = rs.getString("APPID").trim();
+                                String contentType = rs.getString("FILETYPE").trim();
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                out.print("<td class=\"tableContentText info\"><button class=\"button-design\" onClick=showDialog(\'dl"+ appId + "\'); style=\"color: black\">Receipt</button></td>");
+                                out.print("<td class=\"tableContentText info\"><button class=\"button-design\" onClick=showDialog(\'dl"+ appId + "\');>Receipt</button></td>");
                                 out.print("<td class=\"tableContentText\"><button class=\"button-design\" id=\"button-small\" style=\"margin-right: -20%\">Accept</button></td>");
                                 out.println("<td class=\"tableContentText\"><button class=\"button-design-reject\" id=\"button-small\" style=\"margin-left: -20%\">Reject</button></td></tr>");
-                                out.println("<dialog id=\"dl" + appId + "\"><iframe src=\"ReceiptLoader?appid=" + appId + "\"></iframe></dialog>");
+                                out.println("<dialog id=\"dl" + appId + "\">"
+                                + (contentType.equals("application/pdf") ? "<iframe src=\"ReceiptLoader?appid=" + appId + "\"></iframe>" : "<img class=\"imgReceipt\" src=\"ReceiptLoader?appid=" + appId + "\"></img>")
+                                + "</dialog>");
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -135,11 +138,20 @@
                 transform:translatey(-50%);
                 transform:translatex(-50%);
             }
-            dialog iframe {
+            dialog iframe, dialog .imgReceipt{
                 position: absolute;
                 border: none;
                 height: 100%;
                 width: 100%;
+                max-height: 100%;
+                max-width: 100%;
+            }
+            dialog iframe html body img {
+                position: absolute;
+                border: none;
+                width: 100%;
+                max-height: 100%;
+                max-width: 100%;
             }
         </style>
     </body>
