@@ -63,7 +63,7 @@
         <div id="searchRecords">
             <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
                 <input type="text" placeholder="Search.." name="search" id="searchWidth" onkeyup="searchFunc()">
-                <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
+               <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
             <!-- The sorting form -->
@@ -101,7 +101,7 @@
         </div>
         <br>
         <div class="recordsHolder" style="overflow-y: scroll;">
-            <table class="tableContent sortable">
+            <table class="tableContent sortable" id="displayTable">
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
@@ -196,7 +196,7 @@
 
                         function searchFunc() {
                             var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("nameSearch");
+                            input = document.getElementById("searchWidth");
                             filter = input.value.toUpperCase();
                             table = document.getElementById("displayTable");
                             tr = table.getElementsByTagName("tr");
