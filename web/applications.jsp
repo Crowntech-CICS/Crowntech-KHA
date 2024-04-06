@@ -8,7 +8,7 @@
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
         response.sendRedirect("login.jsp");
-    } else if (!session.getAttribute("level").equals("admin")) {
+    } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -39,7 +39,7 @@
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
-                ps = con.prepareStatement("SELECT * FROM HOMEOWNER");
+                ps = con.prepareStatement("SELECT * FROM APPLICATION");
                 rs = ps.executeQuery();
         %>
         <h1 class="h1-bold">Membership Applications</h1>
@@ -55,18 +55,20 @@
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
-                        <th class="tableTitle">Information</th>
+                        <th class="tableTitle">Proof of Payment</th>
                         <th colspan="2" class="tableTitle">Accept/Reject</th>
                     </tr>
                 </thead>
                 <tbody>
                     <%
                             while (rs.next()) {
-                                String nameDB = rs.getString("FIRSTNAME").trim() + " " + rs.getString("LASTNAME").trim();
+                                String nameDB = rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim() + " " + rs.getString("LASTNAME").trim();
+                                String appId = rs.getString("APPID").trim();
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                out.print("<td class=\"tableContentText info\"><a href=\"profile.jsp\" style=\"color: black\">Information</a></td>");
+                                out.print("<td class=\"tableContentText info\"><button class=\"button-design\" onClick=showDialog(\'dl"+ appId + "\'); style=\"color: black\">Receipt</button></td>");
                                 out.print("<td class=\"tableContentText\"><button class=\"button-design\" id=\"button-small\" style=\"margin-right: -20%\">Accept</button></td>");
                                 out.println("<td class=\"tableContentText\"><button class=\"button-design-reject\" id=\"button-small\" style=\"margin-left: -20%\">Reject</button></td></tr>");
+                                out.println("<dialog id=\"dl" + appId + "\"><iframe src=\"ReceiptLoader?appid=" + appId + "\"></iframe></dialog>");
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -112,5 +114,33 @@
                         }
                     }
         </script>
+        <script>
+            function showDialog(dl_id) {
+                var dialog = document.getElementById(dl_id);
+                dialog.showModal();
+                
+                dialog.addEventListener('click', (event) => {
+                    if (event.target === dialog) dialog.close();
+                    }
+                );
+            }
+        </script>
+        <style>
+            dialog {
+                min-width: 50%;
+                min-height: 60%;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform:translatey(-50%);
+                transform:translatex(-50%);
+            }
+            dialog iframe {
+                position: absolute;
+                border: none;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
     </body>
 </html>

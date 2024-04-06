@@ -40,6 +40,10 @@
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>controller.SignupServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReceiptLoader</servlet-name>
+        <servlet-class>controller.ReceiptLoader</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>SignupServlet</servlet-name>
         <url-pattern>/Signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReceiptLoader</servlet-name>
+        <url-pattern>/ReceiptLoader</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
