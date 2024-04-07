@@ -5,15 +5,14 @@
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
-    if(logState) {
+    if (logState) {
         response.sendRedirect("index.jsp");
     }
     //Login Attempts Counter
     int tries = 0;
     if (session.getAttribute("tries") != null) {
         tries = (Integer) session.getAttribute("tries");
-    }
-    else {
+    } else {
         session.setAttribute("tries", tries);
     }
 %>
@@ -29,11 +28,7 @@
         <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <header>
-            <nav> 
-                <a href="."><img src="images/khalogo_newwhite.png" class="logo"></a>
-            </nav>
-        </header>
+        <%@include file="navbar.jsp" %>
         <div class="main-body">
             <div class="login-box">
                 <form action="Login" method="POST">
@@ -44,16 +39,16 @@
                         <a href="./accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
                         <br>
                         <c:if test = "${tries > 0}">
-                            <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries); %> tries left</span></p> 
+                            <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries);%> tries left</span></p> 
                         </c:if>
                         <br>
                     </div>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Login">
+                        <input class="button-design" type="submit" value="Login" style="margin-left: 3%">
                     </div>
                     <br>
                     <div class="button-container">
-                        <a href="signup-homeowners.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+                        <a href="signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
                     </div>
                 </form>      
             </div>

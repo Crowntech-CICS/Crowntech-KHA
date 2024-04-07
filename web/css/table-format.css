@@ -1,9 +1,10 @@
 .createacc-box {
     background-color: #f0f5f3;
-    height: 420px;
+    height: 320px;
     width: 70%;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    table-layout: fixed;
 }
 
 .tableContent {
@@ -15,6 +16,57 @@
     border: 2px solid #377d60;
     border-radius: 0.2%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.tableContentR {
+    margin: auto;
+    border-collapse: collapse;
+    font-size: 20px;
+    min-width: 400px;
+    width: 90%;
+    border: 2px solid #377d60;
+    border-radius: 0.2%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.financeHolder {
+    margin: auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    max-height: 80%; 
+    max-width: 78%
+}
+
+.recordsHolder {
+    margin: auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    max-height: 80%; 
+    max-width: 84%
+}
+
+#financesLeft {
+    width: 60%;
+    height: 100%;
+}
+
+#financesRight {
+    margin-left: 3%;
+    width: 20%;
+    height: 120%;
+}
+
+.financesP {
+    text-align: center;
+    color: white;
+    font-weight: 100;
+    font-size: 60px
+}
+
+#tableContent-fit {
+    width: 75%;
 }
 
 th, td {
@@ -99,4 +151,110 @@ th, td {
 
 tbody {
     font-family: Roboto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsiveness */
+
+@media only screen and (max-width: 1600px) {
+    .createacc-box {
+        height: 260px;
+    }
+    
+    .financesP {
+        font-size: 40px;
+    }
+    
+    #financesLeft {
+        width: 50%;
+        height: 80%;
+    }
+    
+    #financesRight {
+        margin-left: 2%;
+        width: 18%;
+    }
+    
+    .tableContentText, .tableContentText2 {
+        height: 50px;
+    }
+    
+    .tableContentText3, .tableContentText4, .tableContentText5 {
+        height: 128px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .createacc-box {
+        height: 180px;
+        margin-top: -1.5%;
+    }
+    
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+        font-size: 16px;
+    }
+    
+    .financesP {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+        font-size: 14px;
+    }
+    
+    .financeHolder {
+        max-width: 50%;
+    }
+    
+    .financesP {
+        font-size: 20px;
+    }
+    
+    .tableContentText, .tableContentText2 {
+        height: 40px;
+    }
+    
+    .tableContentText3, .tableContentText4, .tableContentText5 {
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+        font-size: 12px;
+    }
+    
+    .financesP {
+        font-size: 14px;
+    }
+    
+    .tableContentText, .tableContentText2 {
+        height: 10px;
+    }
+    
+    .tableContentText3, .tableContentText4, .tableContentText5 {
+        height: 60px
+    }
+    
+    #financesRight {
+        width: 20px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    
+    .createacc-box {
+        height: 160px;
+    }
+    
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+        font-size: 10px;
+    }
+    
+    .financesP {
+        font-size: 12px;
+    }
 }

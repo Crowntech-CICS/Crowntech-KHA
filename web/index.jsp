@@ -1,10 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% 
+<%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Expires","0");
+    response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
-    if(!logState) {
+    if (!logState) {
         response.sendRedirect("login.jsp");
     }
 %>
@@ -17,6 +17,7 @@
         <link href="css/main-format.css" rel="stylesheet"/>
     <body>
         <%@include file="navbar.jsp" %>
+        <br><br><br><br><br><br>
         <div class="test">
             
         </div>

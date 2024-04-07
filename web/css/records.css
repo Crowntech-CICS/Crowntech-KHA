@@ -1,168 +1,98 @@
-@import url(https://fonts.cdnfonts.com/css/mesa-grande);
-@import url(https://fonts.cdnfonts.com/css/marvelan);
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&display=swap');
-@font-face {font-family: "Mesa Grande";
-            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot");
-            src: url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.eot?#iefix")
-                format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff2")
-                format("woff2"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.woff")
-                format("woff"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.ttf")
-                format("truetype"), url("//db.onlinewebfonts.com/t/0eda4cf01c6a2808f17a221264758def.svg#Mesa Grande")
-                format("svg"); 
-}
-body{
-    background: #939992;
-}
-.tableContent {
-    border-collapse: collapse;
-    margin: 25px 0 20px 20px;
-    font-size: 20px;
-    min-width: 400px;
-    border-radius: 10px 10px 0 0;
-    width: 1840px;
-    height: 680px;
-}
-
-th, td {
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.tableTitle {
-    font-size: 25px;
-}
-
-.tableContentText {
-    font-size: 28px;
-    font-family: Sulphur Point;
-}
-
-.tableContent thead tr {
-    background-color: #D9D9D9;
-    font-family: 'Noto Sans Bengali', sans-serif;
-    color: #4a4237;
-}
-
-.tableContent tbody tr {
-    border-bottom: 1px solid #4d4539;
-}
-
-.tableContent tbody tr:nth-of-type(odd) {
-    background-color: #bdaa8f;
-}
-
-.tableContent tbody tr:nth-of-type(even) {
-    background-color: #a6957c;
-}
-
-tbody {
-    font-family: Roboto;
-}
-
-* {
-  box-sizing: border-box;
-}
-.sortSearch input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-.sortSearch button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-.sortSearch button:hover {
-  background: #0b7dda;
-}
-
-.sortSearch::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
 /* Button used to open the contact form - fixed at the bottom of the page */
 .openSortB {
-  background-color: #555;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  margin-left: 20px;
-  cursor: pointer;
-  opacity: 0.8;
-  width: 280px;
+    background: #48a37d;
+    color: white;
+    padding: 10px;
+    border: 2px solid #377d60;
+    cursor: pointer;
+    width: 250px;
+    justify-content: flex-end;
+    font-family: 'Inter';
+    border-radius: 50px;
+    font-size: 20px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    display: inline-block;
+    font-weight: 500;
+}
+
+.openSortB:hover {
+    background-color: #ffffff;
+    color: #48a37d;
+    border-color: #48a37d;
+    border: solid 2px;
 }
 
 /* The popup form - hidden by default */
 .sortPopup {
-  display: none;
-  z-index: 9;
+    display: none;
+    z-index: 9;
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
-  margin-left: 20px;
-  padding: 10px;
-  position: fixed;
-  background-color: white;
-  z-index: 10;
+    max-width: 250px;
+    margin-left: 1137px;
+    margin-top: -48px;
+    padding: 10px;
+    position: fixed;
+    background-color: white;
+    z-index: 10;
+    border-radius: 25px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    transition: background 0.2s ease-out;
+}
+
+.sortCenter {
+    margin-left: 19%;
+}
+
+.sortCenterOption {
+    margin-left: 18%;
+}
+
+.sortCenter2 {
+    margin-left: 22%;
+}
+
+.sortCenterSelect {
+    margin-left: 26%;
 }
 
 /* Full-width input fields */
 .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 }
 
 /* When the inputs get focus, do something */
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+    background-color: #ddd;
+    outline: none;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
 }
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+    background-color: red;
 }
 
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-
-.tableB {
-    width: 200px;
-    height: 75px;
-    border-radius: 15px;
-    font-size: 24px;
+    opacity: 1;
 }
 
 .accept {
@@ -172,11 +102,169 @@ tbody {
     background-color: #ff7979;
 }
 
-a:visited { 
-    text-decoration: none;
-    color: black;    
+option {
+    font-family: 'Inter';
 }
 
-a{
-    text-decoration: none
+#searchRecords {
+    margin:auto;
+    margin-top: 5px;
+    max-width: 1800px;
+    /* margin-left: 3.2% */
+    margin-left: 6.8%
+}
+
+#searchWidth {
+    width: 1090px;
+}
+
+#searchMargin {
+    margin-left: -20.3%;
+}
+
+#sortClose {
+    width: 251px;
+    margin-left: -11px;
+    margin-top: -10px;
+    height: 48px
+}
+
+#sortFilter {
+    width: 230px;
+    height: 48px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Responsiveness */
+
+@media only screen and (max-width: 1700px) {
+    #searchRecords {
+        margin-left: 3.2%
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    #searchWidth {
+        width: 950px;
+    }
+
+    .openSortB {
+        width: 225px;
+    }
+
+    .form-container {
+        max-width: 223.5px;
+        margin-left: 997px;
+    }
+
+    #sortClose {
+        width: 223.6px;
+    }
+
+    #sortFilter {
+        width: 202.6px;
+    }
+
+    .sortCenter {
+        margin-left: 14%;
+    }
+
+    .sortCenterOption {
+        margin-left: 13%;
+    }
+
+    .sortCenter2 {
+        margin-left: 18%;
+    }
+
+    .sortCenterSelect {
+        margin-left: 21%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    #searchWidth {
+        width: 790px;
+    }
+
+    .openSortB {
+        width: 185px;
+    }
+
+    .form-container {
+        max-width: 153.8px;
+        margin-left: 723.1px;
+    }
+
+    #sortClose {
+        width: 154.2px;
+    }
+
+    #sortFilter {
+        width: 134.2px;
+    }
+
+    .sortCenter {
+        margin-left: 12%;
+    }
+
+    .sortCenterOption {
+        margin-left: 8%;
+    }
+
+    .sortCenter2 {
+        margin-left: 16%;
+    }
+
+    .sortCenterSelect {
+        margin-left: 13%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #searchWidth {
+        width: 675px;
+    }
+
+    #searchRecords {
+        margin-left: 9.2%
+    }
+
+    .openSortB {
+        width: 155px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    #searchRecords {
+        margin-left: 3.2%
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #searchRecords {
+        margin-left: 3.2%
+    }
+
+    #searchWidth {
+        width: 575px;
+    }
+
+    .openSortB {
+        width: 140px;
+    }
+    
+    .form-container {
+        max-width: 138.9px;
+        margin-left: 623px;
+    }
+
+    #sortClose {
+        width: 140px;
+    }
+
+    #sortFilter {
+        width: 120px;
+    }
 }

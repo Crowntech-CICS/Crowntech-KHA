@@ -12,6 +12,9 @@ nav {
     display: flex;
     background-color: #48a37d;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
 }
 .logo-profile{
     width: 28px;
@@ -52,4 +55,70 @@ nav {
 }
 .nav-links li a:hover::after{
     width: 100%;
+}
+
+@media only screen and (max-width: 1600px) {
+    .nav-links li a {
+        font-size: 20px;
+    }
+    
+    .logo-profile {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .logo {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .nav-links li a {
+        font-size: 16px;
+    }
+    
+    .logo-profile {
+        height: 16px;
+        width: 16px;
+    }
+    
+    .logo {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .nav-links li a {
+        font-size: 14px;
+    }
+    
+    .logo-profile {
+        height: 14px;
+        width: 14px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .nav-links li a {
+        font-size: 12px;
+    }
+    
+    .logo-profile {
+        height: 12px;
+        width: 12px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .nav-links li a {
+        font-size: 10px;
+    }
+    
+    .logo-profile {
+        height: 10px;
+        width: 10px;
+    }
+    .logo {
+        width: 120px;
+    }
 }
