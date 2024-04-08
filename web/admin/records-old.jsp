@@ -1,29 +1,31 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*" %>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires", "0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if (!logState) {
+        response.sendRedirect("../login/login.jsp");
+    }
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KHA | Records</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
-        <link href="css/records.css" rel="stylesheet"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Current Members</title>
+        <link href="../css/records.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            Connection con = null;
+        <%            
+            Connection con = null;
             ResultSet rs = null;
-            ResultSet rs2 = null;
             PreparedStatement ps = null;
-            PreparedStatement ps2 = null;
-            String lotUser = null;
+            String QUERY = "SELECT * FROM HOMEOWNER";
             String LotQuery = "SELECT * FROM USERLOT";
-            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?";
-            String userLotID = null;
             String addQuery = null;
             String[] hold = null;
             addQuery = request.getParameter("find");
@@ -39,12 +41,12 @@
                     System.out.println("Area Check: " + hold[1]); // checks which area was taken from param
 
                     if (hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
-                        HomeQuery += " AND PAID = " + hold[2]; // adds payment status to query
+                        addQuery += " AND PAID = " + hold[2]; // adds payment status to query
                     }
                     LotQuery += addQuery;
                     System.out.println(LotQuery);
                 } else if (!addQuery.substring(0, 4).equals("AREA")) { // AREA parameter not used
-                    HomeQuery += " AND PAID =" + addQuery; // only adds payment status to query
+                    LotQuery += " WHERE PAID =" + addQuery; // only adds payment status to query
                 }
             }
             try {
@@ -58,26 +60,34 @@
             } catch (ClassNotFoundException nfe) {
                 System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
+            try {
+                ps = con.prepareStatement(QUERY);
+                System.out.println("Current Query: " + QUERY); // checks query about to be executed
+                rs = ps.executeQuery();
         %>
-        <br><br><br><br><br><br>
-        <div id="searchRecords">
-            <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
-                <input type="text" placeholder="Search.." name="search" id="searchWidth" onkeyup="searchFunc()">
-               <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
+        <%--search bar thingie lang dito--%> 
+        <div>
+            <form class="sortSearch" action="SortHandler" style="margin:auto; margin-top: 5px; max-width: 1800px;">
+                <input type="text" placeholder="Search for name.." name="search" id="nameSearch" onkeyup="searchFunc()">
             </form>
-            <button class="openSortB" onclick="openForm()">Sort</button>
+            <br/>
+            <!-- A button to open the popup form -->
+            <button class="openSortB" onclick="openForm()">More Sort Options</button>
+
             <!-- The sorting form -->
             <div class="sortPopup" id="sortForm" style="display: none;">
                 <form action="SortHandler" class="form-container" method="POST">
-                    <button type="button" class="button-design-reject" id="sortClose" onclick="closeForm()">Close</button>
-                    <br><br>
-                    <label class="sortCenter">Sort By Status:</label><br>
-                    <input type="radio" id="paid" name="status" value="true" class="sortCenterOption">
-                    <label for="paid">Paid</label>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    <h1>Sort By:</h1>
+
+                    <b>Status:</b><br>
+                    <input type="radio" id="paid" name="status" value="true">
+                    <label for="paid">Paid</label><br>
                     <input type="radio" id="unpaid" name="status" value="false">
-                    <label for="unpaid">Unpaid</label><br><br>
-                    <label for="area" class="sortCenter2">Sort By Area:</label>
-                    <select name="area" id="select" class="sortCenterSelect">
+                    <label for="unpaid">Unpaid</label><br><br><br>
+
+                    <label for="area">Area:</label>
+                    <select name="area" id="area">
                         <option value ="null">-----</option>
                         <option value="1">Area 1</option>
                         <option value="1A">Area 1A</option>
@@ -94,14 +104,14 @@
                         <option value="11E">Area 11 East</option>
                         <option value="11W">Area 11 West</option>
                     </select>
-                    <br><br>
-                    <button type="submit" class="button-design" id="sortFilter">Filter Results</button>
+
+                    <button type="submit" class="btn">Filter Results</button>
                 </form>
             </div>
         </div>
-        <br>
-        <div class="recordsHolder" style="overflow-y: scroll;">
-            <table class="tableContent sortable" id="displayTable">
+
+        <div class="tableContain" style="overflow-y: scroll; height: 620px;"> <%--dito yun table--%> 
+            <table class="tableContent sortable" id="displayTable"> 
                 <thead>
                     <tr>
                         <th class="tableTitle">Name</th>
@@ -113,47 +123,31 @@
                 </thead>
                 <tbody>
                     <%
-                        try {
-                            PreparedStatement ps3 = con.prepareStatement(LotQuery);
-                            ResultSet rs3 = ps3.executeQuery();
-                            while (rs3.next()) {
-                                userLotID = rs3.getString("USERID");
-                                System.out.println("userLotID: " + userLotID);
-                                ps2 = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
-                                ps2.setString(1, userLotID);
-                                rs2 = ps2.executeQuery();
-                                while (rs2.next()) {
-                                    lotUser = rs2.getString("HOMEOWNERID");
-                                    ps = con.prepareStatement(HomeQuery);
-                                    ps.setString(1, lotUser); // checks query about to be executed
-                                    rs = ps.executeQuery();
-                                    while (rs.next()) {
-                                        String nameDB = rs.getString("FIRSTNAME").trim() + " "
-                                                + rs.getString("MIDDLEINITIAL").trim() + " "
-                                                + rs.getString("LASTNAME"),
-                                                addDB = rs.getString("HOUSENO").trim() + " "
-                                                + rs.getString("STREETNAME") + " "
-                                                + rs.getString("VILLAGE").trim() + " "
-                                                + rs.getString("BARANGAY").trim() + " "
-                                                + rs.getString("CITY").trim() + " "
-                                                + rs.getString("PROVINCE").trim(),
-                                                numDB = rs.getString("MOBILENO").trim(),
-                                                statDB = "Homeowner",
-                                                paidDB = rs.getString("PAID").trim();
+                            while (rs.next()) {
+                                String nameDB = rs.getString("FIRSTNAME").trim() + " "
+                                        + rs.getString("MIDDLEINITIAL").trim() + " "
+                                        + rs.getString("LASTNAME"),
+                                        addDB = rs.getString("HOUSENO").trim() + " "
+                                        + rs.getString("STREETNAME") + " "
+                                        + rs.getString("VILLAGE").trim() + " "
+                                        + rs.getString("BARANGAY").trim() + " "
+                                        + rs.getString("CITY").trim() + " "
+                                        + rs.getString("PROVINCE").trim(),
+                                        numDB = rs.getString("MOBILENO").trim(),
+                                        statDB = "Homeowner",
+                                        paidDB = rs.getString("PAID").trim();
 
-                                        if (paidDB.equals("true")) {
-                                            paidDB = "Paid";
-                                        } else if (paidDB.equals("false")) {
-                                            paidDB = "Unpaid";
-                                        }
-                                        // tbh i just copy pasted everything, aadjust nalang syntax here for real db
-                                        out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + addDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">0" + numDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + statDB + "</td>");
-                                        out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
-                                    }
+                                if (paidDB.equals("true")) {
+                                    paidDB = "Paid";
+                                } else if (paidDB.equals("false")) {
+                                    paidDB = "Unpaid";
                                 }
+                                // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
+                                out.print("<td class=\"tableContentText\">" + addDB + "</td>");
+                                out.print("<td class=\"tableContentText\">" + numDB + "</td>");
+                                out.print("<td class=\"tableContentText\">" + statDB + "</td>");
+                                out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -178,11 +172,8 @@
                 </tbody>
             </table>
         </div>
-        <br><br>
-        <div class="button-container">
-            <button class="button-design">
-                Update Record
-            </button>
+        <div> <%--div for buttons--%>
+
         </div>
         <script src="scripts/sorttable.js"></script>
         <script>
@@ -196,7 +187,7 @@
 
                         function searchFunc() {
                             var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("searchWidth");
+                            input = document.getElementById("nameSearch");
                             filter = input.value.toUpperCase();
                             table = document.getElementById("displayTable");
                             tr = table.getElementsByTagName("tr");

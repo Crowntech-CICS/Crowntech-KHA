@@ -7,7 +7,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("../login/login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
         response.sendRedirect("index.jsp");
     }
@@ -15,11 +15,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
+        <link href="../css/main-format.css" rel="stylesheet"/>
+        <link href="../css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>KHA | Membership Approval</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
     </head>
     <body>
         <%@include file="navbar.jsp" %>

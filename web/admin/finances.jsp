@@ -1,13 +1,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires", "0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if (!logState) {
+        response.sendRedirect("../login/login.jsp");
+    } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Finances</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
+        <link href="../css/main-format.css" rel="stylesheet"/>
+        <link href="../css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>

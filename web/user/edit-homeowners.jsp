@@ -1,14 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires", "0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if (!logState) {
+        response.sendRedirect("../login/login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Lessee Edit</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <title>KHA | Homeowner Edit</title>
+        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
+        <link href="../css/main-format.css" rel="stylesheet"/>
+        <link href="../css/form-format.css" rel="stylesheet"/>
+        <link href="../css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -19,40 +28,39 @@
                     <div class="step-col" id="Next1">Personal</div>
                     <div class="step-col" id="Next2">Contact</div>
                     <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Homeowner</div>
-                    <div class="step-col" id="Next5">Caretaker</div>
+                    <div class="step-col" id="Next4">Property</div>
+                    <div class="step-col" id="Next5">Property(Cont.)</div>
                     <div class="step-col" id="Next6">Vehicle</div>
                 </div>
                 <form id='form1'>
-                    <h1 class="h1-bold">Lessee Information</h1>
+                    <h1 class="h1-bold">Homeowner Information</h1>
                     <div class="line"></div><br>
-                    <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
-                    <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="LE_ADDRESS">Resident Classification</label><input type="text" name="LE_ADDRESS" placeholder="Select Classification"  class="form"><br>
-                    <label for="LE_ADDRESS">Address In Kingsville</label><input type="text" name="LE_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
-                    <label for="LE_DATE">Date Home Property Was Occupied</label><input type="date" name="LE_DATE" id=""  class="form">
-                    <br>
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
+                    <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification"  class="form"><br>
+                    <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
+                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
                 </form>
 
                 <form id='form2'>
-                    <h1 class="h1-bold">Lessee Contact Information</h1>
+                    <h1 class="h1-bold">Homeowner Contact Information</h1>
                     <div class="line"></div><br>
-                    <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
+                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
                     <br>
                 </form>  
 
                 <form id='form3'>
                     <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
-                    <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" required class="form"><br>
-                    <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" required class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
-                    <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                    <label for="LE_REL"">Relationship with Resident</label>
-                    <select name="LE_REL" id="" class="form">
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
+                    <label for="RES_REL"">Relationship with Resident</label>
+                    <select name="RES_REL" id="" class="form">
                         <option value="" selected>Relationship</option>
                         <option value="">Spouse</option>
                         <option value="">Son/Daughter</option>
@@ -69,28 +77,44 @@
                 </form>     
 
                 <form id="form4">
-                    <h1 class="h1-bold">Homeowner Information</h1>
+                    <h1 class="h1-bold">Lot/Property Information</h1>
                     <div class="line"></div><br>
-                    <label for="LE_HO_LN">Last Name</label><input type="text" name="LE_HO_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_HO_FN">First Name</label><input type="text" name="LE_HO_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_HO_MI" id="label-margin">Middle Initial</label>
-                    <input type="text" name="LE_HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
-                    <label for="LE_HO_ADDRESS">Email Address</label><input type="text" name="LE_HO_ADDRESS" placeholder="Email Address"  class="form"><br>
-                    <label for="LE_HO_ADDRESS">Landline/Mobile No.</label><input type="text" name="LE_HO_ADDRESS" placeholder="Phone Number" class="form"><br>
-                    <label for="LE_HO_DATE">Current Address</label><input type="text" name="LE_HO_DATE" placeholder="Current Address" class="form">
+                    <p>Title Information</p><br>
+                    <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" class="marginRegName">Registered Name</label><br>
+                    <input type="text" name="TIT_NUM" placeholder="Title No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Full Name" required class="form-medium"><br>
+                    <label for="TIT_SURNOM" id="label-margin-medium">Survey No.</label><label for="TIT_LOTNUM" class="marginLot">Lot No.</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Survey No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Lot No." required class="form-medium"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Date Registered</label><label for="TIT_AREA" class="marginArea">Area</label><br>
+                    <input type="date" name="TIT_DATE" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_AREA" placeholder="Area" required class="form-medium"><br>
+                    <br><br><p>Tax Declaration Information</p><br>
+                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
+                    <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No." required class="form-medium"><br>
                 </form>
                 <form id="form5">
-                    <h1 class="h1-bold">Representative or Caretaker</h1>
-                    <label for="LE_REP_LN">Last Name</label><input type="text" name="LE_REP_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_REP_FN">First Name</label><input type="text" name="LE_REP_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_REP_MI" id="label-margin">Middle Initial</label>
-                    <input type="text" name="LE_REP_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
-                    <label for="LE_REP_PHONE">Landline/Mobile No.</label><input type="text" name="LE_REP_PHONE" placeholder="Phone Number" class="form"><br>
+                    <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
+                    <div class="line"></div><br>
+                    <p>KHA Membership</p><br>
+                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" class="marginPaidDate">If paid, input date:</label><br>
+                    <fieldset>  
+                        <label for="PAID_YES"><input type="radio" name="PAID_MEM" id="PAID_YES" value="yes">Yes</label>
+                        <label for="PAID_NO" id="form-margin-medium"><input type="radio" name="PAID_MEM" id="PAID_NO" value="no" style="margin-left: 2%;">No</label>
+                        <input type="date" name="PAID_DATE" placeholder="" required id="marginPaidDateButton" class="date_button">
+                    </fieldset><br>
+                    <label for="MEM_NAME">Name Used in Membership</label><input type="text" name="MEM_NAME" placeholder="Full Name" required class="form"><br>
+                    <p>Use of Property</p><br>
+                    <fieldset>  
+                        <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_RES" value="yes">Residential</label>
+                        <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_BUS" value="no">Business</label>
+                        <label for="PRP_USE" id="form-margin-medium"><input type="radio" name="PAID_MEM" id="PRP_BOTH" value="no">Both</label>
+                    </fieldset><br>
+                    <label for="BUS_NAME">If used for business, registered name of business:</label><input type="text" name="BUS_NAME" placeholder="Business Name" required class="form"><br>
+                    <label for="BUS_TYPE">Type of business:</label><input type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
                     <br>
                 </form>
 
                 <form id="form6">
                     <h1 class="h1-bold">Vehicle Information</h1>
+                    <div class="line"></div><br>
                     <div class="changepass-label-container">
                         <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
                         <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
