@@ -76,9 +76,11 @@
         </div>
         <br><br>
         <div class="button-container">
-            <button class="button-design">
-                Export
-            </button>
+            <form action="ExportPDF">
+                <button class="button-design" type="submit">
+                    Export
+                </button>
+            </form>
         </div>
     </body>
 </html>
