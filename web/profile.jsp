@@ -5,9 +5,9 @@
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
-/*    if (!logState) {
+    if (!logState) {
         response.sendRedirect("login.jsp");
-    }*/
+    }
 %>
 <!DOCTYPE html>
 <html>

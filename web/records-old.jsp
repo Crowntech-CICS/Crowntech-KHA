@@ -20,7 +20,8 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <%            Connection con = null;
+        <%            
+            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             String QUERY = "SELECT * FROM HOMEOWNER";
