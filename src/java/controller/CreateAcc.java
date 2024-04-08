@@ -12,10 +12,10 @@ import org.apache.commons.lang.RandomStringUtils;
 
 
 public class CreateAcc extends HttpServlet {
-    protected static Connection dbConnection;
-    protected String strkey; 
+    	protected static Connection dbConnection;
+    	protected String strkey; 
 	protected String encrpytKey = "RECORDKINGSVILLE";//getServletContext().getInitParameter("key");
-    protected String cipher = "AES/ECB/PKCS5Padding"; //getServletContext().getInitParameter("cipher");
+    	protected String cipher = "AES/ECB/PKCS5Padding"; //getServletContext().getInitParameter("cipher");
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,9 +50,9 @@ public class CreateAcc extends HttpServlet {
 		String NewUserID = random(8,true,true);
 		String NewHomeOwnerID; // if resident = needs homeownerid reference, if homeowner = generate new homeowner, if staff = "staffaydee"
 		String NewUsername = (String) request.getParameter("username"); //firstname
-        String NewEmail = (String) request.getParameter("email");
-        String NewPass = (String) request.getParameter("password"); 
-        String NewRole = (String) request.getParameter("userrole"); // Roles are Homeowner, Resident, Staff
+        	String NewEmail = (String) request.getParameter("email");
+        	String NewPass = (String) request.getParameter("password"); 
+        	String NewRole = (String) request.getParameter("userrole"); // Roles are Homeowner, Resident, Staff
 		if (NewRole == "Homeowner")
 		{
 		NewHomeOwnerID = random(8,true,true);
@@ -84,22 +84,17 @@ public class CreateAcc extends HttpServlet {
 				dbQuery = "INSERT INTO USERS (USERID, HOMEOWNERID, FIRSTNAME, RESIDENTCLASS) VALUES( ?, ?, ?, ?)";
                 ps = dbConnection.prepareStatement(dbQuery);
                 ps.setString(1, NewUserID);
-				ps.setString(2, NewHomeOwnerID);
+		ps.setString(2, NewHomeOwnerID);
                 ps.setString(3, NewUsername);
                 ps.setString(4, NewRole); 
                 int row = ps.executeUpdate(); //Create in USERS DB
                 
                      if (row != 0) {                    
-                    
-                    
                          response.sendRedirect("createacc.jsp");
-                    
                     }
                 
                      else {
-                         
                          response.sendError(500);
-                    
                     }
                 }
                 
