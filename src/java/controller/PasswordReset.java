@@ -53,7 +53,7 @@ public class PasswordReset extends HttpServlet {
                 userId = rs.getString("USERID").trim();
                 String rt = userId + Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)).getTime();
                 System.out.println("RT: " + rt);
-                url = "http://localhost:8080/Crowntech-KHA/accounts/password/changepassword.jsp?rt="+ rt;
+                url = "http://localhost:8080/Crowntech-KHA/login/password/changepassword.jsp?rt="+ rt;
             } else {
                 System.out.println("Email not Found in Login");
                 if(!response.isCommitted())

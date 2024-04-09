@@ -7,9 +7,9 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("../index.jsp");
     }
 %>
 <html>
@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <br><br><br><br><br>
         <%            Connection con = null;
             ResultSet rs = null;
@@ -66,12 +66,12 @@
                                 String appId = rs.getString("APPID").trim();
                                 String contentType = rs.getString("FILETYPE").trim();
                                 out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                out.print("<td class=\"tableContentText info\"><button class=\"button-design\" onClick=showDialog(\'dl"+ appId + "\');>Receipt</button></td>");
+                                out.print("<td class=\"tableContentText info\"><button class=\"button-design\" onClick=showDialog(\'dl" + appId + "\');>Receipt</button></td>");
                                 out.print("<td class=\"tableContentText\"><button class=\"button-design\" id=\"button-small\" style=\"margin-right: -20%\">Accept</button></td>");
                                 out.println("<td class=\"tableContentText\"><button class=\"button-design-reject\" id=\"button-small\" style=\"margin-left: -20%\">Reject</button></td></tr>");
                                 out.println("<dialog id=\"dl" + appId + "\">"
-                                + (contentType.equals("application/pdf") ? "<iframe src=\"ReceiptLoader?appid=" + appId + "\"></iframe>" : "<img class=\"imgReceipt\" src=\"ReceiptLoader?appid=" + appId + "\"></img>")
-                                + "</dialog>");
+                                        + (contentType.equals("application/pdf") ? "<iframe src=\"ReceiptLoader?appid=" + appId + "\"></iframe>" : "<img class=\"imgReceipt\" src=\"ReceiptLoader?appid=" + appId + "\"></img>")
+                                        + "</dialog>");
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -121,10 +121,11 @@
             function showDialog(dl_id) {
                 var dialog = document.getElementById(dl_id);
                 dialog.showModal();
-                
+
                 dialog.addEventListener('click', (event) => {
-                    if (event.target === dialog) dialog.close();
-                    }
+                    if (event.target === dialog)
+                        dialog.close();
+                }
                 );
             }
         </script>

@@ -5,7 +5,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     }
 %>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
         <link href="../css/profile-format.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <br><br><br><br><br><br>
         <ul id="profileStrip" class="accordion">
             <br>

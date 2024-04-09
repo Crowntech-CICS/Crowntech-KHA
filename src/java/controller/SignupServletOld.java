@@ -70,7 +70,7 @@ public class SignupServletOld extends HttpServlet {
         System.out.println("Page 6:\nPlate No: " + plateNo + "\nCar Type: " + carType + "\nModel: " + carMod + "\nBrand: " + carBrand + "\nOwner: " + carOwner);
        System.out.println("------------------------------------------------------------------------------------------------------------");
         //request.getRequestDispatcher("signup-homeowners.jsp").forward(request, response);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("admin/index.jsp");
     }
 
    

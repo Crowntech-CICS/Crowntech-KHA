@@ -5,7 +5,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     }
 %>
 <!DOCTYPE html>
@@ -13,10 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Kingsville Homeowners Association</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
+        <link href="../css/main-format.css" rel="stylesheet"/>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <br><br><br><br><br><br>
         <div class="test">
             

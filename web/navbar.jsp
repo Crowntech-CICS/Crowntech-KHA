@@ -16,7 +16,7 @@
     <body>
         <header>
             <nav>
-                <a href="."><img src="images/khalogo_newwhite.png" alt="no image" class="logo"></a>
+                <a href="."><img src="../images/khalogo_newwhite.png" alt="no image" class="logo"></a>
                 <ul class="nav-links">
                     <%
                         //Display Corresponding Navigation Options Per Access Level
