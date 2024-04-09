@@ -17,6 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../css/main-format.css" rel="stylesheet"/>
         <link href="../css/table-format.css" rel="stylesheet"/>
+        <link href="../css/navbar.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>KHA | Membership Approval</title>
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">

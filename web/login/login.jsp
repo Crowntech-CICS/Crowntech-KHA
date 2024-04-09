@@ -48,7 +48,7 @@
                     </div>
                     <br>
                     <div class="button-container">
-                        <a href="login/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+                        <a href="../login/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
                     </div>
                 </form>      
             </div>

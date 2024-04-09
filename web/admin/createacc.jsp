@@ -7,7 +7,7 @@
     if (!logState) {
         response.sendRedirect("../login/login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("../index.jsp");
     }
 %>
 <!DOCTYPE html>
@@ -18,10 +18,11 @@
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
         <link href="../css/main-format.css" rel="stylesheet"/>
         <link href="../css/table-format.css" rel="stylesheet"/>
+        <link href="../css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="greetingBanner">
-            <%@include file="navbar.jsp" %>
+            <%@include file="../navbar.jsp" %>
             <div class="main-body">
                 <div class="createacc-box">
                     <h1 class="h1-bold">Create Account</h1>
