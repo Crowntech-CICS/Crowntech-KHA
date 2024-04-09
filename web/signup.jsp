@@ -22,7 +22,7 @@
     <body>
         <%@include file="navbar.jsp" %>
         <div class="main-body">
-            <div class="signup-box-small">
+            <div class="signup-box">
                 <div class="step-row">
                     <div id="progressSignup"></div>
                     <div class="step-col-signup">Personal Info.</div>
@@ -41,7 +41,8 @@
                     <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
                     <label for="HO_EMAIL">Email Address</label>
                     <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
-                    <br><br>
+                    <label for="HO_PASS">Password</label><input type="text" name="HO_PASS" onChange="document.form2.HO_EMAIL.value = this.value" placeholder="ex. password123" required class="form">
+                    <br><br><br>
                     <div class="button-container">
                         <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;">
                         <input id="Next1" class="button-design" type="button" value="Next">
