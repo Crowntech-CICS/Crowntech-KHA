@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <<<<<<< HEAD:web/admin/createacc.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -13,11 +14,14 @@
 %>
 =======
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Create Account</title>
+<<<<<<< HEAD
 <<<<<<< HEAD:web/admin/createacc.jsp
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
         <link href="../css/main-format.css" rel="stylesheet"/>
@@ -28,6 +32,11 @@
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/table-format.css" rel="stylesheet"/>
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
+=======
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
     </head>
     <body>
         <div class="greetingBanner">

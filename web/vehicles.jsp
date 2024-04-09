@@ -6,11 +6,15 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
+<<<<<<< HEAD
 <<<<<<< HEAD:web/user/vehicles.jsp
         response.sendRedirect("login/login.jsp");
 =======
         response.sendRedirect("login.jsp");
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/vehicles.jsp
+=======
+        response.sendRedirect("login.jsp");
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

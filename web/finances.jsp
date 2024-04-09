@@ -1,6 +1,7 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<<<<<<< HEAD
 <<<<<<< HEAD:web/admin/finances.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -15,11 +16,14 @@
 %>
 =======
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/finances.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Finances</title>
+<<<<<<< HEAD
 <<<<<<< HEAD:web/admin/finances.jsp
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
         <link href="../css/main-format.css" rel="stylesheet"/>
@@ -30,6 +34,11 @@
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/table-format.css" rel="stylesheet"/>
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/finances.jsp
+=======
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>

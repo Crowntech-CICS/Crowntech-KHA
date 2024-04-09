@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <<<<<<< HEAD:web/user/edit-resident.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -11,6 +12,8 @@
 %>
 =======
 >>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/edit-resident.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
