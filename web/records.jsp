@@ -1,31 +1,51 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<<<<<<< HEAD:web/admin/records.jsp
+<!DOCTYPE html>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("../index.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/records.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <%@page import="java.util.*"%>
 <%@page import="java.sql.*" %>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Records</title>
+<<<<<<< HEAD
+<<<<<<< HEAD:web/admin/records.jsp
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
         <link href="../css/main-format.css" rel="stylesheet"/>
         <link href="../css/table-format.css" rel="stylesheet"/>
         <link href="../css/records.css" rel="stylesheet"/>
+        <link href="../css/navbar.css" rel="stylesheet"/>
+=======
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
+        <link href="css/records.css" rel="stylesheet"/>
+<<<<<<< HEAD
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/records.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <%            Connection con = null;
             ResultSet rs = null;
             ResultSet rs2 = null;

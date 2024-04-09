@@ -106,7 +106,7 @@ public class AddRecordServlet extends HttpServlet {
 			
         }
         else {
-            response.sendRedirect("finances.jsp");
+            response.sendRedirect("admin/finances.jsp");
         }
     }
 

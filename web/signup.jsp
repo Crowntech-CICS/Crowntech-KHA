@@ -1,26 +1,32 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<<<<<<< HEAD:web/login/signup.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/signup.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Signup</title>
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
-        <link href="../css/main-format.css" rel="stylesheet"/>
-        <link href="../css/form-format.css" rel="stylesheet"/>
-        <link href="../css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/form-format.css" rel="stylesheet"/>
+        <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-small">
                 <div class="step-row">

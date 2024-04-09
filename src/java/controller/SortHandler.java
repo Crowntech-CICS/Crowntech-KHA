@@ -42,14 +42,14 @@ public class SortHandler extends HttpServlet {
         System.out.println(String.format("Status: %s || Area: %s",stat, area));
         try {
         if(area != null && stat != null && !area.equals("null")) {
-            response.sendRedirect("records.jsp?find=AREA " + area + " " + stat);
+            response.sendRedirect("admin/records.jsp?find=AREA " + area + " " + stat);
         } else if(area != null && !area.equals("null")){
-            response.sendRedirect("records.jsp?find=AREA " + area);
+            response.sendRedirect("admin/records.jsp?find=AREA " + area);
             System.out.println("Condition check: " + !area.equals("null"));
         } else if(stat != null) {
-            response.sendRedirect("records.jsp?find= " + stat);
+            response.sendRedirect("admin/records.jsp?find= " + stat);
         } else {
-            response.sendRedirect("records.jsp");
+            response.sendRedirect("admin/records.jsp");
         }
         } catch(IllegalStateException ise) {
             System.out.println("IllegalStateException: " + ise.getMessage());

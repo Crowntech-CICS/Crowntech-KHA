@@ -102,7 +102,7 @@ public class SignupServlet extends HttpServlet {
         
         //request.getRequestDispatcher("signup-homeowners.jsp").forward(request, response);
         System.out.println("------------------------------------------------------------------------------------------------------------");
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("admin/index.jsp");
         }
         
     }

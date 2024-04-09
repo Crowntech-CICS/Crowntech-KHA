@@ -1,26 +1,32 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+<<<<<<< HEAD:web/user/edit-resident.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login/login.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/edit-resident.jsp
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Lessee Edit</title>
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
-        <link href="../css/main-format.css" rel="stylesheet"/>
-        <link href="../css/form-format.css" rel="stylesheet"/>
-        <link href="../css/navbar.css" rel="stylesheet"/>
+        <title>KHA | Resident Edit</title>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/form-format.css" rel="stylesheet"/>
+        <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="../navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box">
                 <div class="step-row">
@@ -28,12 +34,12 @@
                     <div class="step-col" id="Next1">Personal</div>
                     <div class="step-col" id="Next2">Contact</div>
                     <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Homeowner</div>
-                    <div class="step-col" id="Next5">Caretaker</div>
+                    <div class="step-col" id="Next4">Property</div>
+                    <div class="step-col" id="Next5">Property(Cont.)</div>
                     <div class="step-col" id="Next6">Vehicle</div>
                 </div>
                 <form id='form1'>
-                    <h1 class="h1-bold">Lessee Information</h1>
+                    <h1 class="h1-bold">Resident Information</h1>
                     <div class="line"></div><br>
                     <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" class="form"><br>
                     <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" class="form"><br>

@@ -72,7 +72,7 @@ public class ExportPDF extends HttpServlet {
         finally{
             out.close();
         }
-        response.sendRedirect("finances.jsp");
+        response.sendRedirect("admin/finances.jsp");
     }
     
     private static void addMetaData(Document document) {
