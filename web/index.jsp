@@ -5,7 +5,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("../login/login.jsp");
     }
 %>
 <!DOCTYPE html>

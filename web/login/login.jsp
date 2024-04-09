@@ -36,7 +36,7 @@
                     <div class="changepass-label-container">
                         <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
                         <label for="password"> Password:</label><input type="password" name="password" class="form" required><br/><br/>
-                        <a href="../password/reset.jsp" class="login-ref">Forgot Password?</a>
+                        <a href="../login/password/reset.jsp" class="login-ref">Forgot Password?</a>
                         <br>
                         <c:if test = "${tries > 0}">
                             <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries);%> tries left</span></p> 
@@ -48,7 +48,7 @@
                     </div>
                     <br>
                     <div class="button-container">
-                        <a href="../signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+                        <a href="../login/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
                     </div>
                 </form>      
             </div>
