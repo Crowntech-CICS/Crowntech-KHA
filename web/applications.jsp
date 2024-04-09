@@ -7,15 +7,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-<<<<<<< HEAD
-<<<<<<< HEAD:web/admin/applications.jsp
         response.sendRedirect("login.jsp");
-=======
-        response.sendRedirect("login.jsp");
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/applications.jsp
-=======
-        response.sendRedirect("login.jsp");
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
         response.sendRedirect("index.jsp");
     }

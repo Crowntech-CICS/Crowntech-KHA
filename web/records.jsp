@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<<<<<<< HEAD:web/admin/records.jsp
 <!DOCTYPE html>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
