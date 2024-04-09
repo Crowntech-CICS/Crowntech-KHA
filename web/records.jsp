@@ -111,7 +111,7 @@
             </div>
         </div>
         <br>
-        <div class="recordsHolder" style="overflow-y: scroll;">
+        <div class="recordsHolder" style="overflow-y: scroll; height: 55%;">
             <table class="tableContent sortable" id="displayTable">
                 <thead>
                     <tr>

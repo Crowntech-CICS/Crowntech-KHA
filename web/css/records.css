@@ -134,12 +134,37 @@ option {
     height: 48px;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 40px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 40px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #48a37d;
+  border-radius: 40px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #377d60;
+  border-radius: 40px;
+}
 
 /* -------------------------------------------------------------------------- */
 /* Responsiveness */
 
 @media only screen and (max-width: 1700px) {
     #searchRecords {
+        margin-top: -1%;
         margin-left: 3.2%
     }
 }
@@ -228,6 +253,7 @@ option {
     }
 
     #searchRecords {
+        margin-top: -3%;
         margin-left: 9.2%
     }
 
@@ -244,6 +270,7 @@ option {
 
 @media only screen and (max-width: 900px) {
     #searchRecords {
+        margin-top: -5%;
         margin-left: 3.2%
     }
 
