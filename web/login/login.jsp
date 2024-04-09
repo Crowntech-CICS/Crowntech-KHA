@@ -22,10 +22,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Login</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
+        <link href="../css/main-format.css" rel="stylesheet"/>
+        <link href="../css/form-format.css" rel="stylesheet"/>
+        <link href="../css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="navbar.jsp" %>
