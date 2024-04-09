@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD:web/admin/createacc.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -10,15 +11,23 @@
         response.sendRedirect("../index.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Create Account</title>
+<<<<<<< HEAD:web/admin/createacc.jsp
         <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
         <link href="../css/main-format.css" rel="stylesheet"/>
         <link href="../css/table-format.css" rel="stylesheet"/>
         <link href="../css/navbar.css" rel="stylesheet"/>
+=======
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
     </head>
     <body>
         <div class="greetingBanner">

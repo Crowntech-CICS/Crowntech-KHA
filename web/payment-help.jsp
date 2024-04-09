@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD:web/user/payment-help.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -8,15 +9,17 @@
         response.sendRedirect("login/login.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/payment-help.jsp
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Payment</title>
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
-        <link href="../css/main-format.css" rel="stylesheet"/>
-        <link href="../css/profile-format.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/profile-format.css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="../navbar.jsp" %>

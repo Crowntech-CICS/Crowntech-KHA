@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<<<<<<< HEAD:web/user/edit-resident.jsp
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -8,16 +9,18 @@
         response.sendRedirect("login/login.jsp");
     }
 %>
+=======
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/edit-resident.jsp
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Resident Edit</title>
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png"/>
-        <link href="../css/main-format.css" rel="stylesheet"/>
-        <link href="../css/form-format.css" rel="stylesheet"/>
-        <link href="../css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/form-format.css" rel="stylesheet"/>
+        <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="../navbar.jsp" %>

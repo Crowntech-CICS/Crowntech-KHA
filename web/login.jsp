@@ -36,7 +36,11 @@
                     <div class="changepass-label-container">
                         <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
                         <label for="password"> Password:</label><input type="password" name="password" class="form" required><br/><br/>
+<<<<<<< HEAD:web/login/login.jsp
                         <a href="login/password/reset.jsp" class="login-ref">Forgot Password?</a>
+=======
+                        <a href="./accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/login.jsp
                         <br>
                         <c:if test = "${tries > 0}">
                             <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries);%> tries left</span></p> 
@@ -48,7 +52,11 @@
                     </div>
                     <br>
                     <div class="button-container">
+<<<<<<< HEAD:web/login/login.jsp
                         <a href="../login/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+=======
+                        <a href="signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/login.jsp
                     </div>
                 </form>      
             </div>

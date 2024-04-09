@@ -7,7 +7,11 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
+<<<<<<< HEAD:web/admin/applications.jsp
         response.sendRedirect("login/login.jsp");
+=======
+        response.sendRedirect("login.jsp");
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/applications.jsp
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
         response.sendRedirect("../index.jsp");
     }
@@ -15,12 +19,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD:web/admin/applications.jsp
         <link href="../css/main-format.css" rel="stylesheet"/>
         <link href="../css/table-format.css" rel="stylesheet"/>
         <link href="../css/navbar.css" rel="stylesheet"/>
+=======
+        <link href="css/main-format.css" rel="stylesheet"/>
+        <link href="css/table-format.css" rel="stylesheet"/>
+>>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/applications.jsp
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>KHA | Membership Approval</title>
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
+        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
     </head>
     <body>
         <%@include file="../navbar.jsp" %>
