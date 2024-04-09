@@ -7,13 +7,9 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("login/login.jsp");
+        response.sendRedirect("login.jsp");
     }
 %>
-=======
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/edit-lessee.jsp
-=======
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +22,7 @@
         <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="../navbar.jsp" %>
+        <%@include file="navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box">
                 <div class="step-row">

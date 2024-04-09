@@ -6,16 +6,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-<<<<<<< HEAD
-<<<<<<< HEAD:web/user/profile.jsp
-        response.sendRedirect("login/login.jsp");
-=======
         response.sendRedirect("login.jsp");
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/profile.jsp
-=======
-        response.sendRedirect("login.jsp");
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
-    }
 %>
 <!DOCTYPE html>
 <html>
@@ -60,7 +51,7 @@
                     address = rs.getString("HOUSENO") + " " +rs.getString("STREETNAME");
                 }
         %>
-        <%@include file="../navbar.jsp" %>
+        <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
         <div class="d-flex main justify-content-between" id="profileStrip">
             <div class="profileText">

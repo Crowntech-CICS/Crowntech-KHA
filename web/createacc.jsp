@@ -7,40 +7,23 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("../login/login.jsp");
+        response.sendRedirect("login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
-        response.sendRedirect("../index.jsp");
+        response.sendRedirect("index.jsp");
     }
 %>
-=======
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
-=======
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KHA | Create Account</title>
-<<<<<<< HEAD
-<<<<<<< HEAD:web/admin/createacc.jsp
-        <link rel="icon" type="image/x-icon" href="../images/khaicon.png">
-        <link href="../css/main-format.css" rel="stylesheet"/>
-        <link href="../css/table-format.css" rel="stylesheet"/>
-        <link href="../css/navbar.css" rel="stylesheet"/>
-=======
         <link rel="icon" type="image/x-icon" href="images/khaicon.png">
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/table-format.css" rel="stylesheet"/>
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page):web/createacc.jsp
-=======
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
->>>>>>> parent of 7469f85 (organized .jsp files, added script so that users cannot go back to page)
     </head>
     <body>
         <div class="greetingBanner">
-            <%@include file="../navbar.jsp" %>
+            <%@include file="navbar.jsp" %>
             <div class="main-body">
                 <div class="createacc-box">
                     <h1 class="h1-bold">Create Account</h1>

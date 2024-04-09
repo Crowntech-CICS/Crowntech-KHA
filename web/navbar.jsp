@@ -16,17 +16,17 @@
     <body>
         <header>
             <nav>
-                <a href="."><img src="../images/khalogo_newwhite.png" alt="no image" class="logo"></a>
+                <a href="."><img src="images/khalogo_newwhite.png" alt="no image" class="logo"></a>
                 <ul class="nav-links">
                     <%
                         //Display Corresponding Navigation Options Per Access Level
                         //Staff/Admin/Board Access Level
                         if (level.equals("admin") || level.equals("staff") || level.equals("board")) {
-                            out.println("<li><a href=\"admin/records.jsp\">Records Viewing</a></li>");
-                            out.println("<li><a href=\"admin/finances.jsp\">Monthly Dues Tracker</a></li>");
-                            out.println("<li><a href=\"admin/applications.jsp\">Applications</a></li>");
+                            out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
+                            out.println("<li><a href=\"finances.jsp\">Monthly Dues Tracker</a></li>");
+                            out.println("<li><a href=\"applications.jsp\">Applications</a></li>");
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
-                            out.println("<li><a href=\"admin/createacc.jsp\">Create Account</a></li>");
+                            out.println("<li><a href=\"createacc.jsp\">Create Account</a></li>");
                             out.println("<li><a href=\"profile.jsp\">"
                                     + "<img src=\"images/../profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
 
