@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         boolean logState = session.getAttribute("username") != null;
         if(logState) {
-            response.sendRedirect("admin/index.jsp");
+            response.sendRedirect("index.jsp");
         }
         
         //Establish Connection
@@ -97,13 +97,13 @@ public class Login extends HttpServlet {
                     con.close();
                 ctr = 0;
                 session.removeAttribute("tries");
-                response.sendRedirect("admin/index.jsp");
+                response.sendRedirect("index.jsp");
             }
             else if(ctr < allowedTries - 1){ //shows a message that the email or password is wrong (total of 3 tries)
                 ctr++;
                 session.setAttribute("tries", ctr);
                 request.setAttribute("succ", "true"); //NOTE: FOR VERIFICATION FOR POPUP IN THE LOGIN PAGE
-                response.sendRedirect("login/login.jsp");
+                response.sendRedirect("login.jsp");
                 //request.getRequestDispatcher("login.jsp").forward(request, response);
             }
             else{ //throw an error message which will redirect the user to error 440 page
