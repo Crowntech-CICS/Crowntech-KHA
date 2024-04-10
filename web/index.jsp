@@ -17,7 +17,7 @@
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/navbar.css" rel="stylesheet"/>
     <body>
-        <%@include file="../navbar.jsp" %>
+        <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
         <img src="images/khalogo_new.png" style="  display: block;
              margin-left: 40%;
