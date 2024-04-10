@@ -47,6 +47,11 @@
     max-width: 84%
 }
 
+.tableContent thead th {
+    position: sticky;
+    top: -1px;
+}
+
 #financesLeft {
     width: 60%;
     height: 100%;
