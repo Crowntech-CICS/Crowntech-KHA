@@ -38,9 +38,9 @@ public class SignupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
-        String lastName = request.getParameter("HO_LN"),
-               firstName = request.getParameter("HO_FN"),
-               middleIni = request.getParameter("HO_MI"),
+        String lastName = request.getParameter("HO_LN").toLowerCase(),
+               firstName = request.getParameter("HO_FN").toLowerCase(),
+               middleIni = request.getParameter("HO_MI").toLowerCase(),
                email = request.getParameter("HO_EMAIL").toLowerCase(),
                ornum = request.getParameter("HO_ORNUM");
         Part filepart = request.getPart("FILES_UPLOAD");
@@ -94,8 +94,12 @@ public class SignupServlet extends HttpServlet {
                 } else {    
                     System.out.println("NOT IN LOGIN");
 
-                    ps = con.prepareStatement("SELECT HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL FROM HOMEOWNER WHERE LOWER(EMAIL) = ?");
-                    ps.setString(1, email);
+                    ps = con.prepareStatement("SELECT HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,ORNUM FROM HOMEOWNER WHERE LOWER(LASTNAME) = ? AND LOWER(FIRSTNAME) = ? AND LOWER(MIDDLEINITIAL) = ? AND LOWER(EMAIL) = ? AND ORNUM = ?");
+                    ps.setString(1, lastName);
+                    ps.setString(2, firstName);
+                    ps.setString(3, middleIni);
+                    ps.setString(4, email);
+                    ps.setString(5, ornum);
                     System.out.println("CHECKING HOMEOWNER...");
                     rs = ps.executeQuery();
                     if(rs.next())
@@ -106,6 +110,7 @@ public class SignupServlet extends HttpServlet {
                         System.out.println("FN: " + (rs.getString("FIRSTNAME").equalsIgnoreCase(firstName)? "MATCH":"DIFF"));
                         System.out.println("MI: " + (rs.getString("MIDDLEINITIAL").equalsIgnoreCase(middleIni)? "MATCH":"DIFF"));
                         System.out.println("EM: " + (rs.getString("EMAIL").equalsIgnoreCase(email)? "MATCH":"DIFF"));
+                        System.out.println("EM: " + (rs.getString("ORNUM").equalsIgnoreCase(ornum)? "MATCH":"DIFF"));
                         String hid = rs.getString("HOMEOWNERID").trim();
                         found = true;
                         ps = con.prepareStatement("SELECT USERID FROM USERS WHERE HOMEOWNERID = ?");
