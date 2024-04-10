@@ -6,7 +6,9 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%
+    String root = request.getContextPath();
     System.out.println("-[CHG-PW]-------------------------------------------------------------------------");
     String resetToken = request.getParameter("rt");
     String rt_userId = resetToken.substring(0, 10).trim();
@@ -96,10 +98,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Change Password</title>
-        <link rel="icon" type="image/x-icon" href="../../images/khaicon.png">
-        <link href="../../css/main-format.css" rel="stylesheet"/>
-        <link href="../../css/form-format.css" rel="stylesheet"/>
-        <link href="../../css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png">
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <%
@@ -118,8 +120,8 @@
                     System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
                 }
                 try {
-                    String encrpytKey = "RECORDKINGSVILLE";//getServletContext().getInitParameter("key");
-                    String cipher = "AES/ECB/PKCS5Padding";
+                    String encrpytKey = getServletContext().getInitParameter("key");
+                    String cipher = getServletContext().getInitParameter("cipher");
                     ps = con.prepareStatement("SELECT EMAIL FROM LOGIN WHERE USERID = ?");
                     ps.setString(1, userId);
                     rs = ps.executeQuery();
@@ -128,7 +130,7 @@
                         System.out.println("Found UserId in Login");
                         userEmail = rs.getString("EMAIL").trim();
                     } else {
-                        response.sendRedirect("/Crowntech-KHA/");
+                        response.sendRedirect(root);
                     }
                     ps = con.prepareStatement("UPDATE LOGIN SET PASSWORD = ? WHERE USERID = ?");
                     ps.setString(1, Encryption.encrypt(request.getParameter("newPassword"), encrpytKey, cipher));
@@ -136,7 +138,7 @@
                     ps.executeUpdate();
                     System.out.println("Changed password successfully.");
 
-                    response.sendRedirect("/Crowntech-KHA/");
+                    response.sendRedirect(root);
                 } catch (SQLException sqle) {
                     System.out.println("[PR] SQLException IN error occured - " + sqle.getMessage());
                     response.sendError(500);
@@ -159,14 +161,14 @@
             }
         %>
         <nav> 
-            <a href="/Crowntech-KHA/"><img src="../../images/khalogo_newwhite.png" class="logo"></a>
+            <a href="${root}"><img src="${root}/images/khalogo_newwhite.png" class="logo"></a>
         </nav>
         <div class="main-body">
             <div class="changepass-box">
                 <form action="" method="POST">
                     <h1 class="h1-bold">Change Password</h1>
-                    <h2 class="changepass-text"><span class="h2-bold">Username:</span> Eldric</h2>
-                    <h2 class="changepass-text"><span class="h2-bold">Email:</span> eldricbasa@gmail.com</h2>
+                    <h2 class="changepass-text"><span class="h2-bold">Username:</span> <%= fullName %></h2>
+                    <h2 class="changepass-text"><span class="h2-bold">Email:</span> <%= userEmail %></h2>
                     <div class="changepass-label-container">
                         <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" class="form" required><br>
                         <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" class="form" required>

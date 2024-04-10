@@ -24,6 +24,10 @@
         <param-name>cipher</param-name>
         <param-value>AES/ECB/PKCS5Padding</param-value>
     </context-param>
+    <context-param>
+        <param-name>domain</param-name>
+        <param-value>http://localhost:8080</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>

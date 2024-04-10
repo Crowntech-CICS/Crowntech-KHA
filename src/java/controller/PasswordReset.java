@@ -22,6 +22,7 @@ public class PasswordReset extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String root = request.getContextPath();
         System.out.println("-[PW-RESET]-------------------------------------------------------------------------");
         //Get user email address
         String userEmail = request.getParameter("email");
@@ -44,6 +45,7 @@ public class PasswordReset extends HttpServlet {
         }
         
         try {
+            //FIND EMAIL FROM DB
             ps = con.prepareStatement("SELECT USERID FROM LOGIN WHERE EMAIL = ?");
             ps.setString(1, userEmail);
             rs = ps.executeQuery();
@@ -53,26 +55,28 @@ public class PasswordReset extends HttpServlet {
                 userId = rs.getString("USERID").trim();
                 String rt = userId + Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)).getTime();
                 System.out.println("RT: " + rt);
-                url = "http://localhost:8080/Crowntech-KHA/accounts/password/changepassword.jsp?rt="+ rt;
+                url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/accounts/password/changepassword.jsp?rt="+ rt;
+            
+                //IF EMAIL IS FOUND, FIND USERID
+                ps = con.prepareStatement("SELECT LASTNAME, FIRSTNAME, MIDDLEINITIAL FROM USERS WHERE USERID = ?");
+                ps.setString(1, userId);
+                rs = ps.executeQuery();
+
+                if(rs.next()) {
+                    System.out.println("Found UserId in Users");
+                    validUser = true;
+                    fullName = rs.getString("LASTNAME").trim() + ", " + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
+                    System.out.println("Name: " + fullName);
+                } else {
+                    System.out.println("UserID not Found in Users");
+                    if(!response.isCommitted())
+                        response.sendRedirect(root + "/accounts/password/reset.jsp?err=1");
+                }
+            
             } else {
                 System.out.println("Email not Found in Login");
                 if(!response.isCommitted())
-                    response.sendRedirect("/Crowntech-KHA/");                
-            }
-            
-            ps = con.prepareStatement("SELECT LASTNAME, FIRSTNAME, MIDDLEINITIAL FROM USERS WHERE USERID = ?");
-            ps.setString(1, userId);
-            rs = ps.executeQuery();
-            
-            if(rs.next()) {
-                System.out.println("Found UserId in Users");
-                validUser = true;
-                fullName = rs.getString("LASTNAME").trim() + ", " + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();;
-                System.out.println("Name: " + fullName);
-            } else {
-                System.out.println("UserID not Found in Users");
-                if(!response.isCommitted())
-                    response.sendRedirect("/Crowntech-KHA/");
+                    response.sendRedirect(root + "/accounts/password/reset.jsp?err=1");               
             }
             
         } catch(SQLException sqle){
@@ -95,17 +99,20 @@ public class PasswordReset extends HttpServlet {
         //Sender Email and Contents
         String from = "crowntech.cics@gmail.com";
         String password = "cyke ikhz lvhg kzkf";
-        String to = userEmail; //Send to user's email
+        //String to = userEmail; //Send to user's email
+        String to = "UR EMAIL HERE"; //CHANGE TO UR EMAIL WHILE TESTING
         String subject = "Reset your KHA Account Password " + fullName;
         String message = createEmail(url);
              
         if(validUser)
+        {
             EmailService.sendHtml(from, password, to, subject, message);
+        }
         else
             System.out.println("Email not sent, user not found in database.");
 
         if(!response.isCommitted())
-            response.sendRedirect("/Crowntech-KHA/");
+            response.sendRedirect(root + "/accounts/password/reset.jsp?err=0");
     }
 
     /**
