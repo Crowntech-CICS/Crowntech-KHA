@@ -37,6 +37,7 @@
             String userLotID = null;
             String addQuery = null;
             String[] hold = null;
+            String resClass = null;
             addQuery = request.getParameter("find");
 
             System.out.println("Parameter gotten: " + addQuery); // shows parameter gotten
@@ -73,7 +74,7 @@
         <br><br><br><br><br><br>
         <div id="searchRecords">
             <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
-                <input type="text" placeholder="Search.." name="search" id="searchWidth" onkeyup="searchFunc()">
+                <input type="text" placeholder="Search for .." name="search" id="searchWidth" onkeyup="searchFunc()">
                <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
@@ -135,6 +136,7 @@
                                 rs2 = ps2.executeQuery();
                                 while (rs2.next()) {
                                     lotUser = rs2.getString("HOMEOWNERID");
+                                    resClass = rs2.getString("RESIDENTCLASS");
                                     ps = con.prepareStatement(HomeQuery);
                                     ps.setString(1, lotUser); // checks query about to be executed
                                     rs = ps.executeQuery();
@@ -149,7 +151,7 @@
                                                 + rs.getString("CITY").trim() + " "
                                                 + rs.getString("PROVINCE").trim(),
                                                 numDB = rs.getString("MOBILENO").trim(),
-                                                statDB = "Homeowner",
+                                        //        statDB = "Homeowner",
                                                 paidDB = rs.getString("PAID").trim();
 
                                         if (paidDB.equals("true")) {
@@ -161,7 +163,7 @@
                                         out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                         out.print("<td class=\"tableContentText\">0" + numDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + statDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                         out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                                     }
                                 }
@@ -210,7 +212,7 @@
                             input = document.getElementById("searchWidth");
                             filter = input.value.toUpperCase();
                             table = document.getElementById("displayTable");
-                            tr = table.getElementsByTagName("tr");
+                            tr = table.getElementsByClassName("tr");
                             for (i = 0; i < tr.length; i++) {
                                 td = tr[i].getElementsByTagName("td")[0];
                                 if (td) {

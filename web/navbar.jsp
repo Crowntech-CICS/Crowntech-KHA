@@ -34,7 +34,7 @@
                         else if (level.equals("homeowner") || level.equals("lessee") || level.equals("resident")) {
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
                             out.println("<li><a href=\"profile.jsp\">"
-                                    + "<img src=\"../images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
+                                    + "<img src=\"images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
                         }
                     %>
                 </ul>
