@@ -64,11 +64,11 @@
                 <h1 class="h1-bold" id="profileHeader">Homeowner</h1>
             </div>
             <div id="profileB" align="right">
-                <button class="buttonP" onclick="location.href = 'user/vehicles.jsp'">Vehicles Information</button><br/><br/>
+                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
                 <button class="buttonP" >Edit Information</button>
             </div>
             <div id="profileBsmall">
-                <button class="buttonP" onclick="location.href = 'user/vehicles.jsp'">Vehicles Information</button>
+                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button>
                 <button class="buttonP" >Edit Information</button>
             </div>
         </div>
