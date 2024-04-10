@@ -35,7 +35,11 @@
 }
 
 #profileLotHeader {
-    margin-left: -68%
+    margin-left: -68%;
+    color: white;
+    text-shadow: 0 6px 10px black;
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: white;
 }
 
 #profileAddress {
@@ -281,6 +285,10 @@
 
     #profileAddress, .profileTextsmall, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
         font-size: 30px;
+    }
+    
+    .accordion-content {
+        font-size: 18px;
     }
     
     .profileText {

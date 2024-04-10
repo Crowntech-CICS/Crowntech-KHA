@@ -53,7 +53,7 @@
                 }
         %>
         <%@include file="navbar.jsp" %>
-        <br><br><br><br><br><br>
+        <br><br><br><br><br>
         <div class="d-flex main justify-content-between" id="profileStrip">
             <div class="profileText">
                 <p class="profileOwnerName"><%=fullName%></p>
@@ -78,7 +78,7 @@
                 rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\">Area " + rs.getString("AREA") + "</h1><br>"
+                    out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\">Area " + rs.getString("AREA") + "</h1>"
                             + "<ul id=\"profileStripB\" class=\"accordion\">"
                             + "<br>"
                             + "<div class=\"d-flex main justify-content-between\">");
