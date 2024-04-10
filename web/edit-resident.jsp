@@ -46,7 +46,7 @@
                 </form>
 
                 <form id='form2'>
-                    <h1 class="h1-bold">Lessee Contact Information</h1>
+                    <h1 class="h1-bold">Resident Contact Information</h1>
                     <div class="line"></div><br>
                     <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
