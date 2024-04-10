@@ -8,6 +8,29 @@
     box-sizing: border-box;
 }
 
+#indexLogo {
+    display: block;
+    margin-left: 40%;
+    margin-right: 50%;
+    width: 22%;
+    height: 7%;
+}
+
+#indexLogoText {
+    font-family: 'Times New Roman';
+    color: #1e4d23;
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color:#1e4d23;
+    margin-top: -.2%;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+#indexWelcome {
+    font-size: 90px;
+    margin-top: 10%;
+}
+
 html, body {
     height: 100%;
     width: 100%;
@@ -276,35 +299,35 @@ input:focus {
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
-  border-radius: 40px;
+    width: 15px;
+    border-radius: 40px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: white;
-  border-radius: 40px;
-  border: 1px solid #f1f1f1;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    background: white;
+    border-radius: 40px;
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #48a37d;
-  border-radius: 40px;
+    background: #48a37d;
+    border-radius: 40px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #377d60;
-  border-radius: 40px;
+    background: #377d60;
+    border-radius: 40px;
 }
 
 /* -------------------------------------------------------------------------- */
 /* Responsiveness */
 
 @media only screen and (max-width: 1600px) {
-    .h1-bold-error-bigger {
+    .h1-bold-error-bigger, #indexWelcome {
         font-size: 60px;
     }
 
@@ -352,7 +375,7 @@ input:focus {
         font-size: 20px;
     }
 
-    .h1-bold, .h1-bold-error, .h1-bold-error-bigger {
+    .h1-bold, .h1-bold-error, .h1-bold-error-bigger, #indexWelcome {
         -webkit-text-stroke-width: 0px;
     }
 
@@ -386,7 +409,7 @@ input:focus {
 }
 
 @media only screen and (max-width: 900px) {
-    .h1-bold-error-bigger {
+    .h1-bold-error-bigger, #indexWelcome {
         font-size: 40px;
     }
 

@@ -19,19 +19,9 @@
     <body>
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
-        <img src="images/khalogo_new.png" style="  display: block;
-             margin-left: 40%;
-             margin-right: 50%;
-             width: 22%;
-             height: 7%"/>
-        <h1 class="h1-bold" style="font-family: 'Times New Roman'; 
-            color: #1e4d23; 
-            -webkit-text-stroke-width: 0px; 
-            -webkit-text-stroke-color:#1e4d23; 
-            margin-top: -.2%; 
-            font-size: 16px; 
-            font-weight: 200">Records Management System</h1>
-        <h1 class="h1-bold" style="font-size: 90px; margin-top: 10%;">Welcome ${username}! (${level})</h1>
+        <img src="images/khalogo_new.png" id="indexLogo"/>
+        <h1 class="h1-bold" id="indexLogoText">Records Management System</h1>
+        <h1 class="h1-bold" id="indexWelcome">Welcome ${username}! (${level})</h1>
         <p style="text-align: center; color: #377d60; margin-top: 10%">Version 1.0.0</p>
         <p style="text-align: center; color: #377d60">Developed by CrownTech, 2024</p>
     </body>
