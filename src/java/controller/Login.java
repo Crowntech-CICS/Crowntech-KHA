@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
                 
                 System.out.println(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
                 
-                if(userEmail.equals(emailDB) && userPass.equals(passwordDB)){
+                if(userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)){
                     session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB.toLowerCase());
                     session.setAttribute("currID", userID);
@@ -109,7 +109,7 @@ public class Login extends HttpServlet {
             else{ //throw an error message which will redirect the user to error 440 page
                 ctr = 0;
                 session.removeAttribute("tries");
-                response.sendError(440);
+                response.sendRedirect("./accounts/password/reset.jsp");
                 //response.sendRedirect("login.jsp"); //for testing purposes to be removed later
             }
         } catch(SQLException sqle){
