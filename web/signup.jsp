@@ -45,7 +45,7 @@
                     <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" onLoad="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
                     <br><br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" onclick="form4.submit()" type="button" value="Cancel" id="button-small" style="margin-right: 10%;">
                         <input id="Next1" class="button-design" type="button" value="Next">
                     </div>
                 </form>
@@ -97,7 +97,7 @@
         </div>
         <script>
             window.onload = function() {
-                completed(new URLSearchParams(window.location.search).get('suc'));
+                completed(new URLSearchParams(window.location.search));
             };
             
             var form1 = document.getElementById("form1");
@@ -174,8 +174,8 @@
                 progressSignup.style.width = "75%";
             };*/
             
-            function completed(success) {
-                console.log(success);
+            function completed(searchparam) {
+                var success = searchparam.get('suc');
                 if(success === "true"){
                     form1.style.left = "-1000px";
                     form2.style.left = "-1000px";
@@ -186,7 +186,18 @@
                 }
                 else
                 {
-                    console.log("New Form");
+                    if(searchparam.get('err') > 2)
+                    {
+                        alert("Unknown error");
+                    }
+                    else if(searchparam.get('err') == 1)
+                    {
+                        alert("User is already registered. Please login your account using your email");
+                    }
+                    else if(searchparam.get('err') == 2)
+                    {
+                        alert("User is not a registered homeowner. If you think this is an error please verify at the KHA office.");
+                    }
                 }
             }
 

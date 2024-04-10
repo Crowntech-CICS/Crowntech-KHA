@@ -19,8 +19,6 @@ public class Login extends HttpServlet {
     protected static PreparedStatement ps;
     protected int allowedTries = 3;
     protected int ctr;
-    protected String encrpytKey = "RECORDKINGSVILLE";//getServletContext().getInitParameter("key");
-    protected String cipher = "AES/ECB/PKCS5Padding"; //getServletContext().getInitParameter("cipher");
        
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +31,8 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String encrpytKey = getServletContext().getInitParameter("key");/*"RECORDKINGSVILLE";*/
+        String cipher = getServletContext().getInitParameter("cipher");/*"AES/ECB/PKCS5Padding";*/
         HttpSession session = request.getSession();
         boolean logState = session.getAttribute("username") != null;
         if(logState) {

@@ -16,6 +16,14 @@
         <param-name>jdbcDriverURL</param-name>
         <param-value>jdbc:derby://localhost:1527/Crowntech</param-value>
     </context-param>
+    <context-param>
+        <param-name>key</param-name>
+        <param-value>RECORDKINGSVILLE</param-value>
+    </context-param>
+    <context-param>
+        <param-name>cipher</param-name>
+        <param-value>AES/ECB/PKCS5Padding</param-value>
+    </context-param>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
@@ -37,7 +45,6 @@
         <servlet-class>controller.PasswordReset</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>ExportPDF</servlet-name>
         <servlet-class>controller.ExportPDF</servlet-class>
     </servlet>
@@ -48,7 +55,10 @@
     <servlet>
         <servlet-name>ReceiptLoader</servlet-name>
         <servlet-class>controller.ReceiptLoader</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>CreateLogin</servlet-name>
+        <servlet-class>controller.CreateLogin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -67,7 +77,6 @@
         <url-pattern>/PasswordReset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>ExportPDF</servlet-name>
         <url-pattern>/ExportPDF</url-pattern>
     </servlet-mapping>
@@ -95,6 +104,10 @@
         <error-code>440</error-code>
         <location>/errors/440.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>CreateLogin</servlet-name>
+        <url-pattern>/CreateLogin</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

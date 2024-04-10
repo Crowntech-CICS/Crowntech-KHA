@@ -37,17 +37,21 @@ public class SignupServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException {        
         String lastName = request.getParameter("HO_LN"),
                firstName = request.getParameter("HO_FN"),
                middleIni = request.getParameter("HO_MI"),
-               email = request.getParameter("HO_EMAIL");
+               email = request.getParameter("HO_EMAIL").toLowerCase(),
+               ornum = request.getParameter("HO_ORNUM");
         Part filepart = request.getPart("FILES_UPLOAD");
+        String filetype = filepart.getContentType();
+        boolean found = false;
+        String userid = "";
         
         System.out.println("-[SIGNUP]-------------------------------------------------------------------------------------------------------");
-        System.out.println("Page 1\nName: " + lastName + firstName + middleIni);
-        System.out.println("Page 2:\nEmail: " + email);
+        System.out.println("Name: " + lastName + firstName + middleIni);
+        System.out.println("Email: " + email);
+        System.out.println("OR Num: " + ornum);
                 
         if(filepart != null)
         {
@@ -58,6 +62,7 @@ public class SignupServlet extends HttpServlet {
             
             InputStream input = filepart.getInputStream();
             
+            //Connect to DB
             try {
                     Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
                     String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
@@ -69,43 +74,70 @@ public class SignupServlet extends HttpServlet {
                 } catch (ClassNotFoundException nfe) {
                     System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
-            
+            //Find user from database
             try {
-                ps = con.prepareStatement("INSERT INTO APPLICATION(APPID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,RECEIPT) VALUES (?,?,?,?,?,?)");
-                ps.setString(1, UUID.randomUUID().toString().substring(0,6));
-                ps.setString(2, lastName);
-                ps.setString(3, firstName);
-                ps.setString(4, middleIni);
-                ps.setString(5, email);
-                ps.setBlob(6, input);
+                ps = con.prepareStatement("SELECT EMAIL FROM LOGIN WHERE LOWER(EMAIL) = ?");
+                ps.setString(1, email);
+                System.out.println("CHECKING LOGIN...");
+                rs = ps.executeQuery();
+                if(rs.next())
+                {
+                    boolean login = rs.getString("EMAIL").equalsIgnoreCase(email);
+                    System.out.println("-[LOGIN MATCH TEST]------------------------------------------------------------------------");
+                    System.out.println("EM: " + (login? "MATCH":"DIFF"));
+                    
+                    if(login)
+                    {
+                        System.out.println("FOUND IN LOGIN");
+                        response.sendRedirect("signup.jsp?suc=" + found + "&err=1");
+                    } 
+                } else {    
+                    System.out.println("NOT IN LOGIN");
+
+                    ps = con.prepareStatement("SELECT HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL FROM HOMEOWNER WHERE LOWER(EMAIL) = ?");
+                    ps.setString(1, email);
+                    System.out.println("CHECKING HOMEOWNER...");
+                    rs = ps.executeQuery();
+                    if(rs.next())
+                    {
+                        System.out.println("FOUND EMAIL IN HOMEOWNER");
+                        System.out.println("-[HOMEOWNER MATCH TEST]------------------------------------------------------------------------");
+                        System.out.println("LN: " + (rs.getString("LASTNAME").equalsIgnoreCase(lastName)? "MATCH":"DIFF"));
+                        System.out.println("FN: " + (rs.getString("FIRSTNAME").equalsIgnoreCase(firstName)? "MATCH":"DIFF"));
+                        System.out.println("MI: " + (rs.getString("MIDDLEINITIAL").equalsIgnoreCase(middleIni)? "MATCH":"DIFF"));
+                        System.out.println("EM: " + (rs.getString("EMAIL").equalsIgnoreCase(email)? "MATCH":"DIFF"));
+                        String hid = rs.getString("HOMEOWNERID").trim();
+                        found = true;
+                        ps = con.prepareStatement("SELECT USERID FROM USERS WHERE HOMEOWNERID = ?");
+                        ps.setString(1, hid);
+                        System.out.println("GETTING USERID...");
+                        rs = ps.executeQuery();
+                        if(rs.next())
+                        {
+                            userid = rs.getString("USERID").trim();
+                        }
+
+                    } else {
+                        System.out.println("NO HOMEOWNER RECORD FOUND");
+                        response.sendRedirect("signup.jsp?suc=" + found + "&err=2");
+                    }
+                }
                 
-                String insertStatus = (ps.executeUpdate() > 0)? "Success" : "Failed";
-                System.out.println("Application insert status: " + insertStatus);
             } catch (SQLException sqle) {
-                System.out.println("SQLException IN error occured - " + sqle.getMessage());
-                response.sendError(500);
-            } finally {
-            try {
-                if(rs != null)
-                    rs.close();
-                if(ps != null)
-                    ps.close();
-                if(con != null)
-                    con.close();
-            } catch (SQLException sqle) {
-                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+                System.out.println("SQLException error occured in Find - " + sqle.getMessage());
                 response.sendError(500);
             }
-            
-            System.out.println("File: " + filename + " uploaded succesfully.");
+           
+            //System.out.println("File: " + filename + " uploaded succesfully.");
         }
         
-        //request.getRequestDispatcher("signup-homeowners.jsp").forward(request, response);
         System.out.println("------------------------------------------------------------------------------------------------------------");
-        response.sendRedirect("index.jsp");
+        request.setAttribute("email", email);
+        request.setAttribute("userid", userid);
+        request.getRequestDispatcher("/accounts/password/createpassword.jsp").forward(request, response);
+        /*if(!response.isCommitted())
+            response.sendRedirect("signup.jsp?suc=" + found);*/
         }
-        
-    }
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
