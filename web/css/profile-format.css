@@ -112,11 +112,18 @@
     margin: auto;
     margin-right: 10px;
     background-color: #ff7979;
-    width: 288px;
+    width: 300px;
     height: 64px;
-    flex: 1;
     border-radius: 15px;
+    font-family: 'Inter';
+    font-weight: 900;
+    margin-right: 20px;
 }
+
+.red .panelText {
+    color: black;
+}
+
 .panelText{
     margin-top: 10px;
     text-align: center;
@@ -262,7 +269,7 @@
         height: 30px;
     }
     
-    .green {
+    .green, .red {
         margin-top: 0px;
         height: 50px;
     }
@@ -325,7 +332,7 @@
         height: 40px;
     }
     
-    .green {
+    .green, .red {
         margin-top: -5px;
         height: 30px;
         width: 100px;
@@ -397,7 +404,7 @@
         margin-top: -500px;
     }
     
-    .green {
+    .green, .red {
         margin-top: -2.5%;
         height: 20px;
         width: 60px;
