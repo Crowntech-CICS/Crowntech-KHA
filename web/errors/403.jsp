@@ -13,7 +13,7 @@
             <p class="p-error">You don't have access, go back to the main menu.</p>
             <br><br>
             <div class="button-container">
-                <a href="../index.jsp"><button class="button-design-reject" style="margin-left: 0%;">
+                <a href="."><button class="button-design-reject" style="margin-left: 0%;">
                         Back To Main Menu
                     </button></a>
             </div>
