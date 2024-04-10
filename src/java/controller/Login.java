@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
                
         boolean found = false;
         ctr = (int) session.getAttribute("tries");
-        String userEmail = request.getParameter("email"),
+        String userEmail = request.getParameter("email").toLowerCase(),
                userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher),
                userID = request.getParameter("USERID"),
                userName;
@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
             rs = ps.executeQuery();
             
             while(rs.next()){
-                String emailDB = rs.getString("EMAIL").trim(),
+                String emailDB = rs.getString("EMAIL").trim().toLowerCase(),
                        passwordDB = rs.getString("PASSWORD").trim();
                 //Get user access level in USERS table (RESIDENTCLASS)
                 ps = con.prepareStatement("SELECT RESIDENTCLASS, FIRSTNAME FROM USERS WHERE USERID = ?");

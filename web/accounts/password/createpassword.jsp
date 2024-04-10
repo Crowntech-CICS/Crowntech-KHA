@@ -25,7 +25,7 @@
                         <p>Upon successful password change, you will be redirected back to the login page.</p>
                     </div>
                     <div class="button-container" style="margin-top: 1rem;">
-                        <button class="button-design">Change Password</button>
+                        <button class="button-design">Create Password</button>
                     </div>
                 </form>
             </div>

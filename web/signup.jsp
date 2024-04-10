@@ -3,14 +3,16 @@
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
-    boolean logState = session.getAttribute("username") != null ? true : false;
+    /*boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
         response.sendRedirect("login.jsp");
-    }
+    }*/
 %>
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+        <script src="https://malsup.github.io/jquery.form.js"></script> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Signup</title>
@@ -34,14 +36,13 @@
                     <h1 class="h1-bold">Personal Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label>
-                    <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
+                    <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" onLoad="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
                     <label for="HO_FN">First Name</label>
-                    <input type="text" id="FN1" onChange="document.form2.HO_FN.value = this.value" placeholder="ex. John" class="form" required><br>
+                    <input type="text" id="FN1" onChange="document.form2.HO_FN.value = this.value" onLoad="document.form2.HO_FN.value = this.value" placeholder="ex. John" class="form" required><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><br>
-                    <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
+                    <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" onLoad="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
                     <label for="HO_EMAIL">Email Address</label>
-                    <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
-                    <label for="HO_PASS">Password</label><input type="text" name="HO_PASS" onChange="document.form2.HO_EMAIL.value = this.value" placeholder="ex. password123" required class="form">
+                    <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" onLoad="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
                     <br><br><br>
                     <div class="button-container">
                         <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;">
@@ -57,9 +58,10 @@
                     <h1 class="h1-bold">Other Information</h1>
                     <div class="line"></div><br>
                     <div class="upload_files" id="form_container" class="form_input_title">
+                        <label for="HO_ORNUM">Official Receipt Number</label><input type="text" id="HO_ORNUM" name="HO_ORNUM" placeholder="ex. ORNUM123" required class="form">
                         <p style="text-align: center; color: black;">Upload Digital Copy of Required Documents:</p>
                         <p style="text-align: center; color: black;">(1) Official Receipt</p><br>
-                        <input type="file" id="FILE_UPLOAD1" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%; border:none;" required>
+                        <input type="file" id="FILE_UPLOAD1" class="file_button" name="FILES_UPLOAD" id="input-none" accept=".png,.jpg,.jpeg,.pdf" multiple style="margin-left: 33%; border:none;" required>
                     </div>
                     <br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
@@ -76,24 +78,28 @@
                     <br><br><br><br>
                     <div class="button-container">
                         <input id="Back3" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
-                        <input id="Next3" class="button-design" type="button" value="Submit">
+                        <input id="Next3" class="button-design" type="button" onClick="document.form2.submit()" value="Submit">
                     </div>
                     <br>
                 </form>  
                 
-                <form id='form4'>
+                <form id='form4' action="login.jsp" method="POST">
                     <h1 class="h1-bold">Registration Complete</h1>
                     <div class="line"></div><br>
                     <p style="color: black;">Your registration is now being processed. For any further questions and concerns, ask for staff assistance, thank you!</p>
                     <br><br><br><br>
                     <div class="button-container">
-                        <input id="Next3" class="button-design" type="button" onClick="document.form2.submit()" value="Go Back">
+                        <input id="Next3" class="button-design" type="submit"  value="Go Back">
                     </div>
                     <br>
                 </form>  
             </div>
         </div>
         <script>
+            window.onload = function() {
+                completed(new URLSearchParams(window.location.search).get('suc'));
+            };
+            
             var form1 = document.getElementById("form1");
             var form2 = document.getElementById("form2");
             var form3 = document.getElementById("form3");
@@ -137,12 +143,16 @@
             };
             //File upload form next button
             Next2.onclick = function () {
-                if(document.getElementById("FILE_UPLOAD1").files.length !== 0){
-                    form2.style.left = "-1000px";
-                    form3.style.left = "32.5%";
-                    progressSignup.style.width = "75%";
+                if(document.getElementById("HO_ORNUM").value !== ""){
+                    if(document.getElementById("FILE_UPLOAD1").files.length !== 0){
+                        form2.style.left = "-1000px";
+                        form3.style.left = "32.5%";
+                        progressSignup.style.width = "75%";
+                    } else {
+                        alert("Please upload the required file.");
+                    } 
                 } else {
-                    alert("Please upload the required file.");
+                    alert("Fill in the Official Receipt Number Field.");
                 }
             };
 
@@ -152,7 +162,7 @@
                 progressSignup.style.width = "50%";
             };
 
-            Next3.onclick = function () {
+            /*Next3.onclick = function () {
                 form3.style.left = "-1000px";
                 form4.style.left = "32.5%";
                 progressSignup.style.width = "100%";
@@ -162,7 +172,24 @@
                 form3.style.left = "32.5%";
                 form4.style.left = "1000px";
                 progressSignup.style.width = "75%";
-            };
+            };*/
+            
+            function completed(success) {
+                console.log(success);
+                if(success === "true"){
+                    form1.style.left = "-1000px";
+                    form2.style.left = "-1000px";
+                    form3.style.left = "-1000px";
+                    form4.style.left = "32.5%";
+                    progressSignup.style.width = "100%";
+                    console.log("Submitted Form: Successfully Found User");
+                }
+                else
+                {
+                    console.log("New Form");
+                }
+            }
+
         </script>
     </body>
 </html>
