@@ -212,7 +212,7 @@
                             input = document.getElementById("searchWidth");
                             filter = input.value.toUpperCase();
                             table = document.getElementById("displayTable");
-                            tr = table.getElementsByClassName("tr");
+                            tr = table.getElementsByTagName("tr");
                             for (i = 0; i < tr.length; i++) {
                                 td = tr[i].getElementsByTagName("td")[0];
                                 if (td) {
