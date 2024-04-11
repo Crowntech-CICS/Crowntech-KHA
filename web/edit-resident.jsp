@@ -28,9 +28,8 @@
                     <div class="step-col" id="Next1">Personal</div>
                     <div class="step-col" id="Next2">Contact</div>
                     <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Property</div>
-                    <div class="step-col" id="Next5">Property(Cont.)</div>
-                    <div class="step-col" id="Next6">Vehicle</div>
+                    <div class="step-col" id="Next4">Homeowner</div>
+                    <div class="step-col" id="Next5">Caretaker</div>
                 </div>
                 <form id='form1'>
                     <h1 class="h1-bold">Resident Information</h1>
@@ -97,27 +96,6 @@
                     <label for="LE_REP_PHONE">Landline/Mobile No.</label><input type="text" name="LE_REP_PHONE" placeholder="Phone Number" class="form"><br>
                     <br>
                 </form>
-
-                <form id="form6">
-                    <h1 class="h1-bold">Vehicle Information</h1>
-                    <div class="changepass-label-container">
-                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
-                        <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
-                        <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
-                        <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
-
-                        <div class="add_more">
-                            <button class="res_add" onclick="">Add more</button>
-                        </div>   
-                        <br>
-                        <div class="upload_files" id="form_container" class="form_input_title">
-                            <p style="text-align: center">Upload Digital Copy of Required Documents</p>
-                            <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
-                        </div>
-                    </div>
-                    <br>
-                </form>    
                 <div class="button-container" id="edit-button">
                     <input class="button-design" type="button" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" type="button" value="Cancel" id="button-small">
@@ -182,15 +160,6 @@
                 form4.style.left = "1000px";
                 form5.style.left = "32.5%";
                 form6.style.left = "1000px";
-            }
-
-            Next6.onclick = function () {
-                form1.style.left = "1000px";
-                form2.style.left = "1000px";
-                form3.style.left = "1000px";
-                form4.style.left = "1000px";
-                form5.style.left = "1000px";
-                form6.style.left = "32.5%";
             }
         </script>
     </body>
