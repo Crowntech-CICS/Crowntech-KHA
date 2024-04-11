@@ -137,12 +137,12 @@ public class SignupServlet extends HttpServlet {
         }
         
         System.out.println("------------------------------------------------------------------------------------------------------------");
-        request.setAttribute("email", email);
-        request.setAttribute("userid", userid);
-        request.getRequestDispatcher("/accounts/password/createpassword.jsp").forward(request, response);
-        /*if(!response.isCommitted())
-            response.sendRedirect("signup.jsp?suc=" + found);*/
-        }
+        if(!response.isCommitted()){
+            request.setAttribute("email", email);
+            request.setAttribute("userid", userid);
+            request.getRequestDispatcher("/accounts/password/createpassword.jsp").forward(request, response);
+        }            
+    }
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
