@@ -65,11 +65,11 @@
             </div>
             <div id="profileB" align="right">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
-                <button class="buttonP" >Edit Information</button>
+                <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
             </div>
             <div id="profileBsmall">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button>
-                <button class="buttonP" >Edit Information</button>
+                <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
             </div>
         </div>
         <%
