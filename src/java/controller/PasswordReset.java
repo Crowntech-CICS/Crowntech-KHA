@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +28,12 @@ public class PasswordReset extends HttpServlet {
         //Get user email address
         String userEmail = request.getParameter("email");
         String userId = "";
+        String rt = "";
+        Timestamp created = null;
+        Timestamp expiration = null;
         String url = "";
         String fullName = "";
+        int linkExpMinutes = 15;
         //User Flag
         boolean validUser = false;
         //Establish Connection
@@ -53,10 +58,25 @@ public class PasswordReset extends HttpServlet {
             if(rs.next()) {
                 System.out.println("Found Email in Login");
                 userId = rs.getString("USERID").trim();
-                String rt = userId + Timestamp.valueOf(LocalDateTime.now().plusMinutes(15)).getTime();
+                LocalDateTime now = LocalDateTime.now();
+                created = Timestamp.valueOf(now);
+                expiration = Timestamp.valueOf(now.plusMinutes(linkExpMinutes));
+                rt = UUID.randomUUID().toString().substring(0,8);
                 System.out.println("RT: " + rt);
+                ps = con.prepareStatement("SELECT CHANGEID FROM CHANGEPASSWORD WHERE CHANGEID = ?");
+                ps.setString(1, rt);
+                rs = ps.executeQuery();
+                //Check for duplicate id
+                while(rs.next()) {
+                    rt = UUID.randomUUID().toString().substring(0,8);
+                    System.out.println("DUPLICATE ID, NEW RT: " + rt);
+                    ps.setString(1, rt);
+                    rs = ps.executeQuery();
+                }
+                System.out.println("FINAL RT: " + rt);
                 url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/accounts/password/changepassword.jsp?rt="+ rt;
-            
+                System.out.println("CHANGE PASS URL: " + url);
+                
                 //IF EMAIL IS FOUND, FIND USERID
                 ps = con.prepareStatement("SELECT LASTNAME, FIRSTNAME, MIDDLEINITIAL FROM USERS WHERE USERID = ?");
                 ps.setString(1, userId);
@@ -71,6 +91,16 @@ public class PasswordReset extends HttpServlet {
                     System.out.println("UserID not Found in Users");
                     if(!response.isCommitted())
                         response.sendRedirect(root + "/accounts/password/reset.jsp?err=1");
+                }
+                
+                //If passed all checks and successfully generated data
+                if(validUser){
+                    ps = con.prepareStatement("INSERT INTO CHANGEPASSWORD(CHANGEID,USERID,CREATED,EXPIRATION) VALUES(?,?,?,?)");
+                    ps.setString(1, rt);
+                    ps.setString(2, userId);
+                    ps.setTimestamp(3, created);
+                    ps.setTimestamp(4, expiration);
+                    ps.executeUpdate();
                 }
             
             } else {
@@ -106,6 +136,7 @@ public class PasswordReset extends HttpServlet {
              
         if(validUser)
         {
+            System.out.println("Sending email to " + to);
             EmailService.sendHtml(from, password, to, subject, message);
         }
         else

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -11,15 +12,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-        <script src="https://malsup.github.io/jquery.form.js"></script> 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Signup</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <%@include file="navbar.jsp" %>
@@ -32,7 +31,7 @@
                     <div class="step-col-signup">Confirm</div>
                     <div class="step-col-signup">Complete!</div>
                 </div>
-                <form id='form1' action="Signup"  method="POST">
+                <form id='form1' action=""  method="POST">
                     <h1 class="h1-bold">Personal Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label>
@@ -50,7 +49,7 @@
                     </div>
                 </form>
 
-                <form id='form2' name="form2" action="Signup"  method="POST" enctype="multipart/form-data">
+                <form id='form2' name="form2" action="${root}/Signup"  method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="HO_LN" class="form">
                     <input type="hidden" name="HO_FN" class="form">
                     <input type="hidden" name="HO_MI" class="form">
@@ -78,12 +77,12 @@
                     <br><br><br><br>
                     <div class="button-container">
                         <input id="Back3" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
-                        <input id="Next3" class="button-design" type="button" onClick="document.form2.submit()" value="Submit">
+                        <input id="Next3" class="button-design" type="button" onClick="submitForm()" value="Submit">
                     </div>
                     <br>
                 </form>  
                 
-                <form id='form4' action="login.jsp" method="POST">
+                <form id='form4' action="${root}/login.jsp" method="POST">
                     <h1 class="h1-bold">Registration Complete</h1>
                     <div class="line"></div><br>
                     <p style="color: black;">Your registration is now being processed. For any further questions and concerns, ask for staff assistance, thank you!</p>
@@ -99,6 +98,12 @@
             window.onload = function() {
                 completed(new URLSearchParams(window.location.search));
             };
+            
+            function submitForm() {
+                if(confirm('Are you sure that all the information you have inputted are correct?')){
+                    document.form2.submit();
+                }
+            }
             
             var form1 = document.getElementById("form1");
             var form2 = document.getElementById("form2");
@@ -189,14 +194,17 @@
                     if(searchparam.get('err') > 2)
                     {
                         alert("Unknown error");
+                        window.location = '${root}/signup.jsp';
                     }
                     else if(searchparam.get('err') == 1)
                     {
                         alert("User is already registered. Please login your account using your email");
+                        window.location = '${root}/signup.jsp';
                     }
                     else if(searchparam.get('err') == 2)
                     {
                         alert("User is not a registered homeowner. If you think this is an error please verify at the KHA office.");
+                        window.location = '${root}/signup.jsp';
                     }
                 }
             }
