@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -54,4 +55,20 @@
             </div>
         </div>
     </body>
+    <script>
+        window.onload = function (){
+            var urlParam = new URLSearchParams(window.location.search);
+            var err = urlParam.get('err');
+            if(err == 4){
+                alert('The change password link has expired. Please generate a new one to change your password.');
+                window.location = '${root}/login.jsp';
+            } else if(err == 3){
+                alert('Invalid link accessed going back to login page.');
+                window.location = '${root}/login.jsp';
+            } else if(err == 5){
+                alert('User account not found in the system, returning to login page');
+                window.location = '${root}/login.jsp';
+            }
+        }
+    </script>
 </html>
