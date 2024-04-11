@@ -64,6 +64,10 @@
         <servlet-name>CreateLogin</servlet-name>
         <servlet-class>controller.CreateLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateInfo</servlet-name>
+        <servlet-class>controller.UpdateInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>CreateLogin</servlet-name>
         <url-pattern>/CreateLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateInfo</servlet-name>
+        <url-pattern>/UpdateInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

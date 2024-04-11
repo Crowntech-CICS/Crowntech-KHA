@@ -31,7 +31,7 @@
                     <div class="step-col" id="Next4">Property</div>
                     <div class="step-col" id="Next5">Property(Cont.)</div>
                 </div>
-                <form id='form1'>
+                <form id='form1' action="UpdateInfo">
                     <h1 class="h1-bold">Homeowner Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
@@ -40,10 +40,11 @@
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
                     <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification"  class="form"><br>
                     <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
-                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
+                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
+                    <input type="hidden" name="FORM_NO" value="1">
                 </form>
 
-                <form id='form2'>
+                <form id='form2' action="UpdateInfo">
                     <h1 class="h1-bold">Homeowner Contact Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
@@ -51,15 +52,15 @@
                     <br>
                 </form>  
 
-                <form id='form3'>
+                <form id='form3' action="UpdateInfo">
                     <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                    <label for="RES_REL"">Relationship with Resident</label>
-                    <select name="RES_REL" id="" class="form">
+                    <label for="RES_REL">Relationship with Resident</label>
+                    <select name="RES_REL" class="form">
                         <option value="" selected>Relationship</option>
                         <option value="">Spouse</option>
                         <option value="">Son/Daughter</option>
@@ -75,7 +76,7 @@
                     <br>
                 </form>     
 
-                <form id="form4">
+                <form id="form4" action="UpdateInfo">
                     <h1 class="h1-bold">Lot/Property Information</h1>
                     <div class="line"></div><br>
                     <p>Title Information</p><br>
@@ -89,7 +90,7 @@
                     <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
                     <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No." required class="form-medium"><br>
                 </form>
-                <form id="form5">
+                <form id="form5" action="UpdateInfo">
                     <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
                     <div class="line"></div><br>
                     <p>KHA Membership</p><br>
@@ -112,8 +113,8 @@
                 </form>
    
                 <div class="button-container" id="edit-button">
-                    <input class="button-design" type="button" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" type="button" value="Cancel" id="button-small">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" type="submit" value="Cancel" id="button-small">
                 </div>
             </div>
         </div>
