@@ -231,6 +231,7 @@
     .vehicle-box {
         height: 400px;
         width: 600px;
+        margin-top: -4%; 
     }
 
     #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText {
@@ -287,7 +288,7 @@
     .vehicle-box {
         height: 300px;
         width: 500px;
-        margin-top: -3%;
+        margin-top: -5.5%;
     }
 
     #profileAddress, .profileTextsmall, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
@@ -374,6 +375,7 @@
     .vehicle-box {
         height: 300px;
         width: 300px;
+        margin-top: -10%; 
     }
 
     #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
