@@ -35,6 +35,7 @@
                                         <th class="tableTitle">Email</th>
                                         <th class="tableTitle">Password</th>
                                         <th class="tableTitle">OR Number</th>
+                                        <th class="tableTitle">OR Number</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,6 +52,7 @@
                                         <td><input type="text" name="email" class="tableContentText" placeholder="Insert email here..."></td>
                                         <td><input type="text" name="password" class="tableContentText" placeholder="Insert password here..."></td>
                                         <td><input type="text" name="ornum" class="tableContentText" placeholder="Insert OR number of Homeowner here..."></td>
+                                        <td><input type="date" name="dateoccupied" class="tableContentText" placeholder="Insert Date Occupied here..."></td>
                                     </tr>
                                 </tbody>
                             </table>
