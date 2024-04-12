@@ -6,18 +6,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Change Password</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png">
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <nav> 
-            <a href="/Crowntech-KHA/"><img src="images/khalogo_newwhite.png" class="logo"></a>
+            <a href="${root}/"><img src="${root}/images/khalogo_newwhite.png" class="logo"></a>
         </nav>
         <div class="main-body">
             <div class="changepass-box">
-                <form action="CreateLogin" method="POST" onsubmit="return validate()">
+                <form action="${root}/CreateLogin" method="POST" onsubmit="return validate()">
                     <h1 class="h1-bold">Create Password</h1>
                     <div class="changepass-label-container">
                         <input type="hidden" name="EMAIL" value="${requestScope.email}">
@@ -37,7 +37,6 @@
     <script>
         function validate(){
             if(document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value){               
-                alert("Your password is now created successfully you may now login.");
                 return true;
             } else {
                 alert("The two passwords inputted are not identical. Please recheck your inputs.");

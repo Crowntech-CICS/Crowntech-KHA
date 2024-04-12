@@ -85,7 +85,7 @@
                 <form id='form4' action="${root}/login.jsp" method="POST">
                     <h1 class="h1-bold">Registration Complete</h1>
                     <div class="line"></div><br>
-                    <p style="color: black;">Your registration is now being processed. For any further questions and concerns, ask for staff assistance, thank you!</p>
+                    <p style="color: black;">Your registration is now complete. You can now login using the email and password you have submitted. <br><br>For any further questions and concerns, ask for staff assistance, thank you!</p>
                     <br><br><br><br>
                     <div class="button-container">
                         <input id="Next3" class="button-design" type="submit"  value="Go Back">
@@ -188,6 +188,7 @@
                     form4.style.left = "32.5%";
                     progressSignup.style.width = "100%";
                     console.log("Submitted Form: Successfully Found User");
+                    alert("Your password is now created successfully you may now login.");
                 }
                 else
                 {
@@ -203,7 +204,7 @@
                     }
                     else if(searchparam.get('err') == 2)
                     {
-                        alert("User is not a registered homeowner. If you think this is an error please verify at the KHA office.");
+                        alert("User is not found in the system, there may be incorrect inputs. Please try again. If you think this is an error please verify at the KHA office.");
                         window.location = '${root}/signup.jsp';
                     }
                 }
