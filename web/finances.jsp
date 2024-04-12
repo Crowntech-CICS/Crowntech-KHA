@@ -79,11 +79,11 @@
                     </tr>
                 </tbody>
             </table>
-
+           
             <table class="tableContentR" id="financesRight">
-                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP"><%= request.getAttribute("homeownerPaid")%>/<%= request.getAttribute("homeownerTotal")%></p></td></tr>
-                <tr><td class="tableContentText4">Number of Paid Memberships: <br><p class="financesP"><%= request.getAttribute("membershipPaid")%>/<%= request.getAttribute("membershipTotal")%></p></td></tr>
-                <tr><td class="tableContentText5">Number of Paid Lots: <br><p class="financesP"><%= request.getAttribute("lotPaid")%>/<%= request.getAttribute("lotTotal")%></p></td></tr>
+                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP">${homeownerPaid}/${homeownerTotal}</p></td></tr>
+                <tr><td class="tableContentText4">Number of Paid Memberships: <br><p class="financesP">${membershipPaid}/${membershipTotal}</p></td></tr>
+                <tr><td class="tableContentText5">Number of Paid Lots: <br><p class="financesP">${lotPaid}/${lotTotal}</p></td></tr>
             </table>
         </div>
         <br><br>
@@ -91,6 +91,11 @@
             <form action="ExportPDF">
                 <button class="button-design" type="submit">
                     Export
+                </button>
+            </form>
+            <form action="FinanceTrack">
+                <button class="button-design" type="submit">
+                    Tally
                 </button>
             </form>
         </div>
