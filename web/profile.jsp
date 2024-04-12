@@ -78,8 +78,8 @@
                 rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\">Area " + rs.getString("AREA") + "</h1>"
-                            + "<div class=\"profileLotHolder\">"
+                    out.print("<div class=\"profileLotHolder\">"
+                            + "<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + rs.getString("AREA") + "</h1>"
                             + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
                             + "<button class=\"accordion\">"
                             + "<div class=\"d-flex main justify-content-between\">");
