@@ -81,7 +81,8 @@ public class CreateAcc extends HttpServlet {
                 
                 } while (!uniqueID);
                 
-                uniqueID = false;
+                if (uniqueID)
+			uniqueID = false;
                 
 		if (NewRole == "Homeowner")
 		{
@@ -138,7 +139,8 @@ public class CreateAcc extends HttpServlet {
                      if (row != 0) {                    
                     
                     
-                         response.sendRedirect("createacc.jsp");
+                	System.out.println("Successfully Created Account");
+                        response.sendRedirect("createacc.jsp");
                     
                     }
                 
