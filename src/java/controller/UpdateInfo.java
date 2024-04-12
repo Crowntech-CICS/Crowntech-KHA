@@ -51,7 +51,13 @@ public class UpdateInfo extends HttpServlet {
                 propInd = request.getParameter("PRP_INDEX"),
                 payDate = request.getParameter("PAID_DATE"),
                 memName = request.getParameter("MEM_NAME"),
-                propUse = request.getParameter("PRP_USE");
+                propUse = request.getParameter("PRP_USE"),
+                vhID = request.getParameter("VHID"),
+                vhPlate = request.getParameter("VEH_PLATE"),
+                vhType = request.getParameter("VEH_TYPE"),
+                vhBrand = request.getParameter("VEH_BRAND"),
+                vhModel = request.getParameter("VEH_MODEL"),
+                vhOwner = request.getParameter("VEH_OWNER");
         int page = Integer.parseInt(request.getParameter("FORM_NO"));
         String HOID = "";
         try {
@@ -197,7 +203,32 @@ public class UpdateInfo extends HttpServlet {
                     break;
                 case 5:
                     break;
-                case 6:
+                case 6: // Edit Vehicle Information
+                    // p6Inputs = {vhID, vhType, vhBrand, vhModel, vhOwner};
+                    ps = con.prepareStatement("SELECT * FROM VEHICLE WHERE VEHICLEID = ?");
+                    ps.setString(1, vhID);
+                    rs = ps.executeQuery();
+                    while(rs.next()){
+                        if(vhType.trim().equals("")) {
+                            vhType = rs.getString("TYPE");
+                        }
+                        if(vhBrand.trim().equals("")) {
+                            vhBrand = rs.getString("BRAND");
+                        }
+                        if(vhModel.trim().equals("")) {
+                            vhModel = rs.getString("MODEL");
+                        }
+                        if(vhOwner.trim().equals("")) {
+                            vhOwner = rs.getString("REGISTEREDOWNER");
+                        }
+                    }
+                    PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, BRAND = ?, MODEL = ?, REGISTEREDOWNER = ? WHERE VEHICLEID = ?");
+                    psUpdate.setString(1, vhType);
+                    psUpdate.setString(2, vhBrand);
+                    psUpdate.setString(3, vhModel);
+                    psUpdate.setString(4, vhOwner);
+                    psUpdate.setString(5, vhID);
+                    psUpdate.executeUpdate();
                     break;
                 default:
                     response.sendRedirect("edit-homeowners.jsp");
