@@ -9,8 +9,8 @@
 
 #profileStripB {
     background-color: #f0f5f3;
-    height: 15%;
-    width: 75%;
+    height: 20%;
+    width: 90%;
     border-radius: 25px;
     margin: auto;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -32,6 +32,14 @@
     text-align: left;
     font-size: 60px;
     margin-bottom: -.1%;
+}
+
+.profileLotHolder {
+    height: 60%;
+    overflow-y: scroll;
+    width: 84%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #profileLotHeader {
@@ -139,30 +147,31 @@
 }
 
 .accordion {
-    position: static;
-    margin-top: -400px;
     width: 100%;
-    height: 70%;
+    height: 100%;
     border: none;
     background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.2s ease-out;
 }
 
 .accordion:focus {
     border: none;
     outline: none;
+    transition: 0.2s ease-out;
 }
 
 .moreinfo {
-    margin-top: -40px;
-    height: 400px;
     background: #f0f5f3;
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    position: sticky;
+    transition: 0.2s ease-out;
+    display: none;
+    margin-top: -1.5%;
+    position:relative;
 }
 
 #profile-margin {
@@ -256,9 +265,18 @@
         margin-bottom: 2%;
     }
     
-    #profileStrip, #profileStripB {
+    #profileStrip{
         height: 12%;
         width: 60%;
+    }
+    
+    #profileStripB {
+        height: 20%;
+        width: 95%;
+    }
+    
+    .profileLotHolder {
+        width: 63%;
     }
 
     #profileLotHeader {
@@ -280,7 +298,7 @@
     }
     
     .green, .red {
-        margin-top: 0px;
+        margin-top: auto;
         height: 50px;
     }
     
@@ -318,7 +336,8 @@
     .profileTextsmall {
         display: block;
         margin-left: 2%;
-        margin-top: 2.5%;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     #profileStrip, #profileStripB {
@@ -346,7 +365,7 @@
     }
     
     .green, .red {
-        margin-top: -5px;
+        margin-top: auto;
         height: 30px;
         width: 100px;
     }
@@ -360,7 +379,7 @@
 @media only screen and (max-width: 1200px) {
     #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText {
         font-size: 20px;
-        margin-top: -0.5%;
+        margin-top: -0.8%;
     }
     
     .accordion-content, #profileInfoHeader {
@@ -380,6 +399,12 @@
 @media only screen and (max-width: 1024px) {
     #profileAddress, .profileText, #profileHeader, #profileLotHeader, .panelText, .accordion-content, #profileInfoHeader, #profileCashHeader {
         font-size: 14px;
+    }
+    
+        .green, .red {
+        margin-top: auto;
+        height: 20px;
+        width: 60px;
     }
 }
 
@@ -402,13 +427,21 @@
         margin-top: -2.5%;
     }
     
-    #profileStrip, #profileStripB {
+    #profileStrip{
         height: 8%;
+    }
+    
+       #profileStripB {
+        height: 12%;
     }
     
     #profileBsmall {
         margin-top: 1.4%;
         margin-right: 0.5%;
+    }
+    
+            .green, .red {
+        margin-top: -2%;
     }
     
     .buttonP {
@@ -418,13 +451,7 @@
     }
     
     .accordion {
-        margin-top: -500px;
-    }
-    
-    .green, .red {
-        margin-top: -2.5%;
-        height: 20px;
-        width: 60px;
+        margin-top: -2%;
     }
     
     .panelText {

@@ -79,8 +79,9 @@
 
                 while (rs.next()) {
                     out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\">Area " + rs.getString("AREA") + "</h1>"
-                            + "<ul id=\"profileStripB\" class=\"accordion\">"
-                            + "<br>"
+                            + "<div class=\"profileLotHolder\">"
+                            + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
+                            + "<button class=\"accordion\">"
                             + "<div class=\"d-flex main justify-content-between\">");
                     out.print("<h1 class=\"h1-bold\" id=\"profileAddress\">"
                             + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME")
@@ -93,8 +94,8 @@
                     out.print("</h1>"
                             + "</div>"
                             + "</div>"
-                            + "<button class=\"accordion\"></button>"
-                            + "<div class=\"moreinfo\" id=\"profile-margin\">"
+                            + "</button>"
+                            + "<div class=\"moreinfo\">"
                             + "<li class=\"accordion-content-width\">"
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Homeowner Info</h1>"
                             + "<div class=\"line\"></div><br>"
@@ -143,11 +144,11 @@
                         } else {
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
                         }
-                        out.print("<div class=\"d-flex main justify-content-between\">"
+                        out.print("<div class=\"button-container\">"
                                 + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Pay Steps</button>"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" style=\"margin-right: 0%\">Pay Now</button>"
-                                + "</div></ul></li></div><br></ul>");
+                                + "</div></ul></li></div></ul>");
                     }
+                    out.print("</div>");
                     rsTemp.close();
                 }
             } catch (SQLException sqle) {
@@ -171,20 +172,26 @@
             }
         %>
         <script>
-            var acc = document.getElementsByClassName("accordion");
-            var i;
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-            for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    let active = document.querySelectorAll(".accordion");
+                    for (let j = 0; j < active.length; j++) {
+                        active[j].classList.remove("active");
+                        active[j].nextElementSibling.style.display = "none";
                     }
-                });
-            }
+                    this.classList.toggle("active");
+                    panel.style.display = "block";
+                }
+            });
+        }
         </script>
     </body>
 </html>
