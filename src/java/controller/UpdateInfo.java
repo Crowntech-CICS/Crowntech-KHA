@@ -69,7 +69,7 @@ public class UpdateInfo extends HttpServlet {
             PreparedStatement ps;
             ResultSet rs;
             switch (page) {
-                case 1: // Page 1 of Update Form
+                case 1: // Page 1 of Update Form (Personal Information Form)
                     //  p1Inputs = {lastName, firstName, middleIni, date, age, landline, mobile};
                     ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
                     ps.setString(1, (String) session.getAttribute("currID"));
@@ -85,21 +85,17 @@ public class UpdateInfo extends HttpServlet {
                         if (middleIni.trim().equals("")) {
                             middleIni = rs.getString("MIDDLEINITIAL");
                         }
-                        if (date.trim().equals("")) {
-                            date = rs.getString("DATEOCCUPIED");
-                        }
                         if (age.trim().equals("")) {
                             age = Integer.toString(rs.getInt("AGE"));
                         }
                         HOID = rs.getString("HOMEOWNERID");
                         System.out.println("UPDATE USERS SET LASTNAME = " + lastName + ", FIRSTNAME = " + firstName + ", MIDDLEINITIAL = " + middleIni + ", AGE = " + age + ", DATEOCCUPIED = " + date);
-                        PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, AGE = ?, DATEOCCUPIED = ? WHERE USERID = ?");
+                        PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, AGE = ? WHERE USERID = ?");
                         psUpdate.setString(1, lastName);
                         psUpdate.setString(2, firstName);
                         psUpdate.setString(3, middleIni);
                         psUpdate.setString(4, age);
-                        psUpdate.setString(5, date);
-                        psUpdate.setString(6, (String) session.getAttribute("currID"));
+                        psUpdate.setString(5, (String) session.getAttribute("currID"));
                         psUpdate.executeUpdate();
                     }
                     PreparedStatement psHO = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
@@ -133,7 +129,7 @@ public class UpdateInfo extends HttpServlet {
                         psUpdate.executeUpdate();
                     }
                     break;
-                case 2: // Page 2 of Update Form
+                case 2: // Page 2 of Update Form (Address Form)
                     // p2Inputs = {houseno, street, village, barangay, city, province};
                     ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
                     ps.setString(1, (String) session.getAttribute("currID"));
@@ -152,7 +148,7 @@ public class UpdateInfo extends HttpServlet {
                         psUpdate.setString(3, (String) session.getAttribute("currID"));
                         psUpdate.executeUpdate();
                     }
-                    psHO = con.prepareStatement("SELECT * FROM USERS WHERE HOMEOWNERID = ?");
+                    psHO = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
                     psHO.setString(1, HOID);
                     rs = psHO.executeQuery();
                     while (rs.next()) {
@@ -174,20 +170,30 @@ public class UpdateInfo extends HttpServlet {
                         if (province.trim().equals("")) {
                             province = rs.getString("PROVINCE");
                         }
-                        PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET HOUSENO = ?, STREETNAME = ?, VILLAGE = ?, BARANGAY = ?, CITY = ?, PROVINCE = ?, WHERE HOMEOWNERID = ?");
-                        psUpdate.setString(1, houseNo);
-                        psUpdate.setString(2, street);
-                        psUpdate.setString(3, village);
-                        psUpdate.setString(4, barangay);
-                        psUpdate.setString(5, city);
-                        psUpdate.setString(6, province);
-                        psUpdate.setString(7, HOID);
+                        PreparedStatement psUpdate = con.prepareStatement("UPDATE HOMEOWNER SET HOUSENO = ?, STREETNAME = ?, VILLAGE = ?, BARANGAY = ?, CITY = ?, PROVINCE = ? WHERE HOMEOWNERID = ?");
+                        psUpdate.setString(1, houseNo.trim());
+                        psUpdate.setString(2, street.trim());
+                        psUpdate.setString(3, village.trim());
+                        psUpdate.setString(4, barangay.trim());
+                        psUpdate.setString(5, city.trim());
+                        psUpdate.setString(6, province.trim());
+                        psUpdate.setString(7, HOID.trim());
                         psUpdate.executeUpdate();
                     }
                     break;
-                case 3:
+                case 3: // Page 3 of Update Form (Add more Users)
+                    // p3Inputs = {lnB, fnB, miB, resRel};
+                    ps = con.prepareStatement("INSERT INTO USEROTHER (USERID, LASTNAME, FIRSTNAME, MIDDLEINITIAL, RELATIONSHIP) VALUES (?, ?, ?, ?, ?)");
+                    System.out.print("Relationship: " + resRel);
+                    ps.setString(1, (String) session.getAttribute("currID"));
+                    ps.setString(2, lnB);
+                    ps.setString(3, fnB);
+                    ps.setString(4, miB);
+                    ps.setString(5, resRel);
+                    ps.executeUpdate();
                     break;
-                case 4:
+                case 4: // Page 4 of Update Form
+                    // p4Inputs = {titleNo, surNum, lotNum, titDate};
                     break;
                 case 5:
                     break;

@@ -50,6 +50,7 @@
                     resClass = rs.getString("RESIDENTCLASS").trim();
                     hoID = rs.getString("HOMEOWNERID");
                     address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME");
+                    System.out.println("Current Address: " + address);
                 }
         %>
         <%@include file="navbar.jsp" %>
@@ -109,7 +110,7 @@
                         out.print("<li class=\"accordion-content\">Email:" + rsTemp.getString("EMAIL") + "</li>"
                                 + "<li class=\"accordion-content\">Phone: " + rsTemp.getString("MOBILENO") + "</li>"
                                 + "<li class=\"accordion-content\">Address: "
-                                + rsTemp.getString("HOUSENO") + " " + rsTemp.getString("STREETNAME") + ", Barangay " + rsTemp.getString("BARANGAY") + " " + rsTemp.getString("CITY") + " City, " + rsTemp.getString("PROVINCE")
+                                + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + ", Barangay " + rs.getString("BARANGAY")
                                 + "</li>"
                                 + "</ul>"
                                 + "</li>");
