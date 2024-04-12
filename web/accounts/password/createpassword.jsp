@@ -1,4 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
+<% 
+    System.out.println("EM:" + request.getParameter("email"));
+    System.out.println("UID:" + request.getParameter("userid"));
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,7 +21,7 @@
         </nav>
         <div class="main-body">
             <div class="changepass-box">
-                <form action="CreateLogin" method="POST">
+                <form action="CreateLogin" method="POST" onsubmit="return validate()">
                     <h1 class="h1-bold">Create Password</h1>
                     <div class="changepass-label-container">
                         <input type="hidden" name="EMAIL" value="${requestScope.email}">
@@ -33,4 +38,15 @@
             </div>
         </div>
     </body>
+    <script>
+        function validate(){
+            if(document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value){               
+                alert("Your password is changed successfully you may now login.");
+                return true;
+            } else {
+                alert("The two passwords inputted are not identical. Please recheck your inputs.");
+                return false;
+            }
+        }
+    </script>
 </html>

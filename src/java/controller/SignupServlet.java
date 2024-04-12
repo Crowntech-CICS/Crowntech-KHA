@@ -120,6 +120,10 @@ public class SignupServlet extends HttpServlet {
                         if(rs.next())
                         {
                             userid = rs.getString("USERID").trim();
+                            System.out.println("UID: " + userid);
+                        } else {
+                            System.out.println("NO USERID FOUND.");
+                            response.sendRedirect("signup.jsp?suc=" + found + "&err=3");
                         }
 
                     } else {
