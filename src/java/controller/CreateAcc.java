@@ -57,6 +57,7 @@ public class CreateAcc extends HttpServlet {
             try {
                 String NewUserID = random(8,true,true);
 		String NewHomeOwnerID; // if resident = needs homeownerid reference, if homeowner = generate new homeowner, if staff = "staffaydee"
+                String NewORNUM = (String) request.getParameter("ornum");;
 		String NewUsername = (String) request.getParameter("username"); //firstname
                 String NewEmail = (String) request.getParameter("email");
                 String NewPass = (String) request.getParameter("password"); 
@@ -87,13 +88,13 @@ public class CreateAcc extends HttpServlet {
 		NewHomeOwnerID = random(8,true,true);
                 
                 do{
-                dbQuery = "SELECT HOMEOWNERID FROM HOMEOWNER WHERE HOMEOWNERID = ?";
+                dbQuery = "SELECT HOMEOWNERID, ORNUM FROM HOMEOWNER WHERE HOMEOWNERID = ?";
                 ps = con.prepareStatement(dbQuery);
-                ps.setString(1, NewUserID);
+                ps.setString(1, NewHomeOwnerID);
                 rs = ps.executeQuery();
                 
                 if(rs.next())
-                    NewUserID = random(8,true,true);
+                    NewHomeOwnerID = random(8,true,true);
                 else
                     uniqueID = true;
                 
@@ -127,11 +128,11 @@ public class CreateAcc extends HttpServlet {
                 if (NewRole == "Homeowner" ){
                 dbQuery = "INSERT INTO HOMEOWNER (HOMEOWNERID, FIRSTNAME, EMAIL, PAID, ORNUM) VALUES( ?, ?, ?, ?, ?)";
                 ps = con.prepareStatement(dbQuery);
-                ps.setString(1, NewUserID);
-		ps.setString(2, NewHomeOwnerID);
-                ps.setString(3, NewUsername);
+                ps.setString(1, NewHomeOwnerID);
+		ps.setString(2, NewUsername);
+                ps.setString(3, NewEmail);
                 ps.setString(4, "FALSE"); 
-                ps.setString(5, NewRole); 
+                ps.setString(5, NewORNUM); 
                 row = ps.executeUpdate();
                 }
                      if (row != 0) {                    
