@@ -31,17 +31,17 @@
                     <div class="step-col" id="Next4">Title</div>
                     <div class="step-col" id="Next5">Property</div>
                 </div>
-                <form id='form1'>
+                <form id='form1' action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
-                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_CONTACTNUM" class="marginMobile">Mobile Number</label><br>
-                    <input type="text" name="TIT_SURNOM" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_CONTACTNUM" placeholder="Mobile Number" required class="form-medium"><br>
+                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
+                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_LANDNO" class="marginMobile">Mobile Number</label><br>
+                    <input type="text" name="HO_LANDNO" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_MOBNO" placeholder="Mobile Number" class="form-medium"><br>
                     <input type="hidden" name="FORM_NO" value="1">
                     <br>
                     <div class="button-container">
@@ -50,15 +50,15 @@
                     </div>
                 </form>
 
-                <form id='form2'>
+                <form id='form2' action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Homeowner Address</h1>
                     <div class="line"></div><br>
-                    <label for="TIT_NUM" id="label-margin-medium">House Number</label><label for="TIT_NAME" class="marginStreet">Street Name</label><br>
-                    <input type="text" name="TIT_NUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Street Name" required class="form-medium"><br>
-                    <label for="TIT_SURNOM" id="label-margin-medium">Village</label><label for="TIT_LOTNUM" class="marginVehicleYear">Barangay</label><br>
-                    <input type="text" name="TIT_SURNOM" placeholder="Village" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Barangay" required class="form-medium"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">City</label><label for="TIT_AREA" class="marginProvince">Province</label><br>
-                    <input type="text" name="TIT_SURNOM" placeholder="City" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Province" required class="form-medium"><br>
+                    <label for="ADD_HOUSENO" id="label-margin-medium">House Number</label><label for="ADD_STREET" class="marginStreet">Street Name</label><br>
+                    <input type="text" name="ADD_HOUSENO" placeholder="House Number" class="form-medium" id="form-margin-medium"><input type="text" name="ADD_STREET" placeholder="Street Name" required class="form-medium"><br>
+                    <label for="ADD_VILL" id="label-margin-medium">Village</label><label for="ADD_BAR" class="marginVehicleYear">Barangay</label><br>
+                    <input type="text" name="ADD_VIL" placeholder="Village" class="form-medium" id="form-margin-medium"><input type="text" name="ADD_BAR" placeholder="Barangay" required class="form-medium"><br>
+                    <label for="ADD_CITY" id="label-margin-medium">City</label><label for="ADD_PROV" class="marginProvince">Province</label><br>
+                    <input type="text" name="ADD_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input type="text" name="ADD_PROV" placeholder="Province" required class="form-medium"><br>
                     <br>
                     <input type="hidden" name="FORM_NO" value="2">
                     <div class="button-container">
@@ -67,15 +67,15 @@
                     </div>
                 </form>  
 
-                <form id='form3'>
+                <form id='form3' action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                    <label for="RES_REL"">Relationship with Resident</label>
-                    <select name="RES_REL" id="" class="form">
+                    <label for="RES_REL">Relationship with Resident</label>
+                    <select name="RES_REL" class="form">
                         <option value="" selected>Relationship</option>
                         <option value="">Spouse</option>
                         <option value="">Son/Daughter</option>
@@ -93,7 +93,7 @@
                     </div>
                 </form>     
 
-                <form id="form4">
+                <form id="form4" action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Title Information</h1>
                     <div class="line"></div><br>
                     <p>Title Information</p><br>
@@ -113,7 +113,7 @@
                     <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>
-                <form id="form5">
+                <form id="form5" action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Property Information</h1>
                     <div class="line"></div><br>
                     <p>KHA Membership</p><br>

@@ -162,7 +162,7 @@
                                         // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                         out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + addDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">0" + numDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                         out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                                     }

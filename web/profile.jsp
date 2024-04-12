@@ -107,9 +107,9 @@
                     rsTemp = ps.executeQuery();
                     while (rsTemp.next()) {
                         out.print("<li class=\"accordion-content\">Email:" + rsTemp.getString("EMAIL") + "</li>"
-                                + "<li class=\"accordion-content\">Phone: 0" + rsTemp.getString("MOBILENO") + "</li>"
+                                + "<li class=\"accordion-content\">Phone: " + rsTemp.getString("MOBILENO") + "</li>"
                                 + "<li class=\"accordion-content\">Address: "
-                                + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("BARANGAY")
+                                + rsTemp.getString("HOUSENO") + " " + rsTemp.getString("STREETNAME") + ", Barangay " + rsTemp.getString("BARANGAY") + " " + rsTemp.getString("CITY") + " City, " + rsTemp.getString("PROVINCE")
                                 + "</li>"
                                 + "</ul>"
                                 + "</li>");

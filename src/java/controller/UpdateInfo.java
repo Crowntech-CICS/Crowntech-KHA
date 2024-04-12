@@ -27,12 +27,17 @@ public class UpdateInfo extends HttpServlet {
         String lastName = request.getParameter("HO_LN"),
                 firstName = request.getParameter("HO_FN"),
                 middleIni = request.getParameter("HO_MI"),
-                address = request.getParameter("HO_ADDRESS"),
                 age = request.getParameter("HO_AGE"),
                 date = request.getParameter("HO_DATE"),
-                resClass = request.getParameter("HO_CLASS"),
                 email = request.getParameter("HO_EMAIL"),
-                mobileNo = request.getParameter("HO_CONTACTNUM"),
+                mobileNo = request.getParameter("HO_MOBNO"),
+                landNo = request.getParameter("HO_LANDNO"),
+                houseNo = request.getParameter("ADD_HOUSENO"),
+                street = request.getParameter("ADD_STREET"),
+                village = request.getParameter("ADD_VILL"),
+                barangay = request.getParameter("ADD_BAR"),
+                city = request.getParameter("ADD_CITY"),
+                province = request.getParameter("ADD_PROV"),
                 lnB = request.getParameter("HO_LN_B"),
                 fnB = request.getParameter("HO_FN_B"),
                 miB = request.getParameter("HO_MI_B"),
@@ -60,36 +65,30 @@ public class UpdateInfo extends HttpServlet {
         } catch (ClassNotFoundException nfe) {
             System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
         }
-        if (page == 1) {
-            String[] p1Inputs = {lastName, firstName, middleIni, date, address, age};
-            for (int x = 0; p1Inputs.length > x; x++) {
-
-            }
-        }
         try {
             PreparedStatement ps;
             ResultSet rs;
             switch (page) {
-                case 1:
-                    //  p1Inputs = {lastName, firstName, middleIni, date, address, age};
+                case 1: // Page 1 of Update Form
+                    //  p1Inputs = {lastName, firstName, middleIni, date, age, landline, mobile};
                     ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
                     ps.setString(1, (String) session.getAttribute("currID"));
                     System.out.println("Username in UpdateInfo: " + (String) session.getAttribute("currID"));
                     rs = ps.executeQuery();
                     while (rs.next()) {
-                        if (lastName.equals("")) {
+                        if (lastName.trim().equals("")) {
                             lastName = rs.getString("LASTNAME");
                         }
-                        if (firstName.equals("")) {
+                        if (firstName.trim().equals("")) {
                             firstName = rs.getString("FIRSTNAME");
                         }
-                        if (middleIni.equals("")) {
+                        if (middleIni.trim().equals("")) {
                             middleIni = rs.getString("MIDDLEINITIAL");
                         }
-                        if (date.equals("")) {
+                        if (date.trim().equals("")) {
                             date = rs.getString("DATEOCCUPIED");
                         }
-                        if (age.equals("")) {
+                        if (age.trim().equals("")) {
                             age = Integer.toString(rs.getInt("AGE"));
                         }
                         HOID = rs.getString("HOMEOWNERID");
@@ -103,50 +102,87 @@ public class UpdateInfo extends HttpServlet {
                         psUpdate.setString(6, (String) session.getAttribute("currID"));
                         psUpdate.executeUpdate();
                     }
-                    PreparedStatement psHO = con.prepareStatement("SELECT * FROM USERS WHERE HOMEOWNERID = ?");
+                    PreparedStatement psHO = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
                     psHO.setString(1, HOID);
                     rs = psHO.executeQuery();
-                    while(rs.next()){
-                        if (lastName.equals("")) {
+                    System.out.println("psHO executed");
+                    while (rs.next()) {
+                        if (lastName.trim().equals("")) {
                             lastName = rs.getString("LASTNAME");
                         }
-                        if (firstName.equals("")) {
+                        if (firstName.trim().equals("")) {
                             firstName = rs.getString("FIRSTNAME");
                         }
-                        if (middleIni.equals("")) {
+                        if (middleIni.trim().equals("")) {
                             middleIni = rs.getString("MIDDLEINITIAL");
                         }
-                        if (date.equals("")) {
-                            date = rs.getString("DATEOCCUPIED");
+                        if (landNo.trim().equals("")) {
+                            landNo = rs.getString("LANDLINENO");
                         }
-                        if (age.equals("")) {
-                            age = Integer.toString(rs.getInt("AGE"));
+                        if (mobileNo.trim().equals("")) {
+                            mobileNo = rs.getString("MOBILENO");
                         }
-                        System.out.println("UPDATE HOMEOWNER SET LASTNAME = " + lastName + ", FIRSTNAME = " + firstName + ", MIDDLEINITIAL = " + middleIni + ", AGE = " + age + ", DATEOCCUPIED = " + date);
-                        PreparedStatement psUpdate = con.prepareStatement("UPDATE HOMEOWNER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ? WHERE HOMEOWNERID = ?");
+                        System.out.println("UPDATE HOMEOWNER SET LASTNAME = " + lastName + ", FIRSTNAME = " + firstName + ", MIDDLEINITIAL = " + middleIni);
+                        PreparedStatement psUpdate = con.prepareStatement("UPDATE HOMEOWNER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, LANDLINENO = ?, MOBILENO = ? WHERE HOMEOWNERID = ?");
                         psUpdate.setString(1, lastName);
                         psUpdate.setString(2, firstName);
                         psUpdate.setString(3, middleIni);
-                        psUpdate.setString(4, HOID);
+                        psUpdate.setString(4, landNo);
+                        psUpdate.setString(5, mobileNo);
+                        psUpdate.setString(6, HOID);
                         psUpdate.executeUpdate();
                     }
                     break;
-                case 2:
-                    // p2Inputs = {email, mobileNo};
+                case 2: // Page 2 of Update Form
+                    // p2Inputs = {houseno, street, village, barangay, city, province};
                     ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
                     ps.setString(1, (String) session.getAttribute("currID"));
                     rs = ps.executeQuery();
-                    while(rs.next()) {
+                    while (rs.next()) {
                         HOID = rs.getString("HOMEOWNERID");
+                        if (houseNo.trim().equals("")) {
+                            houseNo = rs.getString("HOUSENO");
+                        }
+                        if (street.trim().equals("")) {
+                            street = rs.getString("STREETNAME");
+                        }
+                        PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET HOUSENO = ?, STREETNAME = ? WHERE USERID = ?");
+                        psUpdate.setString(1, houseNo);
+                        psUpdate.setString(2, street);
+                        psUpdate.setString(3, (String) session.getAttribute("currID"));
+                        psUpdate.executeUpdate();
                     }
                     psHO = con.prepareStatement("SELECT * FROM USERS WHERE HOMEOWNERID = ?");
                     psHO.setString(1, HOID);
                     rs = psHO.executeQuery();
-                    while(rs.next()){
-                        if(email.equals(""))
-                            email = rs.getString("EMAIL");
-                        if(mobileNo.equals(""))
-                            mobileNo = rs.getString("MOBILENO");
+                    while (rs.next()) {
+                        if (houseNo.trim().equals("")) {
+                            houseNo = rs.getString("HOUSENO");
+                        }
+                        if (street.trim().equals("")) {
+                            street = rs.getString("STREETNAME");
+                        }
+                        if (village.trim().equals("")) {
+                            village = rs.getString("VILLAGE");
+                        }
+                        if (barangay.trim().equals("")) {
+                            barangay = rs.getString("BARANGAY");
+                        }
+                        if (city.trim().equals("")) {
+                            city = rs.getString("CITY");
+                        }
+                        if (province.trim().equals("")) {
+                            province = rs.getString("PROVINCE");
+                        }
+                        PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET HOUSENO = ?, STREETNAME = ?, VILLAGE = ?, BARANGAY = ?, CITY = ?, PROVINCE = ?, WHERE HOMEOWNERID = ?");
+                        psUpdate.setString(1, houseNo);
+                        psUpdate.setString(2, street);
+                        psUpdate.setString(3, village);
+                        psUpdate.setString(4, barangay);
+                        psUpdate.setString(5, city);
+                        psUpdate.setString(6, province);
+                        psUpdate.setString(7, HOID);
+                        psUpdate.executeUpdate();
                     }
                     break;
                 case 3:
@@ -154,6 +190,11 @@ public class UpdateInfo extends HttpServlet {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    response.sendRedirect("edit-homeowners.jsp");
                     break;
             }
 
