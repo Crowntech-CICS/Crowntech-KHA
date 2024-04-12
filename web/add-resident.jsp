@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Edit Resident</title>
+        <title>KHA | Add Resident</title>
         <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/form-format.css" rel="stylesheet"/>
@@ -15,7 +15,7 @@
         <div class="main-body">
             <div class="signup-box-smallest">
                 <form style="left: 32.5%;">
-                    <h1 class="h1-bold" id="h1small">Edit Residents</h1>
+                    <h1 class="h1-bold" id="h1small">Add Residents</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN_B">Last Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" class="form" required><br>
                     <label for="HO_FN_B">First Name</label><input type="text" name="HO_FN_B" placeholder="First Name" class="form" required><br>
