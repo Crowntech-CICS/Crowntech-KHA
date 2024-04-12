@@ -34,20 +34,23 @@
                                         <th class="tableTitle">Role</th>
                                         <th class="tableTitle">Email</th>
                                         <th class="tableTitle">Password</th>
+                                        <th class="tableTitle">OR Number</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" class="tableContentText" placeholder="Insert name here..."></td>
+                                        <td><input type="text" name="username" class="tableContentText" placeholder="Insert name here..."></td>
                                         <td>
-                                            <select class="select-box">
+                                            <select name="userrole" class="select-box">
                                                 <option value="null">-----</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="User">User</option>
+                                                <option value="Homeowner">Homeowner</option>
+                                                <option value="Resident">Resident</option>
+                                                <option value="Staff">Staff</option>
                                             </select>
                                         </td>
-                                        <td><input type="text" class="tableContentText" placeholder="Insert email here..."></td>
-                                        <td><input type="text" class="tableContentText" placeholder="Insert password here..."></td>
+                                        <td><input type="text" name="email" class="tableContentText" placeholder="Insert email here..."></td>
+                                        <td><input type="text" name="password" class="tableContentText" placeholder="Insert password here..."></td>
+                                        <td><input type="text" name="ornum" class="tableContentText" placeholder="Insert OR number of Homeowner here..."></td>
                                     </tr>
                                 </tbody>
                             </table>
