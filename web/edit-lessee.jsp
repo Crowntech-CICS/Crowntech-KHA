@@ -13,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Lessee Edit</title>
+        <title>KHA | Homeowner Edit</title>
         <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/form-format.css" rel="stylesheet"/>
@@ -22,45 +22,86 @@
     <body>
         <%@include file="navbar.jsp" %>
         <div class="main-body">
-            <div class="signup-box">
+            <div class="signup-box-small">
                 <div class="step-row">
                     <div id="progressEDIT"></div>
                     <div class="step-col" id="Next1">Personal</div>
-                    <div class="step-col" id="Next2">Contact</div>
-                    <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Homeowner</div>
+                    <div class="step-col" id="Next2">Homeowner</div>
+                    <div class="step-col" id="Next3">Address</div>
+                    <div class="step-col" id="Next4">Other</div>
                     <div class="step-col" id="Next5">Caretaker</div>
                 </div>
                 <form id='form1'>
-                    <h1 class="h1-bold">Lessee Information</h1>
+                    <h1 class="h1-bold" id="h1small">Lessee Information</h1>
                     <div class="line"></div><br>
-                    <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
-                    <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="LE_ADDRESS">Resident Classification</label><input type="text" name="LE_ADDRESS" placeholder="Select Classification"  class="form"><br>
-                    <label for="LE_ADDRESS">Address In Kingsville</label><input type="text" name="LE_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
-                    <label for="LE_DATE">Date Home Property Was Occupied</label><input type="date" name="LE_DATE" id=""  class="form">
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
+                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
+                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_CONTACTNUM" class="marginMobile">Mobile Number</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_CONTACTNUM" placeholder="Mobile Number" required class="form-medium"><br>
+                    <input type="hidden" name="FORM_NO" value="1">
                     <br>
+                    <div class="button-container">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>
 
                 <form id='form2'>
-                    <h1 class="h1-bold">Lessee Contact Information</h1>
+                    <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
-                    <label for="LE_EMAIL">Email Address</label><input type="text" name="LE_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="LE_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="LE_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
+                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_CONTACTNUM" class="marginMobile">Mobile Number</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_CONTACTNUM" placeholder="Mobile Number" required class="form-medium"><br>
+                    <input type="hidden" name="FORM_NO" value="1">
                     <br>
+                    <div class="button-container">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>  
 
                 <form id='form3'>
-                    <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
+                                        <h1 class="h1-bold" id="h1small">Address</h1>
+                    <div class="line"></div>
+                    <p>Resident Address</p>
+                    <label for="TIT_NUM" id="label-margin-medium">House Number</label><label for="TIT_NAME" class="marginStreet">Street Name</label><br>
+                    <input type="text" name="TIT_NUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Street Name" required class="form-medium"><br>
+                    <label for="TIT_SURNOM" id="label-margin-medium">Village</label><label for="TIT_LOTNUM" class="marginVehicleYear">Barangay</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Village" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Barangay" required class="form-medium"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">City</label><label for="TIT_AREA" class="marginProvince">Province</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="City" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Province" required class="form-medium"><br>
+                    <p>Homeowner Address</p>
+                    <label for="TIT_NUM" id="label-margin-medium">House Number</label><label for="TIT_NAME" class="marginStreet">Street Name</label><br>
+                    <input type="text" name="TIT_NUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Street Name" required class="form-medium"><br>
+                    <label for="TIT_SURNOM" id="label-margin-medium">Village</label><label for="TIT_LOTNUM" class="marginVehicleYear">Barangay</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Village" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Barangay" required class="form-medium"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">City</label><label for="TIT_AREA" class="marginProvince">Province</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="City" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Province" required class="form-medium"><br>
+                    <br>
+                    <input type="hidden" name="FORM_NO" value="2">
+                    <div class="button-container">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
+                </form>     
+
+                <form id="form4">
+                                        <h1 class="h1-bold" id="h1small">Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
-                    <label for="LE_LN">Last Name</label><input type="text" name="LE_LN" placeholder="Last Name" required class="form"><br>
-                    <label for="LE_FN">First Name</label><input type="text" name="LE_FN" placeholder="First Name" required class="form"><br>
-                    <label for="LE_MI" id="label-margin">Middle Initial</label><label for="LE_AGE" class="marginAge">Age</label><br>
-                    <input type="text" name="LE_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="LE_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                    <label for="LE_REL"">Relationship with Resident</label>
-                    <select name="LE_REL" id="" class="form">
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
+                    <label for="RES_REL"">Relationship with Resident</label>
+                    <select name="RES_REL" id="" class="form">
                         <option value="" selected>Relationship</option>
                         <option value="">Spouse</option>
                         <option value="">Son/Daughter</option>
@@ -70,36 +111,30 @@
                         <option value="">Parent</option>
                         <option value="">Friend</option>
                     </select>
-                    <div class="add_more">
-                        <button class="res_add" onclick="">Add more</button>
-                    </div>   
                     <br>
-                </form>     
-
-                <form id="form4">
-                    <h1 class="h1-bold">Homeowner Information</h1>
-                    <div class="line"></div><br>
-                    <label for="LE_HO_LN">Last Name</label><input type="text" name="LE_HO_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_HO_FN">First Name</label><input type="text" name="LE_HO_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_HO_MI" id="label-margin">Middle Initial</label>
-                    <input type="text" name="LE_HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
-                    <label for="LE_HO_ADDRESS">Email Address</label><input type="text" name="LE_HO_ADDRESS" placeholder="Email Address"  class="form"><br>
-                    <label for="LE_HO_ADDRESS">Landline/Mobile No.</label><input type="text" name="LE_HO_ADDRESS" placeholder="Phone Number" class="form"><br>
-                    <label for="LE_HO_DATE">Current Address</label><input type="text" name="LE_HO_DATE" placeholder="Current Address" class="form">
+                                        <input type="hidden" name="FORM_NO" value="3">
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>
+                
                 <form id="form5">
-                    <h1 class="h1-bold">Representative or Caretaker</h1>
-                    <label for="LE_REP_LN">Last Name</label><input type="text" name="LE_REP_LN" placeholder="Last Name" class="form"><br>
-                    <label for="LE_REP_FN">First Name</label><input type="text" name="LE_REP_FN" placeholder="First Name" class="form"><br>
-                    <label for="LE_REP_MI" id="label-margin">Middle Initial</label>
-                    <input type="text" name="LE_REP_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
-                    <label for="LE_REP_PHONE">Landline/Mobile No.</label><input type="text" name="LE_REP_PHONE" placeholder="Phone Number" class="form"><br>
+                    <h1 class="h1-bold" id="h1small">Caretaker Information</h1>
+                    <div class="line"></div><br>
+                    <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial</label><br>
+                    <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_CONTACTNUM" class="marginMobile">Mobile Number</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_CONTACTNUM" placeholder="Mobile Number" required class="form-medium"><br>
+                    <input type="hidden" name="FORM_NO" value="1">
                     <br>
-                </form> 
-                <div class="button-container" id="edit-button">
-                    <input class="button-design" type="button" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" type="button" value="Cancel" id="button-small">
-                </div>
+                    <div class="button-container">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
+                </form>
             </div>
         </div>
         <script>

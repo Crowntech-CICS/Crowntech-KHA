@@ -126,19 +126,19 @@
                 <tbody>
                     <%
                         try {
-                            PreparedStatement ps3 = con.prepareStatement(LotQuery);
+                            PreparedStatement ps3 = con.prepareStatement(LotQuery); // queries USERLOT table
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
-                                userLotID = rs3.getString("USERID");
+                                userLotID = rs3.getString("USERID"); // Take USERID from USERLOT
                                 System.out.println("userLotID: " + userLotID);
-                                ps2 = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
+                                ps2 = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?"); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
                                 rs2 = ps2.executeQuery();
                                 while (rs2.next()) {
-                                    lotUser = rs2.getString("HOMEOWNERID");
+                                    lotUser = rs2.getString("HOMEOWNERID"); // TAKE HOMEOWNERID from USERS
                                     resClass = rs2.getString("RESIDENTCLASS");
                                     ps = con.prepareStatement(HomeQuery);
-                                    ps.setString(1, lotUser); // checks query about to be executed
+                                    ps.setString(1, lotUser); 
                                     rs = ps.executeQuery();
                                     while (rs.next()) {
                                         String nameDB = rs.getString("FIRSTNAME").trim() + " "
@@ -162,7 +162,7 @@
                                         // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                         out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + addDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">0" + numDB + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                         out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                                     }

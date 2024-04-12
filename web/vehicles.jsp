@@ -21,7 +21,7 @@
         <link href="css/profile-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-    <body style="overflow-y: scroll">
+    <body>
         <%@include file="navbar.jsp" %>
         <%
             Connection con = null;
@@ -43,7 +43,7 @@
                 ps.setString(1, (String) session.getAttribute("currID"));
                 rs = ps.executeQuery();
         %>
-        <div class="main-body">
+        <div class="main-body" id="vehicle-body">
             <%
                 while(rs.next()) {
                 out.print(
@@ -70,6 +70,7 @@
                         + " <div class=\"button-container\">"
                         + "<button class=\"button-design\" >Edit Information</button>"
                         + "</div>"
+                        + "<br>"
                         + "</div>"
                         + "<br>");
                 }
