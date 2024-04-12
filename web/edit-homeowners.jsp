@@ -31,7 +31,7 @@
                     <div class="step-col" id="Next4">Title</div>
                     <div class="step-col" id="Next5">Property</div>
                 </div>
-                <form id='form1' action="UpdateInfo">
+                <form id='form1' action="UpdateInfo" method="POST">
                     <h1 class="h1-bold" id="h1small">Update Your Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
@@ -50,7 +50,7 @@
                     </div>
                 </form>
 
-                <form id='form2' action="UpdateInfo">
+                <form id='form2' action="UpdateInfo" method="POST">
                     <h1 class="h1-bold" id="h1small">Update Current Address</h1>
                     <div class="line"></div><br>
                     <label for="ADD_HOUSENO" id="label-margin-medium">House Number</label><label for="ADD_STREET" class="marginStreet">Street Name</label><br>
@@ -66,8 +66,8 @@
                         <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>  
-
-                <form id='form3' action="UpdateInfo">
+                
+                <form id='form3' action="UpdateInfo" method="POST">
                     <h1 class="h1-bold" id="h1small">Add Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN_B">Last Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" class="form" required><br>
