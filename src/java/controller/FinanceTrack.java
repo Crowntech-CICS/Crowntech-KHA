@@ -14,14 +14,10 @@ public class FinanceTrack extends HttpServlet {
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
-	
-	protected static int hoPaid;
-	protected static int hoTotal;
-	protected static int maPaid;
-	protected static int maTotal;
-	protected static int lotPaid;
-	protected static int lotTotal;
-	
+    protected static ResultSet rs2;
+    protected static PreparedStatement ps2;
+    protected static ResultSet rs3;
+    protected static PreparedStatement ps3;
 	protected static int membershipFee; // to be assigned and used to multiply with mapaid and matotal 
 	protected static int lotFee; 
 	
@@ -39,9 +35,15 @@ public class FinanceTrack extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         int hoPaid=0;
+	 int hoTotal=0;
+	 int maPaid=0;
+	 int maTotal=0;
+	 int lotPaid=0;
+	 int lotTotal=0;
+        HttpSession session = request.getSession();
         try {
             Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
             String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
@@ -54,60 +56,43 @@ public class FinanceTrack extends HttpServlet {
             System.out.println("Error: " + ex.getMessage());
 
         }
-    }
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
-        
-        if (con != null) {
             try {
-                String dbQuery = "SELECT PAID FROM HOMEOWNER";
-                ps = con.prepareStatement(dbQuery);
+                String hoQuery = "SELECT PAID FROM HOMEOWNER";
+                ps = con.prepareStatement(hoQuery);
                 rs = ps.executeQuery();
-				
-				while (rs.next()) {
-					
-					hoTotal++;
-					
-					if ( rs.toString() == "TRUE")
+				while(rs.next()) {
+                                        boolean paid = rs.getBoolean("PAID");
+                                        hoTotal++;
+					if (paid)
 						hoPaid++;
-					
 				}
-				
-				dbQuery = "SELECT PAID FROM KHAMEMBERSHIP";
-                ps = con.prepareStatement(dbQuery);
-                rs = ps.executeQuery();
-                
-				while (rs.next()) {
-					
+		
+		String maQuery = "SELECT PAID FROM KHAMEMBERSHIP";
+                ps2 = con.prepareStatement(maQuery);
+                rs2 = ps2.executeQuery();
+				while(rs2.next()) {
+					boolean paid = rs2.getBoolean("PAID");
 					maTotal++;
-					
-					if ( rs.toString() == "TRUE")
+					if (paid)
 						maPaid++;
-					
 				}
-				dbQuery = "SELECT PAID FROM USERLOT";
-                ps = con.prepareStatement(dbQuery);
-                rs = ps.executeQuery();
-				while (rs.next()) {
-					
+		String lotQuery = "SELECT PAID FROM USERLOT";
+                ps3 = con.prepareStatement(lotQuery);
+                rs3 = ps3.executeQuery();
+                                while (rs3.next()) {
+                                      boolean paid = rs3.getBoolean("PAID");
 					lotTotal++;
-					
-					if ( rs.toString() == "TRUE")
+					if (paid)
 						lotPaid++;
 				}
-                
-                                
-                                request.setAttribute("homeownerPaid",hoPaid);
-                                request.setAttribute("homeownerTotal",hoTotal);
-                                request.setAttribute("membershipPaid",maPaid);
-                                request.setAttribute("membershipPaid",maTotal);
-                                request.setAttribute("lotPaid",lotPaid);
-                                request.setAttribute("lotTotal",lotTotal);
-                                request.getRequestDispatcher("finances.jsp").forward(request,response);
-                                
+                  
+                session.setAttribute("homeownerPaid",hoPaid);
+                session.setAttribute("homeownerTotal",hoTotal);
+                session.setAttribute("membershipPaid",maPaid);
+                session.setAttribute("membershipTotal",maTotal);
+                session.setAttribute("lotPaid",lotPaid);
+                session.setAttribute("lotTotal",lotTotal);
+                request.getRequestDispatcher("finances.jsp").forward(request,response);              
             }
             catch (SQLException ex) {
                 System.out.println("The specified query could not be performed.");
@@ -118,16 +103,23 @@ public class FinanceTrack extends HttpServlet {
                     rs.close();
                 if(ps != null)
                     ps.close();
+                if(rs2 != null)
+                    rs2.close();
+                if(ps2 != null)
+                    ps2.close();
+                if(rs3 != null)
+                    rs3.close();
+                if(ps3 != null)
+                    ps3.close();
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
                 System.out.println("SQLException OUT error occured - " + sqle.getMessage());
                 response.sendError(500);
-            }
-			
+            }	
         }
         
-    }
+    
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
