@@ -81,9 +81,9 @@
             </table>
 
             <table class="tableContentR" id="financesRight">
-                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP">89/102</p></td></tr>
-                <tr><td class="tableContentText4">Number of Paid Lessees: <br><p class="financesP">20/23</p></td></tr>
-                <tr><td class="tableContentText5">Number of Residents: <br><p class="financesP">1502</p></td></tr>
+                <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP"><%= request.getAttribute("homeownerPaid")%>/<%= request.getAttribute("homeownerTotal")%></p></td></tr>
+                <tr><td class="tableContentText4">Number of Paid Memberships: <br><p class="financesP"><%= request.getAttribute("membershipPaid")%>/<%= request.getAttribute("membershipTotal")%></p></td></tr>
+                <tr><td class="tableContentText5">Number of Paid Lots: <br><p class="financesP"><%= request.getAttribute("lotPaid")%>/<%= request.getAttribute("lotTotal")%></p></td></tr>
             </table>
         </div>
         <br><br>
