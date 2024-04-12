@@ -38,10 +38,14 @@
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_ADDRESS" placeholder="Select Classification"  class="form"><br>
+                    <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_CLASS" placeholder="Select Classification"  class="form"><br>
                     <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
                     <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
                     <input type="hidden" name="FORM_NO" value="1">
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>
 
                 <form id='form2' action="UpdateInfo">
@@ -50,6 +54,11 @@
                     <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
                     <br>
+                    <input type="hidden" name="FORM_NO" value="2">
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>  
 
                 <form id='form3' action="UpdateInfo">
@@ -74,6 +83,11 @@
                         <button class="res_add" onclick="">Add more</button>
                     </div>   
                     <br>
+                    <input type="hidden" name="FORM_NO" value="3">
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>     
 
                 <form id="form4" action="UpdateInfo">
@@ -89,6 +103,11 @@
                     <br><br><p>Tax Declaration Information</p><br>
                     <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
                     <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No." required class="form-medium"><br>
+                    <input type="hidden" name="FORM_NO" value="4">
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>
                 <form id="form5" action="UpdateInfo">
                     <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
@@ -110,12 +129,17 @@
                     <label for="BUS_NAME">If used for business, registered name of business:</label><input type="text" name="BUS_NAME" placeholder="Business Name" required class="form"><br>
                     <label for="BUS_TYPE">Type of business:</label><input type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
                     <br>
+                    <input type="hidden" name="FORM_NO" value="5"> 
+                    <div class="button-container">
+                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                    </div>
                 </form>
    
-                <div class="button-container" id="edit-button">
+           <!--    <div class="button-container" id="edit-button">
                     <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" type="submit" value="Cancel" id="button-small">
-                </div>
+                </div> -->
             </div>
         </div>
         <script>
