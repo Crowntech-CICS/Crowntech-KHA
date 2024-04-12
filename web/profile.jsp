@@ -129,8 +129,8 @@
                         }
                         out.print("<br>"
                                 + "<div class=\"d-flex main justify-content-between\">"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Add</button>"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Edit</button>"
+                                + "<button onclick=\"location.href='add-resident.jsp'\" type=\"button\" class=\"button-design\" id=\"button-small\">Add</button>"
+                                + "<button onclick=\"location.href='edit-resident.jsp'\" type=\"button\" class=\"button-design\" id=\"button-small\">Edit</button>"
                                 + "</div>"
                                 + "</li>"
                                 + "<li class=\"accordion-content-width\">"
@@ -151,7 +151,7 @@
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
                         }
                         out.print("<div class=\"button-container\">"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Pay Steps</button>"
+                                + "<button  onclick=\"location.href='payment-help.jsp'\" type=\"button\" class=\"button-design\" id=\"button-small\">Pay Steps</button>"
                                 + "</div></ul></li></div></ul>");
                     }
                     rsTemp.close();
