@@ -56,11 +56,13 @@ public class CreateAcc extends HttpServlet {
         if (con != null) {
             try {
                 String NewUserID = random(8,true,true);
-		String NewHomeOwnerID; // if resident = needs homeownerid reference, if homeowner = generate new homeowner, if staff = "staffaydee"
+		String NewHomeOwnerID = ""; // if resident = needs homeownerid reference, if homeowner = generate new homeowner, if staff = "staffaydee"
                 String NewORNUM = (String) request.getParameter("ornum");;
-		String NewUsername = (String) request.getParameter("username"); //firstname
+		String NewFirstname = (String) request.getParameter("firstname"); //firstname
+		String NewLastname = (String) request.getParameter("lastname"); //Lastname
+                String NewDateoccupied = (String) request.getParameter("dateoccupied");
                 String NewEmail = (String) request.getParameter("email");
-                String NewPass = (String) request.getParameter("password"); 
+                String NewPass = (String) request.getParameter("password");
                 String NewRole = (String) request.getParameter("userrole"); // Roles are Homeowner, Resident, Staff
                 byte[] key = strkey.getBytes();
                 String EncryptPass = model.Encryption.encrypt(NewPass, encrpytKey, cipher);
@@ -81,15 +83,14 @@ public class CreateAcc extends HttpServlet {
                 
                 } while (!uniqueID);
                 
-                if (uniqueID)
-			uniqueID = false;
+                uniqueID = false;
                 
 		if (NewRole == "Homeowner")
 		{
 		NewHomeOwnerID = random(8,true,true);
                 
                 do{
-                dbQuery = "SELECT HOMEOWNERID, ORNUM FROM HOMEOWNER WHERE HOMEOWNERID = ?";
+                dbQuery = "SELECT HOMEOWNERID FROM HOMEOWNER WHERE HOMEOWNERID = ?";
                 ps = con.prepareStatement(dbQuery);
                 ps.setString(1, NewHomeOwnerID);
                 rs = ps.executeQuery();
@@ -108,7 +109,15 @@ public class CreateAcc extends HttpServlet {
 		}
 		else
 		{
-		NewHomeOwnerID = (String) request.getParameter("homeownerid");
+                dbQuery = "SELECT HOMEOWNERID FROM HOMEOWNER WHERE ORNUM = ?";
+                ps = con.prepareStatement(dbQuery);
+                ps.setString(1, NewORNUM);
+                rs = ps.executeQuery();
+                if(rs.next())
+                {
+		NewHomeOwnerID = rs.getString("HOMEOWNERID").trim() ;
+                }
+                
 		}
                 
                 dbQuery = "INSERT INTO LOGIN (USERID, EMAIL, PASSWORD) VALUES( ?, ?, ?)";
@@ -118,29 +127,36 @@ public class CreateAcc extends HttpServlet {
                 ps.setString(3, EncryptPass);
                 int row = ps.executeUpdate(); //Create in Login DB
 				
-		dbQuery = "INSERT INTO USERS (USERID, HOMEOWNERID, FIRSTNAME, RESIDENTCLASS) VALUES( ?, ?, ?, ?)";
+		dbQuery = "INSERT INTO USERS (USERID, HOMEOWNERID, LASTNAME, FIRSTNAME, RESIDENTCLASS, HOUSENO, STREETNAME, DATEOCCUPIED) VALUES( ?, ?, ?, ?, ?, ?)";
                 ps = con.prepareStatement(dbQuery);
                 ps.setString(1, NewUserID);
 		ps.setString(2, NewHomeOwnerID);
-                ps.setString(3, NewUsername);
-                ps.setString(4, NewRole); 
+                ps.setString(3, NewLastname);
+                ps.setString(4, NewFirstname);
+                ps.setString(5, NewRole); 
+                ps.setString(6, "<EMPTY>"); 
+                ps.setString(7, "<EMPTY>"); 
+                ps.setString(7, NewDateoccupied); 
                 row = ps.executeUpdate(); //Create in USERS DB
                 
                 if (NewRole == "Homeowner" ){
-                dbQuery = "INSERT INTO HOMEOWNER (HOMEOWNERID, FIRSTNAME, EMAIL, PAID, ORNUM) VALUES( ?, ?, ?, ?, ?)";
+                dbQuery = "INSERT INTO HOMEOWNER (HOMEOWNERID, LASTNAME, FIRSTNAME, EMAIL, CITY, PROVINCE, PAID, BALANCE, ORNUM) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 ps = con.prepareStatement(dbQuery);
                 ps.setString(1, NewHomeOwnerID);
-		ps.setString(2, NewUsername);
-                ps.setString(3, NewEmail);
-                ps.setString(4, "FALSE"); 
-                ps.setString(5, NewORNUM); 
+		ps.setString(2, NewLastname);
+		ps.setString(3, NewFirstname);
+                ps.setString(4, NewEmail);
+                ps.setString(6, "<EMPTY>");
+                ps.setString(7, "<EMPTY>");
+                ps.setString(5, "FALSE"); 
+                ps.setString(5, "0"); 
+                ps.setString(6, NewORNUM); 
                 row = ps.executeUpdate();
                 }
                      if (row != 0) {                    
                     
                     
-                	System.out.println("Successfully Created Account");
-                        response.sendRedirect("createacc.jsp");
+                         response.sendRedirect("createacc.jsp");
                     
                     }
                 
