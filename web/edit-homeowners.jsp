@@ -26,50 +26,56 @@
                 <div class="step-row">
                     <div id="progressEDIT"></div>
                     <div class="step-col" id="Next1">Personal</div>
-                    <div class="step-col" id="Next2">Contact</div>
+                    <div class="step-col" id="Next2">Address</div>
                     <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Property</div>
-                    <div class="step-col" id="Next5">Property(Cont.)</div>
+                    <div class="step-col" id="Next4">Title</div>
+                    <div class="step-col" id="Next5">Property</div>
                 </div>
-                <form id='form1' action="UpdateInfo">
-                    <h1 class="h1-bold">Homeowner Information</h1>
+                <form id='form1'>
+                    <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_ADDRESS">Resident Classification</label><input type="text" name="HO_CLASS" placeholder="Select Classification"  class="form"><br>
-                    <label for="HO_ADDRESS">Address In Kingsville</label><input type="text" name="HO_ADDRESS" placeholder="Address(House No., Street)"  class="form"><br>
-                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
+                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" id=""  class="form">
+                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_CONTACTNUM" class="marginMobile">Mobile Number</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_CONTACTNUM" placeholder="Mobile Number" required class="form-medium"><br>
                     <input type="hidden" name="FORM_NO" value="1">
+                    <br>
                     <div class="button-container">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>
 
-                <form id='form2' action="UpdateInfo">
-                    <h1 class="h1-bold">Homeowner Contact Information</h1>
+                <form id='form2'>
+                    <h1 class="h1-bold" id="h1small">Homeowner Address</h1>
                     <div class="line"></div><br>
-                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="HO_CONTACTNUM">Landline/Mobile Number</label><input type="text" name="HO_CONTACTNUM" placeholder="Phone Number" required class="form"><br>
+                    <label for="TIT_NUM" id="label-margin-medium">House Number</label><label for="TIT_NAME" class="marginStreet">Street Name</label><br>
+                    <input type="text" name="TIT_NUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Street Name" required class="form-medium"><br>
+                    <label for="TIT_SURNOM" id="label-margin-medium">Village</label><label for="TIT_LOTNUM" class="marginVehicleYear">Barangay</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="Village" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Barangay" required class="form-medium"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">City</label><label for="TIT_AREA" class="marginProvince">Province</label><br>
+                    <input type="text" name="TIT_SURNOM" placeholder="City" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Province" required class="form-medium"><br>
                     <br>
                     <input type="hidden" name="FORM_NO" value="2">
                     <div class="button-container">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
+                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>  
 
-                <form id='form3' action="UpdateInfo">
-                    <h1 class="h1-bold">Other Persons Staying in Home Property</h1>
+                <form id='form3'>
+                    <h1 class="h1-bold" id="h1small">Other Persons Staying in Home Property</h1>
                     <div class="line"></div><br>
                     <label for="HO_LN">Last Name</label><input type="text" name="HO_LN" placeholder="Last Name" required class="form"><br>
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" required class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200" required class="form-small"><br>
-                    <label for="RES_REL">Relationship with Resident</label>
-                    <select name="RES_REL" class="form">
+                    <label for="RES_REL"">Relationship with Resident</label>
+                    <select name="RES_REL" id="" class="form">
                         <option value="" selected>Relationship</option>
                         <option value="">Spouse</option>
                         <option value="">Son/Daughter</option>
@@ -79,19 +85,16 @@
                         <option value="">Parent</option>
                         <option value="">Friend</option>
                     </select>
-                    <div class="add_more">
-                        <button class="res_add" onclick="">Add more</button>
-                    </div>   
                     <br>
-                    <input type="hidden" name="FORM_NO" value="3">
+                                        <input type="hidden" name="FORM_NO" value="3">
                     <div class="button-container">
                     <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>     
 
-                <form id="form4" action="UpdateInfo">
-                    <h1 class="h1-bold">Lot/Property Information</h1>
+                <form id="form4">
+                    <h1 class="h1-bold" id="h1small">Title Information</h1>
                     <div class="line"></div><br>
                     <p>Title Information</p><br>
                     <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" class="marginRegName">Registered Name</label><br>
@@ -103,14 +106,15 @@
                     <br><br><p>Tax Declaration Information</p><br>
                     <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
                     <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No." required class="form-medium"><br>
-                    <input type="hidden" name="FORM_NO" value="4">
+                    <br>
+                                        <input type="hidden" name="FORM_NO" value="4">
                     <div class="button-container">
                     <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
                     <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>
-                <form id="form5" action="UpdateInfo">
-                    <h1 class="h1-bold">Lot/Property Information (Cont.)</h1>
+                <form id="form5">
+                    <h1 class="h1-bold" id="h1small">Property Information</h1>
                     <div class="line"></div><br>
                     <p>KHA Membership</p><br>
                     <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" class="marginPaidDate">If paid, input date:</label><br>
@@ -135,11 +139,6 @@
                     <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>
-   
-           <!--    <div class="button-container" id="edit-button">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" type="submit" value="Cancel" id="button-small">
-                </div> -->
             </div>
         </div>
         <script>

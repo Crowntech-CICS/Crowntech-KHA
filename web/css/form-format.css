@@ -106,7 +106,7 @@
 /* Signup */
 .signup-box {
     background-color: #f0f5f3;
-    height: 750px;
+    height: 650px;
     width: 620px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -220,7 +220,7 @@
 }
 
 #edit-button {
-    margin-top: 100%;
+    margin-top: 80%;
 }
 
 .res_add, .file_button, .date_button {
@@ -261,6 +261,18 @@
 
 .marginAge {
     margin-left: 0%;
+}
+
+.marginMobile {
+    margin-left: -7%;
+}
+
+.marginStreet {
+    margin-left: -4%;
+}
+
+.marginProvince {
+    margin-left: 15%;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -332,6 +344,18 @@
 
     .marginVehicleYear {
         margin-left: 8%;
+    }
+
+    .marginMobile {
+        margin-left: -14%;
+    }
+
+    .marginStreet {
+        margin-left: -9.8%;
+    }
+
+    .marginProvince {
+        margin-left: 13.5%;
     }
 
     .button-design {
@@ -430,6 +454,18 @@
         margin-left: 9%;
     }
 
+    .marginMobile {
+        margin-left: -9.5%;
+    }
+
+    .marginStreet {
+        margin-left: -5.7%;
+    }
+
+    .marginProvince {
+        margin-left: 14%;
+    }
+
     .button-design {
         width: 90px;
     }
@@ -521,6 +557,18 @@
 
     .marginVehicleYear {
         margin-left: 12%;
+    }
+
+    .marginMobile {
+        margin-left: -4.5%;
+    }
+
+    .marginStreet {
+        margin-left: -1.8%;
+    }
+
+    .marginProvince {
+        margin-left: 15.5%;
     }
 
     #progress:after, #progressSignup:after {
