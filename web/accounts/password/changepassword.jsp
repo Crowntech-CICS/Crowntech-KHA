@@ -73,11 +73,13 @@
                 System.out.println("Name: " + fullName);
             } else {
                 System.out.println("UserID not Found in Users");
-                response.sendRedirect(root);
+                if(!response.isCommitted())
+                    response.sendRedirect(root);
             }
         } else {
             System.out.println("Invalid reset token.");
-            response.sendRedirect(root + "/login.jsp?err=3");
+            if(!response.isCommitted())
+                response.sendRedirect(root + "/login.jsp?err=3");
         }
         
     } catch (SQLException sqle) {
@@ -140,7 +142,8 @@
                         userEmail = rs.getString("EMAIL").trim();
                     } else {
                         System.out.println("UserID not in Login");
-                        response.sendRedirect(root + "/login.jsp?err=5");
+                        if(!response.isCommitted())
+                            response.sendRedirect(root + "/login.jsp?err=5");
                     }
                     ps = con.prepareStatement("UPDATE LOGIN SET PASSWORD = ? WHERE USERID = ?");
                     ps.setString(1, Encryption.encrypt(request.getParameter("newPassword"), encrpytKey, cipher));
@@ -152,8 +155,8 @@
                     ps.setString(1, resetToken);
                     ps.executeUpdate();
                     System.out.println("Deleted token from database.");
-                    
-                    response.sendRedirect(root);
+                    if(!response.isCommitted())
+                        response.sendRedirect(root + "/login.jsp?err=0");
                 } catch (SQLException sqle) {
                     System.out.println("[PR] SQLException IN error occured - " + sqle.getMessage());
                     response.sendError(500);
@@ -199,7 +202,6 @@
     <script>
         function validate(){
             if(document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value){               
-                alert("Your password is changed successfully you may now login.");
                 return true;
             } else {
                 alert("The two passwords inputted are not identical. Please recheck your inputs.");

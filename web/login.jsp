@@ -68,6 +68,9 @@
             } else if(err == 5){
                 alert('User account not found in the system, returning to login page');
                 window.location = '${root}/login.jsp';
+            } else if(err == 0){
+                alert('Your password is changed successfully you may now login.');
+                window.location = '${root}/login.jsp';
             }
         }
     </script>
