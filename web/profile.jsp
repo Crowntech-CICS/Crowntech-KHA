@@ -127,7 +127,12 @@
                                     + "<li class=\"accordion-content\">Relationship: " + rsTemp.getString("RELATIONSHIP") + "</li>"
                                     + "</ul>");
                         }
-                        out.print("</li>"
+                        out.print("<br>"
+                                + "<div class=\"d-flex main justify-content-between\">"
+                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Add</button>"
+                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Edit</button>"
+                                + "</div>"
+                                + "</li>"
                                 + "<li class=\"accordion-content-width\">"
                                 + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Balance Dues</h1>"
                                 + "<div class\"line\"></div><br>"
