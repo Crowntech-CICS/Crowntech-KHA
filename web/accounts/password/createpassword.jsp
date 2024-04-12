@@ -1,9 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
-<% 
-    System.out.println("EM:" + request.getParameter("email"));
-    System.out.println("UID:" + request.getParameter("userid"));
-%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,8 +23,8 @@
                         <input type="hidden" name="EMAIL" value="${requestScope.email}">
                         <input type="hidden" name="USERID" value="${requestScope.userid}">
                         <p>You have been verified in the system! Please create a new password to access your profile.</p><br>
-                        <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" class="form" required><br>
-                        <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" class="form" required>
+                        <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" id="newPassword"class="form" required><br>
+                        <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form" required>
                         <p>Upon successful password change, you will be redirected back to the sign up page.</p>
                     </div>
                     <div class="button-container" style="margin-top: 1rem;">
@@ -41,7 +37,7 @@
     <script>
         function validate(){
             if(document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value){               
-                alert("Your password is changed successfully you may now login.");
+                alert("Your password is now created successfully you may now login.");
                 return true;
             } else {
                 alert("The two passwords inputted are not identical. Please recheck your inputs.");
