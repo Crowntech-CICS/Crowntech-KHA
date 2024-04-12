@@ -57,7 +57,7 @@
                         </div>
                         <br>
                         <div class="button-container">
-                            <button class="button-design">Create</button>
+                            <button type="submit" class="button-design">Create</button>
                             <button class="button-design-reject">Cancel</button>
                         </div>
                     </form>
