@@ -80,6 +80,10 @@ h1 {
     -webkit-text-stroke-color: #377d60;
 }
 
+#h1small {
+    font-size: 40px;
+}
+
 .h1-bold-error-bigger {
     color: white;
     font-size: 120px;
@@ -331,7 +335,7 @@ input:focus {
         font-size: 60px;
     }
 
-    h1 {
+    h1, #h1small {
         font-size: 40px;
     }
 
@@ -356,7 +360,7 @@ input:focus {
 }
 
 @media only screen and (max-width: 1400px) {
-    h1 {
+    h1, #h1small {
         font-size: 30px;
     }
 
@@ -371,7 +375,7 @@ input:focus {
 }
 
 @media only screen and (max-width: 1200px) {
-    h1 {
+    h1, #h1small {
         font-size: 20px;
     }
 
@@ -399,7 +403,7 @@ input:focus {
 }
 
 @media only screen and (max-width: 1024px) {
-    h1 {
+    h1, #h1small {
         font-size: 14px;
     }
 
@@ -413,7 +417,7 @@ input:focus {
         font-size: 40px;
     }
 
-    h1{
+    h1, #h1small {
         font-size: 12px;
     }
 
