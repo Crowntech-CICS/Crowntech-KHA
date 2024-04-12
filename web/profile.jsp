@@ -148,9 +148,9 @@
                                 + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Pay Steps</button>"
                                 + "</div></ul></li></div></ul>");
                     }
-                    out.print("</div>");
                     rsTemp.close();
                 }
+                out.print("</div>");
             } catch (SQLException sqle) {
                 System.out.println("SQLException IN error occured - " + sqle.getMessage());
                 response.sendError(500);
@@ -172,26 +172,26 @@
             }
         %>
         <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+            var acc = document.getElementsByClassName("accordion");
+            var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
 
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    let active = document.querySelectorAll(".accordion");
-                    for (let j = 0; j < active.length; j++) {
-                        active[j].classList.remove("active");
-                        active[j].nextElementSibling.style.display = "none";
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        let active = document.querySelectorAll(".accordion");
+                        for (let j = 0; j < active.length; j++) {
+                            active[j].classList.remove("active");
+                            active[j].nextElementSibling.style.display = "none";
+                        }
+                        this.classList.toggle("active");
+                        panel.style.display = "block";
                     }
-                    this.classList.toggle("active");
-                    panel.style.display = "block";
-                }
-            });
-        }
+                });
+            }
         </script>
     </body>
 </html>
