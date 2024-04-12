@@ -215,12 +215,18 @@
     width: 800px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-    margin-top: -2%;
     margin-bottom: 2.5%;
 }
 
 .vehicle-container {
     width: 50%;
+}
+
+#vehicle-body {
+    height: 70%;
+    overflow-y: scroll;
+    margin-top: -2%;
+    width: 55%;
 }
 
 
@@ -231,6 +237,9 @@
     .vehicle-box {
         height: 400px;
         width: 600px;
+    }
+    
+    #vehicle-body {
         margin-top: -4%; 
     }
 
@@ -288,6 +297,9 @@
     .vehicle-box {
         height: 300px;
         width: 500px;
+    }
+    
+    #vehicle-body {
         margin-top: -5.5%;
     }
 
@@ -375,6 +387,9 @@
     .vehicle-box {
         height: 300px;
         width: 300px;
+    }
+    
+    #vehicle-body {
         margin-top: -10%; 
     }
 
