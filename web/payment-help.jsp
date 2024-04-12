@@ -20,39 +20,40 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        <br><br><br><br><br><br>
-        <ul id="profileStrip" class="accordion">
-            <br>
-            <h1 class="h1-bold" id="profileAddress">How To Pay: Over the Counter</h1>
-            <button class="accordion"></button>
-            <div class="moreinfo" id="payment-help-margin">
-                <p>Step 1. Go to the KHA Office in the subdivision clubhouse</p>
-                <p>Step 2. Ask for your current balance through the counter</p>
-                <p>Step 3. Pay the amount through cash</p>
-                <p>Step 4. Wait for your receipt</p>
-                <p>Step 5. DONE!</p>
-            </div>
-        </ul>
-        <br><br>
-        <ul id="profileStrip" class="accordion">
-            <br>
-            <h1 class="h1-bold" id="profileAddress">How To Pay: Bank Transfer</h1>
-            <button class="accordion"></button>
-            <div class="moreinfo" id="payment-help-margin">
-                <p>Step 1. Log into your bank's website or connect via the bank's app.</p>
-                <p>Step 2. Click on the transfer feature and choose transfer to another bank.</p>
-                <p>Step 3. Enter the routing and account numbers for the account at the other bank.</p>
-                <p>Step 4. Make the transfer.</p>
-                <p>Step 5. Your bank may require verification that you are the owner of the other account. The transfer likely will take one to two days or maybe more if verification is needed.</p>
-                <p>Step 6. DONE!</p>
-            </div>
-            <br>
-        </ul>
+        <br><br><br><br><br><br><br>
+        <div class="profileLotHolder" style="overflow-y: hidden;">
+            <ul id="profileStripB" style="margin-bottom: 2%;">
+                <button class="accordion">
+                    <h1 class="h1-bold" id="profileAddress">How To Pay: Over the Counter</h1>
+                </button>
+                <div class="moreinfo">
+                    <p>Step 1. Go to the KHA Office in the subdivision clubhouse</p>
+                    <p>Step 2. Ask for your current balance through the counter</p>
+                    <p>Step 3. Pay the amount through cash</p>
+                    <p>Step 4. Wait for your receipt</p>
+                    <p>Step 5. DONE!</p>
+                </div>
+            </ul>
+            <ul id="profileStripB" style="margin-bottom: 2%;">
+                <button class="accordion">
+                    <h1 class="h1-bold" id="profileAddress">How To Pay: Bank Transfer</h1>
+                </button>
+                <div class="moreinfo">
+                    <p>Step 1. Log into your bank's website or connect via the bank's app.</p>
+                    <p>Step 2. Click on the transfer feature and choose transfer to another bank.</p>
+                    <p>Step 3. Enter the routing and account numbers for the account at the other bank.</p>
+                    <p>Step 4. Make the transfer.</p>
+                    <p>Step 5. Your bank may require verification that you are the owner of the other account. The transfer likely will take one to two days or maybe more if verification is needed.</p>
+                    <p>Step 6. DONE!</p>
+                </div>
+            </ul>
+        </div>
     </body>
     <style>
         p {
             margin-left: 2%;
             margin-bottom: 1.5%;
+            padding-right: 2%;
         }
     </style>
     <script>
@@ -61,12 +62,18 @@
 
         for (i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
+
                 var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
                 } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    let active = document.querySelectorAll(".accordion");
+                    for (let j = 0; j < active.length; j++) {
+                        active[j].classList.remove("active");
+                        active[j].nextElementSibling.style.display = "none";
+                    }
+                    this.classList.toggle("active");
+                    panel.style.display = "block";
                 }
             });
         }
