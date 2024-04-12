@@ -106,7 +106,7 @@
 /* Signup */
 .signup-box {
     background-color: #f0f5f3;
-    height: 650px;
+    height: 550px;
     width: 620px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -126,7 +126,18 @@
     margin-top: -2%;
 }
 
-.signup-box form, .signup-box-small form {
+.signup-box-smallest {
+    background-color: #f0f5f3;
+    height: 440px;
+    width: 620px;
+    border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    margin-top: -2%;
+}
+
+.signup-box form, .signup-box-small form, .signup-box-smallest form {
     width: 90%;
     position: absolute;
     margin-left: -27.5%;
@@ -157,7 +168,7 @@
 }
 
 .step-col {
-    width: 120px;
+    width: 50%;
     text-align: center;
     color: #f0f5f3;
     position: relative;
@@ -301,7 +312,7 @@
 
     .signup-box {
         margin-top: -4%;
-        height: 675px;
+        height: 575px;
         width: 500px;
     }
 
@@ -311,6 +322,13 @@
         width: 500px;
     }
 
+    
+    .signup-box-smallest {
+        margin-top: -4%;
+        height: 420px;
+        width: 500px;
+    }
+    
     #edit-button {
         margin-top: 114%;
     }
@@ -409,13 +427,19 @@
 
     .signup-box {
         margin-top: -6%;
-        height: 490px;
+        height: 390px;
         width: 400px;
     }
 
     .signup-box-small {
         margin-top: -6%;
         height: 480px;
+        width: 400px;
+    }
+    
+        .signup-box-smallest {
+        margin-top: -6%;
+        height: 300px;
         width: 400px;
     }
 
@@ -502,13 +526,19 @@
 
     .signup-box {
         margin-top: -10%;
-        height: 420px;
+        height: 320px;
         width: 340px;
     }
 
     .signup-box-small {
         margin-top: -10%;
         height: 420px;
+        width: 340px;
+    }
+    
+        .signup-box-smallest {
+        margin-top: -10%;
+        height: 280px;
         width: 340px;
     }
 

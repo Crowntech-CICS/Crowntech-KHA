@@ -1,13 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Expires", "0");
-    //Check Logged In State
-    boolean logState = session.getAttribute("username") != null ? true : false;
-    if (!logState) {
-        response.sendRedirect("login.jsp");
-    }
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,11 +16,11 @@
             <div class="signup-box">
                 <div class="step-row">
                     <div id="progressEDIT"></div>
+                    <div class="step-col"></div>
                     <div class="step-col" id="Next1">Personal</div>
+                    <div class="step-col"></div>
                     <div class="step-col" id="Next2">Address</div>
-                    <div class="step-col" id="Next3">Other</div>
-                    <div class="step-col" id="Next4">Title</div>
-                    <div class="step-col" id="Next5">Property</div>
+                    <div class="step-col"></div>
                 </div>
                 <form id='form1' action="UpdateInfo" method="POST">
                     <h1 class="h1-bold" id="h1small">Update Your Information</h1>
@@ -38,8 +29,6 @@
                     <label for="HO_FN">First Name</label><input type="text" name="HO_FN" placeholder="First Name" class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_DATE">Date Home Property Was Occupied</label><input type="date" name="HO_DATE" class="form">
-                    <label for="HO_EMAIL">Email Address</label><input type="text" name="HO_EMAIL" placeholder="Email Address" class="form"><br>
                     <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_LANDNO" class="marginMobile">Mobile Number</label><br>
                     <input type="text" name="HO_LANDNO" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input type="text" name="HO_MOBNO" placeholder="Mobile Number" class="form-medium"><br>
                     <input type="hidden" name="FORM_NO" value="1">
@@ -66,33 +55,7 @@
                         <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>  
-                
-                <form id='form3' action="UpdateInfo" method="POST">
-                    <h1 class="h1-bold" id="h1small">Add Other Persons Staying in Home Property</h1>
-                    <div class="line"></div><br>
-                    <label for="HO_LN_B">Last Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" class="form" required><br>
-                    <label for="HO_FN_B">First Name</label><input type="text" name="HO_FN_B" placeholder="First Name" class="form" required><br>
-                    <label for="HO_MI_B" id="label-margin">Middle Initial</label><label for="HO_AGE_B" class="marginAge">Age</label><br>
-                    <input type="text" name="HO_MI_B" placeholder="Middle Initial" class="form-small" id="form-margin" required><input type="number" name="HO_AGE_B" placeholder="Age" min="1" max="200" class="form-small" required><br>
-                    <label for="RES_REL">Relationship with Resident</label>
-                    <select name="RES_REL" class="form" required>
-                        <option value="" selected></option>
-                        <option value="Spouse">Spouse</option>
-                        <option value="Child">Child</option>
-                        <option value="Grandchild">Grandchild</option>
-                        <option value="Househelp">Househelp</option>
-                        <option value="Renter">Renter</option>
-                        <option value="Parent">Parent</option>
-                        <option value="Friend">Friend</option>
-                    </select>
-                    <br>
-                    <input type="hidden" name="FORM_NO" value="3">
-                    <div class="button-container">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
-                    </div>
-                </form>     
-
+<%--
                 <form id="form4" action="UpdateInfo">
                     <h1 class="h1-bold" id="h1small">Title Information</h1>
                     <div class="line"></div><br>
@@ -113,49 +76,15 @@
                     <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
                 </form>
-                <form id="form5" action="UpdateInfo">
-                    <h1 class="h1-bold" id="h1small">Property Information</h1>
-                    <div class="line"></div><br>
-                    <p>KHA Membership</p><br>
-                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" class="marginPaidDate">If paid, input date:</label><br>
-                    <fieldset>  
-                        <label for="PAID_YES"><input type="radio" name="PAID_MEM" id="PAID_YES" value="yes">Yes</label>
-                        <label for="PAID_NO" id="form-margin-medium"><input type="radio" name="PAID_MEM" id="PAID_NO" value="no" style="margin-left: 2%;">No</label>
-                        <input type="date" name="PAID_DATE" placeholder=""  id="marginPaidDateButton" class="date_button">
-                    </fieldset><br>
-                    <label for="MEM_NAME">Name Used in Membership</label><input type="text" name="MEM_NAME" placeholder="Full Name"  class="form"><br>
-                    <p>Use of Property</p><br>
-                    <fieldset>  
-                        <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_RES" value="yes">Residential</label>
-                        <label for="PRP_USE"><input type="radio" name="PAID_MEM" id="PRP_BUS" value="no">Business</label>
-                        <label for="PRP_USE" id="form-margin-medium"><input type="radio" name="PAID_MEM" id="PRP_BOTH" value="no">Both</label>
-                    </fieldset><br>
-                    <label for="BUS_NAME">If used for business, registered name of business:</label><input type="text" name="BUS_NAME" placeholder="Business Name"  class="form"><br>
-                    <label for="BUS_TYPE">Type of business:</label><input type="text" name="BUS_TYPE" placeholder="Business Type"  class="form"><br>
-                    <br>
-                    <input type="hidden" name="FORM_NO" value="5"> 
-                    <div class="button-container">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
-                    </div>
-                </form>
+--%>
             </div>
         </div>
         <script>
             var form1 = document.getElementById("form1");
             var form2 = document.getElementById("form2");
-            var form3 = document.getElementById("form3");
-            var form4 = document.getElementById("form4");
-            var form5 = document.getElementById("form5");
-            var form6 = document.getElementById("form6");
 
             var Next1 = document.getElementById("Next1");
             var Next2 = document.getElementById("Next2");
-            var Next3 = document.getElementById("Next3");
-            var Next4 = document.getElementById("Next4");
-            var Next5 = document.getElementById("Next5");
-            var Next6 = document.getElementById("Next6");
-
             Next1.onclick = function () {
                 form1.style.left = "32.5%";
                 form2.style.left = "1000px";
@@ -171,33 +100,6 @@
                 form3.style.left = "1000px";
                 form4.style.left = "1000px";
                 form5.style.left = "1000px";
-                form6.style.left = "1000px";
-            }
-
-            Next3.onclick = function () {
-                form1.style.left = "1000px";
-                form2.style.left = "1000px";
-                form3.style.left = "32.5%";
-                form4.style.left = "1000px";
-                form5.style.left = "1000px";
-                form6.style.left = "1000px";
-            }
-
-            Next4.onclick = function () {
-                form1.style.left = "1000px";
-                form2.style.left = "1000px";
-                form3.style.left = "1000px";
-                form4.style.left = "32.5%";
-                form5.style.left = "1000px";
-                form6.style.left = "1000px";
-            }
-
-            Next5.onclick = function () {
-                form1.style.left = "1000px";
-                form2.style.left = "1000px";
-                form3.style.left = "1000px";
-                form4.style.left = "1000px";
-                form5.style.left = "32.5%";
                 form6.style.left = "1000px";
             }
         </script>
