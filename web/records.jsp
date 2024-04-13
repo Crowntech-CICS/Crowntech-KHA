@@ -74,7 +74,7 @@
         <br><br><br><br><br><br>
         <div id="searchRecords">
             <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
-                <input type="text" placeholder="Search for .." name="search" id="searchWidth" onkeyup="searchFunc()">
+                <input type="text" placeholder="Search For Name" name="search" id="searchWidth" onkeyup="searchFunc()">
                <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
@@ -121,6 +121,7 @@
                         <th class="tableTitle">Contact Number</th>
                         <th class="tableTitle">Status</th>
                         <th class="tableTitle">Paid</th>
+                        <th class="tableTitle">Balance</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -164,6 +165,7 @@
                                         out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + resClass + "</td>");
+                                        out.print("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                                         out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
                                     }
                                 }

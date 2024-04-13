@@ -39,6 +39,7 @@
                         <th class="tableTitle">Month</th>
                         <th class="tableTitle">Application Fees</th>
                         <th class="tableTitle">Monthly Fees</th>
+                        <th class="tableTitle">Balance Dues</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,9 +47,11 @@
                         <td class="tableContentText">Month</td>
                         <td class="tableContentText">$$</td>
                         <td class="tableContentText">$$</td>
+                        <td class="tableContentText">$$</td>
                     </tr>
                     <tr>
                         <td class="tableContentText2">Month</td>
+                        <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                     </tr>
@@ -56,9 +59,11 @@
                         <td class="tableContentText">Month</td>
                         <td class="tableContentText">$$</td>
                         <td class="tableContentText">$$</td>
+                        <td class="tableContentText">$$</td>
                     </tr>
                     <tr>
                         <td class="tableContentText2">Month</td>
+                        <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                     </tr>
@@ -66,14 +71,17 @@
                         <td class="tableContentText">Month</td>
                         <td class="tableContentText">$$</td>
                         <td class="tableContentText">$$</td>
+                        <td class="tableContentText">$$</td>
                     </tr>
                     <tr>
                         <td class="tableContentText2">Month</td>
+                        <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                         <td class="tableContentText2">$$</td>
                     </tr>
                     <tr>
                         <td class="tableContentText">Total Funds</td>
+                        <td class="tableContentText">$$</td>
                         <td class="tableContentText">$$</td>
                         <td class="tableContentText">$$</td>
                     </tr>
@@ -89,12 +97,12 @@
         <br><br>
         <div class="button-container">
             <form action="ExportPDF">
-                <button class="button-design" type="submit">
+                <button class="button-design" type="submit" id="button-small">
                     Export
                 </button>
             </form>
             <form action="FinanceTrack">
-                <button class="button-design" type="submit">
+                <button class="button-design" type="submit" id="button-small" style="margin-left: 20%;">
                     Tally
                 </button>
             </form>
