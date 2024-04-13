@@ -128,7 +128,8 @@ public class CreateAcc extends HttpServlet {
                 ps.setString(8, "EMPTY");
                 ps.setBoolean(9, false); 
                 ps.setDouble(10, 0.0); 
-                ps.setString(11, NewORNUM); 
+                ps.setString(11, NewORNUM);
+                session.setAttribute("message","OR Number already exists!");
                 row = ps.executeUpdate();
                 if (row != 0) {                    
                         System.out.println("Homeowner Created");
@@ -175,6 +176,7 @@ public class CreateAcc extends HttpServlet {
                 ps.setString(1, NewUserID);
                 ps.setString(2, NewEmail);
                 ps.setString(3, EncryptPass);
+                session.setAttribute("message","Email already exists!");
                 row = ps.executeUpdate(); //Create in Login DB
                 
                      if (row != 0) {
@@ -192,7 +194,6 @@ public class CreateAcc extends HttpServlet {
             
             catch (SQLException ex) {
                 
-                session.setAttribute("message","User Creation Failed!");
                 request.getRequestDispatcher("createacc.jsp").forward(request,response);
                 System.out.println("The specified query could not be performed.");
             }
