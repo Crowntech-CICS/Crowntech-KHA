@@ -76,7 +76,7 @@
         <div id="searchRecords">
             <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
                 <input type="text" placeholder="Search For Name" name="search" id="searchWidth" onkeyup="searchFunc()">
-               <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
+                <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
             <!-- The sorting form -->
@@ -131,41 +131,41 @@
                             PreparedStatement ps3 = con.prepareStatement(LotQuery); // queries USERLOT table
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
-                                userLotID = rs3.getString("USERID"); // Take USERID from USERLOT
+                                userLotID = rs3.getString("HOMEOWNERID"); // Take homeownerid from USERLOT
                                 System.out.println("userLotID: " + userLotID);
-                                ps2 = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?"); // queries USERS with USERID from USERLOT
+                                ps2 = con.prepareStatement(HomeQuery); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
-                                rs2 = ps2.executeQuery();
-                                while (rs2.next()) {
-                                    lotUser = rs2.getString("HOMEOWNERID"); // TAKE HOMEOWNERID from USERS
-                                    resClass = rs2.getString("RESIDENTCLASS");
-                                    ps = con.prepareStatement(HomeQuery);
-                                    ps.setString(1, lotUser); 
-                                    rs = ps.executeQuery();
-                                    while (rs.next()) {
-                                        String nameDB = rs.getString("FIRSTNAME").trim() + " "
-                                                + rs.getString("MIDDLEINITIAL").trim() + " "
-                                                + rs.getString("LASTNAME"),
-                                                addDB = rs3.getString("HOUSENO").trim() + " "
-                                                + rs3.getString("STREETNAME") + " Barangay "
-                                                + rs3.getString("BARANGAY").trim(),
-                                                numDB = rs.getString("MOBILENO").trim(),
-                                                paidDB = rs.getString("PAID").trim();
-                                                balance = rs.getDouble("BALANCE");
-                                        if (paidDB.equals("true")) {
-                                            paidDB = "Paid";
-                                        } else if (paidDB.equals("false")) {
-                                            paidDB = "Unpaid";
-                                        }
-                                        // tbh i just copy pasted everything, aadjust nalang syntax here for real db
-                                        out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + addDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + numDB + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
-                                        out.println("<td class=\"tableContentText\">" + balance + "</td></tr>");
+                                rs = ps2.executeQuery();
+                                while (rs.next()) {
+                                    ps = con.prepareStatement("SELECT RESIDENTCLASS FROM USERS WHERE HOMEOWNERID = ?");
+                                    ps.setString(1, userLotID);
+                                    rs2 = ps.executeQuery();
+                                    while (rs2.next()) {
+                                        resClass = rs2.getString("RESIDENTCLASS");
                                     }
+                                    String nameDB = rs.getString("FIRSTNAME").trim() + " "
+                                            + rs.getString("MIDDLEINITIAL").trim() + " "
+                                            + rs.getString("LASTNAME"),
+                                            addDB = rs3.getString("HOUSENO").trim() + " "
+                                            + rs3.getString("STREETNAME") + " Barangay "
+                                            + rs3.getString("BARANGAY").trim(),
+                                            numDB = rs.getString("MOBILENO").trim(),
+                                            paidDB = rs.getString("PAID").trim();
+                                    balance = rs.getDouble("BALANCE");
+                                    if (paidDB.equals("true")) {
+                                        paidDB = "Paid";
+                                    } else if (paidDB.equals("false")) {
+                                        paidDB = "Unpaid";
+                                    }
+                                    // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                    out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
+                                    out.print("<td class=\"tableContentText\">" + addDB + "</td>");
+                                    out.print("<td class=\"tableContentText\">" + numDB + "</td>");
+                                    out.print("<td class=\"tableContentText\">" + resClass + "</td>");
+                                    out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
+                                    out.println("<td class=\"tableContentText\">" + balance + "</td></tr>");
                                 }
+
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -211,32 +211,32 @@
         <script src="scripts/sorttable.js"></script>
         <script>
 
-            function openForm() {
-                document.getElementById("sortForm").style.display = "block";
-            }
+                function openForm() {
+                    document.getElementById("sortForm").style.display = "block";
+                }
 
-            function closeForm() {
-                document.getElementById("sortForm").style.display = "none";
-            }
+                function closeForm() {
+                    document.getElementById("sortForm").style.display = "none";
+                }
 
-            function searchFunc() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("searchWidth");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("displayTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
+                function searchFunc() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("searchWidth");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("displayTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
                         }
                     }
                 }
-            }
         </script>
     </body>
 </html>
