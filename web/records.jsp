@@ -146,14 +146,10 @@
                                         String nameDB = rs.getString("FIRSTNAME").trim() + " "
                                                 + rs.getString("MIDDLEINITIAL").trim() + " "
                                                 + rs.getString("LASTNAME"),
-                                                addDB = rs.getString("HOUSENO").trim() + " "
-                                                + rs.getString("STREETNAME") + " "
-                                                + rs.getString("VILLAGE").trim() + " "
-                                                + rs.getString("BARANGAY").trim() + " "
-                                                + rs.getString("CITY").trim() + " "
-                                                + rs.getString("PROVINCE").trim(),
+                                                addDB = rs3.getString("HOUSENO").trim() + " "
+                                                + rs3.getString("STREETNAME") + " Barangay "
+                                                + rs3.getString("BARANGAY").trim(),
                                                 numDB = rs.getString("MOBILENO").trim(),
-                                        //        statDB = "Homeowner",
                                                 paidDB = rs.getString("PAID").trim();
                                                 balance = rs.getDouble("BALANCE");
                                         if (paidDB.equals("true")) {
