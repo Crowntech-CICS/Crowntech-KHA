@@ -16,7 +16,7 @@
         <%            int act = Integer.parseInt(request.getParameter("act"));
             // 1 is add, 2 is edit
         %>
-        <div class="main-body">
+        <div class="main-body" style="overflow-y: scroll">
             <%
                 if (act == 1) {
                     out.println(""
@@ -68,6 +68,7 @@
                         ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
                         ps.setString(1, (String) session.getAttribute("currID"));
                         rs = ps.executeQuery();
+                        out.println("<h1 class=\"h1-bold\" id=\"h1small\">Only Edit One at a Time</h1><br><br>");
                         while (rs.next()) {
                             out.println(""
                             + "<div class=\"signup-box-smallest\" >"
