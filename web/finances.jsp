@@ -44,46 +44,46 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
+                        <td class="tableContentText">November</td>
+                        <td class="tableContentText">6000.0</td>
+                        <td class="tableContentText">3000.0</td>
+                        <td class="tableContentText">0.0</td>
                     </tr>
                     <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
+                        <td class="tableContentText2">December</td>
+                        <td class="tableContentText2">1000.0</td>
+                        <td class="tableContentText2">4200.0</td>
+                        <td class="tableContentText2">1200.0</td>
                     </tr>
                     <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
+                        <td class="tableContentText">January</td>
+                        <td class="tableContentText">2000.0</td>
+                        <td class="tableContentText">3000.0</td>
+                        <td class="tableContentText">3600.0</td>
                     </tr>
                     <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
+                        <td class="tableContentText2">February</td>
+                        <td class="tableContentText2">3300.0</td>
+                        <td class="tableContentText2">1800.0</td>
+                        <td class="tableContentText2">2100.0</td>
                     </tr>
                     <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
+                        <td class="tableContentText">March</td>
+                        <td class="tableContentText">4500.0</td>
+                        <td class="tableContentText">1800.0</td>
+                        <td class="tableContentText">900.0</td>
                     </tr>
                     <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
+                        <td class="tableContentText2">April</td>
+                        <td class="tableContentText2">5000.0</td>
+                        <td class="tableContentText2">2100.0</td>
+                        <td class="tableContentText2">600.0</td>
                     </tr>
                     <tr>
                         <td class="tableContentText">Total Funds</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
+                        <td class="tableContentText">21800.0</td>
+                        <td class="tableContentText">15900.0</td>
+                        <td class="tableContentText">8400.0</td>
                     </tr>
                 </tbody>
             </table>
