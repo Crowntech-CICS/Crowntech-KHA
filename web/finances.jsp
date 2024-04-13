@@ -26,16 +26,16 @@
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
         <div class="financeButtonSpacing">
-            <form action="SortHandler" method="POST" style='display: inline-block;'>
-                <select name="area" class="button-year-design">
-                    <option value="null">Select Year</option>
+            <form name="form1" action="FinanceTrack" method="POST" style='display: inline-block;'>
+                <select name="year" class="button-year-design" onchange="javascript:document.form1.submit()">
+                    <option value="" selected disabled hidden>Select Year</option>
                     <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2007">2007</option>
+                    <option value="2016">2016</option>
+                    <option value="1988">1988</option>
                 </select>
             </form>
         </div>
@@ -58,29 +58,43 @@
                         double mPaid[] = (double[])session.getAttribute("monPaid");
                         double bPaid[] = (double[])session.getAttribute("balPaid");
                         
+                        double aTotal=0;
+                        double mTotal=0;
+                        double bTotal=0;
+                        
+                        
+                        
                         
                         for(int i = 0 ; i < 12; i++){
                             if(i%2!=0){
                             out.print("<tr><td class=\"tableContentText\">" + Months[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">" + aPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">" + mPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">" + bPaid[i] + "</td></tr>");
+                            out.print("<td class=\"tableContentText\">₱" + aPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText\">₱" + mPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText\">₱" + bPaid[i] + "</td></tr>");
+                            
+                            
                         }
                         else{
                             out.print("<tr><td class=\"tableContentText2\">" + Months[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">" + aPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">" + mPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">" + bPaid[i] + "</td></tr>");
+                            out.print("<td class=\"tableContentText2\">₱" + aPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText2\">₱" + mPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText2\">₱" + bPaid[i] + "</td></tr>");
                         }
-                        
+                            aTotal+=aPaid[i];
+                            mTotal+=mPaid[i];
+                            bTotal+=bPaid[i];
+                            
+                            session.setAttribute("aTotal",aTotal);
+                            session.setAttribute("mTotal",mTotal);
+                            session.setAttribute("bTotal",bTotal);
                         }
                     %>
                     
                     <tr>
                         <td class="tableContentText">Total Funds</td>
-                        <td class="tableContentText">21800.0</td>
-                        <td class="tableContentText">15900.0</td>
-                        <td class="tableContentText">8400.0</td>
+                        <td class="tableContentText">₱${aTotal}</td>
+                        <td class="tableContentText">₱${mTotal}</td>
+                        <td class="tableContentText">₱${bTotal}</td>
                     </tr>
                 </tbody>
             </table>

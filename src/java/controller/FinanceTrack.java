@@ -72,7 +72,12 @@ public class FinanceTrack extends HttpServlet {
             int curYear = cal.get(Calendar.YEAR);
 
             //year selector
-            int selYear = cal.get(Calendar.YEAR);
+            String strSelYear = request.getParameter("year");
+            int selYear;
+            System.out.println(strSelYear);
+            if(strSelYear == null) selYear = cal.get(Calendar.YEAR);
+            else selYear = Integer.parseInt(strSelYear);
+            
 
             //KHA Membership
             String aFQuery = "SELECT\n"
@@ -110,9 +115,14 @@ public class FinanceTrack extends HttpServlet {
             rs = ps.executeQuery();
             try{
                 while (rs.next()) {
+                    if (curYear != selYear) {
+                    continue;
+                }
                 totalMF[curMonth] = rs.getDouble(1);
+                
                 System.out.println("works");
                 
+                //Adds to FINANCE TABLE if recent month, or updates existing month
                 mFQuery = "INSERT INTO FINANCE(FINANCEDATE, MONTHLYFEES, BALANCEDUES) VALUES(?,?,?)";
                 
                 ps = con.prepareStatement(mFQuery);
@@ -123,7 +133,7 @@ public class FinanceTrack extends HttpServlet {
                 ps.executeUpdate();
 
             }
-            }catch(SQLException ex){
+            }catch(Exception ex){
                 System.out.println(ex);
                 mFQuery = "UPDATE FINANCE SET MONTHLYFEES=? WHERE FINANCEDATE=?";
                 ps = con.prepareStatement(mFQuery);
@@ -133,7 +143,7 @@ public class FinanceTrack extends HttpServlet {
             }
 
             
-
+            //Pulls old date from previous months of the selected year
             for (int i = 0; i < 12; i++) {
                 if (i == curMonth && curYear == selYear) {
                     continue;
@@ -141,7 +151,7 @@ public class FinanceTrack extends HttpServlet {
                 mFQuery = "SELECT\n"
                         + "    * FROM FINANCE WHERE FINANCEDATE = ?";
                 ps = con.prepareStatement(mFQuery);
-                String test = String.valueOf(Month.of(i + 1)) + "2024";
+                String test = String.valueOf(Month.of(i + 1)) + selYear;
                 ps.setString(1, test);
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -160,6 +170,9 @@ public class FinanceTrack extends HttpServlet {
 
            try{
                 while (rs.next()) {
+                    if (curYear != selYear) {
+                    continue;
+                }
                 totalBD[curMonth] = rs.getDouble(1);
                 System.out.println("works");
                 
@@ -173,7 +186,7 @@ public class FinanceTrack extends HttpServlet {
                 ps.executeUpdate();
 
             }
-            }catch(SQLException ex){
+            }catch(Exception ex){
                 System.out.println(ex);
                 mFQuery = "UPDATE FINANCE SET BALANCEDUES=? WHERE FINANCEDATE=?";
                 ps = con.prepareStatement(mFQuery);
@@ -191,7 +204,7 @@ public class FinanceTrack extends HttpServlet {
                 mFQuery = "SELECT\n"
                         + "    * FROM FINANCE WHERE FINANCEDATE = ?";
                 ps = con.prepareStatement(mFQuery);
-                String test = String.valueOf(Month.of(i + 1)) + "2024";
+                String test = String.valueOf(Month.of(i + 1)) + selYear;
                 ps.setString(1, test);
                 rs = ps.executeQuery();
                 while (rs.next()) {
