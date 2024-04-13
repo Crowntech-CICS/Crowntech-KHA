@@ -17,7 +17,7 @@
         <%            int act = Integer.parseInt(request.getParameter("act"));
             // 1 is add, 2 is edit
         %>
-        <div class="main-body" id="vehicle-body">
+        <div class="main-body">
             <%
                 if (act == 1) {
                     out.println(""
@@ -69,7 +69,7 @@
                         ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
                         ps.setString(1, (String) session.getAttribute("currID"));
                         rs = ps.executeQuery();
-                        out.println("<h1 class=\"h1-bold\" id=\"h1small\">Only Edit One at a Time</h1><br><br>");
+                        out.println("<h1 class=\"h1-bold\" id=\"h1small\">Only Edit One at a Time</h1><br><div style=\"height: 700px; overflow-y: scroll; width: 37%;\">");
                         while (rs.next()) {
                             out.println(""
                             + "<div class=\"signup-box-smallest\" >"
@@ -104,8 +104,9 @@
                             + "</div>"
                             + "</form>"
                             + "</div>"
-                            + "</br></br></br></br></br>");
+                            + "</br></br>");
                         }
+                        out.println("/div>");
                     } catch (SQLException sqle) {
                         System.out.println("SQLException IN error occured - " + sqle.getMessage());
                         response.sendError(500);
