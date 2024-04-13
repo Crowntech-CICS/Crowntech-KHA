@@ -196,9 +196,16 @@
         </div>
         <br><br>
         <div class="button-container">
-            <button class="button-design">
-                Update Record
-            </button>
+            <form>
+                <button class="button-design" type="submit">
+                    Update Record
+                </button>
+            </form>
+            <form>
+                <button class="button-design" type="submit" style="margin-left: 20%;">
+                    Update Balance
+                </button>
+            </form>
         </div>
         <script src="scripts/sorttable.js"></script>
         <script>

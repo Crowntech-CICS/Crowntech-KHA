@@ -43,8 +43,8 @@
                 ps.setString(1, (String) session.getAttribute("currID"));
                 rs = ps.executeQuery();
         %>
-        <div class="main-body" id="vehicle-body">
             <%
+                out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 30%;\">");
                 while(rs.next()) {
                 out.print(
                           "<div class=\"vehicle-box\">"
@@ -94,6 +94,12 @@
                             }
                         }
             %>
+        </div>
+                <div class="main-body" style="top: 10%;">
+            <h1 class="h1-bold">Vehicle List</h1>
+            <div class="button-container">
+                <button class="button-design">Add More Vehicles</button>
+            </div>
         </div>
     </body>
 </html>
