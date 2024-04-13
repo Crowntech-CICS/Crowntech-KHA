@@ -31,7 +31,6 @@
             ResultSet rs2 = null;
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
-            String lotUser = null;
             String LotQuery = "SELECT * FROM USERLOT";
             String HomeQuery = "SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?";
             String userLotID = null;
@@ -151,7 +150,7 @@
                                             + rs3.getString("BARANGAY").trim(),
                                             numDB = rs.getString("MOBILENO").trim(),
                                             paidDB = rs.getString("PAID").trim();
-                                    balance = rs.getDouble("BALANCE");
+                                    balance = rs3.getDouble("BALANCE");
                                     if (paidDB.equals("true")) {
                                         paidDB = "Paid";
                                     } else if (paidDB.equals("false")) {
