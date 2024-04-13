@@ -14,7 +14,7 @@
     </context-param>
     <context-param>
         <param-name>jdbcDriverURL</param-name>
-        <param-value>jdbc:derby://localhost:1527/Crowntech</param-value>
+        <param-value>jdbc:derby://localhost:1527/CrowntechDB</param-value>
     </context-param>
     <context-param>
         <param-name>key</param-name>
@@ -67,6 +67,7 @@
     <servlet>
         <servlet-name>UpdateInfo</servlet-name>
         <servlet-class>controller.UpdateInfo</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>CreateAcc</servlet-name>
         <servlet-class>controller.CreateAcc</servlet-class>
@@ -74,7 +75,6 @@
     <servlet>
         <servlet-name>FinanceTrack</servlet-name>
         <servlet-class>controller.FinanceTrack</servlet-class>
-    </servlet>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -103,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>ReceiptLoader</servlet-name>
         <url-pattern>/ReceiptLoader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAcc</servlet-name>
+        <url-pattern>/CreateAcc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinanceTrack</servlet-name>
+        <url-pattern>/FinanceTrack</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>403</error-code>
