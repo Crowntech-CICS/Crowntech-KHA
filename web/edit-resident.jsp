@@ -9,6 +9,7 @@
         <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
         <link href="css/main-format.css" rel="stylesheet"/>
         <link href="css/form-format.css" rel="stylesheet"/>
+        <link href="css/profile-format.css" rel="stylesheet"/>
         <link href="css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
@@ -16,7 +17,7 @@
         <%            int act = Integer.parseInt(request.getParameter("act"));
             // 1 is add, 2 is edit
         %>
-        <div class="main-body">
+        <div class="main-body" id="vehicle-body">
             <%
                 if (act == 1) {
                     out.println(""
