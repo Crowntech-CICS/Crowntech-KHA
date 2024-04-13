@@ -66,8 +66,8 @@
                         System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
                     }
                     try {
-                        ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
-                        ps.setString(1, (String) session.getAttribute("currID"));
+                        ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE PROPERTYID = ?");
+                        ps.setString(1, (String) request.getParameter("pID"));
                         rs = ps.executeQuery();
                         out.println("<h1 class=\"h1-bold\" id=\"h1smallRes\">Only Edit One at a Time</h1>"
                         + "<p style=\"color: black\">You may only edit one resident at a time.</p>"
@@ -96,7 +96,7 @@
                             + "</select>"
                             + "<br>"
                             + "<input type=\"hidden\" name=\"FORM_NO\" value=\"7\">"
-                            + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + rs.getString("USERID") + "\">"
+                            + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + rs.getString("PROPERTYID") + "\">"
                             + "<input type=\"hidden\" name=\"HO_LN_C\" value=\"" + rs.getString("LASTNAME") + "\">"
                             + "<input type=\"hidden\" name=\"HO_FN_C\" value=\"" + rs.getString("FIRSTNAME") + "\">"
                             + "<input type=\"hidden\" name=\"HO_MI_C\" value=\"" + rs.getString("MIDDLEINITIAL") + "\">"

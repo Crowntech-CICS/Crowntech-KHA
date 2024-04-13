@@ -255,7 +255,7 @@ public class UpdateInfo extends HttpServlet {
                     if (resRel.trim().equals("")) {
                         resRel = resRelC;
                     }
-                    psUpdate = con.prepareStatement("UPDATE USEROTHER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, RELATIONSHIP = ? WHERE USERID = ? AND LASTNAME = ? AND FIRSTNAME = ? AND MIDDLEINITIAL = ? AND RELATIONSHIP = ?");
+                    psUpdate = con.prepareStatement("UPDATE USEROTHER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, RELATIONSHIP = ? WHERE PROPERTYID = ? AND LASTNAME = ? AND FIRSTNAME = ? AND MIDDLEINITIAL = ? AND RELATIONSHIP = ?");
                     psUpdate.setString(1, lnB);
                     psUpdate.setString(2, fnB);
                     psUpdate.setString(3, miB);

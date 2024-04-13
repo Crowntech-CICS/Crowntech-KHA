@@ -52,6 +52,14 @@
                     address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME");
                     System.out.println("Current Address: " + address);
                 }
+                
+                ps = con.prepareStatement("SELECT HOMEOWNERID FROM USERS WHERE USERID = ?");
+                ps.setString(1, (String) session.getAttribute("currID"));
+                rs = ps.executeQuery();
+                String HOID = "";
+                while (rs.next()){
+                    HOID = rs.getString("HOMEOWNERID");
+                }
         %>
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br>
@@ -74,12 +82,14 @@
             </div>
         </div>
         <%
-                ps = con.prepareStatement("SELECT * FROM USERLOT WHERE USERID = ?");
-                ps.setString(1, (String) session.getAttribute("currID"));
+                ps = con.prepareStatement("SELECT * FROM USERLOT WHERE HOMEOWNERID = ?");
+                ps.setString(1, HOID);
                 rs = ps.executeQuery();
                 out.print("<div class=\"profileLotHolder\">");
+                String propID = "";
 
                 while (rs.next()) {
+                propID = rs.getString("PROPERTYID").trim();
                     out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + rs.getString("AREA") + "</h1>"
                             + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
                             + "<button class=\"accordion\">"
@@ -117,8 +127,8 @@
                         out.print("<li class=\"accordion-content-width\">"
                                 + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Lot Residents</h1>"
                                 + "<div class=\"line\"></div><br>");
-                        ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
-                        ps.setString(1, (String) session.getAttribute("currID"));
+                        ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE PROPERTYID = ?");
+                        ps.setString(1, propID);
                         rsTemp = ps.executeQuery();
                         while (rsTemp.next()) {
                             out.print("<ul>"
@@ -131,20 +141,15 @@
                         out.print("<br>"
                                 + "<div class=\"d-flex main justify-content-between\">"
                                 + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=1'\">Add</button>"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=2'\">Edit</button>"
+                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=2&pID=" + propID + "'\">Edit</button>"
                                 + "</div>"
                                 + "</li>"
                                 + "<li class=\"accordion-content-width\">"
                                 + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Balance Dues</h1>"
                                 + "<div class\"line\"></div><br>"
                                 + "<ul>");
-                        ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
-                        ps.setString(1, hoID);
-                        rsTemp = ps.executeQuery();
-                        while (rsTemp.next()) {
                             out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
-                                    + rsTemp.getString("BALANCE") + "</h1><br>");
-                        }
+                                    + rs.getString("BALANCE") + "</h1><br>");
                         out.print("<div class=\"line\"></div><br>");
                         if (rs.getBoolean("PAID")) {
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Paid</li><br>");
