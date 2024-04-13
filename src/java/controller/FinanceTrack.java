@@ -65,38 +65,65 @@ public class FinanceTrack extends HttpServlet {
                 Date payDate;
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(curDate);
-                int[] totalMA = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-                int[] curMonth = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
+                double[] totalMA = new double[]{0,0,0,0,0,0,0,0,0,0,0,0};
+                double totalMF = 0;
+                double totalBD = 0;
                 
                 //year selector
-                int selYear = cal.get(Calendar.YEAR);
+                int selYear = cal.get(Calendar.YEAR)+1;
                 
                 
                 //KHA Membership
-                String aFQuery = "SELECT * FROM KHAMEMBERSHIP WHERE PAID='TRUE'";
+                String aFQuery = "SELECT\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 1 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JAN\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 2 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"FEB\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 3 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAR\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 4 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"APR\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 5 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAY\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 6 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUN\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 7 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUL\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 8 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"AUG\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 9 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"SEP\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 10 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"OCT\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 11 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"NOV\",\n" +
+"    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 12 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"DEC\"\n" +
+"FROM KHAMEMBERSHIP";
                 ps = con.prepareStatement(aFQuery);
+                for(int i = 1; i<13; i++){
+                    ps.setString(i,String.valueOf(selYear));
+                }
                 rs = ps.executeQuery();
-                int payMonth;
-                int payYear;
                 
                 while(rs.next()){
-                    payDate = rs.getDate("PAYMENTDATE");
-                    cal.setTime(payDate);
-                    payMonth = cal.get(Calendar.MONTH);
-                    payYear = cal.get(Calendar.YEAR);
-                    for(int i=0;i<12;i++){
-                    if(curMonth[i] == payMonth && selYear == payYear){
-                        totalMA[i] +=5000;
-                    }
-                    
+                    for(int i = 0; i<12; i++){
+                        totalMA[i] = rs.getDouble(i+1);
                     }
                     
                 }
                 
                 //Homeowner Fees
+                String mFQuery = "SELECT\n" +
+"    SUM(CASE WHEN PAID = TRUE THEN 300 ELSE 0 END) AS \"MON\"\n" +
+"FROM USERLOT";
+                ps = con.prepareStatement(mFQuery);
+                rs = ps.executeQuery();
                 
+                while(rs.next()){
+                    totalMF = rs.getDouble(1);
+                    
+                }
                 
                 //Balance Dues
+                String bDQuery = "SELECT\n" +
+"    SUM(CASE WHEN PAID = FALSE THEN 300 ELSE 0 END) AS \"MON\"\n" +
+"FROM USERLOT";
+                ps = con.prepareStatement(bDQuery);
+                rs = ps.executeQuery();
+                
+                while(rs.next()){
+                    totalBD = rs.getDouble(1);
+                    
+                }
                 
                 
                 
@@ -138,10 +165,14 @@ public class FinanceTrack extends HttpServlet {
                 session.setAttribute("membershipTotal",maTotal);
                 session.setAttribute("lotPaid",lotPaid);
                 session.setAttribute("lotTotal",lotTotal);
+                session.setAttribute("memPaid", totalMA);
+                session.setAttribute("monPaid", totalMF);
+                session.setAttribute("balPaid", totalBD);
                 response.sendRedirect("finances.jsp");
                 //request.getRequestDispatcher("finances.jsp").forward(request,response);              
             }
             catch (SQLException ex) {
+                System.out.println(ex);
                 System.out.println("The specified query could not be performed.");
             }
 			 finally {
