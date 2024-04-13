@@ -108,13 +108,13 @@
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Homeowner Info</h1>"
                             + "<div class=\"line\"></div><br>"
                             + "<ul>"
-                            + "<li class=\"accordion-content\">Name:" + fullName + "</li>");
+                            + "<li class=\"accordion-content\">Name: " + fullName + "</li>");
                     ResultSet rsTemp;
                     ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
                     ps.setString(1, hoID);
                     rsTemp = ps.executeQuery();
                     while (rsTemp.next()) {
-                        out.print("<li class=\"accordion-content\">Email:" + rsTemp.getString("EMAIL") + "</li>"
+                        out.print("<li class=\"accordion-content\">Email: " + rsTemp.getString("EMAIL") + "</li>"
                                 + "<li class=\"accordion-content\">Phone: " + rsTemp.getString("MOBILENO") + "</li>"
                                 + "<li class=\"accordion-content\">Address: "
                                 + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + ", Barangay " + rs.getString("BARANGAY")
