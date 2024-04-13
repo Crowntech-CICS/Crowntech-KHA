@@ -134,7 +134,8 @@ public class CreateAcc extends HttpServlet {
                         System.out.println("Homeowner Created");
                     }
                      else {
-                         response.sendError(500);
+                         session.setAttribute("message","OR Number already exists");
+                         request.getRequestDispatcher("createacc.jsp").forward(request,response);
                     }
                 }
 				
@@ -183,12 +184,16 @@ public class CreateAcc extends HttpServlet {
                          request.getRequestDispatcher("createacc.jsp").forward(request,response);       
                     }
                      else {
-                         response.sendError(500);
+                         session.setAttribute("message","Email already exists!");
+                         request.getRequestDispatcher("createacc.jsp").forward(request,response);
                     }
                 }
                 
             
             catch (SQLException ex) {
+                
+                session.setAttribute("message","User Creation Failed!");
+                request.getRequestDispatcher("createacc.jsp").forward(request,response);
                 System.out.println("The specified query could not be performed.");
             }
 			 finally {
