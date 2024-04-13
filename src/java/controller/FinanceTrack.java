@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-
 public class FinanceTrack extends HttpServlet {
     protected static Connection con;
     protected static ResultSet rs;
@@ -59,7 +58,6 @@ public class FinanceTrack extends HttpServlet {
 
         }
             try {
-                
                 String hoQuery = "SELECT PAID FROM HOMEOWNER";
 		String maQuery = "SELECT PAID FROM KHAMEMBERSHIP";
 		String lotQuery = "SELECT PAID FROM USERLOT";
@@ -142,13 +140,11 @@ public class FinanceTrack extends HttpServlet {
                 session.setAttribute("membershipTotal",maTotal);
                 session.setAttribute("lotPaid",lotPaid);
                 session.setAttribute("lotTotal",lotTotal);
-                session.setAttribute("memPaid", totalMA);
                 response.sendRedirect("finances.jsp");
                 //request.getRequestDispatcher("finances.jsp").forward(request,response);              
             }
             catch (SQLException ex) {
                 System.out.println("The specified query could not be performed.");
-                System.out.println(ex);
             }
 			 finally {
             try {

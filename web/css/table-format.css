@@ -94,7 +94,7 @@ th, td {
     font-family: 'Inter';
     background-color: #ffffff;
     border: 0px none;
-    height: 60px;
+    height: 40px;
 }
 
 .tableContentText2 {
@@ -103,7 +103,7 @@ th, td {
     font-family: 'Inter';
     background-color: #D9D9D9;
     border: 0px none;
-    height: 60px;
+    height: 40px;
 }
 
 .tableContentText3 {
@@ -181,7 +181,7 @@ tbody {
     }
     
     .tableContentText, .tableContentText2 {
-        height: 50px;
+        height: 34px;
     }
     
     .tableContentText3, .tableContentText4, .tableContentText5 {
@@ -219,7 +219,7 @@ tbody {
     }
     
     .tableContentText, .tableContentText2 {
-        height: 40px;
+        height: 30px;
     }
     
     .tableContentText3, .tableContentText4, .tableContentText5 {
