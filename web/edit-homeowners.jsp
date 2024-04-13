@@ -1,4 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires", "0");
+    //Check Logged In State
+    boolean logState = session.getAttribute("username") != null ? true : false;
+    if (!logState) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,29 +63,7 @@
                         <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
                         <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
                     </div>
-                </form>  
-<%--
-                <form id="form4" action="UpdateInfo">
-                    <h1 class="h1-bold" id="h1small">Title Information</h1>
-                    <div class="line"></div><br>
-                    <p>Title Information</p><br>
-                    <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" class="marginRegName">Registered Name</label><br>
-                    <input type="text" name="TIT_NUM" placeholder="Title No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_NAME" placeholder="Full Name"  class="form-medium"><br>
-                    <label for="TIT_SURNOM" id="label-margin-medium">Survey No.</label><label for="TIT_LOTNUM" class="marginLot">Lot No.</label><br>
-                    <input type="text" name="TIT_SURNOM" placeholder="Survey No." class="form-medium" id="form-margin-medium"><input type="text" name="TIT_LOTNUM" placeholder="Lot No."  class="form-medium"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Date Registered</label><label for="TIT_AREA" class="marginArea">Area</label><br>
-                    <input type="date" name="TIT_DATE" class="form-medium" id="form-margin-medium"><input type="text" name="TIT_AREA" placeholder="Area"  class="form-medium"><br>
-                    <br><br><p>Tax Declaration Information</p><br>
-                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
-                    <input type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input type="text" name="PRP_INDEX" placeholder="Property Index No."  class="form-medium"><br>
-                    <br>
-                                        <input type="hidden" name="FORM_NO" value="4">
-                    <div class="button-container">
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
-                    </div>
                 </form>
---%>
             </div>
         </div>
         <script>
