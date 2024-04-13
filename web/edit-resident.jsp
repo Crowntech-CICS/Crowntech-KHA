@@ -16,13 +16,13 @@
         <%            int act = Integer.parseInt(request.getParameter("act"));
             // 1 is add, 2 is edit
         %>
-        <div class="main-body" style="overflow-y: scroll">
+        <div class="main-body">
             <%
                 if (act == 1) {
                     out.println(""
                             + "<div class=\"signup-box-smallest\">"
                             + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
-                            + "<h1 class=\"h1-bold\" id=\"h1small\">Edit Residents</h1>"
+                            + "<h1 class=\"h1-bold\" id=\"h1small\">Add Residents</h1>"
                             + "<div class=\"line\"></div><br>"
                             + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"Last Name\" class=\"form\" required><br>"
                             + "<label for=\"HO_FN_B\">First Name</label><input type=\"text\" name=\"HO_FN_B\" placeholder=\"First Name\" class=\"form\" required><br>"
