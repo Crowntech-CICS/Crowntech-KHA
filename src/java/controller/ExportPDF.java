@@ -20,10 +20,14 @@ import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.io.FileOutputStream;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.UUID;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 /**
@@ -33,6 +37,7 @@ import javax.swing.JFrame;
 public class ExportPDF extends HttpServlet {
 
     Connection con = Login.con;
+    
     public static String emailCreds;
     HttpSession session;
     
@@ -55,6 +60,19 @@ public class ExportPDF extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Establish Connection
+        try {
+            Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
+            String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
+                   password = getServletContext().getInitParameter("dbPassword"),
+                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
+            con = DriverManager.getConnection(driverURL, username, password); //create connection
+        } catch (SQLException sqle) {
+            System.out.println("SQLException error occured - " + sqle.getMessage());
+        } catch (ClassNotFoundException nfe) {
+            System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
+        }
+        
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition","attachment; filename=\"" + createFileName() + "\"");
         
@@ -75,7 +93,21 @@ public class ExportPDF extends HttpServlet {
         finally{
             out.close();
         }
-        response.sendRedirect("/finances.jsp");
+        
+        try {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
+            ps.setString(1, UUID.randomUUID().toString().substring(0,8));
+            ps.setString(2, (String) request.getSession().getAttribute("currID"));
+            ps.setString(3, "Exported Monthly Dues Report.");
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException sqle) {
+            System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+            response.sendError(500);
+        }
+        
+        if(!response.isCommitted())
+            response.sendRedirect("admin/finances.jsp");
     }
     
     private static void addMetaData(Document document) {
