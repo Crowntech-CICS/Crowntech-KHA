@@ -206,7 +206,7 @@
                     Update Balance
                 </button>
             </form>
-            <form>
+            <form action="AddMonthlyDues" method="POST">
                 <button class="button-design" type="submit" style="margin-left: 30%;">
                     Add Monthly Dues
                 </button>
@@ -214,32 +214,33 @@
         </div>
         <script src="scripts/sorttable.js"></script>
         <script>
-                        function openForm() {
-                            document.getElementById("sortForm").style.display = "block";
-                        }
 
-                        function closeForm() {
-                            document.getElementById("sortForm").style.display = "none";
-                        }
+            function openForm() {
+                document.getElementById("sortForm").style.display = "block";
+            }
 
-                        function searchFunc() {
-                            var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("searchWidth");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("displayTable");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[0];
-                                if (td) {
-                                    txtValue = td.textContent || td.innerText;
-                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                        tr[i].style.display = "";
-                                    } else {
-                                        tr[i].style.display = "none";
-                                    }
-                                }
-                            }
+            function closeForm() {
+                document.getElementById("sortForm").style.display = "none";
+            }
+
+            function searchFunc() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchWidth");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("displayTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
                         }
+                    }
+                }
+            }
         </script>
     </body>
 </html>

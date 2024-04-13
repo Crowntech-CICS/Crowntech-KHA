@@ -80,6 +80,10 @@
         <servlet-name>UpdateBalance</servlet-name>
         <servlet-class>controller.UpdateBalance</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMonthlyDues</servlet-name>
+        <servlet-class>controller.AddMonthlyDues</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>UpdateBalance</servlet-name>
         <url-pattern>/UpdateBalance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMonthlyDues</servlet-name>
+        <url-pattern>/AddMonthlyDues</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
