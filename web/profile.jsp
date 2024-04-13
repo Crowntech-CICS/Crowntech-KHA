@@ -124,7 +124,7 @@
                             out.print("<ul>"
                                     + "<li class=\"accordion-content\">" + rsTemp.getString("FIRSTNAME") + " " + rsTemp.getString("MIDDLEINITIAL") + " "
                                     + rsTemp.getString("LASTNAME") + "</li>"
-                                    + "<li class=\"accordion-content\">Relationship: " + rsTemp.getString("RELATIONSHIP") + "</li>"
+                                    + "<li class=\"accordion-content\">Relationship: " + rsTemp.getString("RELATIONSHIP") + "</li><br>"
                                     + "</ul>");
                         }
                         out.print("<br>"
