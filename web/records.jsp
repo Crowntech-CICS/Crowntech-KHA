@@ -206,7 +206,7 @@
                     Update Balance
                 </button>
             </form>
-            <form action="AddMonthlyDues" method="POST">
+            <form action="AddMonthlyDues" method="POST" onsubmit="return confirm('Are you sure you want to add the monthly dues to all records');">
                 <button class="button-design" type="submit" style="margin-left: 30%;">
                     Add Monthly Dues
                 </button>
