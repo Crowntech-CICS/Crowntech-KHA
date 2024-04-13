@@ -54,13 +54,13 @@
                     <tr>
                          <td class="tableContentText">January</td>
                         <td class="tableContentText">$${memPaid[0]}</td>
-                        <td class="tableContentText">$${monPaid}</td>
+                        <td class="tableContentText">$${monPaid[2]}</td>
                         <td class="tableContentText">$${balPaid}</td>
                     </tr>
                     <tr>
                         <td class="tableContentText2">February</td>
                         <td class="tableContentText2">$${memPaid[1]}</td>
-                        <td class="tableContentText2">4200.0</td>
+                        <td class="tableContentText2">$${monPaid[3]}</td>
                         <td class="tableContentText2">1200.0</td>
                     </tr>
                     <tr>

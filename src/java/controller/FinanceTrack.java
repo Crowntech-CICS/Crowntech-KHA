@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.Month;
 
 
 public class FinanceTrack extends HttpServlet {
@@ -66,8 +67,10 @@ public class FinanceTrack extends HttpServlet {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(curDate);
                 double[] totalMA = new double[]{0,0,0,0,0,0,0,0,0,0,0,0};
-                double totalMF = 0;
-                double totalBD = 0;
+                double[] totalMF = new double[]{0,0,0,0,0,0,0,0,0,0,0,0};
+                double[] totalBD = new double[]{0,0,0,0,0,0,0,0,0,0,0,0};
+                int curMonth = cal.get(Calendar.MONTH);
+                
                 
                 //year selector
                 int selYear = cal.get(Calendar.YEAR)+1;
@@ -109,9 +112,23 @@ public class FinanceTrack extends HttpServlet {
                 rs = ps.executeQuery();
                 
                 while(rs.next()){
-                    totalMF = rs.getDouble(1);
+                    totalMF[curMonth] = rs.getDouble(1);
                     
                 }
+                
+                mFQuery = "SELECT\n" +
+"    * FROM FINANCE WHERE FINANCEDATE = ?";
+                ps = con.prepareStatement(mFQuery);
+                String test = String.valueOf(Month.of(3)) + "2024";
+                ps.setString(1,test);
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    totalMF[2] = rs.getDouble(1);
+                    
+                }
+                System.out.println(test);
+                
+                
                 
                 //Balance Dues
                 String bDQuery = "SELECT\n" +
@@ -121,7 +138,7 @@ public class FinanceTrack extends HttpServlet {
                 rs = ps.executeQuery();
                 
                 while(rs.next()){
-                    totalBD = rs.getDouble(1);
+                    totalBD[curMonth] = rs.getDouble(1);
                     
                 }
                 
