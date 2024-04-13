@@ -109,7 +109,6 @@
                             + "</div>"
                             + "</br></br>");
                         }
-                        out.println("/div>");
                     } catch (SQLException sqle) {
                         System.out.println("SQLException IN error occured - " + sqle.getMessage());
                         response.sendError(500);
