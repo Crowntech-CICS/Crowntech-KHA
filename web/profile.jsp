@@ -49,16 +49,13 @@
                     fullName = rs.getString("FIRSTNAME") + " " + rs.getString("MIDDLEINITIAL") + " " + rs.getString("LASTNAME");
                     resClass = rs.getString("RESIDENTCLASS").trim();
                     hoID = rs.getString("HOMEOWNERID");
-                    address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME");
-                    System.out.println("Current Address: " + address);
                 }
                 
-                ps = con.prepareStatement("SELECT HOMEOWNERID FROM USERS WHERE USERID = ?");
-                ps.setString(1, (String) session.getAttribute("currID"));
+                ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
+                ps.setString(1, hoID);
                 rs = ps.executeQuery();
-                String HOID = "";
                 while (rs.next()){
-                    HOID = rs.getString("HOMEOWNERID");
+                    address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " Barangay " + rs.getString("BARANGAY") + " " + rs.getString("CITY") + " " + rs.getString("PROVINCE");
                 }
         %>
         <%@include file="navbar.jsp" %>
@@ -83,7 +80,7 @@
         </div>
         <%
                 ps = con.prepareStatement("SELECT * FROM USERLOT WHERE HOMEOWNERID = ?");
-                ps.setString(1, HOID);
+                ps.setString(1, hoID);
                 rs = ps.executeQuery();
                 out.print("<div class=\"profileLotHolder\">");
                 String propID = "";
