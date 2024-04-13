@@ -151,7 +151,7 @@
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
                         }
                         out.print("<div class=\"button-container\">"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\">Pay Steps</button>"
+                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'payment-help.jsp'\">Pay Steps</button>"
                                 + "</div></ul></li></div></ul>");
                     }
                     rsTemp.close();
