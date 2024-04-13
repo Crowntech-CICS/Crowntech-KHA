@@ -231,7 +231,6 @@ public class UpdateInfo extends HttpServlet {
                         if (vhOwner.trim().equals("")) {
                             vhOwner = rs.getString("REGISTEREDOWNER");
                         }
-                        
                     }
                     PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, BRAND = ?, MODEL = ?, REGISTEREDOWNER = ? WHERE VEHICLEID = ?");
                     psUpdate.setString(1, vhType);
