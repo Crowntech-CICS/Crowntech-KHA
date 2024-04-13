@@ -101,6 +101,12 @@
     margin: 0;
 }
 
+.res-edit-holder {
+    height: 600px;
+    overflow-y: scroll;
+    width: 39%;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* Signup */
@@ -137,7 +143,18 @@
     margin-top: -2%;
 }
 
-.signup-box form, .signup-box-small form, .signup-box-smallest form {
+.signup-box-smallest-res {
+    background-color: #f0f5f3;
+    height: 440px;
+    width: 620px;
+    border-radius: 1.5%;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    margin-top: -2%;
+}
+
+.signup-box form, .signup-box-small form, .signup-box-smallest form, .signup-box-smallest-res form {
     width: 90%;
     position: absolute;
     margin-left: -27.5%;
@@ -322,13 +339,18 @@
         width: 500px;
     }
 
-    
+
     .signup-box-smallest {
         margin-top: -4%;
         height: 420px;
         width: 500px;
     }
-    
+
+    .signup-box-smallest-res {
+        height: 420px;
+        width: 500px;
+    }
+
     #edit-button {
         margin-top: 114%;
     }
@@ -378,6 +400,10 @@
 
     .button-design {
         width: 100px;
+    }
+
+    .res-edit-holder {
+        height: 500px;
     }
 }
 
@@ -436,9 +462,14 @@
         height: 480px;
         width: 400px;
     }
-    
-        .signup-box-smallest {
+
+    .signup-box-smallest {
         margin-top: -6%;
+        height: 300px;
+        width: 400px;
+    }
+
+    .signup-box-smallest-res {
         height: 300px;
         width: 400px;
     }
@@ -499,6 +530,11 @@
     .signup-box, .signup-box-small {
         margin-top: -8%;
     }
+
+    .res-edit-holder {
+        height: 300px;
+        width: 42%;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -535,9 +571,14 @@
         height: 420px;
         width: 340px;
     }
-    
-        .signup-box-smallest {
+
+    .signup-box-smallest {
         margin-top: -10%;
+        height: 280px;
+        width: 340px;
+    }
+
+    .signup-box-smallest-res {
         height: 280px;
         width: 340px;
     }
@@ -608,5 +649,10 @@
 
     .button-design {
         width: 80px;
+    }
+
+    .res-edit-holder {
+        height: 300px;
+        width: 42%;
     }
 }

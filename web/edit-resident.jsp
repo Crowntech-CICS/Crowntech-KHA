@@ -69,10 +69,13 @@
                         ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
                         ps.setString(1, (String) session.getAttribute("currID"));
                         rs = ps.executeQuery();
-                        out.println("<h1 class=\"h1-bold\" id=\"h1small\">Only Edit One at a Time</h1><br><div style=\"height: 700px; overflow-y: scroll; width: 37%;\">");
+                        out.println("<h1 class=\"h1-bold\" id=\"h1smallRes\">Only Edit One at a Time</h1>"
+                        + "<p style=\"color: black\">You may only edit one resident at a time.</p>"
+                        + "<br>"
+                        + "<div class=\"res-edit-holder\">");
                         while (rs.next()) {
                             out.println(""
-                            + "<div class=\"signup-box-smallest\" >"
+                            + "<div class=\"signup-box-smallest-res\" >"
                             + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
                             + "<h1 class=\"h1-bold\" id=\"h1small\">Edit Residents</h1>"
                             + "<div class=\"line\"></div><br>"
