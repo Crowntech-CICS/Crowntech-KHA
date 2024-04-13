@@ -34,6 +34,7 @@ public class ExportPDF extends HttpServlet {
 
     Connection con = Login.con;
     public static String emailCreds;
+    HttpSession session;
     
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -53,6 +54,7 @@ public class ExportPDF extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        this.session = request.getSession();
         
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition","attachment; filename=\"" + createFileName() + "\"");
@@ -83,7 +85,7 @@ public class ExportPDF extends HttpServlet {
         document.addCreator(System.getProperty("user.name"));
     }
     
-    private static void addContent(Document document) throws DocumentException {
+    private void addContent(Document document) throws DocumentException {
         Paragraph preface = new Paragraph();
         
         // We add one empty line
@@ -177,34 +179,42 @@ public class ExportPDF extends HttpServlet {
 
     }
     
-    private static PdfPTable createTable2()
+    private PdfPTable createTable2()
             throws BadElementException{
         PdfPTable table = new PdfPTable(2);
         
-        PdfPCell c1 = new PdfPCell(new Phrase("TOTAL COLLECTED FUNDS"));
+        String hoPaid = session.getAttribute("homeownerPaid").toString();
+        String maPaid = session.getAttribute("membershipPaid").toString();
+        String lotPaid = session.getAttribute("lotPaid").toString();
+        String hoTotal = session.getAttribute("homeownerTotal").toString();
+        String maTotal = session.getAttribute("membershipTotal").toString();
+        String lotTotal = session.getAttribute("lotTotal").toString();
+        
+        
+        PdfPCell c1 = new PdfPCell(new Phrase("NUMBER OF PAID HOMEOWNERS"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         c1.setBackgroundColor(cellColor);
         table.addCell(c1);
         
-        c1 = new PdfPCell(new Phrase(""));
+        c1 = new PdfPCell(new Phrase(hoPaid +" / "+ hoTotal));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
         
-        c1 = new PdfPCell(new Phrase("TOTAL ESTIMATED"));
+        c1 = new PdfPCell(new Phrase("NUMBER OF PAID MEMBERSHIPS"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         c1.setBackgroundColor(cellColor2);
         table.addCell(c1);
         
-        c1 = new PdfPCell(new Phrase(""));
+        c1 = new PdfPCell(new Phrase(maPaid +" / "+ maTotal));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
         
-        c1 = new PdfPCell(new Phrase("TOTAL UNCOLLECTED FUNDS"));
+        c1 = new PdfPCell(new Phrase("NUMBER OF PAID LOTS"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         c1.setBackgroundColor(cellColor3);
         table.addCell(c1);
         
-        c1 = new PdfPCell(new Phrase(""));
+        c1 = new PdfPCell(new Phrase(lotPaid +" / "+ lotTotal));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
         
