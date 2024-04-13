@@ -24,7 +24,13 @@
             <%@include file="navbar.jsp" %>
             <div class="main-body">
                 <div class="createacc-box">
-                    <h1 class="h1-bold">Create Account</h1>
+                    <h1 class="h1-bold">Create Account</h1><%
+            if (session.getAttribute("message") != null) {
+        %>
+        <h1 class="h1-bold">${message}</h1>
+        <%
+            }
+        %>
                     <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
                         <div class="tableContain"> <%--dito yun table--%> 
                             <table class="tableContent" id="createAccWidth"> 
@@ -72,7 +78,7 @@
                         <br>
                         <div class="button-container">
                             <button type="submit" class="button-design">Create</button>
-                            <button class="button-design-reject">Cancel</button>
+                            <button type="button" onclick="window.history.back();" class="button-design-reject">Cancel</button>
                         </div>
                     </form>
                 </div>
