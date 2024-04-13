@@ -212,6 +212,21 @@ input:focus {
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
+.button-year-design {
+    height: 52px;
+    width: 280px;
+    background: #48a37d;
+    border-radius: 50px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-family: 'Inter';
+    text-align: center;
+    display: inline-block;
+    transition: background 0.2s ease-out;
+    border: none;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
 .button-design-small{
     height: 52px;
     width: 150px;
@@ -247,11 +262,20 @@ input:focus {
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
-.button-design:hover, .button-design-small:hover {
+.button-design:hover, .button-design-small:hover, .button-year-design:hover {
     background-color: #ffffff;
     color: #48a37d;
     border-color: #48a37d;
     border: solid 2px;
+}
+
+.button-year-design:after {
+    border: none;
+}
+
+.button-year-design option {
+    color: #48a37d;
+    background-color: white;
 }
 
 .button-design-reject:hover {
@@ -343,10 +367,10 @@ input:focus {
     h1, #h1small, #h1smallRes {
         font-size: 40px;
     }
-    
+
     #h1smallRes {
-    margin-top: -5%;
-}
+        margin-top: -5%;
+    }
 
     .h1-bold, .h1-bold-error, .h1-bold-error-bigger {
         margin-top: 5px;
@@ -358,9 +382,13 @@ input:focus {
         font-weight: 200;
     }
 
-    .button-design, .button-design-reject{
+    .button-design, .button-design-reject, .button-year-design{
         height: 52px;
         width: 200px;
+    }
+
+    .button-year-design {
+        margin-top: -25%;
     }
 
     #button-small {
@@ -372,12 +400,12 @@ input:focus {
     h1, #h1small, #h1smallRes {
         font-size: 30px;
     }
-    
-        #h1smallRes {
-    margin-top: -7%;
-        }
 
-    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box {
+    #h1smallRes {
+        margin-top: -7%;
+    }
+
+    h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box, .button-year-design {
         font-size: 16px;
     }
 
@@ -391,10 +419,10 @@ input:focus {
     h1, #h1small, #h1smallRes {
         font-size: 20px;
     }
-    
-            #h1smallRes {
-    margin-top: -6%;
-            }
+
+    #h1smallRes {
+        margin-top: -6%;
+    }
 
     .h1-bold, .h1-bold-error, .h1-bold-error-bigger, #indexWelcome {
         -webkit-text-stroke-width: 0px;
@@ -404,9 +432,13 @@ input:focus {
         font-size: 14px;
     }
 
-    .button-design, .button-design-reject{
+    .button-design, .button-design-reject, .button-year-design{
         height: 30px;
         width: 140px;
+    }
+
+    .button-year-design {
+        margin-top: -10%;
     }
 
     #button-small {
@@ -437,10 +469,10 @@ input:focus {
     h1, #h1small, #h1smallRes {
         font-size: 12px;
     }
-    
-                    #h1smallRes {
-    margin-top: -10%;
-            }
+
+    #h1smallRes {
+        margin-top: -10%;
+    }
 
     h2, .h2-bold, label, p, .button-design, .button-design-reject, .sortSearch, .select-box  {
         font-size: 10px;
@@ -453,5 +485,9 @@ input:focus {
 
     #button-small {
         width: 80px;
+    }
+
+    .button-year-design {
+        margin-bottom: -10%;
     }
 }

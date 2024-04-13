@@ -22,7 +22,6 @@
     margin: auto;
     border-collapse: collapse;
     font-size: 20px;
-    min-width: 400px;
     width: 90%;
     border: 2px solid #377d60;
     border-radius: 0.2%;
@@ -30,20 +29,20 @@
 }
 
 .financeHolder {
-    margin: auto; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    max-height: 80%; 
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 80%;
     max-width: 78%
 }
 
 .recordsHolder {
-    margin: auto; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    max-height: 80%; 
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 80%;
     max-width: 84%
 }
 
@@ -53,12 +52,12 @@
 }
 
 #financesLeft {
-    width: 60%;
+    width: 70%;
     height: 100%;
 }
 
 #financesRight {
-    margin-left: 3%;
+    margin-left: 1%;
     width: 20%;
     height: 120%;
 }
@@ -75,9 +74,9 @@
 }
 
 th, td {
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .tableTitle {
@@ -158,6 +157,12 @@ tbody {
     font-family: Roboto;
 }
 
+.financeButtonSpacing {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Responsiveness */
 
@@ -165,25 +170,25 @@ tbody {
     .createacc-box {
         height: 380px;
     }
-    
+
     .financesP {
         font-size: 40px;
     }
-    
+
     #financesLeft {
-        width: 50%;
+        width: 70%;
         height: 80%;
     }
-    
+
     #financesRight {
         margin-left: 2%;
         width: 18%;
     }
-    
+
     .tableContentText, .tableContentText2 {
         height: 34px;
     }
-    
+
     .tableContentText3, .tableContentText4, .tableContentText5 {
         height: 128px;
     }
@@ -194,36 +199,45 @@ tbody {
         height: 300px;
         margin-top: -1.5%;
     }
-    
+
     .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
-        font-size: 16px;
+        font-size: 14px;
     }
-    
+
     .financesP {
         font-size: 30px;
+    }
+
+    #financesLeft {
+        width: 80%;
+        height: 80%;
     }
 }
 
 @media only screen and (max-width: 1200px) {
-    
+
     .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
-        font-size: 14px;
+        font-size: 12px;
     }
-    
+
     .financeHolder {
         max-width: 50%;
     }
-    
+
     .financesP {
         font-size: 20px;
     }
-    
+
     .tableContentText, .tableContentText2 {
-        height: 30px;
+        height: 25px;
     }
-    
+
     .tableContentText3, .tableContentText4, .tableContentText5 {
         height: 100px;
+    }
+
+    .financeButtonSpacing {
+        margin-top: -2%;
     }
 }
 
@@ -231,35 +245,39 @@ tbody {
     .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
         font-size: 12px;
     }
-    
+
     .financesP {
         font-size: 14px;
     }
-    
+
     .tableContentText, .tableContentText2 {
         height: 10px;
     }
-    
+
     .tableContentText3, .tableContentText4, .tableContentText5 {
         height: 60px
     }
-    
+
     #financesRight {
         width: 20px;
     }
 }
 
 @media only screen and (max-width: 900px) {
-    
+
     .createacc-box {
         height: 250px;
     }
-    
+
     .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
         font-size: 10px;
     }
-    
+
     .financesP {
         font-size: 12px;
+    }
+
+    .financeButtonSpacing {
+        margin-top: -4%;
     }
 }

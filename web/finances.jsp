@@ -25,10 +25,18 @@
     <body>
         <%@include file="navbar.jsp" %>
         <br><br><br><br><br><br>
-        <div>
-            <form class="sortSearch" action="" style="margin:auto; margin-top: 5px; max-width: 1800px;">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="financeButtonSpacing">
+            <form action="SortHandler" method="POST" style='display: inline-block;'>
+                <select name="area" class="button-year-design">
+                    <option value="null">Select Year</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                </select>
             </form>
         </div>
         <br>
