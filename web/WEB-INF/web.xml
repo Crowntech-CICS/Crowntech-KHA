@@ -67,6 +67,14 @@
     <servlet>
         <servlet-name>UpdateInfo</servlet-name>
         <servlet-class>controller.UpdateInfo</servlet-class>
+    <servlet>
+        <servlet-name>CreateAcc</servlet-name>
+        <servlet-class>controller.CreateAcc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinanceTrack</servlet-name>
+        <servlet-class>controller.FinanceTrack</servlet-class>
+    </servlet>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
