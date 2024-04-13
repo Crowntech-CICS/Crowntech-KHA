@@ -2,14 +2,12 @@ package controller;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.Calendar;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 
 public class FinanceTrack extends HttpServlet {
@@ -59,51 +57,7 @@ public class FinanceTrack extends HttpServlet {
 
         }
             try {
-                
                 String hoQuery = "SELECT PAID FROM HOMEOWNER";
-		String maQuery = "SELECT PAID FROM KHAMEMBERSHIP";
-		String lotQuery = "SELECT PAID FROM USERLOT";
-                
-                
-                //static variables
-                long millis = System.currentTimeMillis();
-                Date curDate = new Date(millis);
-                Date payDate;
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(curDate);
-                int[] totalMA = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
-                int[] curMonth = new int[]{0,1,2,3,4,5,6,7,8,9,10,11};
-                
-                //year selector
-                int selYear = cal.get(Calendar.YEAR);
-                
-                
-                //KHA Membership
-                String aFQuery = "SELECT * FROM KHAMEMBERSHIP WHERE PAID='TRUE'";
-                ps = con.prepareStatement(aFQuery);
-                rs = ps.executeQuery();
-                int payMonth;
-                int payYear;
-                
-                while(rs.next()){
-                    payDate = rs.getDate("PAYMENTDATE");
-                    cal.setTime(payDate);
-                    payMonth = cal.get(Calendar.MONTH);
-                    payYear = cal.get(Calendar.YEAR);
-                    for(int i=0;i<12;i++){
-                    if(curMonth[i] == payMonth && selYear == payYear){
-                        totalMA[i] +=5000;
-                    }
-                    
-                    }
-                    
-                }
-                
-                
-                
-                
-                
-                
                 ps = con.prepareStatement(hoQuery);
                 rs = ps.executeQuery();
 				while(rs.next()) {
@@ -113,6 +67,7 @@ public class FinanceTrack extends HttpServlet {
 						hoPaid++;
 				}
 		
+		String maQuery = "SELECT PAID FROM KHAMEMBERSHIP";
                 ps2 = con.prepareStatement(maQuery);
                 rs2 = ps2.executeQuery();
 				while(rs2.next()) {
@@ -121,6 +76,7 @@ public class FinanceTrack extends HttpServlet {
 					if (paid)
 						maPaid++;
 				}
+		String lotQuery = "SELECT PAID FROM USERLOT";
                 ps3 = con.prepareStatement(lotQuery);
                 rs3 = ps3.executeQuery();
                                 while (rs3.next()) {
@@ -136,13 +92,11 @@ public class FinanceTrack extends HttpServlet {
                 session.setAttribute("membershipTotal",maTotal);
                 session.setAttribute("lotPaid",lotPaid);
                 session.setAttribute("lotTotal",lotTotal);
-                session.setAttribute("memPaid", totalMA);
                 response.sendRedirect("finances.jsp");
                 //request.getRequestDispatcher("finances.jsp").forward(request,response);              
             }
             catch (SQLException ex) {
                 System.out.println("The specified query could not be performed.");
-                System.out.println(ex);
             }
 			 finally {
             try {
