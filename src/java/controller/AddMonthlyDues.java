@@ -6,10 +6,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class AddMonthlyDues extends HttpServlet {
 
@@ -28,9 +30,12 @@ public class AddMonthlyDues extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String loggedInUser = (String) session.getAttribute("currID");
         double monthlyDue = 300.00;
         double balance = 0.0;
         boolean paid = false;
+        System.out.println("--[ADD DUES]------------------------------------------------------");
         //Connect to DB
         try {
                 Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
@@ -48,10 +53,8 @@ public class AddMonthlyDues extends HttpServlet {
             ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM HOMEOWNER");
             rs = ps.executeQuery();
             while(rs.next()){
-                System.out.println("HID: " + rs.getString("HOMEOWNERID"));
-                System.out.println("OLDBAL: " + rs.getDouble("BALANCE"));
                 balance = rs.getDouble("BALANCE") + monthlyDue;
-                System.out.println("NEWBAL: " + balance);
+                System.out.println("HID: " + rs.getString("HOMEOWNERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
                 ps = con.prepareStatement("UPDATE HOMEOWNER SET BALANCE = ?, PAID = ? WHERE HOMEOWNERID = ?");
                 ps.setDouble(1, balance);
                 ps.setBoolean(2, paid);
@@ -59,6 +62,13 @@ public class AddMonthlyDues extends HttpServlet {
                 ps.executeUpdate();
             }
             System.out.println("SUCCESSFULLY ADDED MONTHLY DUES TO ALL HOMEOWNERS.");
+            System.out.println("Logged In user: " + loggedInUser);
+            System.out.println("------------------------------------------------------------------------");
+            ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
+            ps.setString(1, UUID.randomUUID().toString().substring(0,8));
+            ps.setString(2, loggedInUser);
+            ps.setString(3, "Added monthly dues to all existing balances.");
+            ps.executeUpdate();
             if(!response.isCommitted())
                 response.sendRedirect("records.jsp");
         } catch(SQLException sqle){

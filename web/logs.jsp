@@ -12,6 +12,22 @@
         response.sendRedirect("index.jsp");
     }
 %>
+<%
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    try {
+        Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
+        String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
+                password = getServletContext().getInitParameter("dbPassword"),
+                driverURL = getServletContext().getInitParameter("jdbcDriverURL");
+        con = DriverManager.getConnection(driverURL, username, password); //create connection
+    } catch (SQLException sqle) {
+        System.out.println("SQLException error occured - " + sqle.getMessage());
+    } catch (ClassNotFoundException nfe) {
+        System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
+    }
+%>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -43,48 +59,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText">Month</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText2">Month</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                        <td class="tableContentText2">$$</td>
-                    </tr>
-                    <tr>
-                        <td class="tableContentText">Total Funds</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                        <td class="tableContentText">$$</td>
-                    </tr>
+                <%
+                    int oddEven = 0;
+                    ps = con.prepareStatement("SELECT u.FIRSTNAME||u.LASTNAME AS \"NAME\",l.\"ACTION\",l.\"TIME\",l.\"DATE\" FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
+                    rs = ps.executeQuery();
+                    while(rs.next()){ 
+                        if((oddEven % 2) == 0){
+                %>
+                        <tr>
+                            <td class="tableContentText"><%= rs.getString("NAME")%></td>
+                            <td class="tableContentText"><%= rs.getString("ACTION")%></td>
+                            <td class="tableContentText"><%= rs.getTime("TIME").toString() %></td>
+                            <td class="tableContentText"><%= rs.getDate("DATE").toString() %></td>
+                        </tr>
+                <%    
+                        } else { 
+                %>
+                        <tr>
+                            <td class="tableContentText2"><%= rs.getString("NAME")%></td>
+                            <td class="tableContentText2"><%= rs.getString("ACTION")%></td>
+                            <td class="tableContentText2"><%= rs.getTime("TIME").toString() %></td>
+                            <td class="tableContentText2"><%= rs.getDate("DATE").toString() %></td>
+                        </tr>
+                <%    
+                        }
+                    }
+                %>
                 </tbody>
             </table>
         </div>

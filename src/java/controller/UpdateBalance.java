@@ -1,12 +1,12 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +29,7 @@ public class UpdateBalance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("--[UPD BAL]-------------------------------------------------------------");
         String userId = "";
         String lastname = request.getParameter("HO_LN_B").toLowerCase().trim();
         String firstname = request.getParameter("HO_FN_B").toLowerCase().trim();
@@ -69,10 +70,20 @@ public class UpdateBalance extends HttpServlet {
                 ps.setString(3, userId);
                 ps.executeUpdate();
                 System.out.println("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
+                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
+                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
+                ps.setString(2, (String) request.getSession().getAttribute("currID"));
+                ps.setString(3, "Updated payment of " + payment + " by " + lastname + "," + firstname);
+                ps.executeUpdate();
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             } else {
                 System.out.println("NO BALANCE FOUND.");
+                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
+                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
+                ps.setString(2, (String) request.getSession().getAttribute("currID"));
+                ps.setString(3, "Failed to update payment of " + payment + " by " + lastname + "," + firstname);
+                ps.executeUpdate();
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             }
