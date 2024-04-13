@@ -99,6 +99,12 @@ public class FinanceTrack extends HttpServlet {
                     
                 }
                 
+                //Homeowner Fees
+                
+                
+                //Balance Dues
+                
+                
                 
                 
                 
