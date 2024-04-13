@@ -30,23 +30,24 @@
                             <table class="tableContent"> 
                                 <thead>
                                     <tr>
-                                        <th class="tableTitle">Name</th>
+                                        <th class="tableTitle">Last Name</th>
+                                        <th class="tableTitle">First Name</th>
                                         <th class="tableTitle">Role</th>
                                         <th class="tableTitle">Email</th>
                                         <th class="tableTitle">Password</th>
                                         <th class="tableTitle">OR Number</th>
-                                        <th class="tableTitle">OR Number</th>
+                                        <th class="tableTitle">Date Registered</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="username" class="tableContentText" placeholder="Insert name here..."></td>
+                                        <td><input type="text" name="lastname" class="tableContentText" placeholder="Insert name here..."></td>
+                                        <td><input type="text" name="firstname" class="tableContentText" placeholder="Insert name here..."></td>
                                         <td>
                                             <select name="userrole" class="select-box">
-                                                <option value="null">-----</option>
                                                 <option value="Homeowner">Homeowner</option>
                                                 <option value="Resident">Resident</option>
-                                                <option value="Staff">Staff</option>
+                                                <option value="Staff" default>Staff</option>
                                             </select>
                                         </td>
                                         <td><input type="text" name="email" class="tableContentText" placeholder="Insert email here..."></td>
