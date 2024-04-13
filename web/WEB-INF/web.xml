@@ -76,6 +76,10 @@
         <servlet-name>FinanceTrack</servlet-name>
         <servlet-class>controller.FinanceTrack</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBalance</servlet-name>
+        <servlet-class>controller.UpdateBalance</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>UpdateInfo</servlet-name>
         <url-pattern>/UpdateInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBalance</servlet-name>
+        <url-pattern>/UpdateBalance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
