@@ -58,7 +58,7 @@ public class CreateAcc extends HttpServlet {
                 String NewPass = (String) request.getParameter("password");
                 String NewRole = (String) request.getParameter("userrole"); // Roles are Homeowner, Resident, Staff
                 String EncryptPass = model.Encryption.encrypt(NewPass, encrpytKey, cipher);
-                HttpSession currentUser = request.getSession();
+                HttpSession session = request.getSession();
                 String dbQuery;
                 boolean uniqueUserID = false;
                 boolean uniqueHomeownerID = false;
@@ -157,6 +157,7 @@ public class CreateAcc extends HttpServlet {
                 row = ps.executeUpdate(); //Create in USERS DB
                     if (row != 0) {                    
                         System.out.println("User Created");
+                        
                     }
                      else {
                          response.sendError(500);
@@ -177,7 +178,9 @@ public class CreateAcc extends HttpServlet {
                 
                      if (row != 0) {
                          System.out.println("Login Created");
-                         response.sendRedirect("createacc.jsp");
+                         
+                         session.setAttribute("message","User Created!!");
+                         request.getRequestDispatcher("createacc.jsp").forward(request,response);       
                     }
                      else {
                          response.sendError(500);
