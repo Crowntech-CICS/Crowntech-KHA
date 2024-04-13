@@ -38,6 +38,7 @@
             String addQuery = null;
             String[] hold = null;
             String resClass = null;
+            double balance = 0;
             addQuery = request.getParameter("find");
 
             System.out.println("Parameter gotten: " + addQuery); // shows parameter gotten
@@ -154,7 +155,7 @@
                                                 numDB = rs.getString("MOBILENO").trim(),
                                         //        statDB = "Homeowner",
                                                 paidDB = rs.getString("PAID").trim();
-
+                                                balance = rs.getDouble("BALANCE");
                                         if (paidDB.equals("true")) {
                                             paidDB = "Paid";
                                         } else if (paidDB.equals("false")) {
@@ -165,8 +166,8 @@
                                         out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                         out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                        out.print("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
-                                        out.println("<td class=\"tableContentText\">" + paidDB + "</td></tr>");
+                                        out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
+                                        out.println("<td class=\"tableContentText\">" + balance + "</td></tr>");
                                     }
                                 }
                             }

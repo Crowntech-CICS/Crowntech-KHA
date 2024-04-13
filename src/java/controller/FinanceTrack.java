@@ -92,7 +92,8 @@ public class FinanceTrack extends HttpServlet {
                 session.setAttribute("membershipTotal",maTotal);
                 session.setAttribute("lotPaid",lotPaid);
                 session.setAttribute("lotTotal",lotTotal);
-                request.getRequestDispatcher("finances.jsp").forward(request,response);              
+                response.sendRedirect("finances.jsp");
+                //request.getRequestDispatcher("finances.jsp").forward(request,response);              
             }
             catch (SQLException ex) {
                 System.out.println("The specified query could not be performed.");
