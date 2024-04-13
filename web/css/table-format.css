@@ -1,6 +1,6 @@
 .createacc-box {
     background-color: #f0f5f3;
-    height: 320px;
+    height: 450px;
     width: 70%;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -163,7 +163,7 @@ tbody {
 
 @media only screen and (max-width: 1600px) {
     .createacc-box {
-        height: 260px;
+        height: 380px;
     }
     
     .financesP {
@@ -191,7 +191,7 @@ tbody {
 
 @media only screen and (max-width: 1400px) {
     .createacc-box {
-        height: 180px;
+        height: 300px;
         margin-top: -1.5%;
     }
     
@@ -252,7 +252,7 @@ tbody {
 @media only screen and (max-width: 900px) {
     
     .createacc-box {
-        height: 160px;
+        height: 250px;
     }
     
     .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {

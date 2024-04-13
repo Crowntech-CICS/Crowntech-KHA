@@ -27,16 +27,13 @@
                     <h1 class="h1-bold">Create Account</h1>
                     <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
                         <div class="tableContain"> <%--dito yun table--%> 
-                            <table class="tableContent"> 
+                            <table class="tableContent" id="createAccWidth"> 
                                 <thead>
                                     <tr>
                                         <th class="tableTitle">Last Name</th>
                                         <th class="tableTitle">First Name</th>
                                         <th class="tableTitle">Role</th>
                                         <th class="tableTitle">Email</th>
-                                        <th class="tableTitle">Password</th>
-                                        <th class="tableTitle">OR Number</th>
-                                        <th class="tableTitle">Date Registered</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,9 +48,23 @@
                                             </select>
                                         </td>
                                         <td><input type="text" name="email" class="tableContentText" placeholder="Insert email here..."></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br><br>
+                            <table class="tableContent">
+                                <thead>
+                                    <tr>
+                                        <th class="tableTitle">Password</th>
+                                        <th class="tableTitle">OR Number</th>
+                                        <th class="tableTitle">Date Registered</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
                                         <td><input type="text" name="password" class="tableContentText" placeholder="Insert password here..."></td>
-                                        <td><input type="text" name="ornum" class="tableContentText" placeholder="Insert OR number of Homeowner here..."></td>
-                                        <td><input type="date" name="dateoccupied" class="tableContentText" placeholder="Insert Date Occupied here..."></td>
+                                        <td><input type="text" name="ornum" class="tableContentText" placeholder="Insert OR number here..."></td>
+                                        <td><input type="date" name="dateoccupied" class="tableContentText"></td>
                                     </tr>
                                 </tbody>
                             </table>
