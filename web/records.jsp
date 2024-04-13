@@ -197,13 +197,18 @@
         <br><br>
         <div class="button-container">
             <form>
-                <button class="button-design" type="submit">
+                <button class="button-design" type="submit" style="margin-left: -10%">
                     Update Record
                 </button>
             </form>
             <form action="update-balance.jsp">
-                <button class="button-design" type="submit" style="margin-left: 20%;">
+                <button class="button-design" type="submit" style="margin-left: 10%;">
                     Update Balance
+                </button>
+            </form>
+            <form>
+                <button class="button-design" type="submit" style="margin-left: 30%;">
+                    Add Monthly Dues
                 </button>
             </form>
         </div>
