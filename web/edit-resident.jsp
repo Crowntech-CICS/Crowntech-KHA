@@ -70,16 +70,16 @@
                         rs = ps.executeQuery();
                         while (rs.next()) {
                             out.println(""
-                            + "<div class=\"signup-box-smallest\">"
-                            + "<form style=\"left: 32.5%;\">"
+                            + "<div class=\"signup-box-smallest\" >"
+                            + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
                             + "<h1 class=\"h1-bold\" id=\"h1small\">Edit Residents</h1>"
                             + "<div class=\"line\"></div><br>"
-                            + "<label for=\"HO_LN_C\">Last Name</label><input type=\"text\" name=\"HO_LN_C\" placeholder=\"" + rs.getString("LASTNAME") + "\"class=\"form\" required><br>"
-                            + "<label for=\"HO_FN_C\">First Name</label><input type=\"text\" name=\"HO_FN_C\" placeholder=\"" + rs.getString("FIRSTNAME") + "\"class=\"form\" required><br>"
-                            + "<label for=\"HO_MI_C\" id=\"label-margin\">Middle Initial</label><br>"
-                            + "<input type=\"text\" name=\"HO_MI_C\" placeholder=\"" + rs.getString("MIDDLEINITIAL") + "\"class=\"form-small\" id=\"form-margin\" required><br>"
-                            + "<label for=\"RES_REL_C\">Relationship with Resident</label>"
-                            + "<select name=\"RES_REL_C\" class=\"form\" required>"
+                            + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"" + rs.getString("LASTNAME") + "\"class=\"form\"><br>"
+                            + "<label for=\"HO_FN_B\">First Name</label><input type=\"text\" name=\"HO_FN_B\" placeholder=\"" + rs.getString("FIRSTNAME") + "\"class=\"form\"><br>"
+                            + "<label for=\"HO_MI_B\" id=\"label-margin\">Middle Initial</label><br>"
+                            + "<input type=\"text\" name=\"HO_MI_B\" placeholder=\"" + rs.getString("MIDDLEINITIAL") + "\"class=\"form-small\" id=\"form-margin\"><br>"
+                            + "<label for=\"RES_REL\">Relationship with Resident</label>"
+                            + "<select name=\"RES_REL\" class=\"form\">"
                             + "<option value=\"\" selected></option>"
                             + "<option value=\"Spouse\">Spouse</option>"
                             + "<option value=\"Child\">Child</option>"
@@ -91,13 +91,18 @@
                             + "</select>"
                             + "<br>"
                             + "<input type=\"hidden\" name=\"FORM_NO\" value=\"7\">"
-                            + "<input type=\"hidden\" name=\"UOTHER_ID_C\" value=\"" + rs.getString("USERID") + "\">"
+                            + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + rs.getString("USERID") + "\">"
+                            + "<input type=\"hidden\" name=\"HO_LN_C\" value=\"" + rs.getString("LASTNAME") + "\">"
+                            + "<input type=\"hidden\" name=\"HO_FN_C\" value=\"" + rs.getString("FIRSTNAME") + "\">"
+                            + "<input type=\"hidden\" name=\"HO_MI_C\" value=\"" + rs.getString("MIDDLEINITIAL") + "\">"
+                            + "<input type=\"hidden\" name=\"RES_REL_C\" value=\"" + rs.getString("RELATIONSHIP") + "\">"
                             + "<div class=\"button-container\">"
                             + "<input class=\"button-design\" type=\"submit\" value=\"Save\" id=\"button-small\" style=\"margin-right: 10%;\">"
                             + "<input class=\"button-design-reject\" value=\"Cancel\" id=\"button-small\" onclick=\"location.href = 'profile.jsp'\">"
                             + "</div>"
                             + "</form>"
-                            + "</div>");
+                            + "</div>"
+                            + "</br></br></br></br></br>");
                         }
                     } catch (SQLException sqle) {
                         System.out.println("SQLException IN error occured - " + sqle.getMessage());

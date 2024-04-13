@@ -8,6 +8,7 @@ import static controller.Login.con;
 import static controller.Login.ps;
 import static controller.Login.rs;
 import java.io.*;
+import java.util.*;
 import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,11 +25,7 @@ public class UpdateInfo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String[] lnC = request.getParameterValues("HO_LN_C"),
-                fnC = request.getParameterValues("HO_FN_C"),
-                miC = request.getParameterValues("HO_MI_C"),
-                otherIDC = request.getParameterValues("UOTHER_ID_C"),
-                resRelC = request.getParameterValues("RES_REL_C");
+
         String lastName = request.getParameter("HO_LN"),
                 firstName = request.getParameter("HO_FN"),
                 middleIni = request.getParameter("HO_MI"),
@@ -48,6 +45,10 @@ public class UpdateInfo extends HttpServlet {
                 miB = request.getParameter("HO_MI_B"),
                 otherID = request.getParameter("UOTHER_ID"),
                 resRel = request.getParameter("RES_REL"),
+                lnC = request.getParameter("HO_LN_C"),
+                fnC = request.getParameter("HO_FN_C"),
+                miC = request.getParameter("HO_MI_C"),
+                resRelC = request.getParameter("RES_REL_C"),
                 titleNo = request.getParameter("TIT_NUM"),
                 surNum = request.getParameter("TIT_SURNUM"),
                 lotNum = request.getParameter("TIT_LOTNUM"),
@@ -65,8 +66,9 @@ public class UpdateInfo extends HttpServlet {
                 vhModel = request.getParameter("VEH_MODEL"),
                 vhOwner = request.getParameter("VEH_OWNER");
         int page = 0;
-        if(request.getParameter("FORM_NO") != null)
+        if (request.getParameter("FORM_NO") != null) {
             page = Integer.parseInt(request.getParameter("FORM_NO"));
+        }
         String HOID = "";
         try {
             Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
@@ -216,19 +218,20 @@ public class UpdateInfo extends HttpServlet {
                     ps = con.prepareStatement("SELECT * FROM VEHICLE WHERE VEHICLEID = ?");
                     ps.setString(1, vhID);
                     rs = ps.executeQuery();
-                    while(rs.next()){
-                        if(vhType.trim().equals("")) {
+                    while (rs.next()) {
+                        if (vhType.trim().equals("")) {
                             vhType = rs.getString("TYPE");
                         }
-                        if(vhBrand.trim().equals("")) {
+                        if (vhBrand.trim().equals("")) {
                             vhBrand = rs.getString("BRAND");
                         }
-                        if(vhModel.trim().equals("")) {
+                        if (vhModel.trim().equals("")) {
                             vhModel = rs.getString("MODEL");
                         }
-                        if(vhOwner.trim().equals("")) {
+                        if (vhOwner.trim().equals("")) {
                             vhOwner = rs.getString("REGISTEREDOWNER");
                         }
+                        
                     }
                     PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, BRAND = ?, MODEL = ?, REGISTEREDOWNER = ? WHERE VEHICLEID = ?");
                     psUpdate.setString(1, vhType);
@@ -238,14 +241,32 @@ public class UpdateInfo extends HttpServlet {
                     psUpdate.setString(5, vhID);
                     psUpdate.executeUpdate();
                     break;
-                case 7: // updates the current other users
-                    // p7Inputs = {otherID, lnB, fnB, miB, resRel};
-                    ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE USERID = ?");
-                    ps.setString(1, otherID);
-                    rs = ps.executeQuery();
-                    while(rs.next()) {
-                        
+                case 7: // updates the current other users (residents)
+                    // p7Inputs = {otherID, lnB, fnB, miB, resRel, lnC, fnC, miC, resRelC}
+                    if (lnB.trim().equals("")) {
+                        lnB = lnC;
                     }
+                    if (fnB.trim().equals("")) {
+                        fnB = fnC;
+                    }
+                    if (miB.trim().equals("")) {
+                        miB = miC;
+                    }
+                    if (resRel.trim().equals("")) {
+                        resRel = resRelC;
+                    }
+                    psUpdate = con.prepareStatement("UPDATE USEROTHER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, RELATIONSHIP = ? WHERE USERID = ? AND LASTNAME = ? AND FIRSTNAME = ? AND MIDDLEINITIAL = ? AND RELATIONSHIP = ?");
+                    psUpdate.setString(1, lnB);
+                    psUpdate.setString(2, fnB);
+                    psUpdate.setString(3, miB);
+                    psUpdate.setString(4, resRel);
+                    psUpdate.setString(5, otherID);
+                    psUpdate.setString(6, lnC);
+                    psUpdate.setString(7, fnC);
+                    psUpdate.setString(8, miC);
+                    psUpdate.setString(9, resRelC);
+                    psUpdate.executeUpdate();
+                    
                     break;
                 default:
                     response.sendRedirect("edit-homeowners.jsp");
@@ -271,7 +292,7 @@ public class UpdateInfo extends HttpServlet {
                 response.sendError(500);
             }
         }
-        response.sendRedirect("edit-homeowners.jsp");
+        response.sendRedirect("profile.jsp");
     }
 
     @Override
