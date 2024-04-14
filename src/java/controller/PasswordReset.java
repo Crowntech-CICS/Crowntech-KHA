@@ -129,8 +129,8 @@ public class PasswordReset extends HttpServlet {
         //Sender Email and Contents
         String from = "crowntech.cics@gmail.com";
         String password = "cyke ikhz lvhg kzkf";
-        //String to = userEmail; //Send to user's email
-        String to = "UR EMAIL HERE"; //CHANGE TO UR EMAIL WHILE TESTING
+        String to = userEmail; //Send to user's email
+        //String to = "UR EMAIL HERE"; //CHANGE TO UR EMAIL WHILE TESTING
         String subject = "Reset your KHA Account Password " + fullName;
         String message = createEmail(url);
              
