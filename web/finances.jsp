@@ -119,4 +119,9 @@
             </form>
         </div>
     </body>
+    <script>
+        window.onload = function() {
+            form1.year.value = new URLSearchParams(window.location.search).get('year');
+        }
+    </script>
 </html>

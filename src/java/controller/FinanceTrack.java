@@ -256,7 +256,7 @@ public class FinanceTrack extends HttpServlet {
             session.setAttribute("memPaid", totalMA);
             session.setAttribute("monPaid", totalMF);
             session.setAttribute("balPaid", totalBD);
-            response.sendRedirect("finances.jsp");
+            response.sendRedirect("finances.jsp?year=" + selYear);
             //request.getRequestDispatcher("finances.jsp").forward(request,response);              
         } catch (SQLException ex) {
             System.out.println(ex);
