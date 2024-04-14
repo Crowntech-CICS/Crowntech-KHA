@@ -42,6 +42,7 @@
                             + "</select>"
                             + "<br>"
                             + "<input type=\"hidden\" name=\"FORM_NO\" value=\"3\">"
+                            + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + (String) request.getParameter("pID") + "\">"
                             + "<div class=\"button-container\">"
                             + "<input class=\"button-design\" type=\"submit\" value=\"Save\" id=\"button-small\" style=\"margin-right: 10%;\">"
                             + "<input class=\"button-design-reject\" value=\"Cancel\" id=\"button-small\" onclick=\"location.href = 'profile.jsp'\">"

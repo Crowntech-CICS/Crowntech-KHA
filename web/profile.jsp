@@ -137,7 +137,7 @@
                         }
                         out.print("<br>"
                                 + "<div class=\"d-flex main justify-content-between\">"
-                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=1'\">Add</button>"
+                                + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=1&pID=" + propID + "'\">Add</button>"
                                 + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'edit-resident.jsp?act=2&pID=" + propID + "'\">Edit</button>"
                                 + "</div>"
                                 + "</li>"

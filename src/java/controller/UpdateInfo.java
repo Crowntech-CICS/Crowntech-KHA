@@ -198,10 +198,10 @@ public class UpdateInfo extends HttpServlet {
                     }
                     break;
                 case 3: // Page 3 of Update Form (Add more Users)
-                    // p3Inputs = {lnB, fnB, miB, resRel};
+                    // p3Inputs = {otherID, lnB, fnB, miB, resRel};
                     ps = con.prepareStatement("INSERT INTO USEROTHER (PROPERTYID, LASTNAME, FIRSTNAME, MIDDLEINITIAL, RELATIONSHIP) VALUES (?, ?, ?, ?, ?)");
                     System.out.print("Relationship: " + resRel);
-                    ps.setString(1, (String) session.getAttribute("currID"));
+                    ps.setString(1, otherID);
                     ps.setString(2, lnB);
                     ps.setString(3, fnB);
                     ps.setString(4, miB);
