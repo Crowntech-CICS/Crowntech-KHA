@@ -51,12 +51,12 @@
                     System.out.println("Area Check: " + hold[1]); // checks which area was taken from param
 
                     if (hold.length == 3) { // if the parameters has 3 strings, third string is for paid/unpaid
-                        HomeQuery += " AND PAID = " + hold[2]; // adds payment status to query
+                        LotQuery += " AND PAID = " + hold[2]; // adds payment status to query
                     }
                     LotQuery += addQuery;
                     System.out.println(LotQuery);
                 } else if (!addQuery.substring(0, 4).equals("AREA")) { // AREA parameter not used
-                    HomeQuery += " AND PAID =" + addQuery; // only adds payment status to query
+                    LotQuery += " WHERE PAID =" + addQuery; // only adds payment status to query
                 }
             }
             try {
