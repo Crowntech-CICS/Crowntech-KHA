@@ -50,6 +50,18 @@ public class AddMonthlyDues extends HttpServlet {
         }
         
         try{
+            ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM USERLOT");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                balance = rs.getDouble("BALANCE") + monthlyDue;
+                System.out.println("HID: " + rs.getString("HOMEOWNERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
+                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ? WHERE HOMEOWNERID = ?");
+                ps.setDouble(1, balance);
+                ps.setBoolean(2, paid);
+                ps.setString(3, rs.getString("HOMEOWNERID"));
+                ps.executeUpdate();
+            }
+            
             ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM HOMEOWNER");
             rs = ps.executeQuery();
             while(rs.next()){
