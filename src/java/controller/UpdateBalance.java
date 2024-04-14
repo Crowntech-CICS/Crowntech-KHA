@@ -63,6 +63,7 @@ public class UpdateBalance extends HttpServlet {
                 ps = con.prepareStatement("SELECT BALANCE FROM USERLOT WHERE HOMEOWNERID = ?");
                 ps.setString(1, userId);
                 rs = ps.executeQuery();
+                rs.next();
                 currentBalance = rs.getDouble("BALANCE");
                 System.out.println("BALANCE: " + currentBalance);
                 newBalance = currentBalance - payment;
