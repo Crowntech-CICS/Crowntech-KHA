@@ -56,8 +56,8 @@ public class CreateHomeowner extends HttpServlet {
             }
             ps = con.prepareStatement("INSERT INTO HOMEOWNER(HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,MOBILENO,LANDLINENO,REPRESENTATIVE,REPMOBILENO,HOUSENO,STREETNAME,VILLAGE,BARANGAY,CITY,PROVINCE,PAID,BALANCE,ORNUM) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, homeownerId);
-            ps.setString(2, request.getParameter("HO_FN"));
-            ps.setString(3, request.getParameter("HO_LN"));
+            ps.setString(2, request.getParameter("HO_LN"));
+            ps.setString(3, request.getParameter("HO_FN"));
             ps.setString(4, request.getParameter("HO_MI"));
             ps.setString(5, request.getParameter("HO_EMAIL"));
             ps.setString(6, request.getParameter("HO_PHONE"));
