@@ -34,7 +34,7 @@
 
                         } //Homeowner/Lessee/Resident Access Level
                         else if(level.equals("staff") || level.equals("board")){
-                            out.println("<li><a href=\"FinanceTrack\">Monthly Dues Tracker</a></li>");
+                            out.println("<li><a href=\"FinanceTrack\">Finances Tracker</a></li>");
                             out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
                         }
