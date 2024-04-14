@@ -88,6 +88,10 @@
         <servlet-name>CreateHomeowner</servlet-name>
         <servlet-class>controller.CreateHomeowner</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PayLot</servlet-name>
+        <servlet-class>controller.PayLot</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>CreateHomeowner</servlet-name>
         <url-pattern>/CreateHomeowner</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayLot</servlet-name>
+        <url-pattern>/PayLot</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

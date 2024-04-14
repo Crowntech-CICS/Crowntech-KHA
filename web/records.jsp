@@ -162,7 +162,7 @@
                                     out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                     out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
-                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"update-balance.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
+                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
                                 }
 
                             }
