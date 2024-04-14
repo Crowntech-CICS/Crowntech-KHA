@@ -39,16 +39,23 @@
                 </form>
 
                 <form id='form2'>
-                    <h1 class="h1-bold" id="h1small">Update Current Address</h1>
+                    <h1 class="h1-bold" id="h1small">H.O. and Lot Address</h1>
                     <div class="line"></div><br>
+                    <p>Homeowner Address</p>
                     <label for="HO_HOUSENUM" id="label-margin-medium">House Number</label><label for="HO_STREET" class="marginStreet">Street Name</label><br>
                     <input onchange="finalForm.HO_HOUSENUM.value = this.value" type="text" name="HO_HOUSENUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_STREET.value = this.value" type="text" name="HO_STREET" placeholder="Street Name"  class="form-medium"><br>
                     <label for="HO_VILLAGE" id="label-margin-medium">Village</label><label for="HO_BARANGAY" class="marginVehicleYear">Barangay</label><br>
                     <input onchange="finalForm.HO_VILLAGE.value = this.value" type="text" name="HO_VILLAGE" placeholder="Village" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_BARANGAY.value = this.value" type="text" name="HO_BARANGAY" placeholder="Barangay"  class="form-medium"><br>
                     <label for="HO_CITY" id="label-margin-medium">City</label><label for="HO_PROVINCE" class="marginProvince">Province</label><br>
                     <input onchange="finalForm.HO_CITY.value = this.value" type="text" name="HO_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PROVINCE.value = this.value" type="text" name="HO_PROVINCE" placeholder="Province"  class="form-medium"><br>
+                    <p>Lot Address</p>
+                    <label for="USER_HOUSENUM" id="label-margin-medium">House Number</label><label for="USER_STREET" class="marginStreet">Street Name</label><br>
+                    <input onchange="finalForm.USER_HOUSENUM.value = this.value" type="text" name="USER_HOUSENUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_STREET.value = this.value" type="text" name="USER_STREET" placeholder="Street Name"  class="form-medium"><br>
+                    <label for="USER_VILLAGE" id="label-margin-medium">Village</label><label for="USER_BARANGAY" class="marginVehicleYear">Barangay</label><br>
+                    <input onchange="finalForm.USER_VILLAGE.value = this.value" type="text" name="USER_VILLAGE" placeholder="Village" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_BARANGAY.value = this.value" type="text" name="USER_BARANGAY" placeholder="Barangay"  class="form-medium"><br>
+                    <label for="USER_CITY" id="label-margin-medium">City</label><label for="USER_PROVINCE" class="marginProvince">Province</label><br>
+                    <input onchange="finalForm.USER_CITY.value = this.value" type="text" name="USER_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_PROVINCE.value = this.value" type="text" name="USER_PROVINCE" placeholder="Province"  class="form-medium"><br>
                     <label for="HO_DATE">Date Home Property Was Occupied</label><input onchange="finalForm.HO_DATE.value = this.value" type="date" name="HO_DATE" id=""  class="form">
-                    <br><br><br><br><br><br><br><br><br>
                     <div class="button-container">
                         <input id="Next2" class="button-design" type="button" value="Next" style="margin-right: 10%;">
                         <input id="Back2" class="button-design-reject" type="button" value="Back">
@@ -114,10 +121,16 @@
                     <input type="hidden" name="HO_BARANGAY"> <!-- HOMEOWNER -->
                     <input type="hidden" name="HO_CITY"> <!-- HOMEOWNER -->
                     <input type="hidden" name="HO_PROVINCE"> <!-- HOMEOWNER -->
-                    <input type="hidden" name="HO_DATE"> <!-- USER -->
                     <input type="hidden" name="HO_EMAIL"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_LANDLINE"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_PHONE"><!-- HOMEOWNER -->
+                    <input type="hidden" name="USER_HOUSENUM"><!-- USERLOT -->
+                    <input type="hidden" name="USER_STREET"><!-- USERLOT -->
+                    <input type="hidden" name="USER_VILLAGE"><!-- USERLOT -->
+                    <input type="hidden" name="USER_BARANGAY"><!-- USERLOT -->
+                    <input type="hidden" name="USER_CITY"><!-- USERLOT -->
+                    <input type="hidden" name="USER_PROVINCE"><!-- USERLOT -->
+                    <input type="hidden" name="HO_DATE"> <!-- USER -->
                     <input type="hidden" name="TIT_NUM"><!--USERLOT-->
                     <input type="hidden" name="TIT_SURNUM"><!--USERLOT-->
                     <input type="hidden" name="TIT_LOTNUM"><!--USERLOT-->
@@ -136,19 +149,19 @@
             </div>
         </div>
         <script>
-            window.onload = function() {
-                if(new URLSearchParams(window.location.search).get('suc') === 'true'){
+            window.onload = function () {
+                if (new URLSearchParams(window.location.search).get('suc') === 'true') {
                     alert('Successfully added Homeowner to the records.');
                     window.location.href = 'records.jsp';
                 }
             };
-            
+
             var form1 = document.getElementById("form1");
             var form2 = document.getElementById("form2");
             var form3 = document.getElementById("form3");
             var form4 = document.getElementById("form4");
             var finalForm = document.getElementById('finalForm');
-            
+
             var Next1 = document.getElementById("Next1");
             var Back1 = document.getElementById("Back1");
             var Next2 = document.getElementById("Next2");
@@ -157,8 +170,8 @@
             var Back3 = document.getElementById("Back3");
             var Next4 = document.getElementById("Next4");
             var Back4 = document.getElementById("Back4");
-            
-            Next1.onclick = function(){
+
+            Next1.onclick = function () {
                 const f1 = [
                     {name: "HO_LN", message: "Missing Last Name."},
                     {name: "HO_FN", message: "Missing First Name."},
@@ -167,7 +180,7 @@
                     {name: "HO_EMAIL", message: "Missing Email."},
                     {name: "HO_LANDLINE", message: "Missing Landline."},
                     {name: "HO_PHONE", message: "Missing Phone Number."}
-                ]; 
+                ];
                 for (let i = 0; i < f1.length; i++) {
                     const field = f1[i];
                     const inputField = form1[field.name];
@@ -184,14 +197,14 @@
                 progress.style.width = "50%";
 
             };
-            
-            Back2.onclick = function(){
+
+            Back2.onclick = function () {
                 form1.style.left = "32.5%";
                 form2.style.left = "1000px";
                 progress.style.width = "25%";
             };
-            
-            Next2.onclick = function(){
+
+            Next2.onclick = function () {
                 const f2 = [
                     {name: "HO_HOUSENUM", message: "Missing House Number."},
                     {name: "HO_STREET", message: "Missing Street Name."},
@@ -215,14 +228,14 @@
                 form3.style.left = "32.5%";
                 progress.style.width = "75%";
             };
-            
-            Back3.onclick = function(){
+
+            Back3.onclick = function () {
                 form2.style.left = "32.5%";
                 form3.style.left = "1000px";
                 progress.style.width = "50%";
             };
-            
-            Next3.onclick = function(){
+
+            Next3.onclick = function () {
                 const f3 = [
                     {name: "TIT_NUM", message: "Missing Title Number."},
                     {name: "TIT_SURNUM", message: "Missing Survey Number."},
@@ -247,14 +260,14 @@
                 form4.style.left = "32.5%";
                 progress.style.width = "100%";
             };
-            
-            Back4.onclick = function(){
+
+            Back4.onclick = function () {
                 form3.style.left = "32.5%";
                 form4.style.left = "1000px";
                 progress.style.width = "75%";
             };
-            
-            Next4.onclick = function(){
+
+            Next4.onclick = function () {
                 const f4 = [
                     {name: "PAID_MEM", message: "Missing Membership Payment Information."},
                     {name: "PAID_DATE", message: "Missing Membership Payment Date."},
@@ -274,17 +287,17 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                
-                if(confirm('Are you sure all the information are correct and want to submit this form?')){
+
+                if (confirm('Are you sure all the information are correct and want to submit this form?')) {
                     finalForm.submit();
                 }
             };
-            
+
             /*Next4.onclick = function(){
-                form4.style.left = "-1000px";
-                form5.style.left = "32.5%";
-                progress.style.width = "100%";
-            }*/
+             form4.style.left = "-1000px";
+             form5.style.left = "32.5%";
+             progress.style.width = "100%";
+             }*/
         </script>
     </body>
 </html>
