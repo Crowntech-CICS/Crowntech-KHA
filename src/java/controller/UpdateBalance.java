@@ -73,6 +73,9 @@ public class UpdateBalance extends HttpServlet {
                 ps.setBoolean(2, paid);
                 ps.setString(3, userId);
                 ps.executeUpdate();
+                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE HOMEOWNERID = ?");
+                ps.setBoolean(1, paid);
+                ps.executeUpdate();
                 System.out.println("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
                 ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
                 ps.setString(1, UUID.randomUUID().toString().substring(0,8));
