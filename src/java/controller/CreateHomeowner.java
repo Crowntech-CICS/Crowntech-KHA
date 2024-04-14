@@ -142,6 +142,11 @@ public class CreateHomeowner extends HttpServlet {
             ps.setString(3, request.getParameter("PRP_INDEX"));
             System.out.println("TAX Insert: " + ((ps.executeUpdate() > 0)? "Success" : "Failed"));
             
+            ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
+            ps.setString(1, UUID.randomUUID().toString().substring(0,8));
+            ps.setString(2, (String) request.getSession().getAttribute("currID"));
+            ps.setString(3, "Created user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+            ps.executeUpdate();
             if(!response.isCommitted()){
                 response.sendRedirect("./signup-homeowners.jsp?suc=true");
             }
