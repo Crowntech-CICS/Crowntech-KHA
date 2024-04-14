@@ -22,7 +22,7 @@
                     <%
                         //Display Corresponding Navigation Options Per Access Level
                         //Staff/Admin/Board Access Level
-                        if (level.equals("admin") || level.equals("staff") || level.equals("board")) {
+                        if (level.equals("admin")) {
                             out.println("<li><a href=\"logs.jsp\">Logs</a></li>");
                             out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
                             out.println("<li><a href=\"FinanceTrack\">Monthly Dues Tracker</a></li>");
@@ -31,10 +31,13 @@
                             out.println("<li><a href=\"createacc.jsp\">Create Account</a></li>");
                             out.println("<li><a href=\"signup-homeowners.jsp\">Create Homeowner Account</a></li>");
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
-                            //out.println("<li><a href=\"profile.jsp\">"
-                            //        + "<img src=\"images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
 
                         } //Homeowner/Lessee/Resident Access Level
+                        else if(level.equals("staff") || level.equals("board")){
+                            out.println("<li><a href=\"FinanceTrack\">Monthly Dues Tracker</a></li>");
+                            out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
+                            out.println("<li><a href=\"Logout\">Logout</a></li>");
+                        }
                         else if (level.equals("homeowner") || level.equals("lessee") || level.equals("resident")) {
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
                             out.println("<li><a href=\"profile.jsp\">"
