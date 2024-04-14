@@ -23,7 +23,7 @@
     <body>
         <%@include file="navbar.jsp" %>
         <div class="main-body">
-            <div class="signup-box">
+            <div class="signup-box-small">
                 <div class="step-row">
                     <div id="progressSignup"></div>
                     <div class="step-col-signup">Personal Info.</div>

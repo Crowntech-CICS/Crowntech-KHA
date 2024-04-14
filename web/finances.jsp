@@ -107,16 +107,21 @@
         </div>
         <br><br>
         <div class="button-container">
-            <form action="ExportPDF">
-                <button class="button-design" type="submit" id="button-small">
-                    Export
+            <form action="FinanceTrack">
+                <button class="button-design" type="submit" id="button-small" >
+                    Refresh
                 </button>
             </form>
-            <form action="FinanceTrack">
+            <form action="ExportPDF">
                 <button class="button-design" type="submit" id="button-small" style="margin-left: 20%;">
-                    Refresh
+                    Export
                 </button>
             </form>
         </div>
     </body>
+    <script>
+        window.onload = function() {
+            form1.year.value = new URLSearchParams(window.location.search).get('year');
+        }
+    </script>
 </html>
