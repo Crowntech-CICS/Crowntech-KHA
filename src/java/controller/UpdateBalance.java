@@ -37,7 +37,7 @@ public class UpdateBalance extends HttpServlet {
         double currentBalance = 0.0;
         double payment = Double.parseDouble(request.getParameter("PAYMENT"));
         double newBalance = currentBalance;
-        boolean paid = true;
+        boolean paid = false;
         
         //Connect to DB
         try {
@@ -67,7 +67,7 @@ public class UpdateBalance extends HttpServlet {
                 currentBalance = rs.getDouble("BALANCE");
                 System.out.println("BALANCE: " + currentBalance);
                 newBalance = currentBalance - payment;
-                if(newBalance < 1){ paid = true; }
+                if(newBalance < 1){ paid = true; } else { paid = false;}
                 ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE HOMEOWNERID = ?");
                 ps.setDouble(1, newBalance);
                 ps.setBoolean(2, paid);
@@ -75,6 +75,7 @@ public class UpdateBalance extends HttpServlet {
                 ps.executeUpdate();
                 ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE HOMEOWNERID = ?");
                 ps.setBoolean(1, paid);
+                ps.setString(2, userId);
                 ps.executeUpdate();
                 System.out.println("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
                 ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
