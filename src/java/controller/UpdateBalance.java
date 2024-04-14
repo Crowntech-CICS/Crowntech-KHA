@@ -67,7 +67,7 @@ public class UpdateBalance extends HttpServlet {
                 currentBalance = rs.getDouble("BALANCE");
                 System.out.println("BALANCE: " + currentBalance);
                 newBalance = currentBalance - payment;
-                if(newBalance < 1){ paid = true; }
+                if(newBalance < 1){ paid = true; } else { paid = false;}
                 ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE HOMEOWNERID = ?");
                 ps.setDouble(1, newBalance);
                 ps.setBoolean(2, paid);
