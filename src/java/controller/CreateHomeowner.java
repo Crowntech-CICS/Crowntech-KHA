@@ -109,9 +109,9 @@ public class CreateHomeowner extends HttpServlet {
             ps.setString(2, request.getParameter("TIT_NUM"));
             ps.setString(3, request.getParameter("TIT_NAME"));
             ps.setBoolean(4, true);
-            ps.setString(5, request.getParameter("HO_HOUSENUM"));
-            ps.setString(6, request.getParameter("HO_STREET"));
-            ps.setString(7, request.getParameter("HO_BARANGAY"));
+            ps.setString(5, request.getParameter("USER_HOUSENUM"));
+            ps.setString(6, request.getParameter("USER_STREET"));
+            ps.setString(7, request.getParameter("USER_BARANGAY"));
             ps.setString(8, request.getParameter("TIT_AREA"));
             ps.setString(9, request.getParameter("TIT_SURNUM"));
             ps.setString(10, request.getParameter("TIT_LOTNUM"));

@@ -95,9 +95,9 @@
                     <label for="MEM_NAME">OR NUMBER</label><input onchange="finalForm.OR_NUM.value = this.value" type="text" name="OR_NUM" placeholder="OR NUM" required class="form"><br>
                     <p>Use of Property</p><br>
                     <fieldset>  
-                        <label for="PRP_USE"><input onclick="finalForm.PRP_USE.value = this.value" type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Residential</label>
-                        <label for="PRP_USE"><input onclick="finalForm.PRP_USE.value = this.value" type="radio" name="PRP_USE" id="PRP_BUS" value="Business">Business</label>
-                        <label for="PRP_USE" id="form-margin-medium"><input onclick="finalForm.PRP_USE.value = this.value" type="radio" name="PRP_USE" id="PRP_BOTH" value="Both">Both</label>
+                        <label for="PRP_USE"><input onclick="finalForm.PRP_USE.value = this.value;form4.BUS_NAME.disabled = true;form4.BUS_TYPE.disabled = true;form4.BUS_NAME.value = 'N/A';form4.BUS_TYPE.value = 'N/A';" type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Residential</label>
+                        <label for="PRP_USE"><input onclick="finalForm.PRP_USE.value = this.value;form4.BUS_NAME.disabled = false;form4.BUS_TYPE.disabled = false;form4.BUS_NAME.value = '';form4.BUS_TYPE.value = '';" type="radio" name="PRP_USE" id="PRP_BUS" value="Business">Business</label>
+                        <label for="PRP_USE" id="form-margin-medium"><input onclick="finalForm.PRP_USE.value = this.value;form4.BUS_NAME.disabled = false;form4.BUS_TYPE.disabled = false;form4.BUS_NAME.value = '';form4.BUS_TYPE.value = '';" type="radio" name="PRP_USE" id="PRP_BOTH" value="Both">Both</label>
                     </fieldset><br>
                     <label for="BUS_NAME">If used for business, registered name of business:</label><input onchange="finalForm.BUS_NAME.value = this.value" type="text" name="BUS_NAME" placeholder="Business Name" required class="form"><br>
                     <label for="BUS_TYPE">Type of business:</label><input onchange="finalForm.BUS_TYPE.value = this.value" type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
@@ -212,7 +212,13 @@
                     {name: "HO_BARANGAY", message: "Missing Barangay."},
                     {name: "HO_CITY", message: "Missing City."},
                     {name: "HO_PROVINCE", message: "Missing Province."},
-                    {name: "HO_DATE", message: "Missing Date."}
+                    {name: "USER_HOUSENUM", message: "Missing Lot House Number."},
+                    {name: "USER_STREET", message: "Missing Lot Street Name."},
+                    {name: "USER_VILLAGE", message: "Missing Lot Village Name."},
+                    {name: "USER_BARANGAY", message: "Missing Lot Barangay."},
+                    {name: "USER_CITY", message: "Missing Lot City."},
+                    {name: "USER_PROVINCE", message: "Missing Lot Province."},
+                    {name: "HO_DATE", message: "Missing Occupation Date."}
                 ];
                 for (let i = 0; i < f2.length; i++) {
                     const field = f2[i];
