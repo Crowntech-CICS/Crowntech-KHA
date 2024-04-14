@@ -34,7 +34,7 @@
                     <br><br><br><br>
                     <div class="button-container">
                         <input id="Next1" class="button-design" type="button" value="Next" style="margin-right: 10%;">
-                        <input class="button-design-reject" type="button" value="Cancel" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" onclick="window.location.href='records.jsp'" id="button-small">
                     </div>
                 </form>
 
