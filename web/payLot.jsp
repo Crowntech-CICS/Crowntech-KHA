@@ -78,7 +78,7 @@
                     <input type="hidden" name="PROP_ID" value="<%= propId %>">
                     <h1 class="h1-bold" id="h1small">Update Balance</h1>
                     <div class="line"></div><br>
-                    <label for="HO_LN_B">Full Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" class="form" disabled value="<%= lastname %>"><br>
+                    <label for="HO_LN_B">Full Name</label><input type="text" name="HO_LN_B" placeholder="Last Name" class="form" disabled value="<%= lastname + "," + firstname + " " + middleInitial  %>"><br>
                     <label for="HO_FN_B">Lot Address</label><input type="text" name="HO_FN_B" placeholder="First Name" class="form" disabled value="<%= address %>"><br>
                     <label for="HO_MI_B" id="label-margin">BALANCE</label><br>
                     <input type="text" name="HO_MI_B" placeholder="Middle Initial" class="form-small" id="form-margin" disabled value="<%= balance %>"><br>

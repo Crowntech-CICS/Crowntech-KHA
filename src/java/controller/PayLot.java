@@ -62,6 +62,7 @@ public class PayLot extends HttpServlet {
                 userId = rs.getString("HOMEOWNERID").trim();
                 currentBalance = rs.getDouble("BALANCE");
                 System.out.println("BALANCE: " + currentBalance);
+                fullName = rs.getString("LASTNAME").trim() + "," + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
                 newBalance = currentBalance - payment;
                 if(newBalance < 1){ paid = true; } else { paid = false;}
                 ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE PROPERTYID = ?");
