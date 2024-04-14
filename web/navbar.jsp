@@ -29,6 +29,7 @@
                             //out.println("<li><a href=\"finances.jsp\">Monthly Dues Tracker</a></li>");
                             //out.println("<li><a href=\"applications.jsp\">Applications</a></li>");
                             out.println("<li><a href=\"createacc.jsp\">Create Account</a></li>");
+                            out.println("<li><a href=\"signup-homeowners.jsp\">Create Homeowner Account</a></li>");
                             out.println("<li><a href=\"Logout\">Logout</a></li>");
                             //out.println("<li><a href=\"profile.jsp\">"
                             //        + "<img src=\"images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
