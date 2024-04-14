@@ -96,9 +96,9 @@
             %>
         </div>
                 <div class="main-body" style="top: 10%;">
-            <h1 class="h1-bold">Vehicle List</h1>
-            <div class="button-container">
-                <button class="button-design">Add More Vehicles</button>
+                <h1 class="h1-bold">Vehicle List</h1>
+                <div class="button-container">
+                <button class="button-design" onclick="location.href = 'profile.jsp'">Return to Profile</button>
             </div>
         </div>
     </body>
