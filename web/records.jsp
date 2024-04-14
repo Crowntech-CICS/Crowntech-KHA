@@ -190,6 +190,9 @@
             </table>
         </div>
         <br><br>
+        <%
+            if(session.getAttribute("level").equals("staff")) {
+        %>
         <div class="button-container">
             <form>
                 <button class="button-design" type="submit" style="margin-left: -10%">
@@ -207,6 +210,9 @@
                 </button>
             </form>
         </div>
+        <%
+            }
+        %>
         <script src="scripts/sorttable.js"></script>
         <script>
 
