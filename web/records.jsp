@@ -131,7 +131,7 @@
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
                                 userLotID = rs3.getString("HOMEOWNERID"); // Take homeownerid from USERLOT
-                                System.out.println("userLotID: " + userLotID);
+                            //    System.out.println("userLotID: " + userLotID);
                                 ps2 = con.prepareStatement(HomeQuery); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
                                 rs = ps2.executeQuery();
@@ -162,7 +162,7 @@
                                     out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                     out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
-                                    out.println("<td class=\"tableContentText\">" + balance + "</td></tr>");
+                                    out.println("<td class=\"tableContentText\"><a href=\"update-balance.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
                                 }
 
                             }
