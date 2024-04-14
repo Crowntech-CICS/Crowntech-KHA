@@ -72,7 +72,7 @@ public class CreateHomeowner extends HttpServlet {
             ps.setString(15, request.getParameter("HO_PROVINCE"));
             ps.setBoolean(16, true);
             ps.setDouble(17, 0.0);
-            ps.setString(18, request.getParameter("HO_ORNUM"));
+            ps.setString(18, request.getParameter("OR_NUM"));
             System.out.println("HOME Insert: " + ((ps.executeUpdate() > 0)? "Success" : "Failed"));
             //USERS
             String userId = uniqueId;
@@ -107,7 +107,7 @@ public class CreateHomeowner extends HttpServlet {
             ps = con.prepareStatement("INSERT INTO USERLOT(PROPERTYID,TITLENO,REGISTEREDNAME,PAID,HOUSENO,STREETNAME,BARANGAY,AREA,SURVEYNO,LOTNO,DATEREGISTERED,BALANCE,HOMEOWNERID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, propId);
             ps.setString(2, request.getParameter("TIT_NUM"));
-            ps.setString(3, request.getParameter("TIT_REGNAME"));
+            ps.setString(3, request.getParameter("TIT_NAME"));
             ps.setBoolean(4, true);
             ps.setString(5, request.getParameter("HO_HOUSENUM"));
             ps.setString(6, request.getParameter("HO_STREET"));
@@ -133,7 +133,7 @@ public class CreateHomeowner extends HttpServlet {
             ps.setString(3, request.getParameter("HO_FN"));
             ps.setString(4, request.getParameter("HO_MI"));
             ps.setBoolean(5, true);
-            ps.setDate(6, Date.valueOf(LocalDate.parse(request.getParameter("MEM_PAID_DATE"))));
+            ps.setDate(6, Date.valueOf(LocalDate.parse(request.getParameter("PAID_DATE"))));
             System.out.println("MEM Insert: " + ((ps.executeUpdate() > 0)? "Success" : "Failed"));
             //TAXDECINFO
             ps = con.prepareStatement("INSERT INTO TAXDECINFO (PROPERTYID, IDNO, PROPINDEXNO) VALUES (?,?,?)");
