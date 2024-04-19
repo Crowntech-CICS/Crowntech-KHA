@@ -2,19 +2,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <context-param>
         <param-name>jdbcClassName</param-name>
-        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        <param-value>org.postgresql.Driver</param-value>
     </context-param>
     <context-param>
         <param-name>dbUserName</param-name>
-        <param-value>app</param-value>
+        <param-value>postgres.ovvwpegjxbwcgempumml</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>app</param-value>
+        <param-value>crowntechkha</param-value>
     </context-param>
     <context-param>
         <param-name>jdbcDriverURL</param-name>
-        <param-value>jdbc:derby://localhost:1527/Crowntech</param-value>
+        <param-value>jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres</param-value>
     </context-param>
     <context-param>
         <param-name>key</param-name>

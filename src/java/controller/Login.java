@@ -62,13 +62,13 @@ public class Login extends HttpServlet {
         System.out.println("EMAIL: " + userEmail);
         System.out.println("PASSW: " + userPass);
         try{
-            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM LOGIN WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
+            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM USERS WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();
             
             if(rs.next()){
-                System.out.println("FOUND IN LOGIN");
+                System.out.println("FOUND IN DB");
                 String emailDB = rs.getString("EMAIL").trim().toLowerCase(),
                        passwordDB = rs.getString("PASSWORD").trim();
                 //Get user access level in USERS table (RESIDENTCLASS)
@@ -91,7 +91,7 @@ public class Login extends HttpServlet {
                     found = true;                    
                 }
             } else {
-                System.out.println("NO RECORD IN LOGIN");
+                System.out.println("NO RECORD IN DB");
             }
             
             if(found){ //verifies if the user is in the database and redirect them to the homepage
