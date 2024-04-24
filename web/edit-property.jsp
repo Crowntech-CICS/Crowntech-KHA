@@ -27,8 +27,8 @@
                     <label for="BUS_TYPE">Type of business:</label><input type="text" name="BUS_TYPE" placeholder="Business Type"  class="form"><br>
                     <br>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design-reject" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small">
                     </div>
                 </form>  
             </div>

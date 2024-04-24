@@ -33,8 +33,8 @@
                     <input onchange="finalForm.HO_LANDLINE.value = this.value" type="text" name="HO_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PHONE.value = this.value" type="text" name="HO_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <br><br><br><br>
                     <div class="button-container">
-                        <input id="Next1" class="button-design" type="button" value="Next" style="margin-right: 10%;">
-                        <input class="button-design-reject" type="button" value="Cancel" onclick="window.location.href='records.jsp'" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href='records.jsp'" id="button-small">\
+                        <input id="Next1" class="button-design" type="button" value="Next">
                     </div>
                 </form>
 
@@ -57,8 +57,8 @@
                     <input onchange="finalForm.USER_CITY.value = this.value" type="text" name="USER_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_PROVINCE.value = this.value" type="text" name="USER_PROVINCE" placeholder="Province"  class="form-medium"><br>
                     <label for="HO_DATE">Date Home Property Was Occupied</label><input onchange="finalForm.HO_DATE.value = this.value" type="date" name="HO_DATE" id=""  class="form">
                     <div class="button-container">
-                        <input id="Next2" class="button-design" type="button" value="Next" style="margin-right: 10%;">
-                        <input id="Back2" class="button-design-reject" type="button" value="Back">
+                        <input id="Back2" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
+                        <input id="Next2" class="button-design" type="button" value="Next">
                     </div>
                 </form>  
 
@@ -77,8 +77,8 @@
                     <input onchange="finalForm.TAX_NUM.value = this.value" type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input onchange="finalForm.PRP_INDEX.value = this.value" type="text" name="PRP_INDEX" placeholder="Property Index No."  class="form-medium"><br>
                     <br>
                     <div class="button-container">
-                        <input id="Next3" class="button-design" type="button" value="Next" style="margin-right: 10%;">
-                        <input id="Back3" class="button-design-reject" type="button" value="Back">
+                        <input id="Back3" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
+                        <input id="Next3" class="button-design" type="button" value="Next">
                     </div>
                 </form>
 
@@ -103,8 +103,8 @@
                     <label for="BUS_TYPE">Type of business:</label><input onchange="finalForm.BUS_TYPE.value = this.value" type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
                     <br>
                     <div class="button-container">
-                        <input id="Next4" class="button-design" type="button" value="Submit" style="margin-right: 10%;">
-                        <input id="Back4" class="button-design-reject" type="button" value="Back">
+                        <input id="Back4" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
+                        <input id="Next4" class="button-design" type="button" value="Submit">
                     </div>
                     <br>
                 </form>

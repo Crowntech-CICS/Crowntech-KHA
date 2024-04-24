@@ -23,8 +23,8 @@
                     <input type="text" name="HO_MI_B" placeholder="Middle Initial" class="form-small" id="form-margin" required><br>
                     <label for="RES_REL">Balance Paid</label><input type="number" min="0" name="PAYMENT" placeholder="Balance Paid In Numerical Form" class="form" required><br>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'records.jsp'">
+                        <input class="button-design-reject" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'records.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small">
                     </div>
                 </form>  
             </div>

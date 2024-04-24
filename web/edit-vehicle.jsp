@@ -45,8 +45,8 @@
                     <input type="hidden" name="VHID" value="<%=vhid%>">
                     <input type="hidden" name="FORM_NO" value="6"> 
                 <div class="button-container" >
-                    <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                    <input class="button-design-reject" type="button" value="Cancel" id="button-small" onclick="location.href = 'vehicles.jsp'">
+                    <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'vehicles.jsp'">
+                    <input class="button-design" type="submit" value="Save" id="button-small">
                 </div>
                 </form> 
             </div>

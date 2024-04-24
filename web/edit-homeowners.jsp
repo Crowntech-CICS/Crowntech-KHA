@@ -43,8 +43,8 @@
                     <input type="hidden" name="FORM_NO" value="1">
                     <br>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design-reject" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small">
                     </div>
                 </form>
 
@@ -60,8 +60,8 @@
                     <br>
                     <input type="hidden" name="FORM_NO" value="2">
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Save" id="button-small" style="margin-right: 10%;">
-                        <input class="button-design-reject" value="Cancel" id="button-small" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design-reject" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'profile.jsp'">
+                        <input class="button-design" type="submit" value="Save" id="button-small">
                     </div>
                 </form>
             </div>

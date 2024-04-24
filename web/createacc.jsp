@@ -77,8 +77,8 @@
                         </div>
                         <br>
                         <div class="button-container">
-                            <button type="submit" class="button-design">Create</button>
                             <button type="button" onclick="window.history.back();" class="button-design-reject">Cancel</button>
+                            <button type="submit" class="button-design">Create</button>
                         </div>
                     </form>
                 </div>
