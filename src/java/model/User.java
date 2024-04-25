@@ -21,6 +21,9 @@ public class User {
     protected ArrayList<String> lots = new ArrayList<String>();
     protected ArrayList<String> cars = new ArrayList<String>();
     
+    public User(){
+    }
+    
     public User(String userID, String email, String ln, String fn, String mi, String resC, int age, int balance){
         this.userID = userID;
         this.email = email;

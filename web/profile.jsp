@@ -48,14 +48,15 @@
                 while (rs.next()) {
                     fullName = rs.getString("FIRSTNAME") + " " + rs.getString("MIDDLEINITIAL") + " " + rs.getString("LASTNAME");
                     resClass = rs.getString("RESIDENTCLASS").trim();
-                    hoID = rs.getString("HOMEOWNERID");
+                //    hoID = rs.getString("HOMEOWNERID");
                 }
                 
-                ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
-                ps.setString(1, hoID);
+                ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE USERID = ?");
+                ps.setString(1, (String) session.getAttribute("currID"));
                 rs = ps.executeQuery();
                 while (rs.next()){
                     address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " Barangay " + rs.getString("BARANGAY") + " " + rs.getString("CITY") + " " + rs.getString("PROVINCE");
+                    hoID = rs.getString("HOMEOWNERID");
                 }
         %>
         <%@include file="navbar.jsp" %>
@@ -94,9 +95,9 @@
                     out.print("<h1 class=\"h1-bold\" id=\"profileAddress\">"
                             + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME")
                             + "</h1>");
-                    if (rs.getBoolean("PAID")) {
+                    if (rs.getInt("BALANCE") < 0) {
                         out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID ");
-                    } else if (!rs.getBoolean("PAID")) {
+                    } else if (rs.getInt("BALANCE") > 0) {
                         out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
                     }
                     out.print("</h1>"
@@ -110,12 +111,16 @@
                             + "<ul>"
                             + "<li class=\"accordion-content\">Name: " + fullName + "</li>");
                     ResultSet rsTemp;
+                    ResultSet rsHO;
+                    ps = con.prepareStatement("SELECT * FROM users WHERE userid = ?");
+                    ps.setString(1, (String) session.getAttribute("currID"));
+                    rsTemp = ps.executeQuery();
                     ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
                     ps.setString(1, hoID);
-                    rsTemp = ps.executeQuery();
-                    while (rsTemp.next()) {
+                    rsHO = ps.executeQuery();
+                    while (rsTemp.next() && rsHO.next()) {
                         out.print("<li class=\"accordion-content\">Email: " + rsTemp.getString("EMAIL") + "</li>"
-                                + "<li class=\"accordion-content\">Phone: " + rsTemp.getString("MOBILENO") + "</li>"
+                                + "<li class=\"accordion-content\">Phone: " + rsHO.getString("MOBILENO") + "</li>"
                                 + "<li class=\"accordion-content\">Address: "
                                 + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + ", Barangay " + rs.getString("BARANGAY")
                                 + "</li>"
@@ -124,7 +129,7 @@
                         out.print("<li class=\"accordion-content-width\">"
                                 + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Lot Residents</h1>"
                                 + "<div class=\"line\"></div><br>");
-                        ps = con.prepareStatement("SELECT * FROM USEROTHER WHERE PROPERTYID = ?");
+                        ps = con.prepareStatement("SELECT * FROM residents WHERE PROPERTYID = ?");
                         ps.setString(1, propID);
                         rsTemp = ps.executeQuery();
                         while (rsTemp.next()) {
@@ -148,7 +153,7 @@
                             out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
                                     + rs.getString("BALANCE") + "</h1><br>");
                         out.print("<div class=\"line\"></div><br>");
-                        if (rs.getBoolean("PAID")) {
+                        if (rs.getInt("BALANCE") < 0) {
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Paid</li><br>");
                         } else {
                             out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
