@@ -9,17 +9,17 @@ import java.util.ArrayList;
 
 public class User {
     
-    private String userID,
+    protected String userID,
             email,
             lastName,
             firstName,
             middleIni,
             resClass;
     
-    private int age, bal;
+    protected int age, bal;
     
-    private ArrayList<String> lots = new ArrayList<String>();
-    private ArrayList<String> cars = new ArrayList<String>();
+    protected ArrayList<String> lots = new ArrayList<String>();
+    protected ArrayList<String> cars = new ArrayList<String>();
     
     public User(String userID, String email, String ln, String fn, String mi, String resC, int age, int balance){
         this.userID = userID;
