@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.connections.ConnectionPoolManager;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class Login extends HttpServlet {
-
+    private static final Log logger = LogFactory.getLog(Login.class);
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
@@ -31,27 +33,14 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        logger.info("Login Servlet processRequest.");
         String encrpytKey = getServletContext().getInitParameter("key");/*"RECORDKINGSVILLE";*/
         String cipher = getServletContext().getInitParameter("cipher");/*"AES/ECB/PKCS5Padding";*/
         HttpSession session = request.getSession();
         boolean logState = session.getAttribute("username") != null;
         if(logState) {
             response.sendRedirect("index.jsp");
-        }
-        
-        //Establish Connection
-        try {
-            Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-            String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                   password = getServletContext().getInitParameter("dbPassword"),
-                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-            con = DriverManager.getConnection(driverURL, username, password); //create connection
-        } catch (SQLException sqle) {
-            System.out.println("SQLException error occured - " + sqle.getMessage());
-        } catch (ClassNotFoundException nfe) {
-            System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-                
+        }  
                
         boolean found = false;
         ctr = (int) session.getAttribute("tries");
@@ -62,6 +51,8 @@ public class Login extends HttpServlet {
         System.out.println("EMAIL: " + userEmail);
         System.out.println("PASSW: " + userPass);
         try{
+            //Get connection from connection pool
+            con = ConnectionPoolManager.getDataSource().getConnection();
             ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM USERS WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
@@ -80,7 +71,7 @@ public class Login extends HttpServlet {
                 String levelDB = rs.getString("RESIDENTCLASS").trim();
                 userName = rs.getString("FIRSTNAME").trim();
                 
-                System.out.println(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
+                logger.info(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)){
                     session.setAttribute("username", userName);
@@ -91,7 +82,7 @@ public class Login extends HttpServlet {
                     found = true;                    
                 }
             } else {
-                System.out.println("NO RECORD IN DB");
+                logger.error("NO RECORD IN DB");
             }
             
             if(found){ //verifies if the user is in the database and redirect them to the homepage
@@ -106,16 +97,14 @@ public class Login extends HttpServlet {
                 session.setAttribute("tries", ctr);
                 request.setAttribute("succ", "true"); //NOTE: FOR VERIFICATION FOR POPUP IN THE LOGIN PAGE
                 response.sendRedirect("login.jsp");
-                //request.getRequestDispatcher("login.jsp").forward(request, response);
             }
             else{ //throw an error message which will redirect the user to error 440 page
                 ctr = 0;
                 session.removeAttribute("tries");
                 response.sendRedirect("./accounts/password/reset.jsp");
-                //response.sendRedirect("login.jsp"); //for testing purposes to be removed later
             }
         } catch(SQLException sqle){
-            System.out.println("SQLException IN error occured - " + sqle.getMessage());
+            logger.error("SQLException IN error occured - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -126,7 +115,7 @@ public class Login extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+                logger.error("SQLException OUT error occured - " + sqle.getMessage());
                 response.sendError(500);
             }
         }

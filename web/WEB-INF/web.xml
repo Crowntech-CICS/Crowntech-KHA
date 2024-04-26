@@ -28,6 +28,10 @@
         <param-name>domain</param-name>
         <param-value>http://localhost:8080</param-value>
     </context-param>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>controller.SystemContextListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
@@ -46,7 +50,7 @@
     </servlet>
     <servlet>
         <servlet-name>PasswordReset</servlet-name>
-        <servlet-class>controller.PasswordReset</servlet-class>
+        <servlet-class>controller.password.PasswordReset</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExportPDF</servlet-name>

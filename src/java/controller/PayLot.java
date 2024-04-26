@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.connections.ConnectionPoolManager;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class PayLot extends HttpServlet {
-    
+    private static final Log logger = LogFactory.getLog(PayLot.class);
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
@@ -29,7 +31,7 @@ public class PayLot extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("--[PAY LOT]-------------------------------------------------------------");
+        logger.info("--[PAY LOT]-------------------------------------------------------------");
         String propId = request.getParameter("PROP_ID");
         String userId = "";
         String lastname = "";
@@ -38,33 +40,22 @@ public class PayLot extends HttpServlet {
         String fullName = lastname + "," + firstname + " " + middleinitial;
         double currentBalance = 0.0;
         double payment = Double.parseDouble(request.getParameter("PAYMENT"));
-        double newBalance = currentBalance;
+        double newBalance = 0.0;
         boolean paid = false;
         
-        //Connect to DB
-        try {
-                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                       password = getServletContext().getInitParameter("dbPassword"),
-                       driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                con = DriverManager.getConnection(driverURL, username, password); //create connection
-            } catch (SQLException sqle) {
-                System.out.println("SQLException error occured - " + sqle.getMessage());
-            } catch (ClassNotFoundException nfe) {
-                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-        
         try{
+            //Get connection from connection pool
+            con = ConnectionPoolManager.getDataSource().getConnection();
             ps = con.prepareStatement("SELECT H.HOMEOWNERID,L.PROPERTYID,H.LASTNAME,H.FIRSTNAME,H.MIDDLEINITIAL,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.HOMEOWNERID = L.HOMEOWNERID WHERE L.PROPERTYID = ?");
             ps.setString(1, propId);
             rs = ps.executeQuery();
             if(rs.next()){
                 userId = rs.getString("HOMEOWNERID").trim();
                 currentBalance = rs.getDouble("BALANCE");
-                System.out.println("BALANCE: " + currentBalance);
+                logger.info("BALANCE: " + currentBalance);
                 fullName = rs.getString("LASTNAME").trim() + "," + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
                 newBalance = currentBalance - payment;
-                if(newBalance < 1){ paid = true; } else { paid = false;}
+                paid = newBalance < 1;
                 ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE PROPERTYID = ?");
                 ps.setDouble(1, newBalance);
                 ps.setBoolean(2, paid);
@@ -74,7 +65,7 @@ public class PayLot extends HttpServlet {
                 ps.setBoolean(1, paid);
                 ps.setString(2, userId);
                 ps.executeUpdate();
-                System.out.println("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
+                logger.info("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
                 ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
                 ps.setString(1, UUID.randomUUID().toString().substring(0,8));
                 ps.setString(2, (String) request.getSession().getAttribute("currID"));
@@ -83,7 +74,7 @@ public class PayLot extends HttpServlet {
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             } else {
-                System.out.println("NO BALANCE FOUND.");
+                logger.error("NO BALANCE FOUND.");
                 ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
                 ps.setString(1, UUID.randomUUID().toString().substring(0,8));
                 ps.setString(2, (String) request.getSession().getAttribute("currID"));
@@ -94,7 +85,7 @@ public class PayLot extends HttpServlet {
             }
 
         } catch(SQLException sqle){
-            System.out.println("SQLException IN error occured - " + sqle.getMessage());
+            logger.error("SQLException IN error occured - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -105,7 +96,7 @@ public class PayLot extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                System.out.println("SQLException OUT error occured - " + sqle.getMessage());
+                logger.error("SQLException OUT error occured - " + sqle.getMessage());
                 response.sendError(500);
             }
         }

@@ -1,8 +1,7 @@
-package controller;
+package controller.password;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.EmailService;
+import model.connections.ConnectionPoolManager;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class PasswordReset extends HttpServlet {
+    private static final Log logger = LogFactory.getLog(PasswordReset.class);
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
@@ -24,7 +27,7 @@ public class PasswordReset extends HttpServlet {
             throws ServletException, IOException 
     {
         String root = request.getContextPath();
-        System.out.println("-[PW-RESET]-------------------------------------------------------------------------");
+        logger.info("-[PW-RESET]-------------------------------------------------------------------------");
         //Get user email address
         String userEmail = request.getParameter("email");
         String userId = "";
@@ -36,46 +39,36 @@ public class PasswordReset extends HttpServlet {
         int linkExpMinutes = 15;
         //User Flag
         boolean validUser = false;
-        //Establish Connection
+
         try {
-            Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-            String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                   password = getServletContext().getInitParameter("dbPassword"),
-                   driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-            con = DriverManager.getConnection(driverURL, username, password); //create connection
-        } catch (SQLException sqle) {
-            System.out.println("SQLException error occured - " + sqle.getMessage());
-        } catch (ClassNotFoundException nfe) {
-            System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-        
-        try {
+            //Get connection from connection pool
+            con = ConnectionPoolManager.getDataSource().getConnection();
             //FIND EMAIL FROM DB
             ps = con.prepareStatement("SELECT USERID FROM LOGIN WHERE EMAIL = ?");
             ps.setString(1, userEmail);
             rs = ps.executeQuery();
             
             if(rs.next()) {
-                System.out.println("Found Email in Login");
+                logger.info("Found Email in Login");
                 userId = rs.getString("USERID").trim();
                 LocalDateTime now = LocalDateTime.now();
                 created = Timestamp.valueOf(now);
                 expiration = Timestamp.valueOf(now.plusMinutes(linkExpMinutes));
                 rt = UUID.randomUUID().toString().substring(0,8);
-                System.out.println("RT: " + rt);
+                logger.info("RT: " + rt);
                 ps = con.prepareStatement("SELECT CHANGEID FROM CHANGEPASSWORD WHERE CHANGEID = ?");
                 ps.setString(1, rt);
                 rs = ps.executeQuery();
                 //Check for duplicate id
                 while(rs.next()) {
                     rt = UUID.randomUUID().toString().substring(0,8);
-                    System.out.println("DUPLICATE ID, NEW RT: " + rt);
+                    logger.error("DUPLICATE ID, NEW RT: " + rt);
                     ps.setString(1, rt);
                     rs = ps.executeQuery();
                 }
-                System.out.println("FINAL RT: " + rt);
+                logger.info("FINAL RT: " + rt);
                 url = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/accounts/password/changepassword.jsp?rt="+ rt;
-                System.out.println("CHANGE PASS URL: " + url);
+                logger.info("CHANGE PASS URL: " + url);
                 
                 //IF EMAIL IS FOUND, FIND USERID
                 ps = con.prepareStatement("SELECT LASTNAME, FIRSTNAME, MIDDLEINITIAL FROM USERS WHERE USERID = ?");
@@ -83,12 +76,12 @@ public class PasswordReset extends HttpServlet {
                 rs = ps.executeQuery();
 
                 if(rs.next()) {
-                    System.out.println("Found UserId in Users");
+                    logger.info("Found UserId in Users");
                     validUser = true;
                     fullName = rs.getString("LASTNAME").trim() + ", " + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
                     System.out.println("Name: " + fullName);
                 } else {
-                    System.out.println("UserID not Found in Users");
+                    logger.error("UserID not Found in Users");
                     if(!response.isCommitted())
                         response.sendRedirect(root + "/accounts/password/reset.jsp?err=1");
                 }
@@ -104,13 +97,13 @@ public class PasswordReset extends HttpServlet {
                 }
             
             } else {
-                System.out.println("Email not Found in Login");
+                logger.error("Email not Found in Login");
                 if(!response.isCommitted())
                     response.sendRedirect(root + "/accounts/password/reset.jsp?err=1");               
             }
             
         } catch(SQLException sqle){
-            System.out.println("[PR] SQLException IN error occured - " + sqle.getMessage());
+            logger.error("[PR] SQLException IN error occured - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -121,7 +114,7 @@ public class PasswordReset extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                System.out.println("[PR] SQLException OUT error occured - " + sqle.getMessage());
+                logger.error("[PR] SQLException OUT error occured - " + sqle.getMessage());
                 response.sendError(500);
             }
         }
@@ -129,18 +122,18 @@ public class PasswordReset extends HttpServlet {
         //Sender Email and Contents
         String from = "crowntech.cics@gmail.com";
         String password = "cyke ikhz lvhg kzkf";
-        String to = userEmail; //Send to user's email
-        //String to = "UR EMAIL HERE"; //CHANGE TO UR EMAIL WHILE TESTING
+        ///String to = userEmail; //Send to user's email
+        String to = "kennethchristopher.fernando.cics@ust.edu.ph"; //CHANGE TO UR EMAIL WHILE TESTING
         String subject = "Reset your KHA Account Password " + fullName;
         String message = createEmail(url);
              
         if(validUser)
         {
-            System.out.println("Sending email to " + to);
+            logger.info("Sending email to " + to);
             EmailService.sendHtml(from, password, to, subject, message);
         }
         else
-            System.out.println("Email not sent, user not found in database.");
+            logger.error("Email not sent, user not found in database.");
 
         if(!response.isCommitted())
             response.sendRedirect(root + "/accounts/password/reset.jsp?err=0");

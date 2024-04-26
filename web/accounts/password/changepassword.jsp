@@ -1,8 +1,8 @@
+<%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="model.Encryption"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
@@ -20,21 +20,10 @@
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
-    //Establish Connection
-    try {
-        Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-        String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                password = getServletContext().getInitParameter("dbPassword"),
-                driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-        con = DriverManager.getConnection(driverURL, username, password); //create connection
-        System.out.println("Connected to DB.");
-    } catch (SQLException sqle) {
-        System.out.println("SQLException error occurred - " + sqle.getMessage());
-    } catch (ClassNotFoundException nfe) {
-        System.out.println("ClassNotFoundException error occurred - " + nfe.getMessage());
-    }
     
     try {
+        //Get connection from connection pool
+        con = ConnectionPoolManager.getDataSource().getConnection();
         //Get ChangePassword Data using rt
         ps = con.prepareStatement("SELECT * FROM CHANGEPASSWORD WHERE CHANGEID = ?");
         ps.setString(1, resetToken);
@@ -118,19 +107,9 @@
         <%
             //Change password in database
             if (request.getParameter("newPassword") != null && request.getParameter("newPasswordConfirm") != null) {
-                //Establish Connection
                 try {
-                    Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                    String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                           password = getServletContext().getInitParameter("dbPassword"),
-                           driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                    con = DriverManager.getConnection(driverURL, username, password); //create connection
-                } catch (SQLException sqle) {
-                    System.out.println("SQLException error occured - " + sqle.getMessage());
-                } catch (ClassNotFoundException nfe) {
-                    System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-                }
-                try {
+                    //Get connection from connection pool
+                    con = ConnectionPoolManager.getDataSource().getConnection();
                     String encrpytKey = getServletContext().getInitParameter("key");
                     String cipher = getServletContext().getInitParameter("cipher");
                     ps = con.prepareStatement("SELECT EMAIL FROM LOGIN WHERE USERID = ?");
