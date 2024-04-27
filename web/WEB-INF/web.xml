@@ -96,6 +96,10 @@
         <servlet-name>PayLot</servlet-name>
         <servlet-class>controller.PayLot</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Resident</servlet-name>
+        <servlet-class>model.Resident</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -171,6 +175,10 @@
     <servlet-mapping>
         <servlet-name>PayLot</servlet-name>
         <url-pattern>/PayLot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Resident</servlet-name>
+        <url-pattern>/Resident</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

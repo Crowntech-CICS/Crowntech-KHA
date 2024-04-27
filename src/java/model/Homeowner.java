@@ -1,53 +1,143 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
-import model.User;
 
-/**
- *
- * @author ejlu1
- */
 public class Homeowner extends User{
     private String hoID,
             mobNo,
             landNo,
+            representative,
+            repMobNo,
             houseNo,
             street,
             village,
             barangay,
             city,
             province,
-            ornum;
+            orNum;
     
-    public Homeowner(String userID, String email, String lastName, String firstName, String middleIni, String resClass, int age, int balance, String hoid, String mobile, String land, String st, String vil, String bar, String city, String prov, String ornum){
-        super(userID, email, lastName, firstName, middleIni, resClass, age, balance);
-        this.userID = userID;
-        this.email = email;
-        this.lastName = lastName;
-        this.hoID = hoid;
-        this.mobNo = mobile;
-        this.landNo = land;
-        this.street = st;
-        this.village = vil;
-        this.barangay = bar;
+    public Homeowner(){}
+    
+    public Homeowner(String userID, String email, String pass, String ln, String fn, String mi, int age, String resClass,
+            String hoID, String hoid, String mobNo, String landNo, String representative, String repMobNo, String houseNo, String street, String village, String barangay, 
+            String city, String province, String orNum){
+        super(userID, email, pass, ln, fn, mi, age, resClass);
+        this.hoID = hoID;
+        this.mobNo = mobNo;
+        this.landNo = landNo;
+        this.representative = representative;
+        this.repMobNo = repMobNo;
+        this.houseNo = houseNo;
+        this.street = street;
+        this.village = village;
+        this.barangay = barangay;
         this.city = city;
-        this.province = prov;
-        this.ornum = ornum;
+        this.province = province;
+        this.orNum = orNum;
+    }
+    
+    //setters
+    public void setHoID(String hoID){
+        this.hoID = hoID;
+    }
+    
+    public void setMobNo(String mobNo){
+        this.mobNo = mobNo;
+    }
+    
+    public void setLandNo(String landNo){
+        this.landNo = landNo;
+    }
+    
+    public void setRepresentative(String representative){
+        this.representative = representative;
+    }
+    
+    public void setRepMobNo(String repMobNo){
+        this.repMobNo = repMobNo;
+    }
+    
+    public void setHouseNo(String houseNo){
+        this.houseNo = houseNo;
+    }
+    
+    public void setStreet(String street){
+        this.street = street;
+    }
+    
+    public void setVillage(String village){
+        this.village = village;
+    }
+    
+    public void setBarangay(String barangay){
+        this.barangay = barangay;
+    }
+    
+    public void setCity(String city){
+        this.city = city;
+    }
+    
+    public void setProvince(String province){
+        this.province = province;
+    }
+    
+    public void sethoID(String hoID){
+        this.hoID = hoID;
+    }
+    
+    public void setOrNum(String orNum){
+        this.orNum = orNum;
     }
     
     
-    public Homeowner(String hoid, String mobile, String land, String st, String vil, String bar, String city, String prov, String ornum){
-        this.hoID = hoid;
-        this.mobNo = mobile;
-        this.landNo = land;
-        this.street = st;
-        this.village = vil;
-        this.barangay = bar;
-        this.city = city;
-        this.province = prov;
-        this.ornum = ornum;
+    //getters
+    public String getHoID(){
+        return this.hoID;
     }
     
+    public String getMobNo(){
+        return this.mobNo;
+    }
+    
+    public String getLandNo(){
+        return this.landNo;
+    }
+    
+    public String getRepresentative(){
+        return this.representative;
+    }
+    
+    public String getRepMobNo(){
+        return this.repMobNo;
+    }
+    
+    public String setHouseNo(){
+        return this.houseNo;
+    }
+    
+    public String getStreet(){
+        return this.street;
+    }
+    
+    public String getVillage(){
+        return this.village;
+    }
+    
+    public String getBarangay(){
+        return this.barangay;
+    }
+    
+    public String getCity(){
+        return this.city;
+    }
+    
+    public String SetProvince(){
+        return this.province;
+    }
+    
+    public String getHoID(String hoID){
+        return this.hoID;
+    }
+    
+    public String SetOrNum(String orNum){
+        return this.orNum;
+    }
 }
