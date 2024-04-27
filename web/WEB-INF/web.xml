@@ -49,8 +49,8 @@
         <servlet-class>controller.SortHandler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PasswordReset</servlet-name>
-        <servlet-class>controller.password.PasswordReset</servlet-class>
+        <servlet-name>RequestPasswordReset</servlet-name>
+        <servlet-class>controller.password.RequestPasswordReset</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExportPDF</servlet-name>
@@ -97,8 +97,12 @@
         <servlet-class>controller.PayLot</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Resident</servlet-name>
-        <servlet-class>model.Resident</servlet-class>
+        <servlet-name>PasswordUrlVerify</servlet-name>
+        <servlet-class>controller.password.UrlVerify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.password.ResetPassword</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -111,10 +115,6 @@
     <servlet-mapping>
         <servlet-name>SortHandler</servlet-name>
         <url-pattern>/SortHandler</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PasswordReset</servlet-name>
-        <url-pattern>/PasswordReset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExportPDF</servlet-name>
@@ -177,8 +177,16 @@
         <url-pattern>/PayLot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Resident</servlet-name>
-        <url-pattern>/Resident</url-pattern>
+        <servlet-name>PasswordUrlVerify</servlet-name>
+        <url-pattern>/PasswordUrlVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestPasswordReset</servlet-name>
+        <url-pattern>/RequestPasswordReset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/ResetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
