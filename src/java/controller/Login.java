@@ -44,44 +44,38 @@ public class Login extends HttpServlet {
                
         boolean found = false;
         ctr = (int) session.getAttribute("tries");
-        String userEmail = request.getParameter("email").toLowerCase(),
-               userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher),
-               userID = request.getParameter("USERID"),
-               userName;
-        System.out.println("EMAIL: " + userEmail);
-        System.out.println("PASSW: " + userPass);
+        String userEmail = request.getParameter("email").toLowerCase();
+        String userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
+//        System.out.println("EMAIL: " + userEmail);
+//        System.out.println("PASSW: " + userPass);
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT EMAIL, PASSWORD, USERID FROM USERS WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
+            ps = con.prepareStatement("SELECT * FROM USERS WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();
             
-            if(rs.next()){
+            if(rs.next()){ //If user is in database
                 System.out.println("FOUND IN DB");
-                String emailDB = rs.getString("EMAIL").trim().toLowerCase(),
-                       passwordDB = rs.getString("PASSWORD").trim();
-                //Get user access level in USERS table (RESIDENTCLASS)
-                ps = con.prepareStatement("SELECT RESIDENTCLASS, FIRSTNAME FROM USERS WHERE USERID = ?");
-                userID = rs.getString("USERID").trim();
-                ps.setString(1, rs.getString("USERID").trim());
-                rs = ps.executeQuery();
-                rs.next();
-                String levelDB = rs.getString("RESIDENTCLASS").trim();
-                userName = rs.getString("FIRSTNAME").trim();
+                //Get data from ResultSet
+                String emailDB = rs.getString("EMAIL").trim().toLowerCase();
+                String passwordDB = rs.getString("PASSWORD").trim();
+                String userID = rs.getString("USERID").trim();
+                String levelDB = rs.getString("RESIDENTCLASS").trim().toLowerCase();
+                String userName = rs.getString("FIRSTNAME").trim();
                 
-                logger.info(String.format("Email: %s || Password: %s || Level: %s", emailDB, passwordDB, levelDB));//print the contents resultset row
+                logger.info(String.format("Email: %s - Level: %s", emailDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)){
                     session.setAttribute("username", userName);
-                    session.setAttribute("level", levelDB.toLowerCase());
+                    session.setAttribute("level", levelDB);
                     session.setAttribute("currID", userID);
                     System.out.println("Current userID: " + userID);
                     System.out.println("Found user in the database");
                     found = true;                    
                 }
-            } else {
+            } else { //Not in database
                 logger.error("NO RECORD IN DB");
             }
             
@@ -104,7 +98,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("./accounts/password/reset.jsp");
             }
         } catch(SQLException sqle){
-            logger.error("SQLException IN error occured - " + sqle.getMessage());
+            logger.error("SQLException error occured in try - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -115,7 +109,7 @@ public class Login extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                logger.error("SQLException OUT error occured - " + sqle.getMessage());
+                logger.error("SQLException error occured in finally - " + sqle.getMessage());
                 response.sendError(500);
             }
         }
