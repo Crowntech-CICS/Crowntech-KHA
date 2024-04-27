@@ -1,4 +1,4 @@
-package controller;
+package controller.signup;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,17 +40,17 @@ public class SignupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
-        String lastName = request.getParameter("HO_LN").toLowerCase(),
-               firstName = request.getParameter("HO_FN").toLowerCase(),
-               middleIni = request.getParameter("HO_MI").toLowerCase(),
-               email = request.getParameter("HO_EMAIL").toLowerCase(),
-               ornum = request.getParameter("HO_ORNUM");
+        String lastName = request.getParameter("HO_LN").toLowerCase();
+        String firstName = request.getParameter("HO_FN").toLowerCase();
+        String middleIni = request.getParameter("HO_MI").toLowerCase();
+        String email = request.getParameter("HO_EMAIL").toLowerCase();
+        String ornum = request.getParameter("HO_ORNUM");
         Part filepart = request.getPart("FILES_UPLOAD");
         String filetype = filepart.getContentType();
         boolean found = false;
         String userid = "";
         
-        logger.info("-[SIGNUP]-------------------------------------------------------------------------------------------------------");
+        logger.info("SignUpServlet processRequest");
         logger.info("Name: " + lastName + firstName + middleIni);
         logger.info("Email: " + email);
         logger.info("OR Num: " + ornum);
@@ -66,9 +66,9 @@ public class SignupServlet extends HttpServlet {
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
             //Find user from database
-            ps = con.prepareStatement("SELECT EMAIL FROM LOGIN WHERE LOWER(EMAIL) = ?");
+            ps = con.prepareStatement("SELECT EMAIL FROM USERS WHERE LOWER(EMAIL) = ?");
             ps.setString(1, email);
-            logger.info("CHECKING LOGIN...");
+            logger.info("CHECKING EMAIL...");
             rs = ps.executeQuery();
             if(rs.next())
             {
@@ -78,11 +78,11 @@ public class SignupServlet extends HttpServlet {
 
                 if(login)
                 {
-                    logger.info("FOUND IN LOGIN");
+                    logger.info("FOUND EXISTING RECORD");
                     response.sendRedirect("signup.jsp?suc=" + found + "&err=1");
                 } 
             } else {    
-                logger.error("NOT IN LOGIN");
+                logger.error("NO RECORD FOUND");
 
                 ps = con.prepareStatement("SELECT HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,ORNUM FROM HOMEOWNER WHERE LOWER(LASTNAME) = ? AND LOWER(FIRSTNAME) = ? AND LOWER(MIDDLEINITIAL) = ? AND LOWER(EMAIL) = ? AND ORNUM = ?");
                 ps.setString(1, lastName);

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.signup.SignupServlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.connections.ConnectionPoolManager;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class CreateLogin extends HttpServlet {
-
+    private static final Log logger = LogFactory.getLog(CreateLogin.class);
     protected Connection con;
     protected ResultSet rs;
     protected PreparedStatement ps;
@@ -32,36 +36,26 @@ public class CreateLogin extends HttpServlet {
         String email = request.getParameter("EMAIL"),
                userid = request.getParameter("USERID"),
                userPassword = model.Encryption.encrypt(request.getParameter("newPassword"), getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipher"));
-        System.out.println("--[CREATE LOGIN]-------------------------");
-        System.out.println("EM: " + email);
-        System.out.println("UID: " + userid);
-        System.out.println("PWD: " + userPassword);
-        //Connect to DB
-        try {
-                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                        password = getServletContext().getInitParameter("dbPassword"),
-                        driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                con = DriverManager.getConnection(driverURL, username, password); //create connection
-            } catch (SQLException sqle) {
-                System.out.println("SQLException error occured - " + sqle.getMessage());
-            } catch (ClassNotFoundException nfe) {
-                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
+        logger.info("CreateLogin processRequest");
+        logger.info("EM: " + email);
+        logger.info("UID: " + userid);
+        logger.info("PWD: " + userPassword);
         //Insert into Database when Found
         try {
+            //Get connection from connection pool
+            con = ConnectionPoolManager.getDataSource().getConnection();
             ps = con.prepareStatement("INSERT INTO LOGIN(USERID,EMAIL,PASSWORD) VALUES (?,?,?)");
             ps.setString(1, userid);
             ps.setString(2, email);
             ps.setString(3, userPassword);
 
             String insertStatus = (ps.executeUpdate() > 0)? "Success" : "Failed";
-            System.out.println("Login insert status: " + insertStatus);
+            logger.info("Login insert status: " + insertStatus);
             if(insertStatus.equals("Success")){
                 response.sendRedirect("./signup.jsp?suc=true");
             }
         } catch (SQLException sqle) {
-            System.out.println("SQLException error occured in INSERT - " + sqle.getMessage());
+            logger.info("SQLException error occurred in try - " + sqle.getMessage());
             response.sendError(500);
         } finally {
         try {
@@ -72,7 +66,7 @@ public class CreateLogin extends HttpServlet {
             if(con != null)
                 con.close();
         } catch (SQLException sqle) {
-            System.out.println("SQLException error occured in Closing - " + sqle.getMessage());
+            logger.info("SQLException error occurred in finally - " + sqle.getMessage());
             response.sendError(500);
         }
     }
