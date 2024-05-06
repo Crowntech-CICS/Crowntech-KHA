@@ -1,9 +1,7 @@
-package controller;
+package controller.signup;
 
-import controller.signup.SignupServlet;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,9 +31,9 @@ public class CreateLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        String email = request.getParameter("EMAIL"),
-               userid = request.getParameter("USERID"),
-               userPassword = model.Encryption.encrypt(request.getParameter("newPassword"), getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipher"));
+        String email = request.getParameter("EMAIL");
+        String userid = request.getParameter("USERID");
+        String userPassword = model.Encryption.encrypt(request.getParameter("newPassword"), getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipher"));
         logger.info("CreateLogin processRequest");
         logger.info("EM: " + email);
         logger.info("UID: " + userid);
@@ -44,11 +42,10 @@ public class CreateLogin extends HttpServlet {
         try {
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("INSERT INTO LOGIN(USERID,EMAIL,PASSWORD) VALUES (?,?,?)");
-            ps.setString(1, userid);
-            ps.setString(2, email);
-            ps.setString(3, userPassword);
-
+            ps = con.prepareStatement("update users set password = ?, date_registered = now() where userid = ?;");
+            ps.setString(1, userPassword);
+            ps.setString(2, userid);
+            
             String insertStatus = (ps.executeUpdate() > 0)? "Success" : "Failed";
             logger.info("Login insert status: " + insertStatus);
             if(insertStatus.equals("Success")){

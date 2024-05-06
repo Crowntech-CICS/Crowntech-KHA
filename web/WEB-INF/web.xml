@@ -34,11 +34,11 @@
     </listener>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>controller.auth.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
+        <servlet-class>controller.auth.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SortHandle</servlet-name>
@@ -66,7 +66,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateLogin</servlet-name>
-        <servlet-class>controller.CreateLogin</servlet-class>
+        <servlet-class>controller.signup.CreateLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateInfo</servlet-name>
@@ -74,7 +74,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateAcc</servlet-name>
-        <servlet-class>controller.CreateAcc</servlet-class>
+        <servlet-class>controller.accounts.CreateAcc</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FinanceTrack</servlet-name>
@@ -90,7 +90,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateHomeowner</servlet-name>
-        <servlet-class>controller.CreateHomeowner</servlet-class>
+        <servlet-class>controller.accounts.CreateHomeowner</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PayLot</servlet-name>

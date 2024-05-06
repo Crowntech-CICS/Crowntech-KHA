@@ -1,4 +1,4 @@
-package controller;
+package controller.accounts;
 
 import java.io.IOException;
 import java.sql.*;

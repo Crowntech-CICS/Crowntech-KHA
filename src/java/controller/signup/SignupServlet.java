@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +46,6 @@ public class SignupServlet extends HttpServlet {
         String ornum = request.getParameter("HO_ORNUM");
         Part filepart = request.getPart("FILES_UPLOAD");
         String filetype = filepart.getContentType();
-        boolean found = false;
         String userid = "";
         
         logger.info("SignUpServlet processRequest");
@@ -65,63 +63,30 @@ public class SignupServlet extends HttpServlet {
         try {
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            //Find user from database
-            ps = con.prepareStatement("SELECT EMAIL FROM USERS WHERE LOWER(EMAIL) = ?");
-            ps.setString(1, email);
-            logger.info("CHECKING EMAIL...");
-            rs = ps.executeQuery();
-            if(rs.next())
-            {
-                boolean login = rs.getString("EMAIL").equalsIgnoreCase(email);
-                logger.info("-[LOGIN MATCH TEST]------------------------------------------------------------------------");
-                logger.info("EM: " + (login? "MATCH":"DIFF"));
-
-                if(login)
+            //Validate if user is in database
+            ps = con.prepareStatement("select u.*,h.ornum from users u join homeowner h on u.userid = h.userid where lower(lastname) = ? and lower(firstname) = ? and lower(middleinitial) = ? and lower(email) = ? and ornum = ?");
+            ps.setString(1, lastName);
+            ps.setString(2, firstName);
+            ps.setString(3, middleIni);
+            ps.setString(4, email);
+            ps.setString(5, ornum);
+            logger.info("VALIDATING USER...");
+            rs = ps.executeQuery();           
+            if(rs.next()) //User found
+            {                
+                if(rs.getDate("date_registered") == null) //Check if not yet registered
                 {
-                    logger.info("FOUND EXISTING RECORD");
-                    response.sendRedirect("signup.jsp?suc=" + found + "&err=1");
-                } 
-            } else {    
-                logger.error("NO RECORD FOUND");
-
-                ps = con.prepareStatement("SELECT HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,ORNUM FROM HOMEOWNER WHERE LOWER(LASTNAME) = ? AND LOWER(FIRSTNAME) = ? AND LOWER(MIDDLEINITIAL) = ? AND LOWER(EMAIL) = ? AND ORNUM = ?");
-                ps.setString(1, lastName);
-                ps.setString(2, firstName);
-                ps.setString(3, middleIni);
-                ps.setString(4, email);
-                ps.setString(5, ornum);
-                logger.info("CHECKING HOMEOWNER...");
-                rs = ps.executeQuery();
-                if(rs.next())
-                {
-                    logger.info("FOUND EMAIL IN HOMEOWNER");
-                    logger.info("-[HOMEOWNER MATCH TEST]------------------------------------------------------------------------");
-                    logger.info("LN: " + (rs.getString("LASTNAME").equalsIgnoreCase(lastName)? "MATCH":"DIFF"));
-                    logger.info("FN: " + (rs.getString("FIRSTNAME").equalsIgnoreCase(firstName)? "MATCH":"DIFF"));
-                    logger.info("MI: " + (rs.getString("MIDDLEINITIAL").equalsIgnoreCase(middleIni)? "MATCH":"DIFF"));
-                    logger.info("EM: " + (rs.getString("EMAIL").equalsIgnoreCase(email)? "MATCH":"DIFF"));
-                    logger.info("EM: " + (rs.getString("ORNUM").equalsIgnoreCase(ornum)? "MATCH":"DIFF"));
-                    String hid = rs.getString("HOMEOWNERID").trim();
-                    found = true;
-                    ps = con.prepareStatement("SELECT USERID FROM USERS WHERE HOMEOWNERID = ?");
-                    ps.setString(1, hid);
-                    logger.info("GETTING USERID...");
-                    rs = ps.executeQuery();
-                    if(rs.next())
-                    {
-                        userid = rs.getString("USERID").trim();
-                        logger.info("UID: " + userid);
-                    } else {
-                        logger.error("NO USERID FOUND.");
-                        response.sendRedirect("signup.jsp?suc=" + found + "&err=3");
-                    }
-
+                    userid = rs.getString("USERID").trim();
+                    logger.info("UID: " + userid);
                 } else {
-                    logger.error("NO HOMEOWNER RECORD FOUND");
-                    response.sendRedirect("signup.jsp?suc=" + found + "&err=2");
+                    logger.error("USER ALREADY REGISTERED");
+                    response.sendRedirect("signup.jsp?suc=false&err=1");
                 }
+            } else {
+                //User in not in the database
+                logger.error("NO RECORD FOUND");
+                response.sendRedirect("signup.jsp?suc=false&err=2");
             }
-
         } catch (SQLException sqle) {
             logger.error("SQLException error occured in Find - " + sqle.getMessage());
             response.sendError(500);
@@ -130,9 +95,7 @@ public class SignupServlet extends HttpServlet {
             response.sendError(500);
         }
         
-        System.out.println("------------------------------------------------------------------------------------------------------------");
-        if(!response.isCommitted()){
-            request.setAttribute("email", email);
+        if(!response.isCommitted()){ //Proceed to create password
             request.setAttribute("userid", userid);
             request.getRequestDispatcher("/accounts/password/createpassword.jsp").forward(request, response);
         }            

@@ -1,4 +1,4 @@
-package controller;
+package controller.auth;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         logger.info("Login Servlet processRequest.");
-        String encrpytKey = getServletContext().getInitParameter("key");/*"RECORDKINGSVILLE";*/
-        String cipher = getServletContext().getInitParameter("cipher");/*"AES/ECB/PKCS5Padding";*/
+        String encrpytKey = getServletContext().getInitParameter("key");
+        String cipher = getServletContext().getInitParameter("cipher");
         HttpSession session = request.getSession();
         boolean logState = session.getAttribute("username") != null;
         if(logState) {
@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT * FROM USERS WHERE LOWER(EMAIL) = ? AND PASSWORD = ?");
+            ps = con.prepareStatement("select * from get_login(?,?);");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();

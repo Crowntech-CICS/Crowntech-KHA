@@ -1,9 +1,8 @@
-package controller;
+package controller.accounts;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.connections.ConnectionPoolManager;
 
 public class CreateHomeowner extends HttpServlet {
 
@@ -30,20 +30,11 @@ public class CreateHomeowner extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Connect to DB
+        
+
         try {
-                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                        password = getServletContext().getInitParameter("dbPassword"),
-                        driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                con = DriverManager.getConnection(driverURL, username, password); //create connection
-            } catch (SQLException sqle) {
-                System.out.println("SQLException error occured - " + sqle.getMessage());
-            } catch (ClassNotFoundException nfe) {
-                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-        //Insert into Database when Found
-        try {
+            //Connect to DB
+            con = ConnectionPoolManager.getDataSource().getConnection();
             String uniqueId = "";
             //HOMEOWNER
             String homeownerId = uniqueId;
@@ -54,7 +45,8 @@ public class CreateHomeowner extends HttpServlet {
                 homeownerId = uniqueId;
                 System.out.println("HOID: " + homeownerId);
             }
-            ps = con.prepareStatement("INSERT INTO HOMEOWNER(HOMEOWNERID,LASTNAME,FIRSTNAME,MIDDLEINITIAL,EMAIL,MOBILENO,LANDLINENO,REPRESENTATIVE,REPMOBILENO,HOUSENO,STREETNAME,VILLAGE,BARANGAY,CITY,PROVINCE,PAID,BALANCE,ORNUM) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            //Insert into Database when Found
+            ps = con.prepareStatement("insert into users (userid, email, password, lastname, firstname, middleinitial, age, residentclass, date_registered) values (?, ?, '', ?, ?, ?, 30, 'Resident', null);");
             ps.setString(1, homeownerId);
             ps.setString(2, request.getParameter("HO_LN"));
             ps.setString(3, request.getParameter("HO_FN"));
