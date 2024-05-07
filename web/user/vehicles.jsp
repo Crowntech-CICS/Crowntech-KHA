@@ -1,13 +1,14 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.util.*"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
-    boolean logState = session.getAttribute("username") != null ? true : false;
-    if (!logState) {
-        response.sendRedirect("login.jsp");
-    }
+//    boolean logState = session.getAttribute("username") != null ? true : false;
+//    if (!logState) {
+//        response.sendRedirect("login.jsp");
+//    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,13 +17,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Vehicle Information</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/profile-format.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png">
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/profile-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <%
             Connection con = null;
             ResultSet rs = null;

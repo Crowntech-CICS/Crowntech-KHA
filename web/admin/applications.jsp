@@ -1,5 +1,6 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <!DOCTYPE html>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -15,14 +16,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>KHA | Membership Approval</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png">
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <br><br><br><br><br>
         <%            Connection con = null;
             ResultSet rs = null;

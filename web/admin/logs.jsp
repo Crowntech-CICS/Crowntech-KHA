@@ -1,5 +1,6 @@
 <%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.*"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -23,13 +24,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KHA | Finances</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png">
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/table-format.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png">
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/table-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <br><br><br><br><br><br>
         <div>
             <form class="sortSearch" action="" style="margin:auto; margin-top: 5px; max-width: 1800px;">

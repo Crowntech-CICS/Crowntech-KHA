@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
@@ -12,12 +13,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA NAVBAR</title>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
         <header>
             <nav>
-                <a href="."><img src="images/khalogo_newwhite.png" alt="no image" class="logo"></a>
+                <a href="."><img src="${root}/images/khalogo_newwhite.png" alt="no image" class="logo"></a>
                 <ul class="nav-links">
                     <%
                         //Display Corresponding Navigation Options Per Access Level

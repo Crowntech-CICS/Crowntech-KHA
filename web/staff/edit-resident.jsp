@@ -1,4 +1,5 @@
 <%@page import="java.sql.*"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,14 +7,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Edit Resident</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/profile-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/profile-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <%            int act = Integer.parseInt(request.getParameter("act"));
             // 1 is add, 2 is edit
         %>
