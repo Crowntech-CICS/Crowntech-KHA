@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.DBLogger;
 import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -42,37 +43,35 @@ public class AddMonthlyDues extends HttpServlet {
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM USERLOT");
+            ps = con.prepareStatement("SELECT USERID,BALANCE FROM USERLOT");
             rs = ps.executeQuery();
             while(rs.next()){
                 balance = rs.getDouble("BALANCE") + monthlyDue;
-                logger.info("HID: " + rs.getString("HOMEOWNERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
-                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ? WHERE HOMEOWNERID = ?");
+                logger.info("HID: " + rs.getString("USERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
+                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ? WHERE USERID = ?");
                 ps.setDouble(1, balance);
                 ps.setBoolean(2, paid);
-                ps.setString(3, rs.getString("HOMEOWNERID"));
+                ps.setString(3, rs.getString("USERID"));
                 ps.executeUpdate();
             }
             
-            ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM HOMEOWNER");
+            ps = con.prepareStatement("SELECT USERID,BALANCE FROM HOMEOWNER");
             rs = ps.executeQuery();
             while(rs.next()){
                 balance = rs.getDouble("BALANCE") + monthlyDue;
-                logger.info("HID: " + rs.getString("HOMEOWNERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
-                ps = con.prepareStatement("UPDATE HOMEOWNER SET BALANCE = ?, PAID = ? WHERE HOMEOWNERID = ?");
+                logger.info("HID: " + rs.getString("USERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
+                ps = con.prepareStatement("UPDATE HOMEOWNER SET BALANCE = ?, PAID = ? WHERE USERID = ?");
                 ps.setDouble(1, balance);
                 ps.setBoolean(2, paid);
-                ps.setString(3, rs.getString("HOMEOWNERID"));
+                ps.setString(3, rs.getString("USERID"));
                 ps.executeUpdate();
             }
             logger.info("SUCCESSFULLY ADDED MONTHLY DUES TO ALL HOMEOWNERS.");
             logger.info("Logged In user: " + loggedInUser);
             logger.info("------------------------------------------------------------------------");
-            ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
-            ps.setString(1, UUID.randomUUID().toString().substring(0,8));
-            ps.setString(2, loggedInUser);
-            ps.setString(3, "Added monthly dues to all existing balances.");
-            ps.executeUpdate();
+            //LOG ACTION
+            new DBLogger().log(loggedInUser, "Added monthly dues to all existing balances.");
+            //Redirect
             if(!response.isCommitted())
                 response.sendRedirect("records.jsp");
         } catch(SQLException sqle){

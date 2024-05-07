@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
             rs = ps.executeQuery();
             
             if(rs.next()){ //If user is in database
-                System.out.println("FOUND IN DB");
+                logger.info("FOUND IN DB");
                 //Get data from ResultSet
                 String emailDB = rs.getString("EMAIL").trim().toLowerCase();
                 String passwordDB = rs.getString("PASSWORD").trim();
@@ -103,7 +103,7 @@ public class Login extends HttpServlet {
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
                         ArrayList<Vehicle> cars = new ArrayList<>(); 
-                        if(rs.next()) {
+                        while(rs.next()) {
                             String vhID = rs.getString("vehicleid").trim();
                             String type = rs.getString("type").trim();
                             String plateno = rs.getString("plateno").trim();
@@ -122,7 +122,7 @@ public class Login extends HttpServlet {
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
                         ArrayList<UserLot> lots = new ArrayList<>();
-                        if(rs.next()){
+                        while(rs.next()){
                             String propID = rs.getString("propertyid").trim();
                             String titleNo = rs.getString("titleno").trim();
                             String lotRegName = rs.getString("registeredname").trim();
@@ -172,7 +172,7 @@ public class Login extends HttpServlet {
                     session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB);
                     session.setAttribute("currID", userID);
-                    System.out.println("Found user in the database");
+                    logger.info("Found user in the database");
                     found = true;                    
                 }
             } else { //Not in database
@@ -198,7 +198,7 @@ public class Login extends HttpServlet {
                 response.sendRedirect("./accounts/password/reset.jsp");
             }
         } catch(SQLException sqle){
-            logger.error("SQLException error occured in try - " + sqle.getMessage());
+            logger.error("SQLException error occurred in try - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -209,7 +209,7 @@ public class Login extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                logger.error("SQLException error occured in finally - " + sqle.getMessage());
+                logger.error("SQLException error occurred in finally - " + sqle.getMessage());
                 response.sendError(500);
             }
         }

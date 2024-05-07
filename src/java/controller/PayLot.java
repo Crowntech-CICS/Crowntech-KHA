@@ -5,11 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DBLogger;
 import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -46,11 +46,11 @@ public class PayLot extends HttpServlet {
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT H.HOMEOWNERID,L.PROPERTYID,H.LASTNAME,H.FIRSTNAME,H.MIDDLEINITIAL,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.HOMEOWNERID = L.HOMEOWNERID WHERE L.PROPERTYID = ?");
+            ps = con.prepareStatement("SELECT H.USERID,L.PROPERTYID,H.LASTNAME,H.FIRSTNAME,H.MIDDLEINITIAL,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.USERID = L.USERID WHERE L.PROPERTYID = ?");
             ps.setString(1, propId);
             rs = ps.executeQuery();
             if(rs.next()){
-                userId = rs.getString("HOMEOWNERID").trim();
+                userId = rs.getString("USERID").trim();
                 currentBalance = rs.getDouble("BALANCE");
                 logger.info("BALANCE: " + currentBalance);
                 fullName = rs.getString("LASTNAME").trim() + "," + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
@@ -61,25 +61,21 @@ public class PayLot extends HttpServlet {
                 ps.setBoolean(2, paid);
                 ps.setString(3, propId);
                 ps.executeUpdate();
-                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE HOMEOWNERID = ?");
+                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE USERID = ?");
                 ps.setBoolean(1, paid);
                 ps.setString(2, userId);
                 ps.executeUpdate();
                 logger.info("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
-                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
-                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
-                ps.setString(2, (String) request.getSession().getAttribute("currID"));
-                ps.setString(3, "Updated payment of " + payment + " by " + fullName);
-                ps.executeUpdate();
+                //LOG ACTION
+                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Updated payment of " + payment + " by " + fullName);
+                //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             } else {
                 logger.error("NO BALANCE FOUND.");
-                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
-                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
-                ps.setString(2, (String) request.getSession().getAttribute("currID"));
-                ps.setString(3, "Failed to update payment of " + payment + " by " + fullName);
-                ps.executeUpdate();
+                //LOG ACTION
+                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Failed to update payment of " + payment + " by " + fullName);
+                //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             }
