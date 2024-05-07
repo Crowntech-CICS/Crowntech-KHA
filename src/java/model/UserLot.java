@@ -1,7 +1,9 @@
 package model;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class UserLot {
+    ArrayList<Resident> residents = new ArrayList<>();
     private String propertyID,
             titleNo,
             lastName,
@@ -125,6 +127,10 @@ public class UserLot {
         this.propIndexNo = propIndexNo;
     }
     
+    public void setResidents(ArrayList<Resident> residents) {
+        this.residents = residents;
+    }
+    
     //getters
     public String getPropertyID(){
         return this.propertyID;
@@ -200,5 +206,13 @@ public class UserLot {
     
     public String setPropIndexNo(){
         return this.propIndexNo;
+    }
+    
+    public ArrayList<Resident> getResidents() {
+        return this.residents;
+    }
+    
+    public String getAddress() {
+        return this.houseNo + " " + this.street + " Brgy. " + this.barangay;
     }
 }

@@ -72,6 +72,7 @@ public class Login extends HttpServlet {
                 String userName = rs.getString("FIRSTNAME").trim();
                 String lastName = rs.getString("LASTNAME").trim();
                 String middleIni = rs.getString("MIDDLEINITIAL").trim();
+                String resDB = rs.getString("RESIDENTCLASS").trim();
                 int age = rs.getInt("AGE");              
                 
                 
@@ -96,7 +97,7 @@ public class Login extends HttpServlet {
                             String province = rs.getString("province");
                             String orNum = rs.getString("ornum");
                             
-                            user = new Homeowner(userID, emailDB, lastName, userName, middleIni, age, levelDB,
+                            user = new Homeowner(userID, emailDB, lastName, userName, middleIni, age, resDB,
                             mobNo, landNo, rep, repMobNo, houseNo,
                             street, village, barangay, city, province, orNum);
                         }

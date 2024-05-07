@@ -128,7 +128,7 @@ public class Homeowner extends User{
         return this.city;
     }
     
-    public String SetProvince(){
+    public String getProvince(){
         return this.province;
     }
     
@@ -136,7 +136,11 @@ public class Homeowner extends User{
         return this.hoID;
     }
     
-    public String SetOrNum(String orNum){
+    public String getOrNum(){
         return this.orNum;
+    }
+    
+    public String getAddress(){
+        return houseNo + " " + street + " " + village + " Brgy." + barangay + " " + city + " " + province;
     }
 }
