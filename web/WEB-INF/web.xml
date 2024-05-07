@@ -104,6 +104,14 @@
         <servlet-name>ResetPassword</servlet-name>
         <servlet-class>controller.password.ResetPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateAdmin</servlet-name>
+        <servlet-class>controller.accounts.CreateResident</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateResident</servlet-name>
+        <servlet-class>controller.accounts.CreateResident</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -187,6 +195,14 @@
     <servlet-mapping>
         <servlet-name>ResetPassword</servlet-name>
         <url-pattern>/ResetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAdmin</servlet-name>
+        <url-pattern>/CreateAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateResident</servlet-name>
+        <url-pattern>/CreateResident</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

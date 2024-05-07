@@ -1,17 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Create Homeowner Account</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-big">
                 <div class="step-row">
@@ -109,7 +110,7 @@
                     <br>
                 </form>
 
-                <form id="finalForm" action="CreateHomeowner" method="POST">
+                <form id="finalForm" action="${root}/CreateHomeowner" method="POST">
                     <input type="hidden" name="HO_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_FN"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_MI"><!-- HOMEOWNER -->
@@ -153,7 +154,7 @@
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     alert('Successfully added Homeowner to the records.');
-                    window.location.href = 'records.jsp';
+                    window.location.href = '${root}/generalpurpose/index.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');
