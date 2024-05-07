@@ -16,11 +16,10 @@ public class Homeowner extends User{
     
     public Homeowner(){}
     
-    public Homeowner(String userID, String email, String pass, String ln, String fn, String mi, int age, String resClass,
-            String hoID, String hoid, String mobNo, String landNo, String representative, String repMobNo, String houseNo, String street, String village, String barangay, 
+    public Homeowner(String userID, String email, String ln, String fn, String mi, int age, String resClass,
+            String mobNo, String landNo, String representative, String repMobNo, String houseNo, String street, String village, String barangay, 
             String city, String province, String orNum){
-        super(userID, email, pass, ln, fn, mi, age, resClass);
-        this.hoID = hoID;
+        super(userID, email, ln, fn, mi, age, resClass);
         this.mobNo = mobNo;
         this.landNo = landNo;
         this.representative = representative;

@@ -21,7 +21,7 @@
         <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file = "/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-small">
                 <div class="step-row">

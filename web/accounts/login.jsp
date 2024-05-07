@@ -35,7 +35,7 @@
         
         <div class="main-body">
             <div class="login-box">
-                <form action="Login" method="POST">
+                <form action="${root}\Login" method="POST">
                     <h1 class="h1-bold">Login</h1>
                     <div class="changepass-label-container">
                         <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
@@ -52,7 +52,7 @@
                     </div>
                     <br>
                     <div class="button-container">
-                        <a href="${root}/accounts/signup/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+                        <a href="${root}/accounts/SignUp/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
                     </div>
                 </form>      
             </div>

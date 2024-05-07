@@ -21,6 +21,7 @@
                 <a href="${root}/generalpurpose/index.jsp"><img src="${root}/images/khalogo_newwhite.png" alt="no image" class="logo"></a>
                 <ul class="nav-links">
                     <%
+                        String rootPath = request.getContextPath();
                         //Display Corresponding Navigation Options Per Access Level
                         //Staff/Admin/Board Access Level
                         if (level.equals("admin")) {
@@ -31,18 +32,17 @@
                             //out.println("<li><a href=\"applications.jsp\">Applications</a></li>");
                             //out.println("<li><a href=\"createacc.jsp\">Create Account</a></li>");
                             out.println("<li><a href=\"signup-homeowners.jsp\">Create Homeowner Account</a></li>");
-                            out.println("<li><a href=\"Logout\">Logout</a></li>");
-
+                            out.println("<li><a href=" + request.getContextPath() + "\"Logout\">Logout</a></li>");
                         } //Homeowner/Lessee/Resident Access Level
                         else if(level.equals("staff") || level.equals("board")){
                             out.println("<li><a href=\"FinanceTrack\">Finances Tracker</a></li>");
                             out.println("<li><a href=\"records.jsp\">Records Viewing</a></li>");
-                            out.println("<li><a href=\"Logout\">Logout</a></li>");
+                            out.println("<li><a href=" + rootPath + "\"Logout\">Logout</a></li>");
                         }
                         else if (level.equals("homeowner") || level.equals("lessee") || level.equals("resident")) {
-                            out.println("<li><a href=\"Logout\">Logout</a></li>");
-                            out.println("<li><a href=\"profile.jsp\">"
-                                    + "<img src=\"images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
+                            out.println("<li><a href=\"" + rootPath + "/Logout\">Logout</a></li>");
+                            out.println("<li><a href=\"" + rootPath + "/user/profile.jsp\">"
+                                    + "<img src=\"" + rootPath + "/images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
                         }
                     %>
                 </ul>

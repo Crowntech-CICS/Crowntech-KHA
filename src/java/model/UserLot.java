@@ -3,7 +3,6 @@ import java.util.Date;
 
 public class UserLot {
     private String propertyID,
-            homeownerID,
             titleNo,
             lastName,
             firstName,
@@ -25,11 +24,10 @@ public class UserLot {
     
     public UserLot(){}
     
-    public UserLot(String propertyID, String homeownerID, String titleNo, String lastName, String firstName, String middleInitial, String houseNo, String street, 
+    public UserLot(String propertyID, String titleNo, String lastName, String firstName, String middleInitial, String houseNo, String street, 
             String barangay, String area, String surveyNo, String lotNo, Date dateRegistered, float balance, String use, String businessName, String businessType,
              Date paymentDate, String taxDecNo,  String propIndexNo){
         this.propertyID = propertyID;
-        this.homeownerID = homeownerID;
         this.titleNo = titleNo;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -53,10 +51,6 @@ public class UserLot {
     //setters
     public void setPropertyID(String propertyID){
         this.propertyID = propertyID;
-    }
-    
-    public void setHomeownerID(String homeownerID){
-        this.homeownerID = homeownerID;
     }
     
     public void setTitleNo(String titleNo){
@@ -134,10 +128,6 @@ public class UserLot {
     //getters
     public String getPropertyID(){
         return this.propertyID;
-    }
-    
-    public String getHomeownerID(){
-        return this.homeownerID;
     }
     
     public String getTitleNo(){

@@ -6,7 +6,6 @@ public class User {
 
     protected String userID,
             email,
-            pass,
             lastName,
             firstName,
             middleIni,
@@ -23,10 +22,9 @@ public class User {
     public User() {
     }
 
-    public User(String userID, String email, String pass, String ln, String fn, String mi, int age, String resClass) {
+    public User(String userID, String email, String ln, String fn, String mi, int age, String resClass) {
         this.userID = userID;
         this.email = email;
-        this.pass = pass;
         this.lastName = ln;
         this.firstName = fn;
         this.middleIni = mi;
@@ -41,10 +39,6 @@ public class User {
 
     public void setEmail(String em) {
         this.email = em;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
     }
 
     public void setLastName(String ln) {
@@ -113,10 +107,6 @@ public class User {
         return this.email;
     }
 
-    public String getPass() {
-        return this.pass;
-    }
-
     public String getLastName() {
         return this.lastName;
     }
@@ -146,5 +136,14 @@ public class User {
 
     public ArrayList getCars() {
         return this.cars;
+    }
+    
+    @Override
+    public String toString() {
+        return "The current user is: " + firstName + " " + middleIni + " " + lastName + " \nUID: " + userID + " \nClass: " + resClass + " \nAge: " + age;
+    }
+    
+    public String fullName() {
+        return lastName + ", " + firstName + " " + middleIni;
     }
 }

@@ -1,15 +1,21 @@
 package controller.auth;
 
+import model.User;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Homeowner;
+import model.UserLot;
+import model.Vehicle;
 import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -64,14 +70,95 @@ public class Login extends HttpServlet {
                 String userID = rs.getString("USERID").trim();
                 String levelDB = rs.getString("RESIDENTCLASS").trim().toLowerCase();
                 String userName = rs.getString("FIRSTNAME").trim();
+                String lastName = rs.getString("LASTNAME").trim();
+                String middleIni = rs.getString("MIDDLEINITIAL").trim();
+                int age = rs.getInt("AGE");              
+                
                 
                 logger.info(String.format("Email: %s - Level: %s", emailDB, levelDB));//print the contents resultset row
                 
                 if(userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)){
+                    if(levelDB.equals("homeowner")) {
+                        Homeowner user = new Homeowner();
+                        ps = con.prepareStatement("select * from homeowner where userid = ?");
+                        ps.setString(1, userID);
+                        rs = ps.executeQuery();
+                        if(rs.next()){
+                            String mobNo = rs.getString("mobileno");
+                            String landNo = rs.getString("landlineno");
+                            String rep = rs.getString("representative");
+                            String repMobNo = rs.getString("repmobileno");
+                            String houseNo = rs.getString("houseno");
+                            String street = rs.getString("streetname");
+                            String village = rs.getString("village");
+                            String barangay = rs.getString("barangay");
+                            String city = rs.getString("city");
+                            String province = rs.getString("province");
+                            String orNum = rs.getString("ornum");
+                            
+                            user = new Homeowner(userID, emailDB, lastName, userName, middleIni, age, levelDB,
+                            mobNo, landNo, rep, repMobNo, houseNo,
+                            street, village, barangay, city, province, orNum);
+                        }
+                        ps = con.prepareStatement("select * from vehicle where userid = ?");
+                        ps.setString(1, userID);
+                        rs = ps.executeQuery();
+                        ArrayList<Vehicle> cars = new ArrayList<>(); 
+                        if(rs.next()) {
+                            String vhID = rs.getString("vehicleid").trim();
+                            String type = rs.getString("type").trim();
+                            String plateno = rs.getString("plateno").trim();
+                            String brand = rs.getString("brand").trim();
+                            String model = rs.getString("model").trim();
+                            String vLN = rs.getString("lastname").trim();
+                            String vFN = rs.getString("firstname").trim();
+                            String vMN = rs.getString("middleinitial").trim();
+                            
+                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
+                            cars.add(car);
+                        }
+                        user.setCars(cars);
+                        
+                        ps = con.prepareStatement("select * from userlot where userid = ?");
+                        ps.setString(1, userID);
+                        rs = ps.executeQuery();
+                        ArrayList<UserLot> lots = new ArrayList<>();
+                        if(rs.next()){
+                            String propID = rs.getString("propertyid").trim();
+                            String titleNo = rs.getString("titleno").trim();
+                            String lotLN = rs.getString("lastname").trim();
+                            String lotFN = rs.getString("firstname").trim();
+                            String lotMI = rs.getString("middleinitial").trim();
+                            String houseNo = rs.getString("houseno").trim();
+                            String street = rs.getString("streetname").trim();
+                            String barangay = rs.getString("barangay").trim();
+                            String area = rs.getString("area").trim();
+                            String surNo = rs.getString("surveyNo").trim();
+                            String lotNo = rs.getString("lotno").trim();
+                            Date dateReg = rs.getDate("dateregistered");
+                            float balance = rs.getFloat("balance");
+                            String use = rs.getString("use");
+                            String businessName = rs.getString("businessname").trim();
+                            String businessType = rs.getString("businesstype").trim();
+                            Date paymentDate = rs.getDate("paymentdate");
+                            String taxDecNo = rs.getString("taxdecno").trim();
+                            String propInNo = rs.getString("propindexno").trim();
+                            
+                            UserLot lot = new UserLot(propID, titleNo, lotLN, lotFN, lotMI,
+                            houseNo, street, barangay, area,
+                            surNo, lotNo, dateReg, balance, use, businessName, businessType,
+                            paymentDate, taxDecNo, propInNo);
+                            
+                            lots.add(lot);
+                        }
+                        user.setLot(lots);
+                        
+                        session.setAttribute("currUser", user);
+                    }
+                    // User user = new User(userID, emailDB, lastName, userName, middleIni, age, levelDB);
                     session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB);
                     session.setAttribute("currID", userID);
-                    System.out.println("Current userID: " + userID);
                     System.out.println("Found user in the database");
                     found = true;                    
                 }
@@ -84,7 +171,7 @@ public class Login extends HttpServlet {
                     con.close();
                 ctr = 0;
                 session.removeAttribute("tries");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("generalpurpose/index.jsp");
             }
             else if(ctr < allowedTries - 1){ //shows a message that the email or password is wrong (total of 3 tries)
                 ctr++;

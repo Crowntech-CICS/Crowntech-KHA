@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,6 +25,7 @@
     </head>
     <body style="overflow-y: scroll">
         <%
+            User user = (User)session.getAttribute("currUser");
             Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
@@ -46,7 +48,6 @@
                 while (rs.next()) {
                     fullName = rs.getString("FIRSTNAME") + " " + rs.getString("MIDDLEINITIAL") + " " + rs.getString("LASTNAME");
                     resClass = rs.getString("RESIDENTCLASS").trim();
-                //    hoID = rs.getString("HOMEOWNERID");
                 }
                 
                 ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE USERID = ?");
@@ -54,7 +55,7 @@
                 rs = ps.executeQuery();
                 while (rs.next()){
                     address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " Barangay " + rs.getString("BARANGAY") + " " + rs.getString("CITY") + " " + rs.getString("PROVINCE");
-                    hoID = rs.getString("HOMEOWNERID");
+                //    hoID = rs.getString("HOMEOWNERID");
                 }
         %>
         <%@include file="/generalpurpose/navbar.jsp" %>
@@ -77,7 +78,7 @@
                 <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
             </div>
         </div>
-        <%
+        <% 
                 ps = con.prepareStatement("SELECT * FROM USERLOT WHERE HOMEOWNERID = ?");
                 ps.setString(1, hoID);
                 rs = ps.executeQuery();
