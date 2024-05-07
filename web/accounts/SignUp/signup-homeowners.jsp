@@ -24,8 +24,8 @@
                 <form id='form1'>
                     <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_LN">Last Name</label><input onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="HO_FN">First Name</label><input onchange="finalForm.HO_FN.value = this.value" type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_LN">Last Name</label><input onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
                     <input onchange="finalForm.HO_MI.value = this.value" type="text" type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input onchange="finalForm.HO_AGE.value = this.value" type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
                     <label for="HO_EMAIL">Email Address</label><input onchange="finalForm.HO_EMAIL.value = this.value" type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
@@ -33,7 +33,7 @@
                     <input onchange="finalForm.HO_LANDLINE.value = this.value" type="text" name="HO_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PHONE.value = this.value" type="text" name="HO_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <br><br><br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href='records.jsp'" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = 'records.jsp'" id="button-small">
                         <input id="Next1" class="button-design" type="button" value="Next">
                     </div>
                 </form>
