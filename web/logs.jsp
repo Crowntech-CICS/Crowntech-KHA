@@ -1,3 +1,4 @@
+<%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,20 +14,9 @@
     }
 %>
 <%
-    Connection con = null;
+    Connection con = ConnectionPoolManager.getDataSource().getConnection();
     PreparedStatement ps = null;
     ResultSet rs = null;
-    try {
-        Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-        String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                password = getServletContext().getInitParameter("dbPassword"),
-                driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-        con = DriverManager.getConnection(driverURL, username, password); //create connection
-    } catch (SQLException sqle) {
-        System.out.println("SQLException error occured - " + sqle.getMessage());
-    } catch (ClassNotFoundException nfe) {
-        System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-    }
 %>
 <html lang="en">
     <head>
@@ -61,7 +51,7 @@
                 <tbody>
                 <%
                     int oddEven = 0;
-                    ps = con.prepareStatement("SELECT u.FIRSTNAME||u.LASTNAME AS \"NAME\",l.\"ACTION\",l.\"TIME\",l.\"DATE\" FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
+                    ps = con.prepareStatement("SELECT u.FIRSTNAME||u.LASTNAME AS \"NAME\",l.action,l.time,l.date FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
                     rs = ps.executeQuery();
                     while(rs.next()){ 
                         if((oddEven % 2) == 0){
