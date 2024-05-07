@@ -4,10 +4,11 @@
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
+    String root = request.getContextPath();
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect(root + "/accounts/login.jsp");
     }
 %>
 <!DOCTYPE html>

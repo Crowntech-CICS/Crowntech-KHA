@@ -2,12 +2,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
 <%
+    String root = request.getContextPath();
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (logState) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect(root + "/generalpurpose/index.jsp");
     }
     //Login Attempts Counter
     int tries = 0;
@@ -39,7 +40,7 @@
                     <div class="changepass-label-container">
                         <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
                         <label for="password"> Password:</label><input type="password" name="password" class="form" required><br/><br/>
-                        <a href="./accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
+                        <a href="${root}/accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
                         <br>
                         <c:if test = "${tries > 0}">
                             <p style="text-align: center;"><span style="color: red; font-size: 50;">You have <% out.print(3 - tries);%> tries left</span></p> 
@@ -51,7 +52,7 @@
                     </div>
                     <br>
                     <div class="button-container">
-                        <a href="signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
+                        <a href="${root}/accounts/signup/signup.jsp" class="login-ref">Not yet a member? Apply Here.</a>
                     </div>
                 </form>      
             </div>
@@ -63,16 +64,16 @@
             var err = urlParam.get('err');
             if(err == 4){
                 alert('The change password link has expired. Please generate a new one to change your password.');
-                window.location = '${root}/login.jsp';
+                window.location = '${root}/accounts/login.jsp';
             } else if(err == 3){
                 alert('Invalid link accessed going back to login page.');
-                window.location = '${root}/login.jsp';
+                window.location = '${root}/accounts/login.jsp';
             } else if(err == 5){
                 alert('User account not found in the system, returning to login page');
-                window.location = '${root}/login.jsp';
+                window.location = '${root}/accounts/login.jsp';
             } else if(err == 0){
                 alert('Your password is changed successfully you may now login.');
-                window.location = '${root}/login.jsp';
+                window.location = '${root}/accounts/login.jsp';
             }
         }
     </script>
