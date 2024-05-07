@@ -1,3 +1,4 @@
+<%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
@@ -31,15 +32,10 @@
             String resClass = null;
             String address = null;
             try {
-                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                        password = getServletContext().getInitParameter("dbPassword"),
-                        driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                con = DriverManager.getConnection(driverURL, username, password); //create connection
+                //Get connection from connection pool
+                con = ConnectionPoolManager.getDataSource().getConnection();
             } catch (SQLException sqle) {
                 System.out.println("SQLException error occured - " + sqle.getMessage());
-            } catch (ClassNotFoundException nfe) {
-                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
             }
             try {
                 ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
