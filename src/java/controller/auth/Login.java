@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homeowner;
+import model.Resident;
 import model.UserLot;
 import model.Vehicle;
 import model.connections.ConnectionPoolManager;
@@ -156,6 +157,22 @@ public class Login extends HttpServlet {
                         
                         session.setAttribute("currUser", user);
                     }
+                    
+                    if(levelDB.equals("resident")) {
+                        Resident user = new Resident();
+                        ps = con.prepareStatement("select * from resident where userid = ?");
+                        ps.setString(1, userID);
+                        rs = ps.executeQuery();
+                        while(rs.next()){
+                            String propID = rs.getString("propertyid").trim();
+                            String relationship = rs.getString("relationship").trim();
+                            
+                            user = new Resident(userID, emailDB, lastName, userName, middleIni, age, resDB, propID, relationship);
+                        }
+                        
+                        session.setAttribute("currUser", user);
+                    }
+                    
                     // User user = new User(userID, emailDB, lastName, userName, middleIni, age, levelDB);
                     session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB);

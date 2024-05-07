@@ -5,6 +5,8 @@ public class Resident extends User {
             propertyID,
             relationship;
     
+    protected UserLot lot;
+    
     public Resident(){}
     
     public Resident(String userID, String email, String ln, String fn, String mi, int age, String resClass,
@@ -24,6 +26,9 @@ public class Resident extends User {
         this.relationship = relationship;
     }
     
+    public void setResLot(UserLot lot) {
+        this.lot = lot;
+    }
     //getters
     
     public String getPropertyID(){
@@ -32,6 +37,10 @@ public class Resident extends User {
     
     public String getRelationship(){
         return this.relationship;
+    }
+    
+    public UserLot getResLot() {
+        return this.lot;
     }
     
     public String getAddress() {
