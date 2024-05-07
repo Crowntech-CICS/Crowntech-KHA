@@ -38,8 +38,8 @@
                             + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
                             + "<h1 class=\"h1-bold\" id=\"h1small\">Add Residents</h1>"
                             + "<div class=\"line\"></div><br>"
-                            + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"Last Name\" class=\"form\" required><br>"
                             + "<label for=\"HO_FN_B\">First Name</label><input type=\"text\" name=\"HO_FN_B\" placeholder=\"First Name\" class=\"form\" required><br>"
+                            + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"Last Name\" class=\"form\" required><br>"
                             + "<label for=\"HO_MI_B\" id=\"label-margin\">Middle Initial</label><br>"
                             + "<input type=\"text\" name=\"HO_MI_B\" placeholder=\"Middle Initial\" class=\"form-small\" id=\"form-margin\" required><br>"
                             + "<label for=\"RES_REL\">Relationship with Resident</label>"
@@ -62,9 +62,8 @@
                             + "</div>"
                             + "</form>"
                             + "</div>");
-                }
-                else if (act == 2) {
-                System.out.print("ACT = " + act);
+                } else if (act == 2) {
+                    System.out.print("ACT = " + act);
                     Connection con = null;
                     ResultSet rs = null;
                     PreparedStatement ps = null;
@@ -84,44 +83,44 @@
                         ps.setString(1, (String) request.getParameter("pID"));
                         rs = ps.executeQuery();
                         out.println("<h1 class=\"h1-bold\" id=\"h1smallRes\">Only Edit One at a Time</h1>"
-                        + "<p style=\"color: black\">You may only edit one resident at a time.</p>"
-                        + "<br>"
-                        + "<div class=\"res-edit-holder\">");
+                                + "<p style=\"color: black\">You may only edit one resident at a time.</p>"
+                                + "<br>"
+                                + "<div class=\"res-edit-holder\">");
                         while (rs.next()) {
                             out.println(""
-                            + "<div class=\"signup-box-smallest-res\" >"
-                            + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
-                            + "<h1 class=\"h1-bold\" id=\"h1small\">Edit Residents</h1>"
-                            + "<div class=\"line\"></div><br>"
-                            + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"" + rs.getString("LASTNAME") + "\"class=\"form\"><br>"
-                            + "<label for=\"HO_FN_B\">First Name</label><input type=\"text\" name=\"HO_FN_B\" placeholder=\"" + rs.getString("FIRSTNAME") + "\"class=\"form\"><br>"
-                            + "<label for=\"HO_MI_B\" id=\"label-margin\">Middle Initial</label><br>"
-                            + "<input type=\"text\" name=\"HO_MI_B\" placeholder=\"" + rs.getString("MIDDLEINITIAL") + "\"class=\"form-small\" id=\"form-margin\"><br>"
-                            + "<label for=\"RES_REL\">Relationship with Resident</label>"
-                            + "<select name=\"RES_REL\" class=\"form\">"
-                            + "<option value=\"\" selected></option>"
-                            + "<option value=\"Spouse\">Spouse</option>"
-                            + "<option value=\"Child\">Child</option>"
-                            + "<option value=\"Grandchild\">Grandchild</option>"
-                            + "<option value=\"Househelp\">Househelp</option>"
-                            + "<option value=\"Renter\">Renter</option>"
-                            + "<option value=\"Parent\">Parent</option>"
-                            + "<option value=\"Friend\">Friend</option>"
-                            + "</select>"
-                            + "<br>"
-                            + "<input type=\"hidden\" name=\"FORM_NO\" value=\"7\">"
-                            + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + rs.getString("PROPERTYID") + "\">"
-                            + "<input type=\"hidden\" name=\"HO_LN_C\" value=\"" + rs.getString("LASTNAME") + "\">"
-                            + "<input type=\"hidden\" name=\"HO_FN_C\" value=\"" + rs.getString("FIRSTNAME") + "\">"
-                            + "<input type=\"hidden\" name=\"HO_MI_C\" value=\"" + rs.getString("MIDDLEINITIAL") + "\">"
-                            + "<input type=\"hidden\" name=\"RES_REL_C\" value=\"" + rs.getString("RELATIONSHIP") + "\">"
-                            + "<div class=\"button-container\">"
-                            + "<input class=\"button-design-reject\" value=\"Cancel\" id=\"button-small\" style=\"margin-right: 10%;\" onclick=\"location.href = 'profile.jsp'\">"
-                            + "<input class=\"button-design\" type=\"submit\" value=\"Save\" id=\"button-small\">"
-                            + "</div>"
-                            + "</form>"
-                            + "</div>"
-                            + "</br></br>");
+                                    + "<div class=\"signup-box-smallest-res\" >"
+                                    + "<form style=\"left: 32.5%;\" action=\"UpdateInfo\">"
+                                    + "<h1 class=\"h1-bold\" id=\"h1small\">Edit Residents</h1>"
+                                    + "<div class=\"line\"></div><br>"
+                                    + "<label for=\"HO_FN_B\">First Name</label><input type=\"text\" name=\"HO_FN_B\" placeholder=\"" + rs.getString("FIRSTNAME") + "\"class=\"form\"><br>"
+                                    + "<label for=\"HO_LN_B\">Last Name</label><input type=\"text\" name=\"HO_LN_B\" placeholder=\"" + rs.getString("LASTNAME") + "\"class=\"form\"><br>"
+                                    + "<label for=\"HO_MI_B\" id=\"label-margin\">Middle Initial</label><br>"
+                                    + "<input type=\"text\" name=\"HO_MI_B\" placeholder=\"" + rs.getString("MIDDLEINITIAL") + "\"class=\"form-small\" id=\"form-margin\"><br>"
+                                    + "<label for=\"RES_REL\">Relationship with Resident</label>"
+                                    + "<select name=\"RES_REL\" class=\"form\">"
+                                    + "<option value=\"\" selected></option>"
+                                    + "<option value=\"Spouse\">Spouse</option>"
+                                    + "<option value=\"Child\">Child</option>"
+                                    + "<option value=\"Grandchild\">Grandchild</option>"
+                                    + "<option value=\"Househelp\">Househelp</option>"
+                                    + "<option value=\"Renter\">Renter</option>"
+                                    + "<option value=\"Parent\">Parent</option>"
+                                    + "<option value=\"Friend\">Friend</option>"
+                                    + "</select>"
+                                    + "<br>"
+                                    + "<input type=\"hidden\" name=\"FORM_NO\" value=\"7\">"
+                                    + "<input type=\"hidden\" name=\"UOTHER_ID\" value=\"" + rs.getString("PROPERTYID") + "\">"
+                                    + "<input type=\"hidden\" name=\"HO_LN_C\" value=\"" + rs.getString("LASTNAME") + "\">"
+                                    + "<input type=\"hidden\" name=\"HO_FN_C\" value=\"" + rs.getString("FIRSTNAME") + "\">"
+                                    + "<input type=\"hidden\" name=\"HO_MI_C\" value=\"" + rs.getString("MIDDLEINITIAL") + "\">"
+                                    + "<input type=\"hidden\" name=\"RES_REL_C\" value=\"" + rs.getString("RELATIONSHIP") + "\">"
+                                    + "<div class=\"button-container\">"
+                                    + "<input class=\"button-design-reject\" value=\"Cancel\" id=\"button-small\" style=\"margin-right: 10%;\" onclick=\"location.href = 'profile.jsp'\">"
+                                    + "<input class=\"button-design\" type=\"submit\" value=\"Save\" id=\"button-small\">"
+                                    + "</div>"
+                                    + "</form>"
+                                    + "</div>"
+                                    + "</br></br>");
                         }
                     } catch (SQLException sqle) {
                         System.out.println("SQLException IN error occured - " + sqle.getMessage());
