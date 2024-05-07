@@ -53,27 +53,29 @@
                 <tbody>
                 <%
                     int oddEven = 0;
-                    ps = con.prepareStatement("SELECT u.FIRSTNAME||u.LASTNAME AS \"NAME\",l.action,l.time,l.date FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
+                    ps = con.prepareStatement("SELECT u.FIRSTNAME||' '||u.LASTNAME AS \"NAME\",l.action,l.time,l.date FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
                     rs = ps.executeQuery();
                     while(rs.next()){ 
                         if((oddEven % 2) == 0){
                 %>
-                        <tr>
-                            <td class="tableContentText"><%= rs.getString("NAME")%></td>
-                            <td class="tableContentText"><%= rs.getString("ACTION")%></td>
-                            <td class="tableContentText"><%= rs.getTime("TIME").toString() %></td>
-                            <td class="tableContentText"><%= rs.getDate("DATE").toString() %></td>
-                        </tr>
+                            <tr>
+                                <td class="tableContentText"><%= rs.getString("NAME")%></td>
+                                <td class="tableContentText"><%= rs.getString("ACTION")%></td>
+                                <td class="tableContentText"><%= rs.getTime("TIME").toString() %></td>
+                                <td class="tableContentText"><%= rs.getDate("DATE").toString() %></td>
+                            </tr>
                 <%    
+                            oddEven++;
                         } else { 
                 %>
-                        <tr>
-                            <td class="tableContentText2"><%= rs.getString("NAME")%></td>
-                            <td class="tableContentText2"><%= rs.getString("ACTION")%></td>
-                            <td class="tableContentText2"><%= rs.getTime("TIME").toString() %></td>
-                            <td class="tableContentText2"><%= rs.getDate("DATE").toString() %></td>
-                        </tr>
+                            <tr>
+                                <td class="tableContentText2"><%= rs.getString("NAME")%></td>
+                                <td class="tableContentText2"><%= rs.getString("ACTION")%></td>
+                                <td class="tableContentText2"><%= rs.getTime("TIME").toString() %></td>
+                                <td class="tableContentText2"><%= rs.getDate("DATE").toString() %></td>
+                            </tr>
                 <%    
+                            oddEven++;
                         }
                     }
                 %>

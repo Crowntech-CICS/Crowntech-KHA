@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Calendar;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -256,7 +255,7 @@ public class FinanceTrack extends HttpServlet {
             session.setAttribute("memPaid", totalMA);
             session.setAttribute("monPaid", totalMF);
             session.setAttribute("balPaid", totalBD);
-            response.sendRedirect("finances.jsp?year=" + selYear);
+            response.sendRedirect(request.getContextPath() + "/bod/finances.jsp?year=" + selYear);
             //request.getRequestDispatcher("finances.jsp").forward(request,response);              
         } catch (SQLException ex) {
             System.out.println(ex);
