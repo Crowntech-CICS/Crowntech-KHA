@@ -34,10 +34,10 @@
                 <form id='form1' action=""  method="POST">
                     <h1 class="h1-bold">Personal Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_LN">Last Name</label>
-                    <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" onLoad="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
                     <label for="HO_FN">First Name</label>
                     <input type="text" id="FN1" onChange="document.form2.HO_FN.value = this.value" onLoad="document.form2.HO_FN.value = this.value" placeholder="ex. John" class="form" required><br>
+                    <label for="HO_LN">Last Name</label>
+                    <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" onLoad="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
                     <label for="HO_MI" id="label-margin">Middle Initial</label><br>
                     <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" onLoad="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
                     <label for="HO_EMAIL">Email Address</label>
@@ -81,7 +81,7 @@
                     </div>
                     <br>
                 </form>  
-                
+
                 <form id='form4' action="${root}/login.jsp" method="POST">
                     <h1 class="h1-bold">Registration Complete</h1>
                     <div class="line"></div><br>
@@ -95,16 +95,16 @@
             </div>
         </div>
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 completed(new URLSearchParams(window.location.search));
             };
-            
+
             function submitForm() {
-                if(confirm('Are you sure that all the information you have inputted are correct?')){
+                if (confirm('Are you sure that all the information you have inputted are correct?')) {
                     document.form2.submit();
                 }
             }
-            
+
             var form1 = document.getElementById("form1");
             var form2 = document.getElementById("form2");
             var form3 = document.getElementById("form3");
@@ -117,13 +117,13 @@
             var Back3 = document.getElementById("Back3");
             var Next4 = document.getElementById("Next4");
             var Back4 = document.getElementById("Back4");
-            
+
             //First text form next button
             Next1.onclick = function () {
-                if(document.getElementById("LN1").value !== ""){
-                    if(document.getElementById("FN1").value !== ""){
-                        if(document.getElementById("MI1").value !== ""){
-                            if(document.getElementById("EMAIL1").value !== ""){
+                if (document.getElementById("LN1").value !== "") {
+                    if (document.getElementById("FN1").value !== "") {
+                        if (document.getElementById("MI1").value !== "") {
+                            if (document.getElementById("EMAIL1").value !== "") {
                                 form1.style.left = "-1000px";
                                 form2.style.left = "32.5%";
                                 progressSignup.style.width = "50%";
@@ -144,18 +144,18 @@
             Back2.onclick = function () {
                 form1.style.left = "32.5%";
                 form2.style.left = "1000px";
-                progressSignup.style.width = "25%";             
+                progressSignup.style.width = "25%";
             };
             //File upload form next button
             Next2.onclick = function () {
-                if(document.getElementById("HO_ORNUM").value !== ""){
-                    if(document.getElementById("FILE_UPLOAD1").files.length !== 0){
+                if (document.getElementById("HO_ORNUM").value !== "") {
+                    if (document.getElementById("FILE_UPLOAD1").files.length !== 0) {
                         form2.style.left = "-1000px";
                         form3.style.left = "32.5%";
                         progressSignup.style.width = "75%";
                     } else {
                         alert("Please upload the required file.");
-                    } 
+                    }
                 } else {
                     alert("Fill in the Official Receipt Number Field.");
                 }
@@ -168,20 +168,20 @@
             };
 
             /*Next3.onclick = function () {
-                form3.style.left = "-1000px";
-                form4.style.left = "32.5%";
-                progressSignup.style.width = "100%";
-            };
+             form3.style.left = "-1000px";
+             form4.style.left = "32.5%";
+             progressSignup.style.width = "100%";
+             };
+             
+             Back4.onclick = function () {
+             form3.style.left = "32.5%";
+             form4.style.left = "1000px";
+             progressSignup.style.width = "75%";
+             };*/
 
-            Back4.onclick = function () {
-                form3.style.left = "32.5%";
-                form4.style.left = "1000px";
-                progressSignup.style.width = "75%";
-            };*/
-            
             function completed(searchparam) {
                 var success = searchparam.get('suc');
-                if(success === "true"){
+                if (success === "true") {
                     form1.style.left = "-1000px";
                     form2.style.left = "-1000px";
                     form3.style.left = "-1000px";
@@ -189,20 +189,17 @@
                     progressSignup.style.width = "100%";
                     console.log("Submitted Form: Successfully Found User");
                     alert("Your password is now created successfully you may now login.");
-                }
-                else
+                } else
                 {
-                    if(searchparam.get('err') > 2)
+                    if (searchparam.get('err') > 2)
                     {
                         alert("Unknown error");
                         window.location = '${root}/signup.jsp';
-                    }
-                    else if(searchparam.get('err') == 1)
+                    } else if (searchparam.get('err') == 1)
                     {
                         alert("User is already registered. Please login your account using your email");
                         window.location = '${root}/signup.jsp';
-                    }
-                    else if(searchparam.get('err') == 2)
+                    } else if (searchparam.get('err') == 2)
                     {
                         alert("User is not found in the system, there may be incorrect inputs. Please try again. If you think this is an error please verify at the KHA office.");
                         window.location = '${root}/signup.jsp';
