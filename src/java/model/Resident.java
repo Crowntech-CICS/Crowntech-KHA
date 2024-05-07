@@ -33,4 +33,8 @@ public class Resident extends User {
     public String getRelationship(){
         return this.relationship;
     }
+    
+    public String getAddress() {
+        return "";
+    }
 }

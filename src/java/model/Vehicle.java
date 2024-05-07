@@ -80,7 +80,7 @@ public class Vehicle {
     }
     
     public String getBrand(){
-        return this.vehicleID;
+        return this.brand;
     }
     
     public String getModel(){
@@ -95,7 +95,11 @@ public class Vehicle {
         return this.firstName;
     }
     
-    public String setMiddleInitial(){
+    public String getMiddleInitial(){
         return this.middleInitial;
+    }
+    
+    public String getRegisteredOwner() {
+        return this.lastName + ", " + this.firstName + " " + this.middleInitial;
     }
 }

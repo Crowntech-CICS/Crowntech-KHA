@@ -38,7 +38,6 @@
             String resClass = null;
             String address = null;
             System.out.println(user.toString());
-            System.out.println(user.getLots());
             /*try {
                 //Get connection from connection pool
                 con = ConnectionPoolManager.getDataSource().getConnection();
