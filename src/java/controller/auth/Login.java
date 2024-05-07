@@ -1,6 +1,5 @@
 package controller.auth;
 
-import model.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Date;
@@ -53,8 +52,7 @@ public class Login extends HttpServlet {
         ctr = (int) session.getAttribute("tries");
         String userEmail = request.getParameter("email").toLowerCase();
         String userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
-//        System.out.println("EMAIL: " + userEmail);
-//        System.out.println("PASSW: " + userPass);
+
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
@@ -75,7 +73,6 @@ public class Login extends HttpServlet {
                 String middleIni = rs.getString("MIDDLEINITIAL").trim();
                 String resDB = rs.getString("RESIDENTCLASS").trim();
                 int age = rs.getInt("AGE");              
-                
                 
                 logger.info(String.format("Email: %s - Level: %s", emailDB, levelDB));//print the contents resultset row
                 
@@ -128,9 +125,7 @@ public class Login extends HttpServlet {
                         if(rs.next()){
                             String propID = rs.getString("propertyid").trim();
                             String titleNo = rs.getString("titleno").trim();
-                            String lotLN = rs.getString("lastname").trim();
-                            String lotFN = rs.getString("firstname").trim();
-                            String lotMI = rs.getString("middleinitial").trim();
+                            String lotRegName = rs.getString("registeredname").trim();
                             String houseNo = rs.getString("houseno").trim();
                             String street = rs.getString("streetname").trim();
                             String barangay = rs.getString("barangay").trim();
@@ -146,7 +141,7 @@ public class Login extends HttpServlet {
                             String taxDecNo = rs.getString("taxdecno").trim();
                             String propInNo = rs.getString("propindexno").trim();
                             
-                            UserLot lot = new UserLot(propID, titleNo, lotLN, lotFN, lotMI,
+                            UserLot lot = new UserLot(propID, titleNo, lotRegName,
                             houseNo, street, barangay, area,
                             surNo, lotNo, dateReg, balance, use, businessName, businessType,
                             paymentDate, taxDecNo, propInNo);

@@ -6,9 +6,7 @@ public class UserLot {
     ArrayList<Resident> residents = new ArrayList<>();
     private String propertyID,
             titleNo,
-            lastName,
-            firstName,
-            middleInitial,
+            registeredName,
             houseNo,
             street,
             barangay,
@@ -26,14 +24,12 @@ public class UserLot {
     
     public UserLot(){}
     
-    public UserLot(String propertyID, String titleNo, String lastName, String firstName, String middleInitial, String houseNo, String street, 
+    public UserLot(String propertyID, String titleNo, String registeredName, String houseNo, String street, 
             String barangay, String area, String surveyNo, String lotNo, Date dateRegistered, float balance, String use, String businessName, String businessType,
              Date paymentDate, String taxDecNo,  String propIndexNo){
         this.propertyID = propertyID;
         this.titleNo = titleNo;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleInitial = middleInitial;
+        this.registeredName = registeredName;
         this.houseNo = houseNo;
         this.street = street;
         this.barangay = barangay;
@@ -59,16 +55,8 @@ public class UserLot {
         this.titleNo = titleNo;
     }
     
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-    
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-    
-    public void setMiddleInitial(String middleInitial){
-        this.middleInitial = middleInitial;
+    public void setRegisteredName(String registeredName) {
+        this.registeredName = registeredName;
     }
     
     public void setHouseNo(String houseNo){
@@ -140,16 +128,8 @@ public class UserLot {
         return this.titleNo;
     }
     
-    public String getLastName(){
-        return this.lastName;
-    }
-    
-    public String getFirstName(){
-        return this.firstName;
-    }
-    
-    public String getMiddleInitial(){
-        return this.middleInitial;
+    public String getRegisteredName() {
+        return registeredName;
     }
     
     public String getHouseNo(){
@@ -215,4 +195,5 @@ public class UserLot {
     public String getAddress() {
         return this.houseNo + " " + this.street + " Brgy. " + this.barangay;
     }
+
 }
