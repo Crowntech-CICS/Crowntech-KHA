@@ -1,4 +1,4 @@
-package model;
+package model.uniqueId;
 
 public class IdGenerator {
     enum Charset {
