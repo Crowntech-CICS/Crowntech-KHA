@@ -94,10 +94,13 @@
                     out.print("<h1 class=\"h1-bold\" id=\"profileAddress\">"
                             + lots.get(x).getHouseNo() + " " + lots.get(x).getStreet()
                             + "</h1>");
-                    if (lots.get(x).getBalance() < 0) {
+                    if ((int)lots.get(x).getBalance() <= 0.0) {
+                        System.out.println(lots.get(x).getBalance() < 0);
                         out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID ");
-                    } else if (lots.get(x).getBalance() > 0) {
+                    } else if (lots.get(x).getBalance() > 0.0) {
                         out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
+                    } else {
+                        System.out.println(lots.get(x).getBalance());
                     }
                     out.print("</h1>"
                             + "</div>"

@@ -156,7 +156,7 @@ public class Login extends HttpServlet {
                     
                     if(levelDB.equals("resident")) {
                         Resident user = new Resident();
-                        ps = con.prepareStatement("select * from resident where userid = ?");
+                        ps = con.prepareStatement("select * from residents where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
                         while(rs.next()){
@@ -165,7 +165,54 @@ public class Login extends HttpServlet {
                             
                             user = new Resident(userID, emailDB, lastName, userName, middleIni, age, resDB, propID, relationship);
                         }
-                        
+                        UserLot lot = new UserLot();
+                        ps = con.prepareStatement("select * from userlot where propertyid = ?");
+                        ps.setString(1, user.getPropertyID());
+                        rs = ps.executeQuery();
+                        while(rs.next()) {
+                            String propID = rs.getString("propertyid").trim();
+                            String titleNo = rs.getString("titleno").trim();
+                            String lotRegName = rs.getString("registeredname").trim();
+                            String houseNo = rs.getString("houseno").trim();
+                            String street = rs.getString("streetname").trim();
+                            String barangay = rs.getString("barangay").trim();
+                            String area = rs.getString("area").trim();
+                            String surNo = rs.getString("surveyNo").trim();
+                            String lotNo = rs.getString("lotno").trim();
+                            Date dateReg = rs.getDate("dateregistered");
+                            float balance = rs.getFloat("balance");
+                            String use = rs.getString("use");
+                            String businessName = rs.getString("businessname").trim();
+                            String businessType = rs.getString("businesstype").trim();
+                            Date paymentDate = rs.getDate("paymentdate");
+                            String taxDecNo = rs.getString("taxdecno").trim();
+                            String propInNo = rs.getString("propindexno").trim();
+                            
+                            lot = new UserLot(propID, titleNo, lotRegName,
+                            houseNo, street, barangay, area,
+                            surNo, lotNo, dateReg, balance, use, businessName, businessType,
+                            paymentDate, taxDecNo, propInNo);
+                            
+                            user.setResLot(lot);
+                        }
+                        ps = con.prepareStatement("select * from vehicle where userid = ?");
+                        ps.setString(1, userID);
+                        rs = ps.executeQuery();
+                        ArrayList<Vehicle> cars = new ArrayList<>(); 
+                        while(rs.next()) {
+                            String vhID = rs.getString("vehicleid").trim();
+                            String type = rs.getString("type").trim();
+                            String plateno = rs.getString("plateno").trim();
+                            String brand = rs.getString("brand").trim();
+                            String model = rs.getString("model").trim();
+                            String vLN = rs.getString("lastname").trim();
+                            String vFN = rs.getString("firstname").trim();
+                            String vMN = rs.getString("middleinitial").trim();
+                            
+                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
+                            cars.add(car);
+                        }
+                        user.setCars(cars);
                         session.setAttribute("currUser", user);
                     }
                     

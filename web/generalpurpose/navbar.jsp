@@ -39,9 +39,13 @@
                             out.println("<li><a href=\"" + rootPath + "/staff/records.jsp\">Records Viewing</a></li>");
                             out.println("<li><a href=\"" + rootPath + "/Logout\">Logout</a></li>");
                         }
-                        else if (level.equals("homeowner") || level.equals("lessee") || level.equals("resident")) {
+                        else if (level.equals("homeowner") || level.equals("lessee")) {
                             out.println("<li><a href=\"" + rootPath + "/Logout\">Logout</a></li>");
                             out.println("<li><a href=\"" + rootPath + "/user/profile.jsp\">"
+                                    + "<img src=\"" + rootPath + "/images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
+                        } else if(level.equals("resident")){
+                            out.println("<li><a href=\"" + rootPath + "/Logout\">Logout</a></li>");
+                            out.println("<li><a href=\"" + rootPath + "/user/resident/profile.jsp\">"
                                     + "<img src=\"" + rootPath + "/images/profile_white.png\" alt=\"star\" class=\"logo-profile\"></a></li>");
                         }
                     %>
