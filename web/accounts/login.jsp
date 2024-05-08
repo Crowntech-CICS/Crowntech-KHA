@@ -30,9 +30,9 @@
         <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        
+
         <%@include file="/generalpurpose/navbar.jsp" %>
-        
+
         <div class="main-body">
             <div class="login-box">
                 <form action="${root}\Login" method="POST">
@@ -48,7 +48,7 @@
                         <br>
                     </div>
                     <div class="button-container">
-                        <input class="button-design" type="submit" value="Login" style="margin-left: 3%">
+                        <input id="login-button" class="button-design" type="submit" value="Login" style="margin-left: 3%">
                     </div>
                     <br>
                     <div class="button-container">
@@ -59,22 +59,29 @@
         </div>
     </body>
     <script>
-        window.onload = function (){
+        window.onload = function () {
             var urlParam = new URLSearchParams(window.location.search);
             var err = urlParam.get('err');
-            if(err == 4){
+            if (err == 4) {
                 alert('The change password link has expired. Please generate a new one to change your password.');
                 window.location = '${root}/accounts/login.jsp';
-            } else if(err == 3){
+            } else if (err == 3) {
                 alert('Invalid link accessed going back to login page.');
                 window.location = '${root}/accounts/login.jsp';
-            } else if(err == 5){
+            } else if (err == 5) {
                 alert('User account not found in the system, returning to login page');
                 window.location = '${root}/accounts/login.jsp';
-            } else if(err == 0){
+            } else if (err == 0) {
                 alert('Your password is changed successfully you may now login.');
                 window.location = '${root}/accounts/login.jsp';
             }
+            setTimeout(function () {
+                $("#login-button").prop("disabled", true).val("Wait...");
+            }, 100);
+
+            setTimeout(function () {
+                $("#login-button").prop("disabled", false).val("Try again?");
+            }, 15000);
         }
     </script>
 </html>
