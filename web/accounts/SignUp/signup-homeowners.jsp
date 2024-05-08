@@ -34,7 +34,7 @@
                     <input onchange="finalForm.HO_LANDLINE.value = this.value" type="text" name="HO_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PHONE.value = this.value" type="text" name="HO_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <br><br><br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/index.jsp'" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/admin/accounts.jsp'" id="button-small">
                         <input id="Next1" class="button-design" type="button" value="Next">
                     </div>
                 </form>

@@ -17,6 +17,8 @@ public class ConnectionPoolManager {
         dataSource.setMaxWaitMillis(5000); // Maximum time to wait for a connection from the pool
         dataSource.setValidationQuery("SELECT 1"); // SQL query used to validate connections
         dataSource.setTestOnBorrow(true); // Whether to validate connections when borrowed from the pool
+        dataSource.setRemoveAbandonedOnBorrow(true); // Whether to remove abandoned connections when borrowed from the pool
+        dataSource.setRemoveAbandonedTimeout(60); // Timeout (in seconds) for identifying abandoned connections
     }
     
     public static BasicDataSource getDataSource() {

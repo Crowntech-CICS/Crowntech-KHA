@@ -106,7 +106,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateAdmin</servlet-name>
-        <servlet-class>controller.accounts.CreateResident</servlet-class>
+        <servlet-class>controller.accounts.CreateAdmin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateResident</servlet-name>

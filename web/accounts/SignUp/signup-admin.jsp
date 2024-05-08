@@ -34,8 +34,8 @@
                     </select>
                     <br><br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/index.jsp'" id="button-small">
-                        <input id="Next1" class="button-design" type="button" value="Next">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/admin/accounts.jsp'" id="button-small">
+                        <input id="Next1" class="button-design" type="button" value="Submit">
                     </div>
                 </form>
 
@@ -56,7 +56,7 @@
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     alert('Successfully added Admin to the records.');
-                    window.location.href = '${root}/records.jsp';
+                    window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');
@@ -90,7 +90,7 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                finalform.submit();
+                finalForm.submit();
 
             };
         </script>

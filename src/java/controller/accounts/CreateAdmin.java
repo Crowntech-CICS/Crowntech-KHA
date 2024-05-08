@@ -53,12 +53,12 @@ public class CreateAdmin extends HttpServlet {
             //Create Account
             ps = con.prepareStatement("select create_staff(?,?,?,?,?,?,?)");
             ps.setString(1, userId);
-            ps.setString(2, rs.getString("ADMIN_EMAIL"));
-            ps.setString(3, rs.getString("ADMIN_LN"));
-            ps.setString(4, rs.getString("ADMIN_FN"));
-            ps.setString(5, rs.getString("ADMIN_MI"));
-            ps.setInt(6, Integer.parseInt(rs.getString("ADMIN_AGE")));
-            ps.setString(7, rs.getString("ADMIN_ROLE"));
+            ps.setString(2, request.getParameter("ADMIN_EMAIL"));
+            ps.setString(3, request.getParameter("ADMIN_LN"));
+            ps.setString(4, request.getParameter("ADMIN_FN"));
+            ps.setString(5, request.getParameter("ADMIN_MI"));
+            ps.setInt(6, Integer.parseInt(request.getParameter("ADMIN_AGE")));
+            ps.setString(7, request.getParameter("ADMIN_ROLE"));
             rs = ps.executeQuery();
             //Check if error
             if(rs.next());

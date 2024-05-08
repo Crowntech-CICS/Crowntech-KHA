@@ -44,13 +44,14 @@ public class CreateResident extends HttpServlet {
             //Create Account
             ps = con.prepareStatement("select create_resident(?,?,?,?,?,?,?,?)");
             ps.setString(1, userId);
-            ps.setString(2, rs.getString("RES_EMAIL"));
-            ps.setString(3, rs.getString("RES_LN"));
-            ps.setString(4, rs.getString("RES_FN"));
-            ps.setString(5, rs.getString("RES_MI"));
-            ps.setInt(6, Integer.parseInt(rs.getString("RES_AGE")));
-            ps.setString(7, rs.getString("PROPERTYID"));
-            ps.setString(8, rs.getString("RES_REL"));
+            ps.setString(2, request.getParameter("RES_EMAIL"));
+            ps.setString(3, request.getParameter("RES_LN"));
+            ps.setString(4, request.getParameter("RES_FN"));
+            ps.setString(5, request.getParameter("RES_MI"));
+            ps.setInt(6, Integer.parseInt(request.getParameter("RES_AGE")));
+            ps.setString(7, request.getParameter("RES_PROP"));
+            ps.setString(8, request.getParameter("RES_REL"));
+            logger.info(ps);
             rs = ps.executeQuery();
             //Check if error
             if(rs.next());
@@ -66,14 +67,14 @@ public class CreateResident extends HttpServlet {
             } else if(result.equalsIgnoreCase("Other Error")){
                 logger.error("Error during insert " + result);
                 //LOG ACTION
-                new DBLogger().log((String) session.getAttribute("currID"), "Unknown error creating " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+                new DBLogger().log((String) session.getAttribute("currID"), "Unknown error creating " + request.getParameter("RES_LN") + "," + request.getParameter("RES_FN"));
                 //Redirect
                 if(!response.isCommitted()){
                     response.sendRedirect(root + "/accounts/signup/signup-resident.jsp?err=2");
                 }
             }
             //LOG ACTION
-            new DBLogger().log((String) session.getAttribute("currID"), "Created user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+            new DBLogger().log((String) session.getAttribute("currID"), "Created user " + request.getParameter("RES_LN") + "," + request.getParameter("RES_FN"));
             //Redirect
             if(!response.isCommitted()){
                 response.sendRedirect(root + "/accounts/signup/signup-resident.jsp?suc=true");
