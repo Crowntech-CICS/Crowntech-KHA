@@ -26,15 +26,15 @@
                     <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="RES_LANDNO" class="marginMobile">Mobile Number</label><br>
                     <input onchange="finalForm.RES_LANDLINE.value = this.value" type="text" name="RES_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.RES_PHONE.value = this.value" type="text" name="RES_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <label for="LE_REL"">Relationship with Homeowner</label>
-                    <select name="LE_REL" id="" class="form">
+                    <select name="LE_REL" id="" class="form" onchange="finalForm.RES_REL.value = this.value">
                         <option value="" selected disabled>Relationship</option>
-                        <option value="">Spouse</option>
-                        <option value="">Son/Daughter</option>
-                        <option value="">Grandchild</option>
-                        <option value="">Househelp</option>
-                        <option value="">Renter</option>
-                        <option value="">Parent</option>
-                        <option value="">Friend</option>
+                        <option value="Spouse">Spouse</option>
+                        <option value="Son/Daughter">Son/Daughter</option>
+                        <option value="Grandchild">Grandchild</option>
+                        <option value="Househelp">Househelp</option>
+                        <option value="Renter">Renter</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Friend">Friend</option>
                     </select>
                     <br><br><br>
                     <div class="button-container">
@@ -43,7 +43,7 @@
                     </div>
                 </form>
 
-                <form id="finalForm" action="CreateHomeowner" method="POST">
+                <form id="finalForm" action="${root}/CreateResident" method="POST">
                     <input type="hidden" name="RES_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_FN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_MI"><!-- HOMEOWNER -->
@@ -51,6 +51,8 @@
                     <input type="hidden" name="RES_EMAIL"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_LANDLINE"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_PHONE"><!-- HOMEOWNER -->
+                    <input type="hidden" name="RES_REL"><!-- HOMEOWNER -->
+                    <input type="hidden" name="PROPERTYID" value="<%= request.getParameter("propId")%>"><!-- HOMEOWNER -->
                 </form>
             </div>
         </div>
@@ -58,7 +60,7 @@
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
-                    alert('Successfully added Homeowner to the records.');
+                    alert('Successfully added Resident to the records.');
                     window.location.href = '${root}/records.jsp';
                 }
                 if (params.get('err') == 1) {
@@ -80,7 +82,8 @@
                     {name: "RES_AGE", message: "Missing Age."},
                     {name: "RES_EMAIL", message: "Missing Email."},
                     {name: "RES_LANDLINE", message: "Missing Landline."},
-                    {name: "RES_PHONE", message: "Missing Phone Number."}
+                    {name: "RES_PHONE", message: "Missing Phone Number."},
+                    {name: "RES_REL", message: "Invalid Relationship."}
                 ];
                 for (let i = 0; i < f1.length; i++) {
                     const field = f1[i];
@@ -92,11 +95,7 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                // If all fields are filled
-                form1.style.left = "-1000px";
-                form2.style.left = "32.5%";
-                progress.style.width = "50%";
-
+                finalform.submit();
             };
         </script>
     </body>

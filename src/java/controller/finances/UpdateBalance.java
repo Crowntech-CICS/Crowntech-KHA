@@ -44,7 +44,7 @@ public class UpdateBalance extends HttpServlet {
                 ps.setString(2, rs.getString("propertyid"));
                 ps.executeUpdate();
             }
-            response.sendRedirect(request.getContextPath());
+            response.sendRedirect(request.getContextPath() + "/staff/records.jsp");
             
         } catch(SQLException sqle){
             logger.info("SQLException error occurred in update - " + sqle.getMessage());

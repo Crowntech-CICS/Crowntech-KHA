@@ -25,12 +25,12 @@
                     <label for="ADMIN_EMAIL">Email Address</label><input onchange="finalForm.ADMIN_EMAIL.value = this.value" type="text" name="ADMIN_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="ADMIN_LANDNO" class="marginMobile">Mobile Number</label><br>
                     <input onchange="finalForm.ADMIN_LANDLINE.value = this.value" type="text" name="ADMIN_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.ADMIN_PHONE.value = this.value" type="text" name="ADMIN_PHONE" placeholder="Mobile Number" class="form-medium"><br>
-                    <label for="ADMIN_REL"">Admin Role</label>
-                    <select name="ADMIN_REL" id="" class="form">
-                        <option value="" selected>Role</option>
-                        <option value="">System Admin</option>
-                        <option value="">Board of Director</option>
-                        <option value="">Staff</option>
+                    <label for="ADMIN_ROLE"">Admin Role</label>
+                    <select name="ADMIN_ROLE" id="" class="form" onchange="finalForm.ADMIN_ROLE.value = this.value">
+                        <option value="" selected disabled>Role</option>
+                        <option value="Admin">System Admin</option>
+                        <option value="BOD">Board of Director</option>
+                        <option value="Staff">Staff</option>
                     </select>
                     <br><br><br>
                     <div class="button-container">
@@ -39,14 +39,15 @@
                     </div>
                 </form>
 
-                <form id="finalForm" action="CreateHomeowner" method="POST">
+                <form id="finalForm" action="${root}/CreateAdmin" method="POST">
                     <input type="hidden" name="ADMIN_LN"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_FN"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_MI"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_AGE"> <!-- ADMIN -->
-                    <input type="hidden" name="ADMIN_MAIL"><!-- ADMIN -->
+                    <input type="hidden" name="ADMIN_EMAIL"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_LANDLINE"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_PHONE"><!-- ADMIN -->
+                    <input type="hidden" name="ADMIN_ROLE"><!-- ADMIN -->
                 </form>
             </div>
         </div>
@@ -54,7 +55,7 @@
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
-                    alert('Successfully added Homeowner to the records.');
+                    alert('Successfully added Admin to the records.');
                     window.location.href = '${root}/records.jsp';
                 }
                 if (params.get('err') == 1) {
@@ -76,7 +77,8 @@
                     {name: "ADMIN_AGE", message: "Missing Age."},
                     {name: "ADMIN_EMAIL", message: "Missing Email."},
                     {name: "ADMIN_LANDLINE", message: "Missing Landline."},
-                    {name: "ADMIN_PHONE", message: "Missing Phone Number."}
+                    {name: "ADMIN_PHONE", message: "Missing Phone Number."},
+                    {name: "ADMIN_ROLE", message: "Invalid Role selected."}
                 ];
                 for (let i = 0; i < f1.length; i++) {
                     const field = f1[i];
@@ -88,10 +90,7 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                // If all fields are filled
-                form1.style.left = "-1000px";
-                form2.style.left = "32.5%";
-                progress.style.width = "50%";
+                finalform.submit();
 
             };
         </script>

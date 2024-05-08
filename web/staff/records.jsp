@@ -199,7 +199,7 @@
                     Update Record
                 </button>
             </form>
-            <form action="update-balance.jsp">
+            <form action="${root}/UpdateBalance">
                 <button class="button-design" type="submit" style="margin-left: 10%;">
                     Update Balance
                 </button>

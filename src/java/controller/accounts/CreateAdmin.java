@@ -39,7 +39,7 @@ public class CreateAdmin extends HttpServlet {
             //Get Connection
             con = ConnectionPoolManager.getDataSource().getConnection();
             //Set appropriate level prefix
-            String level = request.getParameter("RESIDENTCLASS").toUpperCase();
+            String level = request.getParameter("ADMIN_ROLE").toUpperCase();
             String prefix = "ST-";
             if (level.equals("ADMIN")){
                 prefix = "AD-";
@@ -53,12 +53,12 @@ public class CreateAdmin extends HttpServlet {
             //Create Account
             ps = con.prepareStatement("select create_staff(?,?,?,?,?,?,?)");
             ps.setString(1, userId);
-            ps.setString(2, rs.getString("EMAIL"));
-            ps.setString(3, rs.getString("LASTNAME"));
-            ps.setString(4, rs.getString("FIRSTNAME"));
-            ps.setString(5, rs.getString("MIDDLEINITIAL"));
-            ps.setInt(6, Integer.parseInt(rs.getString("AGE")));
-            ps.setString(7, rs.getString("RESIDENTCLASS"));
+            ps.setString(2, rs.getString("ADMIN_EMAIL"));
+            ps.setString(3, rs.getString("ADMIN_LN"));
+            ps.setString(4, rs.getString("ADMIN_FN"));
+            ps.setString(5, rs.getString("ADMIN_MI"));
+            ps.setInt(6, Integer.parseInt(rs.getString("ADMIN_AGE")));
+            ps.setString(7, rs.getString("ADMIN_ROLE"));
             rs = ps.executeQuery();
             //Check if error
             if(rs.next());
@@ -66,7 +66,7 @@ public class CreateAdmin extends HttpServlet {
             if(result.equalsIgnoreCase("Duplicate")){
                 logger.error("Error during insert " + result);
                 //LOG ACTION
-                new DBLogger().log((String) session.getAttribute("currID"), "Duplicate error creating " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+                new DBLogger().log((String) session.getAttribute("currID"), "Duplicate error creating " + request.getParameter("ADMIN_LN") + "," + request.getParameter("ADMIN_FN"));
                 //Redirect
                 if(!response.isCommitted()){
                     response.sendRedirect(root + "/accounts/signup/signup-admin.jsp?err=1");
@@ -74,14 +74,14 @@ public class CreateAdmin extends HttpServlet {
             } else if(result.equalsIgnoreCase("Other Error")){
                 logger.error("Error during insert " + result);
                 //LOG ACTION
-                new DBLogger().log((String) session.getAttribute("currID"), "Unknown error creating " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+                new DBLogger().log((String) session.getAttribute("currID"), "Unknown error creating " + request.getParameter("ADMIN_LN") + "," + request.getParameter("ADMIN_FN"));
                 //Redirect
                 if(!response.isCommitted()){
                     response.sendRedirect(root + "/accounts/signup/signup-admin.jsp?err=2");
                 }
             }
             //LOG ACTION
-            new DBLogger().log((String) session.getAttribute("currID"), "Created user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+            new DBLogger().log((String) session.getAttribute("currID"), "Created high-level account " + request.getParameter("ADMIN_LN") + "," + request.getParameter("ADMIN_FN"));
             //Redirect
             if(!response.isCommitted()){
                 response.sendRedirect(root + "/accounts/signup/signup-admin.jsp?suc=true");
