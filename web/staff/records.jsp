@@ -34,7 +34,7 @@
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
             String LotQuery = "SELECT * FROM USERLOT";
-            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?";
+            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE USERID = ?";
             String userLotID = null;
             String addQuery = null;
             String[] hold = null;
@@ -132,30 +132,28 @@
                             PreparedStatement ps3 = con.prepareStatement(LotQuery); // queries USERLOT table
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
-                                userLotID = rs3.getString("HOMEOWNERID"); // Take homeownerid from USERLOT
+                                userLotID = rs3.getString("userid"); // Take homeownerid from USERLOT
                             //    System.out.println("userLotID: " + userLotID);
-                                ps2 = con.prepareStatement(HomeQuery); // queries USERS with USERID from USERLOT
+                                ps2 = con.prepareStatement("select * from users where userid = ?"); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
                                 rs = ps2.executeQuery();
-                                while (rs.next()) {
-                                    ps = con.prepareStatement("SELECT RESIDENTCLASS FROM USERS WHERE HOMEOWNERID = ?");
+                                ps = con.prepareStatement("SELECT * FROM homeowner WHERE userid = ?");
                                     ps.setString(1, userLotID);
                                     rs2 = ps.executeQuery();
-                                    while (rs2.next()) {
-                                        resClass = rs2.getString("RESIDENTCLASS");
-                                    }
+                                while (rs.next() && rs2.next()) {
+                                    resClass = rs.getString("RESIDENTCLASS");
                                     String nameDB = rs.getString("FIRSTNAME").trim() + " "
                                             + rs.getString("MIDDLEINITIAL").trim() + " "
                                             + rs.getString("LASTNAME"),
-                                            addDB = rs3.getString("HOUSENO").trim() + " "
-                                            + rs3.getString("STREETNAME") + " Barangay "
-                                            + rs3.getString("BARANGAY").trim(),
-                                            numDB = rs.getString("MOBILENO").trim(),
-                                            paidDB = rs.getString("PAID").trim();
-                                    balance = rs3.getDouble("BALANCE");
-                                    if (paidDB.equals("true")) {
+                                            addDB = rs2.getString("HOUSENO").trim() + " "
+                                            + rs2.getString("STREETNAME") + " Barangay "
+                                            + rs2.getString("BARANGAY").trim(),
+                                            numDB = rs2.getString("MOBILENO").trim(),
+                                            paidDB = "true";
+                                    balance = rs3.getFloat("BALANCE");
+                                    if (balance <= 0) {
                                         paidDB = "Paid";
-                                    } else if (paidDB.equals("false")) {
+                                    } else if (balance >= 0) {
                                         paidDB = "Unpaid";
                                     }
                                     // tbh i just copy pasted everything, aadjust nalang syntax here for real db
