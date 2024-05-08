@@ -48,7 +48,7 @@
             Homeowner user = (Homeowner) session.getAttribute("currUser");
             ArrayList<Vehicle> cars = user.getCars();
 
-            out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 35%;\">");
+            out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 37%;\">");
             for (int x = 0; x < cars.size(); x++) {
                 out.print(
                         "<div class=\"vehicle-box\">"
