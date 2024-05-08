@@ -82,7 +82,7 @@
                     <br>
                 </form>  
 
-                <form id='form4' action="${root}/login.jsp" method="POST">
+                <form id='form4' action="${root}/accounts/login.jsp" method="POST">
                     <h1 class="h1-bold">Registration Complete</h1>
                     <div class="line"></div><br>
                     <p style="color: black;">Your registration is now complete. You can now login using the email and password you have submitted. <br><br>For any further questions and concerns, ask for staff assistance, thank you!</p>
