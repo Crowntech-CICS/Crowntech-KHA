@@ -30,7 +30,8 @@
     </head>
     <body>
         <%@include file="/generalpurpose/navbar.jsp" %>
-        <%            Connection con = null;
+        <%            
+            Connection con = null;
             ResultSet rs = null;
             ResultSet rs2 = null;
             PreparedStatement ps = null;
@@ -205,7 +206,7 @@
         <%
             }
         %>
-        <script src="scripts/sorttable.js"></script>
+        <script src="${root}/scripts/sorttable.js"></script>
         <script>
 
                 function openForm() {
