@@ -35,7 +35,7 @@
 
         <div class="main-body">
             <div class="login-box">
-                <form action="${root}\Login" method="POST">
+                <form action="${root}\Login" method="POST" onsubmit="disableButton()">
                     <h1 class="h1-bold">Login</h1>
                     <div class="changepass-label-container">
                         <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
@@ -59,6 +59,10 @@
         </div>
     </body>
     <script>
+        function disableButton(){
+            const button = document.getElementById("login-button");
+        }
+        
         window.onload = function () {
             var urlParam = new URLSearchParams(window.location.search);
             var err = urlParam.get('err');
@@ -75,13 +79,16 @@
                 alert('Your password is changed successfully you may now login.');
                 window.location = '${root}/accounts/login.jsp';
             }
-            setTimeout(function () {
-                $("#login-button").prop("disabled", true).val("Wait...");
-            }, 100);
-
-            setTimeout(function () {
-                $("#login-button").prop("disabled", false).val("Try again?");
-            }, 15000);
-        }
+            
+            
+            
+//            setTimeout(function () {
+//                $("#login-button").prop("disabled", true).val("Wait...");
+//            }, 100);
+//
+//            setTimeout(function () {
+//                $("#login-button").prop("disabled", false).val("Try again?");
+//            }, 15000);
+        };
     </script>
 </html>
