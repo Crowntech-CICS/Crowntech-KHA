@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
+
 <!DOCTYPE html>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -34,7 +35,6 @@
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
             String LotQuery = "SELECT * FROM USERLOT";
-            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE USERID = ?";
             String userLotID = null;
             String addQuery = null;
             String[] hold = null;
@@ -82,7 +82,7 @@
             <button class="openSortB" onclick="openForm()">Sort</button>
             <!-- The sorting form -->
             <div class="sortPopup" id="sortForm" style="display: none;">
-                <form action="SortHandler" class="form-container" method="POST">
+                <form action="${root}\SortHandler" class="form-container" method="POST">
                     <button type="button" class="button-design-reject" id="sortClose" onclick="closeForm()">Close</button>
                     <br><br>
                     <label class="sortCenter">Sort By Status:</label><br>
@@ -142,9 +142,9 @@
                                     rs2 = ps.executeQuery();
                                 while (rs.next() && rs2.next()) {
                                     resClass = rs.getString("RESIDENTCLASS");
-                                    String nameDB = rs.getString("FIRSTNAME").trim() + " "
-                                            + rs.getString("MIDDLEINITIAL").trim() + " "
-                                            + rs.getString("LASTNAME"),
+                                    String nameDB = rs.getString("LASTNAME").trim() + ", "
+                                            + rs.getString("FIRSTNAME").trim() + " "
+                                            + rs.getString("MIDDLEINITIAL").trim(),
                                             addDB = rs2.getString("HOUSENO").trim() + " "
                                             + rs2.getString("STREETNAME") + " Barangay "
                                             + rs2.getString("BARANGAY").trim(),
