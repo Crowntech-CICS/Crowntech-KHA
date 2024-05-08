@@ -1,4 +1,4 @@
-package controller;
+package controller.finances;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,13 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DBLogger;
 import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class PayLot extends HttpServlet {
-    private static final Log logger = LogFactory.getLog(PayLot.class);
+public class UpdateBalance extends HttpServlet {
+    private static final Log logger = LogFactory.getLog(UpdateBalance.class);
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
@@ -31,57 +30,24 @@ public class PayLot extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.info("--[PAY LOT]-------------------------------------------------------------");
-        String propId = request.getParameter("PROP_ID");
-        String userId = "";
-        String lastname = "";
-        String firstname = "";
-        String middleinitial = "";
-        String fullName = lastname + "," + firstname + " " + middleinitial;
-        double currentBalance = 0.0;
-        double payment = Double.parseDouble(request.getParameter("PAYMENT"));
-        double newBalance = 0.0;
-        boolean paid = false;
-        
+        logger.info("Updating all lot balances...");        
         try{
-            //Get connection from connection pool
+            //Get Connection
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT H.USERID,L.PROPERTYID,H.LASTNAME,H.FIRSTNAME,H.MIDDLEINITIAL,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.USERID = L.USERID WHERE L.PROPERTYID = ?");
-            ps.setString(1, propId);
+            //Get properties
+            ps = con.prepareStatement("select propertyid from userlot");
             rs = ps.executeQuery();
-            if(rs.next()){
-                userId = rs.getString("USERID").trim();
-                currentBalance = rs.getDouble("BALANCE");
-                logger.info("BALANCE: " + currentBalance);
-                fullName = rs.getString("LASTNAME").trim() + "," + rs.getString("FIRSTNAME").trim() + " " + rs.getString("MIDDLEINITIAL").trim();
-                newBalance = currentBalance - payment;
-                paid = newBalance < 1;
-                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE PROPERTYID = ?");
-                ps.setDouble(1, newBalance);
-                ps.setBoolean(2, paid);
-                ps.setString(3, propId);
+            while(rs.next()){
+                //update balance of each property
+                ps = con.prepareStatement("update userlot set balance = (select coalesce(sum(balance),0) from monthlybalance where propertyid = ?) where propertyid = ?");
+                ps.setString(1, rs.getString("propertyid"));
+                ps.setString(2, rs.getString("propertyid"));
                 ps.executeUpdate();
-                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE USERID = ?");
-                ps.setBoolean(1, paid);
-                ps.setString(2, userId);
-                ps.executeUpdate();
-                logger.info("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
-                //LOG ACTION
-                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Updated payment of " + payment + " by " + fullName);
-                //Redirect
-                if(!response.isCommitted())
-                    response.sendRedirect("records.jsp");
-            } else {
-                logger.error("NO BALANCE FOUND.");
-                //LOG ACTION
-                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Failed to update payment of " + payment + " by " + fullName);
-                //Redirect
-                if(!response.isCommitted())
-                    response.sendRedirect("records.jsp");
             }
-
+            response.sendRedirect(request.getContextPath());
+            
         } catch(SQLException sqle){
-            logger.error("SQLException IN error occured - " + sqle.getMessage());
+            logger.info("SQLException error occurred in update - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -92,10 +58,11 @@ public class PayLot extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                logger.error("SQLException OUT error occured - " + sqle.getMessage());
+                logger.info("SQLException error occurred in closing - " + sqle.getMessage());
                 response.sendError(500);
             }
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

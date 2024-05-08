@@ -28,6 +28,9 @@ public class UniqueIdGenerator {
             logger.info("TEST UID: " + userId);
             rs = ps.executeQuery();
         }
+        rs.close();
+        ps.close();
+        conn.close();
         return userId;
     }
     //PropertyId
@@ -43,6 +46,9 @@ public class UniqueIdGenerator {
             logger.info("PID: " + propertyId);
             rs = ps.executeQuery();
         }
+        rs.close();
+        ps.close();
+        conn.close();
         return propertyId;
     }
     //LogId
@@ -58,6 +64,9 @@ public class UniqueIdGenerator {
             logger.info("TEST LogID: " + logId);
             rs = ps.executeQuery();
         }
+        rs.close();
+        ps.close();
+        conn.close();
         return logId;
     }
 }

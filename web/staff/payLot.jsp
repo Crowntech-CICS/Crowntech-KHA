@@ -1,3 +1,4 @@
+<%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -21,38 +22,31 @@
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
-    //Connect to DB
-    try {
-        Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-        String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                password = getServletContext().getInitParameter("dbPassword"),
-                driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-        con = DriverManager.getConnection(driverURL, username, password); //create connection
-    } catch (SQLException sqle) {
-        System.out.println("SQLException error occured - " + sqle.getMessage());
-    } catch (ClassNotFoundException nfe) {
-        System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-    }
 
     String propId = request.getParameter("propID");
     System.out.println(propId);
-    String homeownerId = "";
-    String lastname = "";
-    String firstname = "";
-    String middleInitial = "";
-    Double balance = 0.0;
-    String address = "";
+
+    String lastname = "", firstname = "", middleInitial = "", address = "";
+    double balance = 0;
+    
     try {
-        ps = con.prepareStatement("SELECT H.HOMEOWNERID,L.PROPERTYID,H.LASTNAME,H.FIRSTNAME,H.MIDDLEINITIAL,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.HOMEOWNERID = L.HOMEOWNERID WHERE L.PROPERTYID = ?");
+        con = ConnectionPoolManager.getDataSource().getConnection();
+        ps = con.prepareStatement("SELECT H.USERID,L.PROPERTYID,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.USERID = L.USERID WHERE L.PROPERTYID = ?");
         ps.setString(1, propId);
         rs = ps.executeQuery();
-        if (rs.next()) {
-            homeownerId = rs.getString("HOMEOWNERID").trim();
-            lastname = rs.getString("LASTNAME").trim();
-            firstname = rs.getString("FIRSTNAME").trim();
-            middleInitial = rs.getString("MIDDLEINITIAL").trim();
+        if (rs.next()) {            
+            String userId = rs.getString("USERID").trim();
             balance = rs.getDouble("BALANCE");
             address = rs.getString("ADDRESS").trim();
+            //Get name
+            ps = con.prepareStatement("select lastname,firstname,middleinitial from users where userid = ?");
+            ps.setString(1, userId);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                lastname = rs.getString("LASTNAME").trim();
+                firstname = rs.getString("FIRSTNAME").trim();
+                middleInitial = rs.getString("MIDDLEINITIAL").trim();
+            }
         }
 
     } catch (SQLException sqle) {
@@ -90,7 +84,7 @@
         <%@include file="/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-smallest">
-                <form action="PayLot" style="left: 32.5%;">
+                <form action="${root}/PayLot" style="left: 32.5%;">
                     <input type="hidden" name="PROP_ID" value="<%= propId%>">
                     <h1 class="h1-bold" id="h1small">Update Balance</h1>
                     <div class="line"></div><br>
