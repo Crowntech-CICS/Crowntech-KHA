@@ -122,7 +122,6 @@
                         <th class="tableTitle">Address</th>
                         <th class="tableTitle">Contact Number</th>
                         <th class="tableTitle">Status</th>
-                        <th class="tableTitle">Paid</th>
                         <th class="tableTitle">Balance</th>
                     </tr>
                 </thead>
@@ -145,23 +144,16 @@
                                     String nameDB = rs.getString("LASTNAME").trim() + ", "
                                             + rs.getString("FIRSTNAME").trim() + " "
                                             + rs.getString("MIDDLEINITIAL").trim(),
-                                            addDB = rs2.getString("HOUSENO").trim() + " "
-                                            + rs2.getString("STREETNAME") + " Barangay "
-                                            + rs2.getString("BARANGAY").trim(),
-                                            numDB = rs2.getString("MOBILENO").trim(),
-                                            paidDB = "true";
+                                            addDB = rs3.getString("HOUSENO").trim() + " "
+                                            + rs3.getString("STREETNAME") + " Barangay "
+                                            + rs3.getString("BARANGAY").trim(),
+                                            numDB = rs2.getString("MOBILENO").trim();
                                     balance = rs3.getFloat("BALANCE");
-                                    if (balance <= 0) {
-                                        paidDB = "Paid";
-                                    } else if (balance >= 0) {
-                                        paidDB = "Unpaid";
-                                    }
                                     // tbh i just copy pasted everything, aadjust nalang syntax here for real db
                                     out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
                                     out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
                                 }
 
