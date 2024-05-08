@@ -80,18 +80,18 @@ public class FinanceTrack extends HttpServlet {
 
             //KHA Membership
             String aFQuery = "SELECT\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 1 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JAN\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 2 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"FEB\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 3 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAR\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 4 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"APR\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 5 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAY\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 6 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUN\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 7 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUL\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 8 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"AUG\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 9 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"SEP\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 10 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"OCT\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 11 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"NOV\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 12 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"DEC\"\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 1 AND date_part('YEAR', timestamp PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JAN\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 2 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"FEB\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 3 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAR\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 4 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"APR\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 5 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"MAY\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 6 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUN\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 7 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"JUL\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 8 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"AUG\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 9 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"SEP\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 10 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"OCT\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 11 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"NOV\",\n"
+                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', timestamp PAYMENTDATE) = 12 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"DEC\"\n"
                     + "FROM USERLOT";
             ps = con.prepareStatement(aFQuery);
             for (int i = 1; i < 13; i++) {
