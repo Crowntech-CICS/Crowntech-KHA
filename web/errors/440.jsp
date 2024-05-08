@@ -15,7 +15,7 @@
             <p class="p-error">Try refreshing the page or go back to the main menu.</p>
             <br><br>
             <div class="button-container">
-                <a href="${root}/generalpurpose/index.jsp"><button class="button-design-reject" style="margin-left: 0%;">
+                <a href="${root}/index.jsp"><button class="button-design-reject" style="margin-left: 0%;">
                         Back To Main Menu
                     </button></a>
             </div>

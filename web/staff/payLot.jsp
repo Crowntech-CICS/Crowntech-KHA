@@ -14,7 +14,7 @@
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
     } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
-        response.sendRedirect(root + "/generalpurpose/index.jsp");
+        response.sendRedirect(root + "/index.jsp");
     }
 %>
 <%

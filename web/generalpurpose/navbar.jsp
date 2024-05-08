@@ -18,7 +18,7 @@
     <body>
         <header>
             <nav>
-                <a href="${root}/generalpurpose/index.jsp"><img src="${root}/images/khalogo_newwhite.png" alt="no image" class="logo"></a>
+                <a href="${root}/index.jsp"><img src="${root}/images/khalogo_newwhite.png" alt="no image" class="logo"></a>
                 <ul class="nav-links">
                     <%
                         String rootPath = request.getContextPath();

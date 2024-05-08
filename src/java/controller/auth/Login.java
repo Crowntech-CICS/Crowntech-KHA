@@ -43,6 +43,7 @@ public class Login extends HttpServlet {
         String encrpytKey = getServletContext().getInitParameter("key");
         String cipher = getServletContext().getInitParameter("cipher");
         HttpSession session = request.getSession();
+        String root = request.getContextPath();
         boolean logState = session.getAttribute("username") != null;
         if(logState) {
             response.sendRedirect("index.jsp");
@@ -184,7 +185,7 @@ public class Login extends HttpServlet {
                     con.close();
                 ctr = 0;
                 session.removeAttribute("tries");
-                response.sendRedirect("generalpurpose/index.jsp");
+                response.sendRedirect(root + "/index.jsp");
             }
             else if(ctr < allowedTries - 1){ //shows a message that the email or password is wrong (total of 3 tries)
                 ctr++;

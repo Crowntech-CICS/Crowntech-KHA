@@ -8,7 +8,7 @@
     //Check Logged In State
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (logState) {
-        response.sendRedirect(root + "/generalpurpose/index.jsp");
+        response.sendRedirect(root + "/index.jsp");
     }
     //Login Attempts Counter
     int tries = 0;

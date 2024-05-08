@@ -13,7 +13,7 @@
     //Check Logged In State
     boolean state = session.getAttribute("pw_rt") != null ? true : false;
     if (!state) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect(request.getContextPath() + "/accounts/login.jsp");
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

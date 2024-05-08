@@ -5,10 +5,11 @@ import javax.servlet.http.*;
 public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String root = request.getContextPath();
         response.setContentType("text/html;charset=UTF-8");
             HttpSession session = request.getSession();
             session.invalidate();
-            response.sendRedirect("generalpurpose/index.jsp");
+            response.sendRedirect(root + "/index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
