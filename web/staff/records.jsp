@@ -76,7 +76,7 @@
         %>
         <br><br><br><br><br><br>
         <div id="searchRecords">
-            <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
+            <form class="sortSearch" action="${root}\SortHandler" style="display: inline-flex;">
                 <input type="text" placeholder="Search For Name" name="search" id="searchWidth" onkeyup="searchFunc()">
                 <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
