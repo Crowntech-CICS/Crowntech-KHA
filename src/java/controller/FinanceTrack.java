@@ -57,7 +57,6 @@ public class FinanceTrack extends HttpServlet {
 
         }
         try {
-            String hoQuery = "SELECT PAID FROM HOMEOWNER";
             //static variables
             long millis = System.currentTimeMillis();
             Date curDate = new Date(millis);
@@ -72,179 +71,93 @@ public class FinanceTrack extends HttpServlet {
 
             //year selector
             String strSelYear = request.getParameter("year");
-            int selYear;
+            int selYear = cal.get(Calendar.YEAR);
             System.out.println(strSelYear);
-            if(strSelYear == null) selYear = 2024;//cal.get(Calendar.YEAR);
+            if(strSelYear == null) cal.get(Calendar.YEAR);
             else selYear = Integer.parseInt(strSelYear);
             
 
             //KHA Membership
-            String aFQuery = "SELECT\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 1 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"JAN\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 2 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"FEB\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 3 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"MAR\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 4 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"APR\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 5 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"MAY\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 6 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"JUN\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 7 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"JUL\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 8 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"AUG\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 9 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"SEP\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 10 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"OCT\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 11 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"NOV\",\n"
-                    + "    SUM(CASE WHEN PAID = TRUE AND date_part('month', PAYMENTDATE) = 12 AND date_part('year',PAYMENTDATE) = 2024 THEN 5000 ELSE 0 END) AS \"DEC\"\n"
-                    + "FROM USERLOT";
+            String aFQuery = "select date_part('month', paymentdate), sum(case when paid = true then 5000 else 0 end) "
+                             + "from userlot " 
+                             + "where date_part('year', paymentdate) = ? "
+                             + "group by date_part('month', paymentdate) "
+                             + "order by date_part('month', paymentdate)";
             ps = con.prepareStatement(aFQuery);
-//            for (int i = 1; i < 13; i++) {
-//                ps.setString(i, String.valueOf(selYear));
-//            }
+            ps.setDouble(1, selYear);
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                for (int i = 0; i < 12; i++) {
-                    totalMA[i] = rs.getDouble(i + 1);
+            while(rs.next()){
+                    totalMA[rs.getInt("date_part")-1] += rs.getDouble("sum");
                 }
 
-            }
-
             //Homeowner Fees
-//            String mFQuery = "SELECT\n"
-//                    + "    SUM(CASE WHEN PAID = TRUE THEN 300 ELSE 0 END) AS \"MON\"\n"
-//                    + "FROM USERLOT";
-//            ps = con.prepareStatement(mFQuery);
-//            rs = ps.executeQuery();
-//            try{
-//                while (rs.next()) {
-//                    if (curYear != selYear) {
-//                    continue;
-//                }
-//                totalMF[curMonth] = rs.getDouble(1);
-//                
-//                System.out.println("works");
-//                
-//                //Adds to FINANCE TABLE if recent month, or updates existing month
-//                mFQuery = "INSERT INTO FINANCE(FINANCEDATE, MONTHLYFEES, BALANCEDUES) VALUES(?,?,?)";
-//                
-//                ps = con.prepareStatement(mFQuery);
-//                System.out.println("works2");
-//                ps.setString(1,String.valueOf(Month.of(curMonth + 1)) + String.valueOf(curYear));
-//                ps.setString(2,String.valueOf(totalMF[curMonth]));
-//                ps.setString(3,String.valueOf(totalBD[curMonth]));
-//                ps.executeUpdate();
-//
-//            }
-//            }catch(Exception ex){
-//                System.out.println(ex);
-//                mFQuery = "UPDATE FINANCE SET MONTHLYFEES=? WHERE FINANCEDATE=?";
-//                ps = con.prepareStatement(mFQuery);
-//                ps.setString(1,String.valueOf(totalMF[curMonth]));
-//                ps.setString(2,String.valueOf(Month.of(curMonth + 1)) + String.valueOf(curYear));
-//                ps.executeUpdate();
-//            }
-//
-//            
-//            //Pulls old date from previous months of the selected year
-//            for (int i = 0; i < 12; i++) {
-//                if (i == curMonth && curYear == selYear) {
-//                    continue;
-//                }
-//                mFQuery = "SELECT\n"
-//                        + "    * FROM FINANCE WHERE FINANCEDATE = ?";
-//                ps = con.prepareStatement(mFQuery);
-//                String test = String.valueOf(Month.of(i + 1)) + selYear;
-//                ps.setString(1, test);
-//                rs = ps.executeQuery();
-//                while (rs.next()) {
-//                    totalMF[i] = rs.getDouble(2);
-//                }
-//
-//                System.out.println(totalMF[i]);
-//            }
-//
-//            //Balance Dues
-//            String bDQuery = "SELECT\n"
-//                    + "    SUM(CASE WHEN PAID = FALSE THEN 300 ELSE 0 END) AS \"MON\"\n"
-//                    + "FROM USERLOT";
-//            ps = con.prepareStatement(bDQuery);
-//            rs = ps.executeQuery();
-//
-//           try{
-//                while (rs.next()) {
-//                    if (curYear != selYear) {
-//                    continue;
-//                }
-//                totalBD[curMonth] = rs.getDouble(1);
-//                System.out.println("works");
-//                
-//                mFQuery = "INSERT INTO FINANCE(FINANCEDATE, MONTHLYFEES, BALANCEDUES) VALUES(?,?,?)";
-//                
-//                ps = con.prepareStatement(mFQuery);
-//                System.out.println("works2");
-//                ps.setString(1,String.valueOf(Month.of(curMonth + 1)) + String.valueOf(curYear));
-//                ps.setString(2,String.valueOf(totalMF[curMonth]));
-//                ps.setString(3,String.valueOf(totalBD[curMonth]));
-//                ps.executeUpdate();
-//
-//            }
-//            }catch(Exception ex){
-//                System.out.println(ex);
-//                mFQuery = "UPDATE FINANCE SET BALANCEDUES=? WHERE FINANCEDATE=?";
-//                ps = con.prepareStatement(mFQuery);
-//                ps.setString(1,String.valueOf(totalBD[curMonth]));
-//                ps.setString(2,String.valueOf(Month.of(curMonth + 1)) + String.valueOf(curYear));
-//                ps.executeUpdate();
-//            }
-//
-//            
-//
-//            for (int i = 0; i < 12; i++) {
-//                if (i == curMonth && curYear == selYear) {
-//                    continue;
-//                }
-//                mFQuery = "SELECT\n"
-//                        + "    * FROM FINANCE WHERE FINANCEDATE = ?";
-//                ps = con.prepareStatement(mFQuery);
-//                String test = String.valueOf(Month.of(i + 1)) + selYear;
-//                ps.setString(1, test);
-//                rs = ps.executeQuery();
-//                while (rs.next()) {
-//                    totalBD[i] = rs.getDouble(3);
-//                }
-//
-//                System.out.println(totalMF[i]);
-//            }
+            String mFQuery = "select date_part('month', datepaid), sum(balancepaid) "
+                             + "from payments "
+                             + "where date_part('year', datepaid) = ? "
+                             + "group by date_part('month', datepaid) "
+                             + "order by date_part('month', datepaid)";
+            ps = con.prepareStatement(mFQuery);
+            ps.setDouble(1, selYear);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                    totalMF[rs.getInt("date_part")-1] += rs.getDouble("sum");
+                }
+
+            //Balance Dues
+            String bDQuery;
+            System.out.println("test1;");
+                bDQuery = "SELECT date_part('month', balancedate), SUM(BALANCE) "
+                        + "FROM MONTHLYBALANCE "
+                        + "WHERE date_part('year',BALANCEDATE) = ? "
+                        + "GROUP BY date_part('month', balancedate)  "
+                        + "ORDER BY date_part('month', BALANCEDATE) ";
+                ps = con.prepareStatement(bDQuery);
+                ps.setDouble(1, selYear);
+                System.out.println(ps.toString());
+                rs = ps.executeQuery();
+                System.out.println("test3;");
+                while(rs.next()){
+                    totalBD[rs.getInt("date_part")-1] += rs.getDouble("sum");
+                }
 
             
             //SUMMARY
-//            ps = con.prepareStatement(hoQuery);
-//            rs = ps.executeQuery();
-//            while (rs.next()) {
-//                boolean paid = rs.getBoolean("PAID");
-//                hoTotal++;
-//                if (paid) {
-//                    hoPaid++;
-//                }
-//            }
-//
-//            String maQuery = "SELECT PAID FROM KHAMEMBERSHIP";
-//            ps2 = con.prepareStatement(maQuery);
-//            rs2 = ps2.executeQuery();
-//            while (rs2.next()) {
-//                boolean paid = rs2.getBoolean("PAID");
-//                maTotal++;
-//                if (paid) {
-//                    maPaid++;
-//                }
-//            }
-//            String lotQuery = "SELECT PAID FROM USERLOT";
-//            ps3 = con.prepareStatement(lotQuery);
-//            rs3 = ps3.executeQuery();
-//            while (rs3.next()) {
-//                boolean paid = rs3.getBoolean("PAID");
-//                lotTotal++;
-//                if (paid) {
-//                    lotPaid++;
-//                }
-//            }
+            
+            //paid homeowners
+            String hoQuery = "select  count(distinct userid) "
+                             + "from userlot "
+                             + "where paid = true";
+            ps = con.prepareStatement(hoQuery);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                hoPaid = rs.getInt("count");
+            }
+            hoQuery = "select  count(distinct userid) "
+                             + "from userlot ";
+            ps = con.prepareStatement(hoQuery);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hoTotal = rs.getInt("count");
+            }
+            //membership
+            String maQuery = "select  count(propertyid) as total, count(paymentdate) as paid "
+                             +"from userlot";
+            ps2 = con.prepareStatement(maQuery);
+            rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                maTotal = rs2.getInt("total");
+                maPaid = rs2.getInt("paid");
+            }
+            //paid lots
+            String lotQuery = "select  count(propertyid) as total, count(case when paid = true then 1 end) as paid from userlot";
+            ps3 = con.prepareStatement(lotQuery);
+            rs3 = ps3.executeQuery();
+            while (rs3.next()) {
+                lotTotal = rs3.getInt("total");
+                lotPaid = rs3.getInt("paid");
+            }
 
             session.setAttribute("homeownerPaid", hoPaid);
             session.setAttribute("homeownerTotal", hoTotal);
@@ -255,7 +168,7 @@ public class FinanceTrack extends HttpServlet {
             session.setAttribute("memPaid", totalMA);
             session.setAttribute("monPaid", totalMF);
             session.setAttribute("balPaid", totalBD);
-            response.sendRedirect(request.getContextPath() + "/BOD/finances.jsp?year=" + selYear);
+            response.sendRedirect(request.getContextPath() + "/bod/finances.jsp?year=" + selYear);
             //request.getRequestDispatcher("finances.jsp").forward(request,response);              
         } catch (SQLException ex) {
             System.out.println(ex);
