@@ -4,9 +4,6 @@
  */
 package controller;
 
-import static controller.Login.con;
-import static controller.Login.ps;
-import static controller.Login.rs;
 import java.io.*;
 import java.util.*;
 import java.sql.*;
@@ -21,7 +18,10 @@ import javax.servlet.http.HttpSession;
  * @author ejlu1
  */
 public class UpdateInfo extends HttpServlet {
-
+    protected Connection con;
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();

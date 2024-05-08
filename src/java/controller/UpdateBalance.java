@@ -2,15 +2,15 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DBLogger;
+import model.connections.ConnectionPoolManager;
 
 public class UpdateBalance extends HttpServlet {
     
@@ -39,28 +39,17 @@ public class UpdateBalance extends HttpServlet {
         double newBalance = currentBalance;
         boolean paid = false;
         
-        //Connect to DB
-        try {
-                Class.forName(getServletContext().getInitParameter("jdbcClassName")); //load driver
-                String username = getServletContext().getInitParameter("dbUserName"), //get connection parameters from web.xml
-                       password = getServletContext().getInitParameter("dbPassword"),
-                       driverURL = getServletContext().getInitParameter("jdbcDriverURL");
-                con = DriverManager.getConnection(driverURL, username, password); //create connection
-            } catch (SQLException sqle) {
-                System.out.println("SQLException error occured - " + sqle.getMessage());
-            } catch (ClassNotFoundException nfe) {
-                System.out.println("ClassNotFoundException error occured - " + nfe.getMessage());
-        }
-        
         try{
-            ps = con.prepareStatement("SELECT HOMEOWNERID,BALANCE FROM HOMEOWNER WHERE LOWER(LASTNAME) = ? AND LOWER(FIRSTNAME) = ? AND LOWER(MIDDLEINITIAL) = ?");
+            //Get Connection
+            con = ConnectionPoolManager.getDataSource().getConnection();
+            ps = con.prepareStatement("SELECT USERID,BALANCE FROM HOMEOWNER WHERE LOWER(LASTNAME) = ? AND LOWER(FIRSTNAME) = ? AND LOWER(MIDDLEINITIAL) = ?");
             ps.setString(1, lastname);
             ps.setString(2, firstname);
             ps.setString(3, middleinitial);
             rs = ps.executeQuery();
             if(rs.next()){
-                userId = rs.getString("HOMEOWNERID").trim();
-                ps = con.prepareStatement("SELECT BALANCE FROM USERLOT WHERE HOMEOWNERID = ?");
+                userId = rs.getString("USERID").trim();
+                ps = con.prepareStatement("SELECT BALANCE FROM USERLOT WHERE USERID = ?");
                 ps.setString(1, userId);
                 rs = ps.executeQuery();
                 rs.next();
@@ -68,30 +57,26 @@ public class UpdateBalance extends HttpServlet {
                 System.out.println("BALANCE: " + currentBalance);
                 newBalance = currentBalance - payment;
                 if(newBalance < 1){ paid = true; } else { paid = false;}
-                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE HOMEOWNERID = ?");
+                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ?  WHERE USERID = ?");
                 ps.setDouble(1, newBalance);
                 ps.setBoolean(2, paid);
                 ps.setString(3, userId);
                 ps.executeUpdate();
-                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE HOMEOWNERID = ?");
+                ps = con.prepareStatement("UPDATE HOMEOWNER SET PAID = ?  WHERE USERID = ?");
                 ps.setBoolean(1, paid);
                 ps.setString(2, userId);
                 ps.executeUpdate();
                 System.out.println("PAYMENT SUCCESS. NEW BALANCE: " + newBalance);
-                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
-                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
-                ps.setString(2, (String) request.getSession().getAttribute("currID"));
-                ps.setString(3, "Updated payment of " + payment + " by " + lastname + "," + firstname);
-                ps.executeUpdate();
+                //LOG ACTION
+                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Updated payment of " + payment + " by " + lastname + "," + firstname);
+                //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             } else {
                 System.out.println("NO BALANCE FOUND.");
-                ps = con.prepareStatement("INSERT INTO LOGS(LOGID,USERID,\"ACTION\",\"TIME\",\"DATE\") VALUES (?,?,?,CURRENT TIME,CURRENT DATE)");
-                ps.setString(1, UUID.randomUUID().toString().substring(0,8));
-                ps.setString(2, (String) request.getSession().getAttribute("currID"));
-                ps.setString(3, "Failed to update payment of " + payment + " by " + lastname + "," + firstname);
-                ps.executeUpdate();
+                //LOG ACTION
+                new DBLogger().log((String) request.getSession().getAttribute("currId"), "Failed to update payment of " + payment + " by " + lastname + "," + firstname);
+                //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect("records.jsp");
             }

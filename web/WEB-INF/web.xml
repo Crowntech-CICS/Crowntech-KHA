@@ -2,19 +2,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <context-param>
         <param-name>jdbcClassName</param-name>
-        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        <param-value>org.postgresql.Driver</param-value>
     </context-param>
     <context-param>
         <param-name>dbUserName</param-name>
-        <param-value>app</param-value>
+        <param-value>postgres.ovvwpegjxbwcgempumml</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>app</param-value>
+        <param-value>crowntechkha</param-value>
     </context-param>
     <context-param>
         <param-name>jdbcDriverURL</param-name>
-        <param-value>jdbc:derby://localhost:1527/Crowntech</param-value>
+        <param-value>jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres</param-value>
     </context-param>
     <context-param>
         <param-name>key</param-name>
@@ -28,13 +28,17 @@
         <param-name>domain</param-name>
         <param-value>http://localhost:8080</param-value>
     </context-param>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>controller.SystemContextListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>controller.auth.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
+        <servlet-class>controller.auth.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SortHandle</servlet-name>
@@ -45,8 +49,8 @@
         <servlet-class>controller.SortHandler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PasswordReset</servlet-name>
-        <servlet-class>controller.PasswordReset</servlet-class>
+        <servlet-name>RequestPasswordReset</servlet-name>
+        <servlet-class>controller.password.RequestPasswordReset</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ExportPDF</servlet-name>
@@ -54,7 +58,7 @@
     </servlet>
     <servlet>
         <servlet-name>SignupServlet</servlet-name>
-        <servlet-class>controller.SignupServlet</servlet-class>
+        <servlet-class>controller.signup.SignupServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ReceiptLoader</servlet-name>
@@ -62,7 +66,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateLogin</servlet-name>
-        <servlet-class>controller.CreateLogin</servlet-class>
+        <servlet-class>controller.signup.CreateLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateInfo</servlet-name>
@@ -70,7 +74,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateAcc</servlet-name>
-        <servlet-class>controller.CreateAcc</servlet-class>
+        <servlet-class>controller.accounts.CreateAcc</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FinanceTrack</servlet-name>
@@ -86,11 +90,27 @@
     </servlet>
     <servlet>
         <servlet-name>CreateHomeowner</servlet-name>
-        <servlet-class>controller.CreateHomeowner</servlet-class>
+        <servlet-class>controller.accounts.CreateHomeowner</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PayLot</servlet-name>
         <servlet-class>controller.PayLot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PasswordUrlVerify</servlet-name>
+        <servlet-class>controller.password.UrlVerify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.password.ResetPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAdmin</servlet-name>
+        <servlet-class>controller.accounts.CreateResident</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateResident</servlet-name>
+        <servlet-class>controller.accounts.CreateResident</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -103,10 +123,6 @@
     <servlet-mapping>
         <servlet-name>SortHandler</servlet-name>
         <url-pattern>/SortHandler</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PasswordReset</servlet-name>
-        <url-pattern>/PasswordReset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExportPDF</servlet-name>
@@ -168,12 +184,32 @@
         <servlet-name>PayLot</servlet-name>
         <url-pattern>/PayLot</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordUrlVerify</servlet-name>
+        <url-pattern>/PasswordUrlVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestPasswordReset</servlet-name>
+        <url-pattern>/RequestPasswordReset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/ResetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAdmin</servlet-name>
+        <url-pattern>/CreateAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateResident</servlet-name>
+        <url-pattern>/CreateResident</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>generalpurpose/index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

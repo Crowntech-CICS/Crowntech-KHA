@@ -4,6 +4,7 @@
  */
 package controller;
 
+import controller.auth.Login;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -36,7 +37,7 @@ import javax.swing.JFrame;
  */
 public class ExportPDF extends HttpServlet {
 
-    Connection con = Login.con;
+    Connection con;
     
     public static String emailCreds;
     HttpSession session;
