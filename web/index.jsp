@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
 <%
@@ -6,9 +7,12 @@
     
     String root = request.getContextPath();
     //Check Logged In State
+    User user = new User();
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
+    } else {
+        user = (User)session.getAttribute("currUser");
     }
 %>
 <!DOCTYPE html>
@@ -24,7 +28,7 @@
         <br><br><br><br><br><br>
         <img src="${root}/images/khalogo_new.png" id="indexLogo" alt="KHALogo"/>
         <h1 class="h1-bold" id="indexLogoText">Records Management System</h1>
-        <h1 class="h1-bold" id="indexWelcome">Welcome ${username}! (${level})</h1>
+        <h1 class="h1-bold" id="indexWelcome">Welcome <%=user.getFirstName()%>! <%=user.getResClass()%></h1>
         <p style="text-align: center; color: #377d60; margin-top: 10%">Version 1.0.0</p>
         <p style="text-align: center; color: #377d60">Developed by CrownTech, 2024</p>
     </body>

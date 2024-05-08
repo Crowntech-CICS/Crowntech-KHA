@@ -187,4 +187,8 @@ public class Homeowner extends User{
     }
     
     
+    public String getAddress() {
+        return houseNo + " " + street + " " + village + " " + city + " " + province;
+    }
+    
 }

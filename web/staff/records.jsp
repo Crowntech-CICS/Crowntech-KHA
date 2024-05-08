@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
 
@@ -132,7 +133,6 @@
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
                                 userLotID = rs3.getString("userid"); // Take homeownerid from USERLOT
-                            //    System.out.println("userLotID: " + userLotID);
                                 ps2 = con.prepareStatement("select * from users where userid = ?"); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
                                 rs = ps2.executeQuery();
@@ -149,14 +149,14 @@
                                             + rs3.getString("BARANGAY").trim(),
                                             numDB = rs2.getString("MOBILENO").trim();
                                     balance = rs3.getFloat("BALANCE");
-                                    // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                    // display db contents
+                                    DecimalFormat numForm = new DecimalFormat("#,##0.00");
                                     out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
+                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
                                 }
-
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());

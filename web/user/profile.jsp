@@ -1,8 +1,10 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.UserLot"%>
 <%@page import="model.Homeowner"%>
 <%@page import="model.User"%>
+<%@page import="model.Resident"%>
 <%@page import="model.connections.ConnectionPoolManager"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,38 +32,7 @@
     <body style="overflow-y: scroll">
         <%
             Homeowner user = (Homeowner) session.getAttribute("currUser");
-            Connection con = null;
-            ResultSet rs = null;
-            PreparedStatement ps = null;
-            String fullName = null;
-            String hoID = null;
-            String resClass = null;
-            String address = null;
             System.out.println(user.toString());
-            /*try {
-                //Get connection from connection pool
-                con = ConnectionPoolManager.getDataSource().getConnection();
-            } catch (SQLException sqle) {
-                System.out.println("SQLException error occured - " + sqle.getMessage());
-            }
-            try {
-                ps = con.prepareStatement("SELECT * FROM USERS WHERE USERID = ?");
-                ps.setString(1, (String) session.getAttribute("currID"));
-                System.out.println("currID: " + (String) session.getAttribute("currID"));
-                rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    fullName = rs.getString("FIRSTNAME") + " " + rs.getString("MIDDLEINITIAL") + " " + rs.getString("LASTNAME");
-                    resClass = rs.getString("RESIDENTCLASS").trim();
-                }
-                
-                ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE USERID = ?");
-                ps.setString(1, (String) session.getAttribute("currID"));
-                rs = ps.executeQuery();
-                while (rs.next()){
-                    address = rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + " " + rs.getString("VILLAGE") + " Barangay " + rs.getString("BARANGAY") + " " + rs.getString("CITY") + " " + rs.getString("PROVINCE");
-                //    hoID = rs.getString("HOMEOWNERID");
-                }*/
         %>
         <%@include file="/generalpurpose/navbar.jsp" %>
         <br><br><br><br><br>
@@ -86,6 +57,7 @@
         <%
             if (((String) session.getAttribute("level")).equals("homeowner")) {
                 ArrayList<UserLot> lots = user.getLots();
+                DecimalFormat numForm = new DecimalFormat("#,##0.00");
                 for (int x = 0; x < lots.size(); x++) {
                     out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + lots.get(x).getArea() + "</h1>"
                             + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
@@ -94,7 +66,7 @@
                     out.print("<h1 class=\"h1-bold\" id=\"profileAddress\">"
                             + lots.get(x).getHouseNo() + " " + lots.get(x).getStreet()
                             + "</h1>");
-                    if ((int)lots.get(x).getBalance() <= 0.0) {
+                    if ((int) lots.get(x).getBalance() <= 0.0) {
                         System.out.println(lots.get(x).getBalance() < 0);
                         out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID ");
                     } else if (lots.get(x).getBalance() > 0.0) {
@@ -112,7 +84,6 @@
                             + "<div class=\"line\"></div><br>"
                             + "<ul>"
                             + "<li class=\"accordion-content\">Name: " + user.fullName() + "</li>");
-
                     out.print("<li class=\"accordion-content\">Email: " + user.getEmail() + "</li>"
                             + "<li class=\"accordion-content\">Phone: " + user.getMobNo() + "</li>"
                             + "<li class=\"accordion-content\">Address: "
@@ -123,11 +94,16 @@
                     out.print("<li class=\"accordion-content-width\">"
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Lot Residents</h1>"
                             + "<div class=\"line\"></div><br>");
-                    out.print("<ul>"
-                            + "<li class=\"accordion-content\">" + "INIISIP KO PA PANO YUN RESIDENT HERE" + "</li>"
-                            + "<li class=\"accordion-content\">Relationship: " + "FIX THIS LATER" + "</li>"
-                            + "</ul>"
-                            + "</br>");
+
+                    ArrayList<Resident> lotResidents = lots.get(x).getResidents();
+
+                    for (int y = 0; y < lotResidents.size(); y++) {
+                        out.print("<ul>"
+                                + "<li class=\"accordion-content\">" + lotResidents.get(y).fullName() + "</li>"
+                                + "<li class=\"accordion-content\">Relationship: " + lotResidents.get(y).getRelationship() + "</li>"
+                                + "</ul>"
+                                + "</br>");
+                    }
                     out.print("<br>"
                             + "</li>"
                             + "<li class=\"accordion-content-width\">"
@@ -135,120 +111,14 @@
                             + "<div class\"line\"></div><br>"
                             + "<ul>");
                     out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
-                            + lots.get(x).getBalance() + "</h1><br>");
+                            + numForm.format(lots.get(x).getBalance()) + "</h1><br>");
                     out.print("<div class=\"line\"></div><br>");
-                    if (lots.get(x).getBalance() < 0) {
-                        out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Paid</li><br>");
-                    } else {
-                        out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
-                    }
                     out.print("<div class=\"button-container\">"
                             + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'payment-help.jsp'\">Pay Steps</button>"
                             + "</div></ul></li></div></ul>");
                     out.print("</div>");
                 }
             }
-            /*
-        ps = con.prepareStatement("SELECT * FROM USERLOT WHERE USERID = ?");
-        ps.setString(1, (String) session.getAttribute("currID"));
-        rs = ps.executeQuery();
-        out.print("<div class=\"profileLotHolder\">");
-        String propID = "";
-
-        while (rs.next()) {
-        propID = rs.getString("PROPERTYID").trim();
-            out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + rs.getString("AREA") + "</h1>"
-                    + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
-                    + "<button class=\"accordion\">"
-                    + "<div class=\"d-flex main justify-content-between\">");
-            out.print("<h1 class=\"h1-bold\" id=\"profileAddress\">"
-                    + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME")
-                    + "</h1>");
-            if (rs.getInt("BALANCE") < 0) {
-                out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID ");
-            } else if (rs.getInt("BALANCE") > 0) {
-                out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
-            }
-            out.print("</h1>"
-                    + "</div>"
-                    + "</div>"
-                    + "</button>"
-                    + "<div class=\"moreinfo\">"
-                    + "<li class=\"accordion-content-width\">"
-                    + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Homeowner Info</h1>"
-                    + "<div class=\"line\"></div><br>"
-                    + "<ul>"
-                    + "<li class=\"accordion-content\">Name: " + fullName + "</li>");
-            ResultSet rsTemp;
-            ResultSet rsHO;
-            ps = con.prepareStatement("SELECT * FROM users WHERE userid = ?");
-            ps.setString(1, (String) session.getAttribute("currID"));
-            rsTemp = ps.executeQuery();
-            ps = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE userid = ?");
-            ps.setString(1, hoID);
-            rsHO = ps.executeQuery();
-            while (rsTemp.next() && rsHO.next()) {
-                out.print("<li class=\"accordion-content\">Email: " + rsTemp.getString("EMAIL") + "</li>"
-                        + "<li class=\"accordion-content\">Phone: " + rsHO.getString("MOBILENO") + "</li>"
-                        + "<li class=\"accordion-content\">Address: "
-                        + rs.getString("HOUSENO") + " " + rs.getString("STREETNAME") + ", Barangay " + rs.getString("BARANGAY")
-                        + "</li>"
-                        + "</ul>"
-                        + "</li>");
-                out.print("<li class=\"accordion-content-width\">"
-                        + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Lot Residents</h1>"
-                        + "<div class=\"line\"></div><br>");
-                ps = con.prepareStatement("SELECT * FROM residents WHERE PROPERTYID = ?");
-                ps.setString(1, propID);
-                rsTemp = ps.executeQuery();
-                while (rsTemp.next()) {
-                    out.print("<ul>"
-                            + "<li class=\"accordion-content\">" + rsTemp.getString("FIRSTNAME") + " " + rsTemp.getString("MIDDLEINITIAL") + " "
-                            + rsTemp.getString("LASTNAME") + "</li>"
-                            + "<li class=\"accordion-content\">Relationship: " + rsTemp.getString("RELATIONSHIP") + "</li>"
-                            + "</ul>"
-                            + "</br>");
-                }
-                out.print("<br>"
-                        + "</li>"
-                        + "<li class=\"accordion-content-width\">"
-                        + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Balance Dues</h1>"
-                        + "<div class\"line\"></div><br>"
-                        + "<ul>");
-                    out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
-                            + rs.getString("BALANCE") + "</h1><br>");
-                out.print("<div class=\"line\"></div><br>");
-                if (rs.getInt("BALANCE") < 0) {
-                    out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Paid</li><br>");
-                } else {
-                    out.print("<li class=\"accordion-content\" style=\"text-align: center;\">Status: Unpaid</li><br>");
-                }
-                out.print("<div class=\"button-container\">"
-                        + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'payment-help.jsp'\">Pay Steps</button>"
-                        + "</div></ul></li></div></ul>");
-            }
-            rsTemp.close();
-        }
-        out.print("</div>");
-    } catch (SQLException sqle) {
-        System.out.println("SQLException IN error occured - " + sqle.getMessage());
-        response.sendError(500);
-    } finally {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ps != null) {
-                ps.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException sqle) {
-            System.out.println("SQLException OUT error occured - " + sqle.getMessage());
-            response.sendError(500);
-        }
-    }*/
         %>
         <script>
             var acc = document.getElementsByClassName("accordion");

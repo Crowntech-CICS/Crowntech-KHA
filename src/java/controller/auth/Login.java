@@ -149,6 +149,34 @@ public class Login extends HttpServlet {
                                     surNo, lotNo, dateReg, balance, use, businessName, businessType,
                                     paymentDate, taxDecNo, propInNo);
 
+                            PreparedStatement getResi = con.prepareStatement("select * from residents where propertyid = ?");
+                            getResi.setString(1, propID);
+                            ResultSet setResi = getResi.executeQuery();
+                            ArrayList<Resident> lotResidents = new ArrayList<>();
+                            String userR = "", 
+                                        emailR = "", 
+                                        userNameR = "", 
+                                        lastNameR = "", 
+                                        middleIniR = "",
+                                        relationship = "";
+                                int ageR = 0;
+                            while (setResi.next()) {
+                                relationship = setResi.getString("relationship").trim();
+                                PreparedStatement resiUser = con.prepareStatement("select * from users where userid = ?");
+                                userR = setResi.getString("userid").trim();
+                                resiUser.setString(1, setResi.getString("userid").trim());
+                                ResultSet resUserInfo = resiUser.executeQuery();
+                                while (resUserInfo.next()) {
+                                    emailR = resUserInfo.getString("EMAIL").trim().toLowerCase();
+                                    userNameR = resUserInfo.getString("FIRSTNAME").trim();
+                                    lastNameR = resUserInfo.getString("LASTNAME").trim();
+                                    middleIniR = resUserInfo.getString("MIDDLEINITIAL").trim();
+                                    ageR = resUserInfo.getInt("AGE");
+                                }
+                                Resident lotRes = new Resident(userR, emailR, lastNameR, userNameR, middleIniR, ageR, "Resident", propID, relationship);
+                                lotResidents.add(lotRes);
+                            }
+                            lot.setResidents(lotResidents);
                             lots.add(lot);
                         }
                         user.setLot(lots);
@@ -194,7 +222,6 @@ public class Login extends HttpServlet {
                                     houseNo, street, barangay, area,
                                     surNo, lotNo, dateReg, balance, use, businessName, businessType,
                                     paymentDate, taxDecNo, propInNo);
-
                             user.setResLot(lot);
                         }
                         ps = con.prepareStatement("select * from vehicle where userid = ?");
@@ -216,8 +243,8 @@ public class Login extends HttpServlet {
                         }
                         user.setCars(cars);
                         session.setAttribute("currUser", user);
-                    } else {
-                        User user = new User(userID, emailDB, lastName, userName, middleIni, age, levelDB);
+                    } else if (levelDB.equals("staff") || levelDB.equals("admin")) {
+                        User user = new User(userID, emailDB, lastName, userName, middleIni, age, resDB);
                         session.setAttribute("currUser", user);
                     }
 
