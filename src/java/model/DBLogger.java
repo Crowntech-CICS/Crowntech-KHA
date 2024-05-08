@@ -22,7 +22,8 @@ public class DBLogger {
             ps.setString(2, userId);
             ps.setString(3, message);
             logger.info("Log Status:" + ((ps.executeUpdate() > 0)? "Success" : "Failed"));
-            
+            ps.close();
+            conn.close();            
         } catch (SQLException ex) {
             logger.error("LogId Check Error - " + ex.getMessage());
         }

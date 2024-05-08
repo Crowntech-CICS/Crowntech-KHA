@@ -82,7 +82,7 @@
     </servlet>
     <servlet>
         <servlet-name>UpdateBalance</servlet-name>
-        <servlet-class>controller.UpdateBalance</servlet-class>
+        <servlet-class>controller.finances.UpdateBalance</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddMonthlyDues</servlet-name>
@@ -94,7 +94,7 @@
     </servlet>
     <servlet>
         <servlet-name>PayLot</servlet-name>
-        <servlet-class>controller.PayLot</servlet-class>
+        <servlet-class>controller.finances.PayLot</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PasswordUrlVerify</servlet-name>

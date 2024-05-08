@@ -44,13 +44,13 @@ public class CreateResident extends HttpServlet {
             //Create Account
             ps = con.prepareStatement("select create_resident(?,?,?,?,?,?,?,?)");
             ps.setString(1, userId);
-            ps.setString(2, rs.getString("EMAIL"));
-            ps.setString(3, rs.getString("LASTNAME"));
-            ps.setString(4, rs.getString("FIRSTNAME"));
-            ps.setString(5, rs.getString("MIDDLEINITIAL"));
-            ps.setInt(6, Integer.parseInt(rs.getString("AGE")));
-            ps.setString(7, rs.getString("PROPERTY"));
-            ps.setString(8, rs.getString("RELATIONSHIP"));
+            ps.setString(2, rs.getString("RES_EMAIL"));
+            ps.setString(3, rs.getString("RES_LN"));
+            ps.setString(4, rs.getString("RES_FN"));
+            ps.setString(5, rs.getString("RES_MI"));
+            ps.setInt(6, Integer.parseInt(rs.getString("RES_AGE")));
+            ps.setString(7, rs.getString("PROPERTYID"));
+            ps.setString(8, rs.getString("RES_REL"));
             rs = ps.executeQuery();
             //Check if error
             if(rs.next());

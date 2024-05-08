@@ -1,17 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Create Homeowner Account</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-small">
                 <form id='form1'>
@@ -25,24 +26,24 @@
                     <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="RES_LANDNO" class="marginMobile">Mobile Number</label><br>
                     <input onchange="finalForm.RES_LANDLINE.value = this.value" type="text" name="RES_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.RES_PHONE.value = this.value" type="text" name="RES_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <label for="LE_REL"">Relationship with Homeowner</label>
-                    <select name="LE_REL" id="" class="form">
-                        <option value="" selected>Relationship</option>
-                        <option value="">Spouse</option>
-                        <option value="">Son/Daughter</option>
-                        <option value="">Grandchild</option>
-                        <option value="">Househelp</option>
-                        <option value="">Renter</option>
-                        <option value="">Parent</option>
-                        <option value="">Friend</option>
+                    <select name="LE_REL" id="" class="form" onchange="finalForm.RES_REL.value = this.value">
+                        <option value="" selected disabled>Relationship</option>
+                        <option value="Spouse">Spouse</option>
+                        <option value="Son/Daughter">Son/Daughter</option>
+                        <option value="Grandchild">Grandchild</option>
+                        <option value="Househelp">Househelp</option>
+                        <option value="Renter">Renter</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Friend">Friend</option>
                     </select>
                     <br><br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = 'records.jsp'" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/index.jsp'" id="button-small">
                         <input id="Next1" class="button-design" type="button" value="Next">
                     </div>
                 </form>
 
-                <form id="finalForm" action="CreateHomeowner" method="POST">
+                <form id="finalForm" action="${root}/CreateResident" method="POST">
                     <input type="hidden" name="RES_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_FN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_MI"><!-- HOMEOWNER -->
@@ -50,6 +51,8 @@
                     <input type="hidden" name="RES_EMAIL"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_LANDLINE"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_PHONE"><!-- HOMEOWNER -->
+                    <input type="hidden" name="RES_REL"><!-- HOMEOWNER -->
+                    <input type="hidden" name="PROPERTYID" value="<%= request.getParameter("propId")%>"><!-- HOMEOWNER -->
                 </form>
             </div>
         </div>
@@ -57,8 +60,8 @@
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
-                    alert('Successfully added Homeowner to the records.');
-                    window.location.href = 'records.jsp';
+                    alert('Successfully added Resident to the records.');
+                    window.location.href = '${root}/records.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');
@@ -79,7 +82,8 @@
                     {name: "RES_AGE", message: "Missing Age."},
                     {name: "RES_EMAIL", message: "Missing Email."},
                     {name: "RES_LANDLINE", message: "Missing Landline."},
-                    {name: "RES_PHONE", message: "Missing Phone Number."}
+                    {name: "RES_PHONE", message: "Missing Phone Number."},
+                    {name: "RES_REL", message: "Invalid Relationship."}
                 ];
                 for (let i = 0; i < f1.length; i++) {
                     const field = f1[i];
@@ -91,11 +95,7 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                // If all fields are filled
-                form1.style.left = "-1000px";
-                form2.style.left = "32.5%";
-                progress.style.width = "50%";
-
+                finalform.submit();
             };
         </script>
     </body>

@@ -1,5 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% request.setAttribute("root", request.getContextPath());%>
+
 <!DOCTYPE html>
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -34,7 +36,6 @@
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
             String LotQuery = "SELECT * FROM USERLOT";
-            String HomeQuery = "SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?";
             String userLotID = null;
             String addQuery = null;
             String[] hold = null;
@@ -75,14 +76,14 @@
         %>
         <br><br><br><br><br><br>
         <div id="searchRecords">
-            <form class="sortSearch" action="SortHandler" style="display: inline-flex;">
+            <form class="sortSearch" action="${root}\SortHandler" style="display: inline-flex;">
                 <input type="text" placeholder="Search For Name" name="search" id="searchWidth" onkeyup="searchFunc()">
                 <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
             <!-- The sorting form -->
             <div class="sortPopup" id="sortForm" style="display: none;">
-                <form action="SortHandler" class="form-container" method="POST">
+                <form action="${root}\SortHandler" class="form-container" method="POST">
                     <button type="button" class="button-design-reject" id="sortClose" onclick="closeForm()">Close</button>
                     <br><br>
                     <label class="sortCenter">Sort By Status:</label><br>
@@ -122,7 +123,6 @@
                         <th class="tableTitle">Address</th>
                         <th class="tableTitle">Contact Number</th>
                         <th class="tableTitle">Status</th>
-                        <th class="tableTitle">Paid</th>
                         <th class="tableTitle">Balance</th>
                     </tr>
                 </thead>
@@ -132,41 +132,31 @@
                             PreparedStatement ps3 = con.prepareStatement(LotQuery); // queries USERLOT table
                             ResultSet rs3 = ps3.executeQuery();
                             while (rs3.next()) {
-                                userLotID = rs3.getString("HOMEOWNERID"); // Take homeownerid from USERLOT
-                            //    System.out.println("userLotID: " + userLotID);
-                                ps2 = con.prepareStatement(HomeQuery); // queries USERS with USERID from USERLOT
+                                userLotID = rs3.getString("userid"); // Take homeownerid from USERLOT
+                                ps2 = con.prepareStatement("select * from users where userid = ?"); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
                                 rs = ps2.executeQuery();
-                                while (rs.next()) {
-                                    ps = con.prepareStatement("SELECT RESIDENTCLASS FROM USERS WHERE HOMEOWNERID = ?");
+                                ps = con.prepareStatement("SELECT * FROM homeowner WHERE userid = ?");
                                     ps.setString(1, userLotID);
                                     rs2 = ps.executeQuery();
-                                    while (rs2.next()) {
-                                        resClass = rs2.getString("RESIDENTCLASS");
-                                    }
-                                    String nameDB = rs.getString("FIRSTNAME").trim() + " "
-                                            + rs.getString("MIDDLEINITIAL").trim() + " "
-                                            + rs.getString("LASTNAME"),
+                                while (rs.next() && rs2.next()) {
+                                    resClass = rs.getString("RESIDENTCLASS");
+                                    String nameDB = rs.getString("LASTNAME").trim() + ", "
+                                            + rs.getString("FIRSTNAME").trim() + " "
+                                            + rs.getString("MIDDLEINITIAL").trim(),
                                             addDB = rs3.getString("HOUSENO").trim() + " "
                                             + rs3.getString("STREETNAME") + " Barangay "
                                             + rs3.getString("BARANGAY").trim(),
-                                            numDB = rs.getString("MOBILENO").trim(),
-                                            paidDB = rs.getString("PAID").trim();
-                                    balance = rs3.getDouble("BALANCE");
-                                    if (paidDB.equals("true")) {
-                                        paidDB = "Paid";
-                                    } else if (paidDB.equals("false")) {
-                                        paidDB = "Unpaid";
-                                    }
-                                    // tbh i just copy pasted everything, aadjust nalang syntax here for real db
+                                            numDB = rs2.getString("MOBILENO").trim();
+                                    balance = rs3.getFloat("BALANCE");
+                                    // display db contents
+                                    DecimalFormat numForm = new DecimalFormat("#,##0.00");
                                     out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + numDB + "</td>");
                                     out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + paidDB + "</td>");
-                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + balance + "</a></td></tr>");
+                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
                                 }
-
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -201,7 +191,7 @@
                     Update Record
                 </button>
             </form>
-            <form action="update-balance.jsp">
+            <form action="${root}/UpdateBalance">
                 <button class="button-design" type="submit" style="margin-left: 10%;">
                     Update Balance
                 </button>
