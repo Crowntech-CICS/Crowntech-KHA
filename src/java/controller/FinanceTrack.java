@@ -93,7 +93,7 @@ public class FinanceTrack extends HttpServlet {
                     + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 10 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"OCT\",\n"
                     + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 11 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"NOV\",\n"
                     + "    SUM(CASE WHEN PAID = TRUE AND MONTH(PAYMENTDATE) = 12 AND YEAR(PAYMENTDATE) = ? THEN 5000 ELSE 0 END) AS \"DEC\"\n"
-                    + "FROM KHAMEMBERSHIP";
+                    + "FROM USERLOT";
             ps = con.prepareStatement(aFQuery);
             for (int i = 1; i < 13; i++) {
                 ps.setString(i, String.valueOf(selYear));
