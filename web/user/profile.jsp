@@ -38,12 +38,11 @@
         <br><br><br><br><br>
         <div class="d-flex main justify-content-between" id="profileStrip">
             <div class="profileText">
-                <p class="profileOwnerName"><%=user.fullName()%></p>
-                <h1 class="h1-bold" id="profileHeader"><%=user.getResClass()%></h1>
-                <p class="profileOwnerAddress"><%=user.getAddress()%></p>
+                <h1 class="h1-bold" id="profileHeader" style="margin-top: 2%"><%=user.fullName()%></h1>
+                <p class="profileOwnerAddress"><b><%=user.getResClass()%></b> - <%=user.getAddress()%></p>
             </div>
             <div class="profileTextsmall">
-                <h1 class="h1-bold" id="profileHeader">Homeowner</h1>
+                <h1 class="h1-bold" id="profileHeader"><%=user.fullName()%></h1>
             </div>
             <div id="profileB" align="right">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
