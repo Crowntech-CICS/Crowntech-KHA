@@ -20,7 +20,7 @@
         <link href="${root}/css/main-format.css" rel="stylesheet"/>
         <link href="${root}/css/navbar.css" rel="stylesheet"/>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="generalpurpose/navbar.jsp" %>
         <br><br><br><br><br><br>
         <img src="${root}/images/khalogo_new.png" id="indexLogo" alt="KHALogo"/>
         <h1 class="h1-bold" id="indexLogoText">Records Management System</h1>
