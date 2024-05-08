@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homeowner;
 import model.Resident;
+import model.User;
 import model.UserLot;
 import model.Vehicle;
 import model.connections.ConnectionPoolManager;
@@ -21,13 +22,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class Login extends HttpServlet {
+
     private static final Log logger = LogFactory.getLog(Login.class);
     protected static Connection con;
     protected static ResultSet rs;
     protected static PreparedStatement ps;
     protected int allowedTries = 3;
     protected int ctr;
-       
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,24 +47,24 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         String root = request.getContextPath();
         boolean logState = session.getAttribute("username") != null;
-        if(logState) {
+        if (logState) {
             response.sendRedirect("index.jsp");
-        }  
-               
+        }
+
         boolean found = false;
         ctr = (int) session.getAttribute("tries");
         String userEmail = request.getParameter("email").toLowerCase();
         String userPass = model.Encryption.encrypt(request.getParameter("password"), encrpytKey, cipher);
 
-        try{
+        try {
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
             ps = con.prepareStatement("select * from get_login(?,?);");
             ps.setString(1, userEmail);
             ps.setString(2, userPass);
             rs = ps.executeQuery();
-            
-            if(rs.next()){ //If user is in database
+
+            if (rs.next()) { //If user is in database
                 logger.info("FOUND IN DB");
                 //Get data from ResultSet
                 String emailDB = rs.getString("EMAIL").trim().toLowerCase();
@@ -73,17 +75,17 @@ public class Login extends HttpServlet {
                 String lastName = rs.getString("LASTNAME").trim();
                 String middleIni = rs.getString("MIDDLEINITIAL").trim();
                 String resDB = rs.getString("RESIDENTCLASS").trim();
-                int age = rs.getInt("AGE");              
-                
+                int age = rs.getInt("AGE");
+
                 logger.info(String.format("Email: %s - Level: %s", emailDB, levelDB));//print the contents resultset row
-                
-                if(userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)){
-                    if(levelDB.equals("homeowner")) {
+
+                if (userEmail.equalsIgnoreCase(emailDB) && userPass.equals(passwordDB)) {
+                    if (levelDB.equals("homeowner")) {
                         Homeowner user = new Homeowner();
                         ps = con.prepareStatement("select * from homeowner where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
-                        if(rs.next()){
+                        if (rs.next()) {
                             String mobNo = rs.getString("mobileno");
                             String landNo = rs.getString("landlineno");
                             String rep = rs.getString("representative");
@@ -95,16 +97,16 @@ public class Login extends HttpServlet {
                             String city = rs.getString("city");
                             String province = rs.getString("province");
                             String orNum = rs.getString("ornum");
-                            
+
                             user = new Homeowner(userID, emailDB, lastName, userName, middleIni, age, resDB,
-                            mobNo, landNo, rep, repMobNo, houseNo,
-                            street, village, barangay, city, province, orNum);
+                                    mobNo, landNo, rep, repMobNo, houseNo,
+                                    street, village, barangay, city, province, orNum);
                         }
                         ps = con.prepareStatement("select * from vehicle where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
-                        ArrayList<Vehicle> cars = new ArrayList<>(); 
-                        while(rs.next()) {
+                        ArrayList<Vehicle> cars = new ArrayList<>();
+                        while (rs.next()) {
                             String vhID = rs.getString("vehicleid").trim();
                             String type = rs.getString("type").trim();
                             String plateno = rs.getString("plateno").trim();
@@ -113,17 +115,17 @@ public class Login extends HttpServlet {
                             String vLN = rs.getString("lastname").trim();
                             String vFN = rs.getString("firstname").trim();
                             String vMN = rs.getString("middleinitial").trim();
-                            
+
                             Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
                             cars.add(car);
                         }
                         user.setCars(cars);
-                        
+
                         ps = con.prepareStatement("select * from userlot where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
                         ArrayList<UserLot> lots = new ArrayList<>();
-                        while(rs.next()){
+                        while (rs.next()) {
                             String propID = rs.getString("propertyid").trim();
                             String titleNo = rs.getString("titleno").trim();
                             String lotRegName = rs.getString("registeredname").trim();
@@ -141,35 +143,35 @@ public class Login extends HttpServlet {
                             Date paymentDate = rs.getDate("paymentdate");
                             String taxDecNo = rs.getString("taxdecno").trim();
                             String propInNo = rs.getString("propindexno").trim();
-                            
+
                             UserLot lot = new UserLot(propID, titleNo, lotRegName,
-                            houseNo, street, barangay, area,
-                            surNo, lotNo, dateReg, balance, use, businessName, businessType,
-                            paymentDate, taxDecNo, propInNo);
-                            
+                                    houseNo, street, barangay, area,
+                                    surNo, lotNo, dateReg, balance, use, businessName, businessType,
+                                    paymentDate, taxDecNo, propInNo);
+
                             lots.add(lot);
                         }
                         user.setLot(lots);
-                        
+
                         session.setAttribute("currUser", user);
                     }
-                    
-                    if(levelDB.equals("resident")) {
+
+                    if (levelDB.equals("resident")) {
                         Resident user = new Resident();
                         ps = con.prepareStatement("select * from residents where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
-                        while(rs.next()){
+                        while (rs.next()) {
                             String propID = rs.getString("propertyid").trim();
                             String relationship = rs.getString("relationship").trim();
-                            
+
                             user = new Resident(userID, emailDB, lastName, userName, middleIni, age, resDB, propID, relationship);
                         }
                         UserLot lot = new UserLot();
                         ps = con.prepareStatement("select * from userlot where propertyid = ?");
                         ps.setString(1, user.getPropertyID());
                         rs = ps.executeQuery();
-                        while(rs.next()) {
+                        while (rs.next()) {
                             String propID = rs.getString("propertyid").trim();
                             String titleNo = rs.getString("titleno").trim();
                             String lotRegName = rs.getString("registeredname").trim();
@@ -187,19 +189,19 @@ public class Login extends HttpServlet {
                             Date paymentDate = rs.getDate("paymentdate");
                             String taxDecNo = rs.getString("taxdecno").trim();
                             String propInNo = rs.getString("propindexno").trim();
-                            
+
                             lot = new UserLot(propID, titleNo, lotRegName,
-                            houseNo, street, barangay, area,
-                            surNo, lotNo, dateReg, balance, use, businessName, businessType,
-                            paymentDate, taxDecNo, propInNo);
-                            
+                                    houseNo, street, barangay, area,
+                                    surNo, lotNo, dateReg, balance, use, businessName, businessType,
+                                    paymentDate, taxDecNo, propInNo);
+
                             user.setResLot(lot);
                         }
                         ps = con.prepareStatement("select * from vehicle where userid = ?");
                         ps.setString(1, userID);
                         rs = ps.executeQuery();
-                        ArrayList<Vehicle> cars = new ArrayList<>(); 
-                        while(rs.next()) {
+                        ArrayList<Vehicle> cars = new ArrayList<>();
+                        while (rs.next()) {
                             String vhID = rs.getString("vehicleid").trim();
                             String type = rs.getString("type").trim();
                             String plateno = rs.getString("plateno").trim();
@@ -208,54 +210,58 @@ public class Login extends HttpServlet {
                             String vLN = rs.getString("lastname").trim();
                             String vFN = rs.getString("firstname").trim();
                             String vMN = rs.getString("middleinitial").trim();
-                            
+
                             Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
                             cars.add(car);
                         }
                         user.setCars(cars);
                         session.setAttribute("currUser", user);
+                    } else {
+                        User user = new User(userID, emailDB, lastName, userName, middleIni, age, levelDB);
+                        session.setAttribute("currUser", user);
                     }
-                    
-                    // User user = new User(userID, emailDB, lastName, userName, middleIni, age, levelDB);
+
                     session.setAttribute("username", userName);
                     session.setAttribute("level", levelDB);
                     session.setAttribute("currID", userID);
                     logger.info("Found user in the database");
-                    found = true;                    
+                    found = true;
                 }
             } else { //Not in database
                 logger.error("NO RECORD IN DB");
             }
-            
-            if(found){ //verifies if the user is in the database and redirect them to the homepage
-                if(!con.isClosed())
+
+            if (found) { //verifies if the user is in the database and redirect them to the homepage
+                if (!con.isClosed()) {
                     con.close();
+                }
                 ctr = 0;
                 session.removeAttribute("tries");
                 response.sendRedirect(root + "/index.jsp");
-            }
-            else if(ctr < allowedTries - 1){ //shows a message that the email or password is wrong (total of 3 tries)
+            } else if (ctr < allowedTries - 1) { //shows a message that the email or password is wrong (total of 3 tries)
                 ctr++;
                 session.setAttribute("tries", ctr);
                 request.setAttribute("succ", "true"); //NOTE: FOR VERIFICATION FOR POPUP IN THE LOGIN PAGE
                 response.sendRedirect("login.jsp");
-            }
-            else{ //throw an error message which will redirect the user to error 440 page
+            } else { //throw an error message which will redirect the user to error 440 page
                 ctr = 0;
                 session.removeAttribute("tries");
                 response.sendRedirect("./accounts/password/reset.jsp");
             }
-        } catch(SQLException sqle){
+        } catch (SQLException sqle) {
             logger.error("SQLException error occurred in try - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
-                if(rs != null)
+                if (rs != null) {
                     rs.close();
-                if(ps != null)
+                }
+                if (ps != null) {
                     ps.close();
-                if(con != null)
+                }
+                if (con != null) {
                     con.close();
+                }
             } catch (SQLException sqle) {
                 logger.error("SQLException error occurred in finally - " + sqle.getMessage());
                 response.sendError(500);
