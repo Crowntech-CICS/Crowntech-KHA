@@ -2,10 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,38 +35,28 @@ public class AddMonthlyDues extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String root = request.getContextPath();
         String loggedInUser = (String) session.getAttribute("currID");
         double monthlyDue = 300.00;
-        double balance = 0.0;
-        boolean paid = false;
-        logger.info("--[ADD DUES]------------------------------------------------------");
+        logger.info("Add Monthly dues...");
         
         try{
             //Get connection from connection pool
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("SELECT USERID,BALANCE FROM USERLOT");
+            ps = con.prepareStatement("select propertyid from userlot");
             rs = ps.executeQuery();
+            //Set current month
+            Date month = Date.valueOf(LocalDate.now().withDayOfMonth(1));
+            logger.info(month);
             while(rs.next()){
-                balance = rs.getDouble("BALANCE") + monthlyDue;
-                logger.info("HID: " + rs.getString("USERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
-                ps = con.prepareStatement("UPDATE USERLOT SET BALANCE = ?, PAID = ? WHERE USERID = ?");
-                ps.setDouble(1, balance);
-                ps.setBoolean(2, paid);
-                ps.setString(3, rs.getString("USERID"));
-                ps.executeUpdate();
+                logger.info(rs.getString("propertyid"));
+                ps = con.prepareStatement("select addmonthlydues(?,?,?)");
+                ps.setString(1, rs.getString("propertyid"));
+                ps.setDate(2, month);
+                ps.setDouble(3, monthlyDue);
+                ps.executeQuery();
             }
             
-            ps = con.prepareStatement("SELECT USERID,BALANCE FROM HOMEOWNER");
-            rs = ps.executeQuery();
-            while(rs.next()){
-                balance = rs.getDouble("BALANCE") + monthlyDue;
-                logger.info("HID: " + rs.getString("USERID")+ " OLDBAL: " + rs.getDouble("BALANCE") + " NEWBAL: " + balance);
-                ps = con.prepareStatement("UPDATE HOMEOWNER SET BALANCE = ?, PAID = ? WHERE USERID = ?");
-                ps.setDouble(1, balance);
-                ps.setBoolean(2, paid);
-                ps.setString(3, rs.getString("USERID"));
-                ps.executeUpdate();
-            }
             logger.info("SUCCESSFULLY ADDED MONTHLY DUES TO ALL HOMEOWNERS.");
             logger.info("Logged In user: " + loggedInUser);
             logger.info("------------------------------------------------------------------------");
@@ -73,7 +64,7 @@ public class AddMonthlyDues extends HttpServlet {
             new DBLogger().log(loggedInUser, "Added monthly dues to all existing balances.");
             //Redirect
             if(!response.isCommitted())
-                response.sendRedirect("records.jsp");
+                response.sendRedirect(root + "/UpdateBalance");
         } catch(SQLException sqle){
             logger.error("SQLException IN error occured - " + sqle.getMessage());
             response.sendError(500);
