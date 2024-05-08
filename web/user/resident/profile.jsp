@@ -43,27 +43,41 @@
                 <h1 class="h1-bold" id="profileHeader">Homeowner</h1>
             </div>
         </div>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+        <%
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
+            Homeowner user = (Homeowner) session.getAttribute("currUser");
+            ArrayList<Vehicle> cars = user.getCars();
 
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    let active = document.querySelectorAll(".accordion");
-                    for (let j = 0; j < active.length; j++) {
-                        active[j].classList.remove("active");
-                        active[j].nextElementSibling.style.display = "none";
-                    }
-                    this.classList.toggle("active");
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
-</body>
+            out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 35%;\">");
+            for (int x = 0; x < cars.size(); x++) {
+                out.print(
+                        "<div class=\"vehicle-box\">"
+                        + "<p style=\"text-align: center;padding-top: 2%\">"
+                        + cars.get(x).getPlateNo() + " - "
+                        + cars.get(x).getBrand() + " " + cars.get(x).getModel() + " " + " - "
+                        + cars.get(x).getRegisteredOwner()
+                        + "</p>"
+                        + "<h1 class=\"h1-bold\" style=\"margin: -2% 0% 2% 0%\">Vehicle Information</h1>"
+                        + "<div class=\"line\"></div>"
+                        + "<br>"
+                        + "<div class=\"d-flex main justify-content-between\" style=\"margin: 0% 5% 0% 5%\">"
+                        + "<div><p id=\"p-dark\">Plate Number: </p>"
+                        + "<p id=\"p-dark\">Registered Owner: </p>"
+                        + "<p id=\"p-dark\">Brand: </p>"
+                        + "<p id=\"p-dark\">Year/Model: </p></div>"
+                        + "<div><p id=\"p-dark\" class=\"p-right\">" + cars.get(x).getPlateNo() + " </p>"
+                        + "<p id=\"p-dark\" class=\"p-right\">" + cars.get(x).getRegisteredOwner() + " </p>"
+                        + "<p id=\"p-dark\" class=\"p-right\">" + cars.get(x).getBrand() + " </p>"
+                        + "<p id=\"p-dark\" class=\"p-right\">" + cars.get(x).getType() + " " + cars.get(x).getModel() + "</p>"
+                        + "</div>"
+                        + "</div>"
+                        //    + " <div class=\"button-container\">"
+                        //    + "<button class=\"button-design\" onclick=\"location.href = 'edit-vehicle.jsp?VHID=" + cars.get(x).getVehicleID() + "'\">Edit Information</button>"
+                        //    + "</div>"
+                        + "<br>"
+                        + "</div>"
+                        + "<br>");
+            }
+        %>
+    </body>
 </html>
