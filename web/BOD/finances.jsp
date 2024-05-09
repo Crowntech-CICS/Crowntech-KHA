@@ -76,10 +76,10 @@
                             
                         }
                         else{
-                            out.print("<tr><td class=\"tableContentText2\">" + Months[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">₱" + aPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">₱" + mPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\">₱" + bPaid[i] + "</td></tr>");
+                            out.print("<tr><td class=\"tableContentText2\" style=\"padding-left: 2%;\">" + Months[i] + "</td>");
+                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + aPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + mPaid[i] + "</td>");
+                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + bPaid[i] + "</td></tr>");
                         }
                             aTotal+=aPaid[i];
                             mTotal+=mPaid[i];
