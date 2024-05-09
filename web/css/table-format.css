@@ -18,6 +18,13 @@
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
+.tableContentRecords {
+    font-size: 16px;
+    min-width: 400px;
+    width: 50%;
+    border: 0px none;
+}
+
 .tableContentR {
     margin: auto;
     border-collapse: collapse;
@@ -85,6 +92,8 @@ th, td {
     color: #ffffff;
     background-color: #48a37d;
     font-weight: 600;
+    text-align: left;
+    padding-left: 2%;
 }
 
 .tableContentText {
@@ -162,6 +171,10 @@ th, td {
 
 .tableContent tbody tr:nth-of-type(even) {
     background-color: #D9D9D9;
+}
+
+.tableContentRecords tbody tr:nth-of-type(even) {
+    background-color: #ffffff;
 }
 
 tbody {

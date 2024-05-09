@@ -154,14 +154,25 @@
                                     out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + nameDB + "</td>");
                                     // out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                     out.print("<td class=\"tableContentText\">"
-                                            + "<button class=\"accordion\" id=\"tableContentText\">" + addDB + "<i class=\"fa fa-angle-down\"></i></button>"
-                                            + "<div id=\"moreinfo\" style=\"display: none;\">"
-                                            + "<div style=\"padding-left: 2%;\">"
-                                            + "<label>Balance Date:</label><br>"
-                                            + "<label>Balance:</label>"
-                                            + "<br>"
-                                            + "</div>"
-                                            + "</div></td>");
+                                    + "<button class=\"accordion\" id=\"tableContentText\" style=\"margin-left: -2%; cursor: pointer;\">"
+                                    + addDB
+                                    + "<i class=\"fa fa-angle-down\"></i> </button>"
+                                    + "<div id=\"moreinfo\" style=\"display: none;\">"
+                                    + "<div style=\"padding-left: 2%;\">"
+                                    + "<table class=\"tableContentRecords\">"
+                                    + "<thead>"
+                                    + "<th> Balance Date:</th>"
+                                    + "<th> Balance:</th>"
+                                    + "</thead>"
+                                    + "<tbody>"
+                                    + "<tr>"
+                                    + "<td>Test</td>"
+                                    + "<td>Test</td>"
+                                    + "</tr>"
+                                    + "</tbody>"
+                                    + "</table> "
+                                    + "<br>"
+                                    + "</div></div></td>");
                                     out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + numDB + "</td>");
                                     // out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                     out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") + "\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
