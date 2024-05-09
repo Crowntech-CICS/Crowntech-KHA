@@ -9,6 +9,7 @@
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
     }
+    String goBack = request.getContextPath() + "/staff/records-vehicles.jsp";
 %>
 <!DOCTYPE html>
 <html>
@@ -25,18 +26,19 @@
         <%@include file="/generalpurpose/navbar.jsp" %>
         <% 
             String vhid = request.getParameter("VHID");
+            System.out.println("vhid = " + vhid);
         %>
         <div class="main-body">
             <div class="signup-box-small">
-                <form style="left: 32.5%;" action="UpdateInfo">
+                <form style="left: 32.5%;" action="${root}\UpdateInfo">
                     <h1 class="h1-bold">Edit Vehicle Information</h1>
                     <div class="line"></div><br>
                     <div class="changepass-label-container">
                         <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
-                        <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
+                        <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" class="form-medium"><br>
                         <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
-                        <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
-                        <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>  
+                        <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" class="form-medium"><br>
+                        <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" class="form"><br>  
                         <br>
                         <div class="upload_files form_input_title" id="form_container">
                             <p style="text-align: center">Upload Digital Copy of Required Documents</p>
@@ -47,7 +49,9 @@
                     <input type="hidden" name="VHID" value="<%=vhid%>">
                     <input type="hidden" name="FORM_NO" value="6"> 
                 <div class="button-container" >
-                    <input class="button-design-reject" type="button" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'vehicles.jsp'">
+                    <%
+                        out.print("<input class=\"button-design-reject\" type=\"button\" value=\"Cancel\" id=\"button-small\" style=\"margin-right: 10%;\" onclick=\"location.href='" + goBack + "'\">");
+                    %>                                                   
                     <input class="button-design" type="submit" value="Save" id="button-small">
                 </div>
                 </form> 

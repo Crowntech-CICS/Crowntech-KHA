@@ -53,46 +53,14 @@
                 <button type="submit" id="searchMargin"><i class="fa fa-search"></i></button>
             </form>
             <button class="openSortB" onclick="openForm()">Sort</button>
-            <!-- The sorting form 
-            <div class="sortPopup" id="sortForm" style="display: none;">
-                <form action="\SortHandler" class="form-container" method="POST">
-                    <button type="button" class="button-design-reject" id="sortClose" onclick="closeForm()">Close</button>
-                    <br><br>
-                    <label class="sortCenter">Sort By Status:</label><br>
-                    <input type="radio" id="paid" name="status" value="true" class="sortCenterOption">
-                    <label for="paid">Paid</label>
-                    <input type="radio" id="unpaid" name="status" value="false">
-                    <label for="unpaid">Unpaid</label><br><br>
-                    <label for="area" class="sortCenter2">Sort By Area:</label>
-                    <select name="area" id="select" class="sortCenterSelect">
-                        <option value ="null">-----</option>
-                        <option value="1">Area 1</option>
-                        <option value="1A">Area 1A</option>
-                        <option value="2">Area 2</option>
-                        <option value="3">Area 3</option>
-                        <option value="4">Area 4</option>
-                        <option value="5">Area 5</option>
-                        <option value="5A">Area 5A</option>
-                        <option value="6">Area 6</option>
-                        <option value="7">Area 7</option>
-                        <option value="8">Area 8</option>
-                        <option value="9">Area 9</option>
-                        <option value="10">Area 10</option>
-                        <option value="11E">Area 11 East</option>
-                        <option value="11W">Area 11 West</option>
-                    </select>
-                    <br><br>
-                    <button type="submit" class="button-design" id="sortFilter">Filter Results</button>
-                </form>
-            </div> -->
         </div>
         <br>
         <div class="recordsHolder" style="overflow-y: scroll; height: 55%;">
             <table class="tableContent sortable" id="displayTable">
                 <thead>
                     <tr>
-                        <th class="tableTitle">Name</th>
                         <th class="tableTitle">Plate Number</th>
+                        <th class="tableTitle">Name</th>
                         <th class="tableTitle">Vehicle Type</th>
                         <th class="tableTitle">Vehicle Model</th>
                         <th class="tableTitle">Vehicle Brand</th>
@@ -112,11 +80,11 @@
                                        model = rs.getString("model").trim(),
                                        name = rs.getString("registeredname").trim();
                                        
-                                    out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + name + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + plateNo + "</td>");
+                                    out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/user/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
+                                    out.print("<td class=\"tableContentText\">" + name + "</td>");
                                     out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + type + "</td>");
                                     out.print("<td class=\"tableContentText\">" + model + "</td>");
-                                    out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + vehID + "\">" + brand + "</a></td></tr>");
+                                    out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + brand + "</td></tr>");
                                 }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -145,7 +113,7 @@
         <%
             if (session.getAttribute("level").equals("staff")) {
         %>
-        <div class="button-container">
+        <!--<div class="button-container">
             <form action="${root}/UpdateBalance">
                 <button class="button-design" type="submit" style="margin-left: 10%;">
                     Add Vehicles
@@ -156,7 +124,7 @@
                     Edit Vehicles
                 </button>
             </form>
-        </div>
+        </div>-->
         <%
             }
         %>

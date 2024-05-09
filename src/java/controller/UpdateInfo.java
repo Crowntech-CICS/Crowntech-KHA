@@ -104,7 +104,7 @@ public class UpdateInfo extends HttpServlet {
                         if (age.trim().equals("")) {
                             age = Integer.toString(rs.getInt("AGE"));
                         }
-                        HOID = rs.getString("HOMEOWNERID");
+                        HOID = rs.getString("userid");
                         System.out.println("UPDATE USERS SET LASTNAME = " + lastName + ", FIRSTNAME = " + firstName + ", MIDDLEINITIAL = " + middleIni + ", AGE = " + age + ", DATEOCCUPIED = " + date);
                         PreparedStatement psUpdate = con.prepareStatement("UPDATE USERS SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, AGE = ? WHERE USERID = ?");
                         psUpdate.setString(1, lastName);
@@ -114,7 +114,7 @@ public class UpdateInfo extends HttpServlet {
                         psUpdate.setString(5, (String) session.getAttribute("currID"));
                         psUpdate.executeUpdate();
                     }
-                    PreparedStatement psHO = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE HOMEOWNERID = ?");
+                    PreparedStatement psHO = con.prepareStatement("SELECT * FROM HOMEOWNER WHERE userid = ?");
                     psHO.setString(1, HOID);
                     rs = psHO.executeQuery();
                     System.out.println("psHO executed");
@@ -215,6 +215,7 @@ public class UpdateInfo extends HttpServlet {
                     break;
                 case 6: // Edit Vehicle Information
                     // p6Inputs = {vhID, vhType, vhBrand, vhModel, vhOwner};
+                    
                     ps = con.prepareStatement("SELECT * FROM VEHICLE WHERE VEHICLEID = ?");
                     ps.setString(1, vhID);
                     rs = ps.executeQuery();
@@ -229,15 +230,20 @@ public class UpdateInfo extends HttpServlet {
                             vhModel = rs.getString("MODEL");
                         }
                         if (vhOwner.trim().equals("")) {
-                            vhOwner = rs.getString("REGISTEREDOWNER");
+                            vhOwner = rs.getString("registeredname");
+                        }
+                        if(vhPlate.trim().equals("")) {
+                            vhPlate = rs.getString("plateno");
                         }
                     }
-                    PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, BRAND = ?, MODEL = ?, REGISTEREDOWNER = ? WHERE VEHICLEID = ?");
+                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
+                    PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ? WHERE VEHICLEID = ?");
                     psUpdate.setString(1, vhType);
                     psUpdate.setString(2, vhBrand);
                     psUpdate.setString(3, vhModel);
                     psUpdate.setString(4, vhOwner);
-                    psUpdate.setString(5, vhID);
+                    psUpdate.setString(5, vhPlate);
+                    psUpdate.setString(6, vhID);
                     psUpdate.executeUpdate();
                     break;
                 case 7: // updates the current other users (residents)
@@ -291,7 +297,11 @@ public class UpdateInfo extends HttpServlet {
                 response.sendError(500);
             }
         }
-        response.sendRedirect("profile.jsp");
+        if(page == 6){
+            response.sendRedirect(request.getContextPath() + "/staff/records-vehicles.jsp");
+        }else {
+            response.sendRedirect("profile.jsp");
+        }
     }
 
     @Override
