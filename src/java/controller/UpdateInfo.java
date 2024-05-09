@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.DBLogger;
+import model.User;
 
 /**
  *
@@ -66,6 +68,7 @@ public class UpdateInfo extends HttpServlet {
                 vhModel = request.getParameter("VEH_MODEL"),
                 vhOwner = request.getParameter("VEH_OWNER");
         int page = 0;
+        User user = (User)session.getAttribute("currUser");
         if (request.getParameter("FORM_NO") != null) {
             page = Integer.parseInt(request.getParameter("FORM_NO"));
         }
@@ -245,6 +248,7 @@ public class UpdateInfo extends HttpServlet {
                     psUpdate.setString(5, vhPlate);
                     psUpdate.setString(6, vhID);
                     psUpdate.executeUpdate();
+                    new DBLogger().log(user.getID(), user.fullName() + " edited the car with the vehicleID = " + vhID);
                     break;
                 case 7: // updates the current other users (residents)
                     // p7Inputs = {otherID, lnB, fnB, miB, resRel, lnC, fnC, miC, resRelC}
