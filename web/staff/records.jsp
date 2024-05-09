@@ -131,7 +131,19 @@
                         try {
                             PreparedStatement ps3 = con.prepareStatement(LotQuery); // queries USERLOT table
                             ResultSet rs3 = ps3.executeQuery();
+                            String balQuery;
+                            PreparedStatement ps4; // queries MonthlyBalance table
+                            ResultSet rs4;
                             while (rs3.next()) {
+                                balQuery = "select m.balancedate, m.balance "
+                                + "from userlot p "
+                                + "inner join monthlybalance m USING (propertyid) "
+                                + "where p.userid = ? and p.propertyid = ?";
+                                ps4 = con.prepareStatement(balQuery);
+                                ps4.setString(1,rs3.getString("userid"));
+                                ps4.setString(2,rs3.getString("propertyid"));
+                                System.out.println(ps4);
+                                rs4 = ps4.executeQuery();
                                 userLotID = rs3.getString("userid"); // Take homeownerid from USERLOT
                                 ps2 = con.prepareStatement("select * from users where userid = ?"); // queries USERS with USERID from USERLOT
                                 ps2.setString(1, userLotID);
@@ -164,12 +176,22 @@
                                     + "<th> Balance Date:</th>"
                                     + "<th> Balance:</th>"
                                     + "</thead>"
-                                    + "<tbody>"
-                                    + "<tr>"
-                                    + "<td>Test</td>"
-                                    + "<td>Test</td>"
-                                    + "</tr>"
-                                    + "</tbody>"
+                                    + "<tbody>");
+                                    
+                                    while(rs4.next()){
+                                     System.out.println(rs4.getDate("balancedate") +" " + rs4.getDouble("balance"));
+                                    out.print(
+                                    "<tr>"
+                                    + "<td>"
+                                    + rs4.getDate("balancedate")
+                                    + "</td>"
+                                    + "<td>"
+                                    + rs4.getDouble("balance")
+                                    + "</td>"
+                                    + "</tr>");
+                                    }
+                                    out.print(
+                                     "</tbody>"
                                     + "</table> "
                                     + "<br>"
                                     + "</div></div></td>");
