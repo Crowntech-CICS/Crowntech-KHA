@@ -4,6 +4,7 @@
 <% request.setAttribute("root", request.getContextPath());%>
 <!DOCTYPE html>
 <%
+    
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
@@ -68,6 +69,7 @@
                 </form>  
 
                 <form id="finalForm" action="${root}/EditHomeowner" method="POST">
+                    <input type="hidden" name="USERID" value="<%= rs.getString("userid")%>"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_FN"><!-- HOMEOWNER -->
                     <input type="hidden" name="HO_MI"><!-- HOMEOWNER -->
@@ -111,7 +113,7 @@
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     alert('Successfully edited Homeowner in the records.');
-                    window.location.href = '${root}/index.jsp';
+                    window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');

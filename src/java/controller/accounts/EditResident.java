@@ -15,12 +15,11 @@ import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class EditHomeowner extends HttpServlet {
-    private static final Log logger = LogFactory.getLog(EditHomeowner.class);
+public class EditResident extends HttpServlet {
+    private static final Log logger = LogFactory.getLog(EditResident.class);
     protected Connection con;
     protected ResultSet rs;
     protected PreparedStatement ps;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,32 +38,28 @@ public class EditHomeowner extends HttpServlet {
             con = ConnectionPoolManager.getDataSource().getConnection();
             //Update record in database
             ps = con.prepareStatement("update users set lastname = ?,firstname = ?,middleinitial = ?,email = ?,age = ? where userid = ?");
-            ps.setString(1, request.getParameter("HO_LN"));
-            ps.setString(2, request.getParameter("HO_FN"));
-            ps.setString(3, request.getParameter("HO_MI"));
-            ps.setString(4, request.getParameter("HO_EMAIL"));
-            ps.setInt(5, Integer.parseInt(request.getParameter("HO_AGE")));
+            ps.setString(1, request.getParameter("RES_LN"));
+            ps.setString(2, request.getParameter("RES_FN"));
+            ps.setString(3, request.getParameter("RES_MI"));
+            ps.setString(4, request.getParameter("RES_EMAIL"));
+            ps.setInt(5, Integer.parseInt(request.getParameter("RES_AGE")));
             ps.setString(6,request.getParameter("USERID"));
             ps.executeUpdate();
-            ps = con.prepareStatement("update homeowner set houseno = ?,streetname = ?,village = ?,barangay = ?,city = ?,province = ? where userid = ?");
-            ps.setString(1, request.getParameter("HO_HOUSENUM"));
-            ps.setString(2, request.getParameter("HO_STREET"));
-            ps.setString(3, request.getParameter("HO_VILLAGE"));
-            ps.setString(4, request.getParameter("HO_BARANGAY"));
-            ps.setString(5, request.getParameter("HO_CITY"));
-            ps.setString(6,request.getParameter("HO_PROVINCE"));
-            ps.setString(7,request.getParameter("USERID"));
+            ps = con.prepareStatement("update residents set propertyid = ?, relationship = ? where userid = ?");
+            ps.setString(1, request.getParameter("RES_PROP"));
+            ps.setString(2, request.getParameter("RES_REL"));
+            ps.setString(3,request.getParameter("USERID"));
             ps.executeUpdate();
             
             //LOG ACTION
-            new DBLogger().log((String) session.getAttribute("currID"), "Edited user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+            new DBLogger().log((String) session.getAttribute("currID"), "Edited resident " + request.getParameter("RES_LN") + "," + request.getParameter("RES_FN"));
             //Redirect
             if(!response.isCommitted()){
-                response.sendRedirect(root + "/accounts/choose/homeowners.jsp");
+                response.sendRedirect(root + "/accounts/choose/residents.jsp");
             }
         } catch (SQLException sqle) {
             //LOG ACTION
-            new DBLogger().log((String) session.getAttribute("currID"), "Error editing user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+            new DBLogger().log((String) session.getAttribute("currID"), "Error editing resident " + request.getParameter("RES_LN") + "," + request.getParameter("RES_FN"));
             logger.error("SQLException error occured in INSERT - " + sqle.getMessage());
             response.sendError(500);
         } finally {
@@ -77,7 +72,7 @@ public class EditHomeowner extends HttpServlet {
                     con.close();
             } catch (SQLException sqle) {
                 //LOG ACTION
-                new DBLogger().log((String) session.getAttribute("currID"), "Error editing user " + request.getParameter("HO_LN") + "," + request.getParameter("HO_FN"));
+                new DBLogger().log((String) session.getAttribute("currID"), "Error editing user " + request.getParameter("RES_LN") + "," + request.getParameter("RES_FN"));
                 logger.error("SQLException error occured in Closing - " + sqle.getMessage());
                 response.sendError(500);
             }

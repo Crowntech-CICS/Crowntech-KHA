@@ -92,6 +92,7 @@
                 </form>
 
                 <form id="finalForm" action="${root}/EditResident" method="POST">
+                    <input type="hidden" name="USERID" value="<%= rs.getString("userid")%>"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_PROP"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_FN"><!-- HOMEOWNER -->

@@ -39,7 +39,7 @@
                     <label for="ADMIN_EMAIL">Email Address</label><input value="<%=rs.getString("email")%>" onchange="finalForm.ADMIN_EMAIL.value = this.value" type="text" name="ADMIN_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="ADMIN_ROLE"">Admin Role</label>
                     <select name="ADMIN_ROLE" id="" class="form" onchange="finalForm.ADMIN_ROLE.value = this.value">
-                        <option value="value="<%=rs.getString("residentclass")%>"" selected disabled><%=rs.getString("residentclass")%></option>
+                        <option value="<%=rs.getString("residentclass")%>" selected disabled><%=rs.getString("residentclass")%></option>
                         <option value="Admin">System Admin</option>
                         <option value="Board of Director">Board of Director</option>
                         <option value="Staff">Staff</option>
@@ -52,6 +52,7 @@
                 </form>
 
                 <form id="finalForm" action="${root}/EditAdmin" method="POST">
+                    <input type="hidden" name="USERID" value="<%= rs.getString("userid")%>"><!-- HOMEOWNER -->
                     <input type="hidden" name="ADMIN_LN"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_FN"><!-- ADMIN -->
                     <input type="hidden" name="ADMIN_MI"><!-- ADMIN -->

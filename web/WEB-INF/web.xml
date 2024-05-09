@@ -116,6 +116,14 @@
         <servlet-name>EditHomeowner</servlet-name>
         <servlet-class>controller.accounts.EditHomeowner</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditResident</servlet-name>
+        <servlet-class>controller.accounts.EditResident</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAdmin</servlet-name>
+        <servlet-class>controller.accounts.EditAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -211,6 +219,14 @@
     <servlet-mapping>
         <servlet-name>EditHomeowner</servlet-name>
         <url-pattern>/EditHomeowner</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditResident</servlet-name>
+        <url-pattern>/EditResident</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAdmin</servlet-name>
+        <url-pattern>/EditAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
