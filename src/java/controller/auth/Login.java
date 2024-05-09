@@ -269,7 +269,7 @@ public class Login extends HttpServlet {
                 ctr++;
                 session.setAttribute("tries", ctr);
                 request.setAttribute("succ", "true"); //NOTE: FOR VERIFICATION FOR POPUP IN THE LOGIN PAGE
-                response.sendRedirect("login.jsp");
+                response.sendRedirect(root + "/accounts/login.jsp");
             } else { //throw an error message which will redirect the user to error 440 page
                 ctr = 0;
                 session.removeAttribute("tries");
