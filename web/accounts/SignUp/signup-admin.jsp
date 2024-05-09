@@ -29,7 +29,7 @@
                     <select name="ADMIN_ROLE" id="" class="form" onchange="finalForm.ADMIN_ROLE.value = this.value">
                         <option value="" selected disabled>Role</option>
                         <option value="Admin">System Admin</option>
-                        <option value="BOD">Board of Director</option>
+                        <option value="Board of Director">Board of Director</option>
                         <option value="Staff">Staff</option>
                     </select>
                     <br><br><br>
@@ -55,7 +55,8 @@
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
-                    alert('Successfully added Admin to the records.');
+                    var level = params.get('l');
+                    alert('Successfully added ' + level +' to the records.');
                     window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
@@ -90,7 +91,9 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                finalForm.submit();
+                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                    finalForm.submit();
+                }               
 
             };
         </script>

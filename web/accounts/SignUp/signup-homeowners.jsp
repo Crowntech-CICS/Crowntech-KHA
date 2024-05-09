@@ -304,11 +304,6 @@
                 }
             };
 
-            /*Next4.onclick = function(){
-             form4.style.left = "-1000px";
-             form5.style.left = "32.5%";
-             progress.style.width = "100%";
-             }*/
         </script>
     </body>
 </html>

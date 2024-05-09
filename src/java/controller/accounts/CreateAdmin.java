@@ -84,7 +84,7 @@ public class CreateAdmin extends HttpServlet {
             new DBLogger().log((String) session.getAttribute("currID"), "Created high-level account " + request.getParameter("ADMIN_LN") + "," + request.getParameter("ADMIN_FN"));
             //Redirect
             if(!response.isCommitted()){
-                response.sendRedirect(root + "/accounts/signup/signup-admin.jsp?suc=true");
+                response.sendRedirect(root + "/accounts/signup/signup-admin.jsp?suc=true&l=" + level.toLowerCase());
             }
         } catch (SQLException sqle) {
             logger.error("SQLException error occured in INSERT - " + sqle.getMessage());

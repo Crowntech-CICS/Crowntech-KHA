@@ -138,7 +138,9 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                finalForm.submit();
+                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                    finalForm.submit();
+                }
             };
             
         </script>      

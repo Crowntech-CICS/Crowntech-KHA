@@ -48,47 +48,5 @@
                 
             </div>
         </div>
-        <script>
-            window.onload = function () {
-                var params = new URLSearchParams(window.location.search);
-                if (params.get('suc') === 'true') {
-                    alert('Successfully added Resident to the records.');
-                    window.location.href = '${root}/records.jsp';
-                }
-                if (params.get('err') == 1) {
-                    alert('Record already exists or there is a conflicting record in the database.');
-                }
-            };
-
-            var form1 = document.getElementById("form1");
-            var finalForm = document.getElementById('finalForm');
-
-            var Next1 = document.getElementById("Next1");
-            var Back1 = document.getElementById("Back1");
-
-            Next1.onclick = function () {
-                const f1 = [
-                    {name: "RES_LN", message: "Missing Last Name."},
-                    {name: "RES_FN", message: "Missing First Name."},
-                    {name: "RES_MI", message: "Missing Middle Initial."},
-                    {name: "RES_AGE", message: "Missing Age."},
-                    {name: "RES_EMAIL", message: "Missing Email."},
-                    {name: "RES_LANDLINE", message: "Missing Landline."},
-                    {name: "RES_PHONE", message: "Missing Phone Number."},
-                    {name: "RES_REL", message: "Invalid Relationship."}
-                ];
-                for (let i = 0; i < f1.length; i++) {
-                    const field = f1[i];
-                    const inputField = form1[field.name];
-                    console.log("Checking " + field.name);
-                    if (inputField.value === "") {
-                        alert(field.message);
-                        return false;
-                    }
-                    finalForm[field.name].value = inputField.value;
-                }
-                finalform.submit();
-            };
-        </script>
     </body>
 </html>
