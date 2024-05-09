@@ -31,7 +31,8 @@
                         } 
                         else if(level.equals("staff") || level.equals("board")){
                             out.println("<li><a href=\"" + rootPath + "/FinanceTrack\">Finances Tracker</a></li>");
-                            out.println("<li><a href=\"" + rootPath + "/staff/records.jsp\">Records Viewing</a></li>");
+                            out.println("<li><a href=\"" + rootPath + "/staff/records.jsp\">Lot Records</a></li>");
+                            out.println("<li><a href=\"" + rootPath + "/staff/records-vehicles.jsp\">Vehicle Records</a></li>");
                             out.println("<li><a href=\"" + rootPath + "/Logout\">Logout</a></li>");
                         }//Homeowner/Lessee/Resident Access Level
                         else if (level.equals("homeowner") || level.equals("lessee")) {
