@@ -88,7 +88,18 @@ th, td {
 }
 
 .tableContentText {
-    text-align: center;
+    padding-left: 2%;
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Inter';
+    background-color: #ffffff;
+    border: 0px none;
+    height: 40px;
+}
+
+#tableContentText {
+    padding-left: 2%;
+    text-align: left;
     font-size: 20px;
     font-family: 'Inter';
     background-color: #ffffff;
@@ -185,7 +196,7 @@ tbody {
         width: 18%;
     }
 
-    .tableContentText, .tableContentText2 {
+    .tableContentText, .tableContentText2, #tableContentText {
         height: 34px;
     }
 
@@ -200,7 +211,7 @@ tbody {
         margin-top: -1.5%;
     }
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
         font-size: 14px;
     }
 
@@ -216,7 +227,7 @@ tbody {
 
 @media only screen and (max-width: 1200px) {
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
         font-size: 12px;
     }
 
@@ -228,7 +239,7 @@ tbody {
         font-size: 20px;
     }
 
-    .tableContentText, .tableContentText2 {
+    .tableContentText, .tableContentText2, #tableContentText {
         height: 25px;
     }
 
@@ -242,7 +253,7 @@ tbody {
 }
 
 @media only screen and (max-width: 1024px) {
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
         font-size: 12px;
     }
 
@@ -250,7 +261,7 @@ tbody {
         font-size: 14px;
     }
 
-    .tableContentText, .tableContentText2 {
+    .tableContentText, .tableContentText2, #tableContentText {
         height: 10px;
     }
 
@@ -269,7 +280,7 @@ tbody {
         height: 250px;
     }
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5 {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
         font-size: 10px;
     }
 

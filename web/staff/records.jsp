@@ -30,8 +30,7 @@
     </head>
     <body>
         <%@include file="/generalpurpose/navbar.jsp" %>
-        <%            
-            Connection con = null;
+        <%            Connection con = null;
             ResultSet rs = null;
             ResultSet rs2 = null;
             PreparedStatement ps = null;
@@ -123,7 +122,7 @@
                         <th class="tableTitle">Name</th>
                         <th class="tableTitle">Address</th>
                         <th class="tableTitle">Contact Number</th>
-                        <th class="tableTitle">Status</th>
+                            <%-- <th class="tableTitle">Status</th> --%>
                         <th class="tableTitle">Balance</th>
                     </tr>
                 </thead>
@@ -138,8 +137,8 @@
                                 ps2.setString(1, userLotID);
                                 rs = ps2.executeQuery();
                                 ps = con.prepareStatement("SELECT * FROM homeowner WHERE userid = ?");
-                                    ps.setString(1, userLotID);
-                                    rs2 = ps.executeQuery();
+                                ps.setString(1, userLotID);
+                                rs2 = ps.executeQuery();
                                 while (rs.next() && rs2.next()) {
                                     resClass = rs.getString("RESIDENTCLASS");
                                     String nameDB = rs.getString("LASTNAME").trim() + ", "
@@ -152,11 +151,20 @@
                                     balance = rs3.getFloat("BALANCE");
                                     // display db contents
                                     DecimalFormat numForm = new DecimalFormat("#,##0.00");
-                                    out.print("<tr><td class=\"tableContentText\">" + nameDB + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + addDB + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + numDB + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + resClass + "</td>");
-                                    out.println("<td class=\"tableContentText\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") +"\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
+                                    out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + nameDB + "</td>");
+                                    // out.print("<td class=\"tableContentText\">" + addDB + "</td>");
+                                    out.print("<td class=\"tableContentText\">"
+                                            + "<button class=\"accordion\" id=\"tableContentText\">" + addDB + "<i class=\"fa fa-angle-down\"></i></button>"
+                                            + "<div id=\"moreinfo\" style=\"display: none;\">"
+                                            + "<div style=\"padding-left: 2%;\">"
+                                            + "<label>Balance Date:</label><br>"
+                                            + "<label>Balance:</label>"
+                                            + "<br>"
+                                            + "</div>"
+                                            + "</div></td>");
+                                    out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + numDB + "</td>");
+                                    // out.print("<td class=\"tableContentText\">" + resClass + "</td>");
+                                    out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") + "\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
                                 }
                             }
                         } catch (SQLException sqle) {
@@ -184,7 +192,7 @@
         </div>
         <br><br>
         <%
-            if(session.getAttribute("level").equals("staff")) {
+            if (session.getAttribute("level").equals("staff")) {
         %>
         <div class="button-container">
             <form>
@@ -227,10 +235,10 @@
                         console.log(tr[i].getElementsByTagName("td")[0]);
                         td1 = tr[i].getElementsByTagName("td")[0];
                         td2 = tr[i].getElementsByTagName("td")[1];
-                        
+
                         if (td1) {
                             txtValue1 = td1.textContent || td1.innerText;
-                            txtValue2 =  td2.textContent || td2.innerText;
+                            txtValue2 = td2.textContent || td2.innerText;
                             txtValue3 = txtValue1 + txtValue2;
                             if (txtValue3.toUpperCase().indexOf(filter) > -1) {
                                 tr[i].style.display = "";
@@ -239,6 +247,27 @@
                             }
                         }
                     }
+                }
+
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].addEventListener("click", function () {
+
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            let active = document.querySelectorAll(".accordion");
+                            for (let j = 0; j < active.length; j++) {
+                                active[j].classList.remove("active");
+                                active[j].nextElementSibling.style.display = "none";
+                            }
+                            this.classList.toggle("active");
+                            panel.style.display = "block";
+                        }
+                    });
                 }
         </script>
     </body>
