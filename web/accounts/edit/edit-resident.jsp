@@ -15,15 +15,26 @@
         ps.setString(1, area);
         request.setAttribute("area", area);
     }            
-    ResultSet rs = ps.executeQuery();
+    ResultSet rs0 = ps.executeQuery();
     String[] areas = {"1","1A","2","3","4","5","5A","6","7","8","9","10","11E","11W","12"};
+    
+    ps = conn.prepareStatement("select u.*,r.* from users u join residents r on u.userid = r.userid where u.userid = ?");
+    ps.setString(1, request.getParameter("r"));
+    ResultSet rs = ps.executeQuery();
+    rs.next();
+    ps = conn.prepareStatement("select * from userlot where propertyid = ?");
+    ps.setString(1, rs.getString("propertyid"));
+    ResultSet rs2 = ps.executeQuery();
+    rs2.next();
+    area = rs2.getString("area");
+    request.setAttribute("area", rs2.getString("area"));
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>KHA | Create Resident Account</title>
+        <title>KHA | Edit Resident Account</title>
         <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
         <link href="${root}/css/main-format.css" rel="stylesheet"/>
         <link href="${root}/css/form-format.css" rel="stylesheet"/>
@@ -38,7 +49,7 @@
                     <div class="line"></div><br>
                     <label for="RES_PROP">Address</label>
                     <div style="display: flex;">
-                        <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
+                        <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?r=<%=request.getParameter("r")%>&area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
                             <% if(area != null){%>
                                 <option value="${area}">${area} - Selected</option>
                             <%} else{%>
@@ -50,24 +61,21 @@
                             %>
                         </select>
                         <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
-                            <option value="" selected disabled>Address</option>
-                        <%  while(rs.next()){ %>
-                            <option value="">Address</option>
-                        <%  }
-                            rs.close();
-                            ps.close();
-                            conn.close();
-                        %>
+                            <option value="<%= rs.getString("propertyid")%>" selected disabled><%= rs2.getString("houseno") + " " + rs2.getString("streetname")%></option>
+                        <%  while(rs0.next()){ %>
+                            <option value="<%= rs0.getString("propertyid")%>"><%= rs0.getString("houseno") + " " + rs0.getString("streetname")%></option>
+                        <%  } %>
+
                         </select>
                     </div>
-                    <label for="RES_FN">First Name</label><input onchange="finalForm.RES_FN.value = this.value" type="text" name="RES_FN" placeholder="First Name" class="form"><br>
-                    <label for="RES_LN">Last Name</label><input onchange="finalForm.RES_LN.value = this.value" type="text" name="RES_LN" placeholder="Last Name" class="form"><br>
+                    <label for="RES_FN">First Name</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.RES_FN.value = this.value" type="text" name="RES_FN" placeholder="First Name" class="form"><br>
+                    <label for="RES_LN">Last Name</label><input value="<%=rs.getString("lastname")%>"  onchange="finalForm.RES_LN.value = this.value" type="text" name="RES_LN" placeholder="Last Name" class="form"><br>
                     <label for="RES_MI" id="label-margin">Middle Initial</label><label for="RES_AGE" class="marginAge">Age</label><br>
-                    <input onchange="finalForm.RES_MI.value = this.value" type="text" type="text" name="RES_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input onchange="finalForm.RES_AGE.value = this.value" type="number" name="RES_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="RES_EMAIL">Email Address</label><input onchange="finalForm.RES_EMAIL.value = this.value" type="text" name="RES_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <input value="<%=rs.getString("middleinitial")%>"  onchange="finalForm.RES_MI.value = this.value" type="text" type="text" name="RES_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input value="<%=rs.getString("age")%>" onchange="finalForm.RES_AGE.value = this.value" type="number" name="RES_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
+                    <label  for="RES_EMAIL">Email Address</label><input value="<%=rs.getString("email")%>" onchange="finalForm.RES_EMAIL.value = this.value" type="text" name="RES_EMAIL" placeholder="Email Address" required class="form"><br>
                     <label for="RES_REL"">Relationship with Homeowner</label>
                     <select name="RES_REL" id="" class="form" onchange="finalForm.RES_REL.value = this.value">
-                        <option value="" selected disabled>Relationship</option>
+                        <option value="<%=rs.getString("relationship")%>" selected disabled><%=rs.getString("relationship")%></option>
                         <option value="Spouse">Spouse</option>
                         <option value="Son/Daughter">Son/Daughter</option>
                         <option value="Grandchild">Grandchild</option>
@@ -78,12 +86,12 @@
                     </select>
                     <br><br>
                     <div class="button-container">
-                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/admin/accounts.jsp'" id="button-small">
+                        <input class="button-design-reject" type="button" value="Cancel" style="margin-right: 10%;" onclick="window.location.href = '${root}/accounts/choose/residents.jsp'" id="button-small">
                         <input id="Next1" class="button-design" type="button" value="Submit">
                     </div>
                 </form>
 
-                <form id="finalForm" action="${root}/CreateResident" method="POST">
+                <form id="finalForm" action="${root}/EditResident" method="POST">
                     <input type="hidden" name="RES_PROP"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_LN"><!-- HOMEOWNER -->
                     <input type="hidden" name="RES_FN"><!-- HOMEOWNER -->
@@ -93,12 +101,19 @@
                     <input type="hidden" name="RES_REL"><!-- HOMEOWNER -->
                 </form>
             </div>
-        </div>
+        </div>                         
+        <%   
+            rs0.close();
+            rs.close();
+            rs2.close();
+            ps.close();
+            conn.close();
+        %>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
-                    alert('Successfully added Resident in the records.');
+                    alert('Successfully edited Resident to the records.');
                     window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {

@@ -53,7 +53,7 @@
                 <tbody>
                 <%
                     int oddEven = 0;
-                    ps = con.prepareStatement("SELECT u.FIRSTNAME||' '||u.LASTNAME AS \"NAME\",l.action,l.time,l.date FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID");
+                    ps = con.prepareStatement("SELECT u.FIRSTNAME||' '||u.LASTNAME AS \"NAME\",l.action,l.time,l.date FROM LOGS l LEFT JOIN USERS u ON u.USERID = l.USERID order by l.date desc");
                     rs = ps.executeQuery();
                     while(rs.next()){ 
                         if((oddEven % 2) == 0){

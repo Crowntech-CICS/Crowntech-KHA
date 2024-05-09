@@ -86,7 +86,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddMonthlyDues</servlet-name>
-        <servlet-class>controller.AddMonthlyDues</servlet-class>
+        <servlet-class>controller.finances.AddMonthlyDues</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateHomeowner</servlet-name>
@@ -111,6 +111,10 @@
     <servlet>
         <servlet-name>CreateResident</servlet-name>
         <servlet-class>controller.accounts.CreateResident</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditHomeowner</servlet-name>
+        <servlet-class>controller.accounts.EditHomeowner</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -203,6 +207,10 @@
     <servlet-mapping>
         <servlet-name>CreateResident</servlet-name>
         <url-pattern>/CreateResident</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditHomeowner</servlet-name>
+        <url-pattern>/EditHomeowner</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

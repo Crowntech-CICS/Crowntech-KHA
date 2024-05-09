@@ -40,9 +40,9 @@
                     <div class="line"></div>
                     <h1 id="h1small" class="h1-bold">Edit Accounts</h1>
                     <div style="display:grid; gap:0.5rem;justify-content: center">
-                        <a href="${root}/accounts/update/"><input class="button-design" type="button" value="Edit Homeowner"></a>
-                        <a href="${root}/accounts/update/edit-resident.jsp"><input class="button-design" type="button" value="Edit Resident"></a>
-                        <a href="${root}/accounts/update/"><input class="button-design" type="button" value="Edit Staff/Admin/Bod"></a>
+                        <a href="${root}/accounts/choose/homeowners.jsp"><input class="button-design" type="button" value="Edit Homeowner"></a>
+                        <a href="${root}/accounts/choose/residents.jsp"><input class="button-design" type="button" value="Edit Resident"></a>
+                        <a href="${root}/accounts/choose/admin.jsp"><input class="button-design" type="button" value="Edit Staff/Admin/Bod"></a>
                     </div>
                 </form>
                 

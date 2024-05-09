@@ -1,28 +1,24 @@
-package controller;
+package controller.accounts;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.DBLogger;
 import model.connections.ConnectionPoolManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class AddMonthlyDues extends HttpServlet {
-    private static final Log logger = LogFactory.getLog(AddMonthlyDues.class);
-    protected static Connection con;
-    protected static ResultSet rs;
-    protected static PreparedStatement ps;
-    
+public class EditHomeowner extends HttpServlet {
+    private static final Log logger = LogFactory.getLog(EditHomeowner.class);
+    protected Connection con;
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,39 +30,18 @@ public class AddMonthlyDues extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String root = request.getContextPath();
-        String loggedInUser = (String) session.getAttribute("currID");
-        double monthlyDue = 300.00;
-        logger.info("Add Monthly dues...");
-        
-        try{
-            //Get connection from connection pool
+        try {
+            //Connect to DB
             con = ConnectionPoolManager.getDataSource().getConnection();
-            ps = con.prepareStatement("select propertyid from userlot");
-            rs = ps.executeQuery();
-            //Set current month
-            Date month = Date.valueOf(LocalDate.now().withDayOfMonth(1));
-            logger.info(month);
-            while(rs.next()){
-                logger.info(rs.getString("propertyid"));
-                ps = con.prepareStatement("select addmonthlydues(?,?,?)");
-                ps.setString(1, rs.getString("propertyid"));
-                ps.setDate(2, month);
-                ps.setDouble(3, monthlyDue);
-                ps.executeQuery();
-            }
-            
-            logger.info("SUCCESSFULLY ADDED MONTHLY DUES TO ALL HOMEOWNERS.");
-            logger.info("Logged In user: " + loggedInUser);
-            logger.info("------------------------------------------------------------------------");
-            //LOG ACTION
-            new DBLogger().log(loggedInUser, "Added monthly dues to all existing balances.");
-            //Redirect
-            if(!response.isCommitted())
-                response.sendRedirect(root + "/UpdateBalance");
-        } catch(SQLException sqle){
-            logger.error("SQLException IN error occured - " + sqle.getMessage());
+            //Update record in database
+            ps = con.prepareStatement("update users (lastname,firstname,middleinitial,email,age) values (?,?,?,?)");
+            ps.setString(1, request.getParameter("HO_LN"));
+            ps.setString(2, request.getParameter("HO_FN"));
+            ps.setString(3, request.getParameter("HO_MI"));
+            ps.setString(4, request.getParameter("HO_EMAIL"));
+            ps.setString(5, request.getParameter("HO_AGE"));
+        } catch (SQLException sqle) {
+            logger.error("SQLException error occured in INSERT - " + sqle.getMessage());
             response.sendError(500);
         } finally {
             try {
@@ -77,7 +52,7 @@ public class AddMonthlyDues extends HttpServlet {
                 if(con != null)
                     con.close();
             } catch (SQLException sqle) {
-                logger.error("SQLException OUT error occured - " + sqle.getMessage());
+                logger.error("SQLException error occured in Closing - " + sqle.getMessage());
                 response.sendError(500);
             }
         }

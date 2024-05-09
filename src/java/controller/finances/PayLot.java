@@ -124,14 +124,14 @@ public class PayLot extends HttpServlet {
                 ps.executeUpdate();
                 
                 //LOG ACTION
-                new DBLogger().log((String) request.getSession().getAttribute("currID"), "Updated payment of " + payment + " propertyId " + propId);
+                new DBLogger().log((String) request.getSession().getAttribute("currID"), "Updated payment of " + request.getParameter("PAYMENT") + " propertyId " + propId);
                 //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect(request.getContextPath() + "/staff/payLot.jsp?propID=" + propId);
             } else {
                 logger.error("NO BALANCE FOUND.");
                 //LOG ACTION
-                new DBLogger().log((String) request.getSession().getAttribute("currID"), "Failed to update payment of " + payment + " propertyId  " + propId);
+                new DBLogger().log((String) request.getSession().getAttribute("currID"), "Failed to update payment of " + request.getParameter("PAYMENT") + " propertyId  " + propId);
                 //Redirect
                 if(!response.isCommitted())
                     response.sendRedirect(request.getContextPath() + "/staff/payLot.jsp?propID=" + propId);
