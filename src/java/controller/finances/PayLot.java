@@ -77,11 +77,35 @@ public class PayLot extends HttpServlet {
                 if(months > 0) {
                     logger.info("Excess payment: " + payment);
                     logger.info("Excess months: " + months);
-                    for (int i = months; i > 0; i--) {
+                    for (int i = months; i > 0; ) {
                         double deduction = (payment >= monthly_dues) ? monthly_dues : payment;
                         double newBalance = monthly_dues - deduction;
                         monthPaid = Date.valueOf(monthPaid.toLocalDate().plusMonths(1));
-                        logger.info("Paying " + monthPaid + " Amt: " + deduction);
+                        logger.info("Checking " + monthPaid);
+                        ps = con.prepareStatement("select * from monthlybalance where balancedate = ? and propertyid = ?");
+                        ps.setDate(1, monthPaid);
+                        ps.setString(2, propId);
+                        rs = ps.executeQuery();
+                        if(rs.next()){
+                            logger.info("Found payment.");
+                            double monthBal = rs.getDouble("balance");
+                            if(monthBal == 0)
+                                continue;
+                            deduction = (payment >= monthBal) ? monthBal : payment;
+                            ps = con.prepareStatement("update monthlybalance set balance = ?  where propertyid = ? and balancedate = ?");
+                            ps.setDouble(1, newBalance);
+                            ps.setString(2, propId);
+                            ps.setDate(3, monthPaid);
+                            logger.info("Paying " + monthPaid + " Amt: " + deduction);
+                            logger.info("Remaining payment: " + payment);
+                            ps.executeUpdate();
+                            months--;
+                            count--;
+                            payment -= deduction;
+                            i--;
+                            continue;
+                        }                        
+                        logger.info("New Month, Paying " + monthPaid + " Amt: " + deduction);
                         logger.info("Remaining payment: " + payment);
                         ps = con.prepareStatement("insert into monthlybalance (propertyid,balancedate,balance) values (?,?,?)");
                         ps.setString(1, propId);
@@ -90,12 +114,13 @@ public class PayLot extends HttpServlet {
                         ps.executeUpdate();
                         payment -= deduction;
                         months--;
+                        i--;
                     }
                 }               
                 //update balance property
                 ps = con.prepareStatement("update userlot set balance = (select coalesce(sum(balance),0) from monthlybalance where propertyid = ?) where propertyid = ?");
-                ps.setString(1, rs.getString("propertyid"));
-                ps.setString(2, rs.getString("propertyid"));
+                ps.setString(1, propId);
+                ps.setString(2, propId);
                 ps.executeUpdate();
                 
                 //LOG ACTION
