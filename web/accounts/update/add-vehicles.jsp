@@ -1,17 +1,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% request.setAttribute("root", request.getContextPath());%>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Expires", "0");
+    String root = request.getContextPath();
+    //Check Logged In State
+    boolean logState = session.getAttribute("level") != null ? true : false;
+    if (!logState) {
+        response.sendRedirect(root + "/accounts/login.jsp");
+    } else if (!session.getAttribute("level").equals("admin")) {
+        response.sendRedirect(root + "/index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>KHA | Create Homeowner Account</title>
-        <link rel="icon" type="image/x-icon" href="images/khaicon.png"/>
-        <link href="css/main-format.css" rel="stylesheet"/>
-        <link href="css/form-format.css" rel="stylesheet"/>
-        <link href="css/navbar.css" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
+        <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/form-format.css" rel="stylesheet"/>
+        <link href="${root}/css/navbar.css" rel="stylesheet"/>
     </head>
     <body>
-        <%@include file="navbar.jsp" %>
+        <%@include file="/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-small">
                 <form id='form1'>

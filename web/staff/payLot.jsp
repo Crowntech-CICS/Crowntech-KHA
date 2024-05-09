@@ -14,7 +14,7 @@
     boolean logState = session.getAttribute("username") != null ? true : false;
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
-    } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
+    } else if (!session.getAttribute("level").equals("staff")) {
         response.sendRedirect(root + "/index.jsp");
     }
 %>

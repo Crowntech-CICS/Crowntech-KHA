@@ -5,10 +5,10 @@
     response.setHeader("Expires", "0");
     String root = request.getContextPath();
     //Check Logged In State
-    boolean logState = session.getAttribute("username") != null ? true : false;
+    boolean logState = session.getAttribute("level") != null ? true : false;
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
-    } else if (!session.getAttribute("level").equals("admin") && !session.getAttribute("level").equals("staff")) {
+    } else if (!session.getAttribute("level").equals("admin")) {
         response.sendRedirect(root + "/index.jsp");
     }
 %>
