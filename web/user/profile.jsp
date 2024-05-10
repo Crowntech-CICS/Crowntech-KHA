@@ -63,7 +63,8 @@
                 ArrayList<UserLot> lots = user.getLots();
                 DecimalFormat numForm = new DecimalFormat("#,##0.00");
                 for (int x = 0; x < lots.size(); x++) {
-                    out.print("<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + lots.get(x).getArea() + "</h1>"
+                    out.print("<div class=\"profileLotHolder\">"
+                            + "<h1 class=\"h1-bold\" id=\"profileLotHeader\" style=\"margin-left: 6%; text-align: left;\">Area " + lots.get(x).getArea() + "</h1>"
                             + "<ul id=\"profileStripB\" style=\"margin-bottom: 2%;\">"
                             + "<button class=\"accordion\">"
                             + "<div class=\"d-flex main justify-content-between\">");
@@ -114,14 +115,14 @@
                     ArrayList<Vehicle> lotCars = lots.get(x).getCars();
                     System.out.println(lotCars);
                     for (int y = 0; y < lotCars.size(); y++) {
-                    System.out.println("Check car: " + lotCars.get(y).getSticker());
-                    if(lotCars.get(y).getSticker()) {
-                        out.print("<ul>"
-                                + "<li class=\"accordion-content\">Plate No. :" + lotCars.get(y).getPlateNo() + "</li>"
-                                + "<li class=\"accordion-content\">Relationship: " + lotCars.get(y).getCarDetails() + "</li>"
-                                + "</ul>"
-                                + "</br>");
-                }
+                        System.out.println("Check car: " + lotCars.get(y).getSticker());
+                        if (lotCars.get(y).getSticker()) {
+                            out.print("<ul>"
+                                    + "<li class=\"accordion-content\">Plate No. :" + lotCars.get(y).getPlateNo() + "</li>"
+                                    + "<li class=\"accordion-content\">Relationship: " + lotCars.get(y).getCarDetails() + "</li>"
+                                    + "</ul>"
+                                    + "</br>");
+                        }
                     }
                     out.print("<br>"
                             + "</li>"
