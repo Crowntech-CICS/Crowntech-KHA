@@ -58,7 +58,7 @@
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <label for="VEH_PROP">Address</label>
                     <div style="display: flex;">
-                        <select style="flex:20%;" onchange="window.location.href = '${root}/staff/add-vehicles.jsp?area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
+                        <select style="flex:20%;" onchange="window.location.href = '${root}/staff/add-vehicles.jsp?area=' + this.value" type="text" name="VEH_AREA" placeholder="Area" class="form">
                             <% if (area != null) {%>
                             <option value="${area}">${area} - Selected</option>
                             <%} else {%>
@@ -69,10 +69,10 @@
                             <%    }
                             %>
                         </select>
-                        <select onchange="finalForm.VEH_PROP.value = this.value" type="text" name="VEH_PROP" placeholder="Address" class="form">
+                        <select onchange="finalForm.VEH_PROP.value = this.value" name="VEH_PROP" class="form">
                             <option value="" selected disabled>Address</option>
                             <%  while (rs.next()) { %>
-                            <option value="">Address</option>
+                            <option value="<%=rs.getString("propertyid")%>"><%=rs.getString("streetname")%></option>
                             <%  }
                                 rs.close();
                                 ps.close();
@@ -80,10 +80,10 @@
                             %>
                         </select>
                     </div>
-                        <br><label for="VEH_BRAND" id="label-margin-medium">Does the vehicle has a sticker?</label>
+                        <br><label for="VEH_STICK" id="label-margin-medium">Does the vehicle has a sticker?</label>
                         <fieldset>  
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_RES" value="true">Yes </label>
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_BUS" value="false">No</label>
+                            <label for="VEH_STICKER"><input type="radio" name="VEH_STICK" id="PRP_RES" value="true" checked>Yes </label>
+                            <label for="VEH_STICKER"><input type="radio" name="VEH_STICK" id="PRP_BUS" value="false">No</label>
                         </fieldset>
                         <br>
                     </div>

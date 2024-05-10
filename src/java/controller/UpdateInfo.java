@@ -68,8 +68,10 @@ public class UpdateInfo extends HttpServlet {
                 vhBrand = request.getParameter("VEH_BRAND"),
                 vhModel = request.getParameter("VEH_MODEL"),
                 vhOwner = request.getParameter("VEH_OWNER"),
-                vhSticker = request.getParameter("VEH_STICK"),
                 vhProperty = request.getParameter("VEH_PROP");
+        
+        boolean vhSticker = Boolean.parseBoolean(request.getParameter("VEH_STICK").trim());
+        
         int page = 0;
         User user = (User)session.getAttribute("currUser");
         if (request.getParameter("FORM_NO") != null) {
@@ -249,7 +251,7 @@ public class UpdateInfo extends HttpServlet {
                     psUpdate.setString(3, vhModel);
                     psUpdate.setString(4, vhOwner);
                     psUpdate.setString(5, vhPlate);
-                    psUpdate.setString(6, vhSticker);
+                    psUpdate.setBoolean(6, vhSticker);
                     psUpdate.setString(7, vhID);
                     psUpdate.executeUpdate();
                     new DBLogger().log(user.getID(), user.fullName() + " edited the car with the vehicleID = " + vhID);
@@ -277,17 +279,17 @@ public class UpdateInfo extends HttpServlet {
                             vhPlate = rs.getString("plateno");
                         }
                     }
-                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
+                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner + vhSticker);
                     UniqueIdGenerator uid = new UniqueIdGenerator();
                     vhID =  uid.vehId();
-                    PreparedStatement psInsert = con.prepareStatement("insert into vehicle(vehicleid, type, plateno, brand, model, registeredname, hasSticker, propertyID) values (?, ?, ?, ?, ?, ?, ?, ?)");
+                    PreparedStatement psInsert = con.prepareStatement("insert into vehicle(vehicleid, type, plateno, brand, model, registeredname, hasSticker, propertyid) values (?, ?, ?, ?, ?, ?, ?, ?)");
                     psInsert.setString(1, vhID);                          
                     psInsert.setString(2, vhType);                         
                     psInsert.setString(3, vhPlate);
                     psInsert.setString(4, vhBrand);
                     psInsert.setString(5, vhModel);
                     psInsert.setString(6, vhOwner);
-                    psInsert.setString(7, vhSticker);
+                    psInsert.setBoolean(7, vhSticker);
                     psInsert.setString(8, vhProperty);
                     psInsert.executeUpdate();
                     new DBLogger().log(user.getID(), user.fullName() + " Added a new car with the plate number: " + vhPlate);
@@ -316,10 +318,10 @@ public class UpdateInfo extends HttpServlet {
                 response.sendError(500);
             }
         }
-        if(page == 6 || page == 7){
+        if(page == 6){
             response.sendRedirect(request.getContextPath() + "/staff/records-vehicles.jsp");
         }else {
-            response.sendRedirect("profile.jsp");
+            response.sendRedirect(request.getContextPath() + "/staff/records-vehicles.jsp");
         }
     }
 
