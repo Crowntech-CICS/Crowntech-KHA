@@ -38,8 +38,8 @@
                 <form action="${root}\Login" method="POST" onsubmit="disableButton()">
                     <h1 class="h1-bold">Login</h1>
                     <div class="changepass-label-container">
-                        <label for="email">Email:</label><input type="text" name="email" class="form" required/><br/><br/>
-                        <label for="password"> Password:</label><input type="password" name="password" class="form" required><br/><br/>
+                        <label for="email">Email*:</label><input type="text" name="email" class="form" required/><br/><br/>
+                        <label for="password"> Password*:</label><input type="password" name="password" class="form" required><br/><br/>
                         <a href="${root}/accounts/password/reset.jsp" class="login-ref">Forgot Password?</a>
                         <br>
                         <c:if test = "${tries > 0}">

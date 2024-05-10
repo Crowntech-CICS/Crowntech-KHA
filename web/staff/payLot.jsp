@@ -92,7 +92,7 @@
                     <label for="HO_FN_B">Lot Address</label><input type="text" name="HO_FN_B" placeholder="First Name" class="form" disabled value="<%= address%>"><br>
                     <label for="HO_MI_B" id="label-margin">Balance</label><br>
                     <input type="text" name="HO_MI_B" placeholder="Middle Initial" class="form-small" id="form-margin" disabled value="<%= balance%>"><br>
-                    <label for="RES_REL">Balance Paid</label><input type="number" min="0" name="PAYMENT" placeholder="Balance Paid In Numerical Form" class="form" required><br>
+                    <label for="RES_REL">Balance Paid*</label><input type="number" min="0" name="PAYMENT" placeholder="Balance Paid In Numerical Form" class="form" required><br>
                     <div class="button-container">
                         <input class="button-design-reject" value="Cancel" id="button-small" style="margin-right: 10%;" onclick="location.href = 'records.jsp'">
                         <input class="button-design" type="submit" value="Update" id="button-small">

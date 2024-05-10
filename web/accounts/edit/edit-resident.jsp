@@ -45,7 +45,7 @@
         <div class="main-body">
             <div class="signup-box-small">
                 <form id='form1'>
-                    <h1 class="h1-bold" id="h1small">Resident     Information</h1>
+                    <h1 class="h1-bold" id="h1small">Resident Information</h1>
                     <div class="line"></div><br>
                     <label for="RES_PROP">Address</label>
                     <div style="display: flex;">
@@ -68,12 +68,12 @@
 
                         </select>
                     </div>
-                    <label for="RES_FN">First Name</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.RES_FN.value = this.value" type="text" name="RES_FN" placeholder="First Name" class="form"><br>
-                    <label for="RES_LN">Last Name</label><input value="<%=rs.getString("lastname")%>"  onchange="finalForm.RES_LN.value = this.value" type="text" name="RES_LN" placeholder="Last Name" class="form"><br>
-                    <label for="RES_MI" id="label-margin">Middle Initial</label><label for="RES_AGE" class="marginAge">Age</label><br>
+                    <label for="RES_FN">First Name*</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.RES_FN.value = this.value" type="text" name="RES_FN" placeholder="First Name" class="form"><br>
+                    <label for="RES_LN">Last Name*</label><input value="<%=rs.getString("lastname")%>"  onchange="finalForm.RES_LN.value = this.value" type="text" name="RES_LN" placeholder="Last Name" class="form"><br>
+                    <label for="RES_MI" id="label-margin">Middle Initial*</label><label for="RES_AGE" class="marginAge">Age*</label><br>
                     <input value="<%=rs.getString("middleinitial")%>"  onchange="finalForm.RES_MI.value = this.value" type="text" type="text" name="RES_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input value="<%=rs.getString("age")%>" onchange="finalForm.RES_AGE.value = this.value" type="number" name="RES_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label  for="RES_EMAIL">Email Address</label><input value="<%=rs.getString("email")%>" onchange="finalForm.RES_EMAIL.value = this.value" type="text" name="RES_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="RES_REL"">Relationship with Homeowner</label>
+                    <label  for="RES_EMAIL">Email Address*</label><input value="<%=rs.getString("email")%>" onchange="finalForm.RES_EMAIL.value = this.value" type="text" name="RES_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="RES_REL"">Relationship with Homeowner*</label>
                     <select name="RES_REL" id="" class="form" onchange="finalForm.RES_REL.value = this.value">
                         <option value="<%=rs.getString("relationship")%>" selected disabled><%=rs.getString("relationship")%></option>
                         <option value="Spouse">Spouse</option>

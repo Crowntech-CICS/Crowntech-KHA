@@ -30,10 +30,10 @@
                 <form id='form1'>
                     <h1 class="h1-bold">Vehicle Information</h1>
                     <div class="changepass-label-container">
-                        <label for="VEH_OWNER">Registered Owner (Full Name)</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
-                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
+                        <label for="VEH_OWNER">Registered Owner (Full Name)*</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
+                        <label for="VEH_PLATE" id="label-margin-medium">Plate No.*</label><label for="VEH_TYPE" style="margin-left: 4.3%;">Type of Vehicle</label><br>
                         <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" required class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
+                        <label for="VEH_BRAND" id="label-margin-medium">Brand*</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <br>
                         <div class="upload_files" id="form_container" class="form_input_title">

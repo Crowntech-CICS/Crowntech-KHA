@@ -23,8 +23,8 @@
                         <input type="hidden" name="EMAIL" value="${requestScope.email}">
                         <input type="hidden" name="USERID" value="${requestScope.userid}">
                         <p>You have been verified in the system! Please create a new password to access your profile.</p><br>
-                        <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" id="newPassword"class="form" required><br>
-                        <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form" required>
+                        <label for="newPassword">Create New Password*:</label><br><input type="text" name="newPassword" id="newPassword"class="form" required><br>
+                        <label for="newPasswordConfirm">Confirm New Password*:</label><br><input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form" required>
                         <p>Upon successful password change, you will be redirected back to the sign up page.</p>
                     </div>
                     <div class="button-container" style="margin-top: 1rem;">

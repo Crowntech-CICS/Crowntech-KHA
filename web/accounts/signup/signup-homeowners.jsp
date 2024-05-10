@@ -25,12 +25,12 @@
                 <form id='form1'>
                     <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_FN">First Name</label><input onchange="finalForm.HO_FN.value = this.value" type="text" name="HO_FN" placeholder="First Name" class="form"><br>
-                    <label for="HO_LN">Last Name</label><input onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
-                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <label for="HO_FN">First Name*</label><input onchange="finalForm.HO_FN.value = this.value" type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_LN">Last Name*</label><input onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial*</label><label for="HO_AGE" class="marginAge">Age*</label><br>
                     <input onchange="finalForm.HO_MI.value = this.value" type="text" type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input onchange="finalForm.HO_AGE.value = this.value" type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_EMAIL">Email Address</label><input onchange="finalForm.HO_EMAIL.value = this.value" type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_LANDNO" class="marginMobile">Mobile Number</label><br>
+                    <label for="HO_EMAIL">Email Address*</label><input onchange="finalForm.HO_EMAIL.value = this.value" type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number*</label><label for="HO_LANDNO" class="marginMobile">Mobile Number*</label><br>
                     <input onchange="finalForm.HO_LANDLINE.value = this.value" type="text" name="HO_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PHONE.value = this.value" type="text" name="HO_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <br><br><br><br>
                     <div class="button-container">
@@ -43,20 +43,20 @@
                     <h1 class="h1-bold" id="h1small">H.O. and Lot Address</h1>
                     <div class="line"></div><br>
                     <p>Homeowner Address</p>
-                    <label for="HO_HOUSENUM" id="label-margin-medium">House Number</label><label for="HO_STREET" class="marginStreet">Street Name</label><br>
+                    <label for="HO_HOUSENUM" id="label-margin-medium">House Number*</label><label for="HO_STREET" class="marginStreet">Street Name*</label><br>
                     <input onchange="finalForm.HO_HOUSENUM.value = this.value" type="text" name="HO_HOUSENUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_STREET.value = this.value" type="text" name="HO_STREET" placeholder="Street Name"  class="form-medium"><br>
-                    <label for="HO_VILLAGE" id="label-margin-medium">Village</label><label for="HO_BARANGAY" class="marginVehicleYear">Barangay</label><br>
+                    <label for="HO_VILLAGE" id="label-margin-medium">Village*</label><label for="HO_BARANGAY" class="marginVehicleYear">Barangay*</label><br>
                     <input onchange="finalForm.HO_VILLAGE.value = this.value" type="text" name="HO_VILLAGE" placeholder="Village" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_BARANGAY.value = this.value" type="text" name="HO_BARANGAY" placeholder="Barangay"  class="form-medium"><br>
-                    <label for="HO_CITY" id="label-margin-medium">City</label><label for="HO_PROVINCE" class="marginProvince">Province</label><br>
+                    <label for="HO_CITY" id="label-margin-medium">City*</label><label for="HO_PROVINCE" class="marginProvince">Province*</label><br>
                     <input onchange="finalForm.HO_CITY.value = this.value" type="text" name="HO_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input onchange="finalForm.HO_PROVINCE.value = this.value" type="text" name="HO_PROVINCE" placeholder="Province"  class="form-medium"><br>
                     <p>Lot Address</p>
-                    <label for="USER_HOUSENUM" id="label-margin-medium">House Number</label><label for="USER_STREET" class="marginStreet">Street Name</label><br>
+                    <label for="USER_HOUSENUM" id="label-margin-medium">House Number*</label><label for="USER_STREET" class="marginStreet">Street Name*</label><br>
                     <input onchange="finalForm.USER_HOUSENUM.value = this.value" type="text" name="USER_HOUSENUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_STREET.value = this.value" type="text" name="USER_STREET" placeholder="Street Name"  class="form-medium"><br>
-                    <label for="USER_VILLAGE" id="label-margin-medium">Village</label><label for="USER_BARANGAY" class="marginVehicleYear">Barangay</label><br>
+                    <label for="USER_VILLAGE" id="label-margin-medium">Village*</label><label for="USER_BARANGAY" class="marginVehicleYear">Barangay*</label><br>
                     <input onchange="finalForm.USER_VILLAGE.value = this.value" type="text" name="USER_VILLAGE" placeholder="Village" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_BARANGAY.value = this.value" type="text" name="USER_BARANGAY" placeholder="Barangay"  class="form-medium"><br>
-                    <label for="USER_CITY" id="label-margin-medium">City</label><label for="USER_PROVINCE" class="marginProvince">Province</label><br>
+                    <label for="USER_CITY" id="label-margin-medium">City*</label><label for="USER_PROVINCE" class="marginProvince">Province*</label><br>
                     <input onchange="finalForm.USER_CITY.value = this.value" type="text" name="USER_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input onchange="finalForm.USER_PROVINCE.value = this.value" type="text" name="USER_PROVINCE" placeholder="Province"  class="form-medium"><br>
-                    <label for="HO_DATE">Date Home Property Was Occupied</label><input onchange="finalForm.HO_DATE.value = this.value" type="date" name="HO_DATE" id=""  class="form">
+                    <label for="HO_DATE">Date Home Property Was Occupied*</label><input onchange="finalForm.HO_DATE.value = this.value" type="date" name="HO_DATE" id=""  class="form">
                     <div class="button-container">
                         <input id="Back2" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">
                         <input id="Next2" class="button-design" type="button" value="Next">
@@ -67,14 +67,14 @@
                     <h1 class="h1-bold" id="h1small">Title Information</h1>
                     <div class="line"></div><br>
                     <p>Title Information</p><br>
-                    <label for="TIT_NUM" id="label-margin-medium">Title No.</label><label for="TIT_NAME" class="marginRegName">Registered Name</label><br>
+                    <label for="TIT_NUM" id="label-margin-medium">Title No.*</label><label for="TIT_NAME" class="marginRegName">Registered Name*</label><br>
                     <input onchange="finalForm.TIT_NUM.value = this.value" type="text" name="TIT_NUM" placeholder="Title No." class="form-medium" id="form-margin-medium"><input onchange="finalForm.TIT_NAME.value = this.value" type="text" name="TIT_NAME" placeholder="Full Name"  class="form-medium"><br>
-                    <label for="TIT_SURNUM" id="label-margin-medium">Survey No.</label><label for="TIT_LOTNUM" class="marginLot">Lot No.</label><br>
+                    <label for="TIT_SURNUM" id="label-margin-medium">Survey No.*</label><label for="TIT_LOTNUM" class="marginLot">Lot No.*</label><br>
                     <input onchange="finalForm.TIT_SURNUM.value = this.value" type="text" name="TIT_SURNUM" placeholder="Survey No." class="form-medium" id="form-margin-medium"><input onchange="finalForm.TIT_LOTNUM.value = this.value" type="text" name="TIT_LOTNUM" placeholder="Lot No."  class="form-medium"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Date Registered</label><label for="TIT_AREA" class="marginArea">Area</label><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Date Registered*</label><label for="TIT_AREA" class="marginArea">Area*</label><br>
                     <input onchange="finalForm.TIT_DATE.value = this.value" type="date" name="TIT_DATE" class="form-medium" id="form-margin-medium"><input onchange="finalForm.TIT_AREA.value = this.value" type="text" name="TIT_AREA" placeholder="Area"  class="form-medium"><br>
                     <br><br><p>Tax Declaration Information</p><br>
-                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.</label><br>
+                    <label for="TAX_NUM" id="label-margin-medium">Tax Declaration No.*</label><label for="PRP_INDEX" class="marginPropIndex">Property Index No.*</label><br>
                     <input onchange="finalForm.TAX_NUM.value = this.value" type="text" name="TAX_NUM" placeholder="Tax Declaration No." class="form-medium" id="form-margin-medium"><input onchange="finalForm.PRP_INDEX.value = this.value" type="text" name="PRP_INDEX" placeholder="Property Index No."  class="form-medium"><br>
                     <br>
                     <div class="button-container">
@@ -86,14 +86,14 @@
                 <form id="form4">
                     <h1 class="h1-bold" id="h1small">Property Information</h1>
                     <p>KHA Membership</p><br>
-                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?</label><label for="HO_AGE" style="margin-left: -17%;">If paid, input date:</label><br>
+                    <label for="HO_MI" id="label-margin-medium">Paid Membership Fee?*</label><label for="HO_AGE" style="margin-left: -17%;">If paid, input date:</label><br>
                     <fieldset>  
                         <label for="PAID_YES"><input onclick="finalForm.MEM_PAID.value = this.value" type="radio" name="PAID_MEM" id="PAID_YES" value="yes">Yes</label>
                         <label for="PAID_NO" id="form-margin-medium"><input  onclick="finalForm.MEM_PAID.value = this.value" type="radio" name="PAID_MEM" id="PAID_NO" value="no" style="margin-left: 2%;">No</label>
                         <input onchange="finalForm.PAID_DATE.value = this.value" type="date" name="PAID_DATE" placeholder="" required style="margin-left: 21.4%;">
                     </fieldset><br>
-                    <label for="MEM_NAME">Name Used in Membership</label><input onchange="finalForm.MEM_NAME.value = this.value" type="text" name="MEM_NAME" placeholder="Full Name" required class="form"><br>
-                    <label for="MEM_NAME">OR NUMBER</label><input onchange="finalForm.OR_NUM.value = this.value" type="text" name="OR_NUM" placeholder="OR NUM" required class="form"><br>
+                    <label for="MEM_NAME">Name Used in Membership*</label><input onchange="finalForm.MEM_NAME.value = this.value" type="text" name="MEM_NAME" placeholder="Full Name" required class="form"><br>
+                    <label for="MEM_NAME">OR NUMBER*</label><input onchange="finalForm.OR_NUM.value = this.value" type="text" name="OR_NUM" placeholder="OR NUM" required class="form"><br>
                     <p>Use of Property</p><br>
                     <fieldset>  
                         <label for="PRP_USE"><input onclick="finalForm.PRP_USE.value = this.value;form4.BUS_NAME.disabled = true;form4.BUS_TYPE.disabled = true;form4.BUS_NAME.value = 'N/A';form4.BUS_TYPE.value = 'N/A';" type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Residential</label>
@@ -101,7 +101,7 @@
                         <label for="PRP_USE" id="form-margin-medium"><input onclick="finalForm.PRP_USE.value = this.value;form4.BUS_NAME.disabled = false;form4.BUS_TYPE.disabled = false;form4.BUS_NAME.value = '';form4.BUS_TYPE.value = '';" type="radio" name="PRP_USE" id="PRP_BOTH" value="Both">Both</label>
                     </fieldset><br>
                     <label for="BUS_NAME">If used for business, registered name of business:</label><input onchange="finalForm.BUS_NAME.value = this.value" type="text" name="BUS_NAME" placeholder="Business Name" required class="form"><br>
-                    <label for="BUS_TYPE">Type of business:</label><input onchange="finalForm.BUS_TYPE.value = this.value" type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
+                    <label for="BUS_TYPE">Type of business*:</label><input onchange="finalForm.BUS_TYPE.value = this.value" type="text" name="BUS_TYPE" placeholder="Business Type" required class="form"><br>
                     <br>
                     <div class="button-container">
                         <input id="Back4" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">

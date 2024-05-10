@@ -38,12 +38,12 @@
                 <form id='form1'>
                     <h1 class="h1-bold" id="h1small">Homeowner Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_FN">First Name</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.HO_FN.value = this.value" type="text" name="HO_FN" placeholder="First Name" class="form"><br>
-                    <label for="HO_LN">Last Name</label><input value="<%=rs.getString("lastname")%>" onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
-                    <label for="HO_MI" id="label-margin">Middle Initial</label><label for="HO_AGE" class="marginAge">Age</label><br>
+                    <label for="HO_FN">First Name*</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.HO_FN.value = this.value" type="text" name="HO_FN" placeholder="First Name" class="form"><br>
+                    <label for="HO_LN">Last Name*</label><input value="<%=rs.getString("lastname")%>" onchange="finalForm.HO_LN.value = this.value" type="text" name="HO_LN" placeholder="Last Name" class="form"><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial*</label><label for="HO_AGE" class="marginAge">Age*</label><br>
                     <input value="<%=rs.getString("middleinitial")%>" onchange="finalForm.HO_MI.value = this.value" type="text" type="text" name="HO_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input value="<%=rs.getString("age")%>" onchange="finalForm.HO_AGE.value = this.value" type="number" name="HO_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="HO_EMAIL">Email Address</label><input value="<%=rs.getString("email")%>" onchange="finalForm.HO_EMAIL.value = this.value" type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="TIT_DATE" id="label-margin-medium">Landline Number</label><label for="HO_LANDNO" class="marginMobile">Mobile Number</label><br>
+                    <label for="HO_EMAIL">Email Address*</label><input value="<%=rs.getString("email")%>" onchange="finalForm.HO_EMAIL.value = this.value" type="text" name="HO_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="TIT_DATE" id="label-margin-medium">Landline Number*</label><label for="HO_LANDNO" class="marginMobile">Mobile Number*</label><br>
                     <input value="<%=rs.getString("landlineno")%>" onchange="finalForm.HO_LANDLINE.value = this.value" type="text" name="HO_LANDLINE" placeholder="Landline Number" class="form-medium" id="form-margin-medium"><input value="<%=rs.getString("mobileno")%>" onchange="finalForm.HO_PHONE.value = this.value" type="text" name="HO_PHONE" placeholder="Mobile Number" class="form-medium"><br>
                     <br><br><br><br>
                     <div class="button-container">
@@ -56,11 +56,11 @@
                     <h1 class="h1-bold" id="h1small">H.O. Address</h1>
                     <div class="line"></div><br>
                     <p>Homeowner Address</p>
-                    <label for="HO_HOUSENUM" id="label-margin-medium">House Number</label><label for="HO_STREET" class="marginStreet">Street Name</label><br>
+                    <label for="HO_HOUSENUM" id="label-margin-medium">House Number*</label><label for="HO_STREET" class="marginStreet">Street Name*</label><br>
                     <input value="<%=rs.getString("houseno")%>" onchange="finalForm.HO_HOUSENUM.value = this.value" type="text" name="HO_HOUSENUM" placeholder="House Number" class="form-medium" id="form-margin-medium"><input value="<%=rs.getString("streetname")%>" onchange="finalForm.HO_STREET.value = this.value" type="text" name="HO_STREET" placeholder="Street Name"  class="form-medium"><br>
-                    <label for="HO_VILLAGE" id="label-margin-medium">Village</label><label for="HO_BARANGAY" class="marginVehicleYear">Barangay</label><br>
+                    <label for="HO_VILLAGE" id="label-margin-medium">Village*</label><label for="HO_BARANGAY" class="marginVehicleYear">Barangay*</label><br>
                     <input value="<%=rs.getString("village")%>" onchange="finalForm.HO_VILLAGE.value = this.value" type="text" name="HO_VILLAGE" placeholder="Village" class="form-medium" id="form-margin-medium"><input value="<%=rs.getString("barangay")%>" onchange="finalForm.HO_BARANGAY.value = this.value" type="text" name="HO_BARANGAY" placeholder="Barangay"  class="form-medium"><br>
-                    <label for="HO_CITY" id="label-margin-medium">City</label><label for="HO_PROVINCE" class="marginProvince">Province</label><br>
+                    <label for="HO_CITY" id="label-margin-medium">City*</label><label for="HO_PROVINCE" class="marginProvince">Province*</label><br>
                     <input value="<%=rs.getString("city")%>" onchange="finalForm.HO_CITY.value = this.value" type="text" name="HO_CITY" placeholder="City" class="form-medium" id="form-margin-medium"><input value="<%=rs.getString("province")%>" onchange="finalForm.HO_PROVINCE.value = this.value" type="text" name="HO_PROVINCE" placeholder="Province"  class="form-medium"><br>
                     <div class="button-container">
                         <input id="Back2" class="button-design-reject" type="button" value="Back" style="margin-right: 10%;">

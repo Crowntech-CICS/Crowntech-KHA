@@ -39,8 +39,8 @@
                     <h2 class="changepass-text"><span class="h2-bold">Username:</span>${sessionScope.pw_fn}</h2>
                     <h2 class="changepass-text"><span class="h2-bold">Email:</span>${sessionScope.pw_em}</h2>
                     <div class="changepass-label-container">
-                        <label for="newPassword">Create New Password:</label><br><input type="text" name="newPassword" id="newPassword" class="form" required><br>
-                        <label for="newPasswordConfirm">Confirm New Password:</label><br><input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form" required>
+                        <label for="newPassword">Create New Password*:</label><br><input type="text" name="newPassword" id="newPassword" class="form" required><br>
+                        <label for="newPasswordConfirm">Confirm New Password*:</label><br><input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form" required>
                         <p>Upon successful password change, you will be redirected back to the login page.</p>
                     </div>
                     <div class="button-container" style="margin-top: 1rem;">

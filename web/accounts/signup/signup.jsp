@@ -34,13 +34,13 @@
                 <form id='form1' action=""  method="POST">
                     <h1 class="h1-bold">Personal Information</h1>
                     <div class="line"></div><br>
-                    <label for="HO_FN">First Name</label>
+                    <label for="HO_FN">First Name*</label>
                     <input type="text" id="FN1" onChange="document.form2.HO_FN.value = this.value" onLoad="document.form2.HO_FN.value = this.value" placeholder="ex. John" class="form" required><br>
-                    <label for="HO_LN">Last Name</label>
+                    <label for="HO_LN">Last Name*</label>
                     <input type="text" id="LN1" onChange="document.form2.HO_LN.value = this.value" onLoad="document.form2.HO_LN.value = this.value" placeholder="ex. Smith" class="form" required><br>
-                    <label for="HO_MI" id="label-margin">Middle Initial</label><br>
+                    <label for="HO_MI" id="label-margin">Middle Initial*</label><br>
                     <input type="text" id="MI1" onChange="document.form2.HO_MI.value = this.value" onLoad="document.form2.HO_MI.value = this.value" placeholder="ex. A." class="form-small" id="form-margin" required><br>
-                    <label for="HO_EMAIL">Email Address</label>
+                    <label for="HO_EMAIL">Email Address*</label>
                     <input type="text" id="EMAIL1" onChange="document.form2.HO_EMAIL.value = this.value" onLoad="document.form2.HO_EMAIL.value = this.value" placeholder="ex. johnsmith@email.com" required class="form" required>
                     <br><br><br>
                     <div class="button-container">
@@ -57,7 +57,7 @@
                     <h1 class="h1-bold">Other Information</h1>
                     <div class="line"></div><br>
                     <div class="upload_files" id="form_container" class="form_input_title">
-                        <label for="HO_ORNUM">Official Receipt Number</label><input type="text" id="HO_ORNUM" name="HO_ORNUM" placeholder="ex. ORNUM123" required class="form">
+                        <label for="HO_ORNUM">Official Receipt Number*</label><input type="text" id="HO_ORNUM" name="HO_ORNUM" placeholder="ex. ORNUM123" required class="form">
                         <p style="text-align: center; color: black;">Upload Digital Copy of Required Documents:</p>
                         <p style="text-align: center; color: black;">(1) Official Receipt</p><br>
                         <input type="file" id="FILE_UPLOAD1" class="file_button" name="FILES_UPLOAD" id="input-none" accept=".png,.jpg,.jpeg,.pdf" multiple style="margin-left: 33%; border:none;" required>

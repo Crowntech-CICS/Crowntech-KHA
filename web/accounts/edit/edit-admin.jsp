@@ -32,12 +32,12 @@
                 <form id='form1'>
                     <h1 class="h1-bold" id="h1small">Admin Account Information</h1>
                     <div class="line"></div><br>
-                    <label for="ADMIN_FN">First Name</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.ADMIN_FN.value = this.value" type="text" name="ADMIN_FN" placeholder="First Name" class="form"><br>
-                    <label for="ADMIN_LN">Last Name</label><input value="<%=rs.getString("lastname")%>" onchange="finalForm.ADMIN_LN.value = this.value" type="text" name="ADMIN_LN" placeholder="Last Name" class="form"><br>
-                    <label for="ADMIN_MI" id="label-margin">Middle Initial</label><label for="ADMIN_AGE" class="marginAge">Age</label><br>
+                    <label for="ADMIN_FN">First Name*</label><input value="<%=rs.getString("firstname")%>" onchange="finalForm.ADMIN_FN.value = this.value" type="text" name="ADMIN_FN" placeholder="First Name" class="form"><br>
+                    <label for="ADMIN_LN">Last Name*</label><input value="<%=rs.getString("lastname")%>" onchange="finalForm.ADMIN_LN.value = this.value" type="text" name="ADMIN_LN" placeholder="Last Name" class="form"><br>
+                    <label for="ADMIN_MI" id="label-margin">Middle Initial</label><label for="ADMIN_AGE" class="marginAge">Age*</label><br>
                     <input value="<%=rs.getString("middleinitial")%>" onchange="finalForm.ADMIN_MI.value = this.value" type="text" type="text" name="ADMIN_MI" placeholder="Middle Initial" class="form-small" id="form-margin"><input value="<%=rs.getString("age")%>" onchange="finalForm.ADMIN_AGE.value = this.value" type="number" name="ADMIN_AGE" placeholder="Age" min="1" max="200"  class="form-small"><br>
-                    <label for="ADMIN_EMAIL">Email Address</label><input value="<%=rs.getString("email")%>" onchange="finalForm.ADMIN_EMAIL.value = this.value" type="text" name="ADMIN_EMAIL" placeholder="Email Address" required class="form"><br>
-                    <label for="ADMIN_ROLE"">Admin Role</label>
+                    <label for="ADMIN_EMAIL">Email Address*</label><input value="<%=rs.getString("email")%>" onchange="finalForm.ADMIN_EMAIL.value = this.value" type="text" name="ADMIN_EMAIL" placeholder="Email Address" required class="form"><br>
+                    <label for="ADMIN_ROLE"">Admin Role*</label>
                     <select name="ADMIN_ROLE" id="" class="form" onchange="finalForm.ADMIN_ROLE.value = this.value">
                         <option value="<%=rs.getString("residentclass")%>" selected disabled><%=rs.getString("residentclass")%></option>
                         <option value="Admin">System Admin</option>
