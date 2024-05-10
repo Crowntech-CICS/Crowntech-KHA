@@ -244,7 +244,7 @@ public class UpdateInfo extends HttpServlet {
                             vhPlate = rs.getString("plateno");
                         }
                     }
-                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
+                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner + vhSticker);
                     PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ?, hassticker = ? WHERE VEHICLEID = ?");
                     psUpdate.setString(1, vhType);
                     psUpdate.setString(2, vhBrand);

@@ -82,15 +82,11 @@
 
                             </select>
                         </div>
-                        <br><label for="VEH_BRAND" id="label-margin-medium">Does the vehicle has a sticker?</label>
+                        <br><label for="VEH_STICK" id="label-margin-medium">Does the vehicle has a sticker?</label>
                         <fieldset>  
-                            <label for="VEH_STICKER"><input <%if(rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Yes </label>
-                            <label for="VEH_STICKER"><input <%if(!rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="PRP_USE" id="PRP_BUS" value="Business">No</label>
+                            <label for="VEH_STICKER"><input <%if(rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="VEH_STICK" id="PRP_RES" value="true">Yes </label>
+                            <label for="VEH_STICKER"><input <%if(!rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="VEH_STICK" id="PRP_BUS" value="false">No</label>
                         </fieldset>
-                        <div class="upload_files form_input_title" id="form_container">
-                            <p style="text-align: center">Upload Digital Copy of Required Documents</p>
-                            <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
-                        </div>
                     </div>
                     <br>
                     <input type="hidden" name="VHID" value="<%=vhid%>">
