@@ -30,8 +30,7 @@
     </head>
     <body>
         <%@include file="/generalpurpose/navbar.jsp" %>
-        <%            
-            Connection con = null;
+        <%            Connection con = null;
             ResultSet rs = null;
             PreparedStatement ps = null;
             try {
@@ -71,21 +70,21 @@
                         try {
                             ps = con.prepareStatement("select * from vehicle"); // queries vehicles table
                             rs = ps.executeQuery();
-                            while (rs.next()) {     
+                            while (rs.next()) {
                                 String vehID = rs.getString("vehicleid").trim(),
-                                       propID = rs.getString("propertyid").trim(),
-                                       type = rs.getString("type").trim(),
-                                       plateNo = rs.getString("plateno").trim(),
-                                       brand = rs.getString("brand").trim(),
-                                       model = rs.getString("model").trim(),
-                                       name = rs.getString("registeredname").trim();
-                                       
-                                    out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/user/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
-                                    out.print("<td class=\"tableContentText\">" + name + "</td>");
-                                    out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + type + "</td>");
-                                    out.print("<td class=\"tableContentText\">" + model + "</td>");
-                                    out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + brand + "</td></tr>");
-                                }
+                                        propID = rs.getString("propertyid").trim(),
+                                        type = rs.getString("type").trim(),
+                                        plateNo = rs.getString("plateno").trim(),
+                                        brand = rs.getString("brand").trim(),
+                                        model = rs.getString("model").trim(),
+                                        name = rs.getString("registeredname").trim();
+
+                                out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/user/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
+                                out.print("<td class=\"tableContentText\">" + name + "</td>");
+                                out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + type + "</td>");
+                                out.print("<td class=\"tableContentText\">" + model + "</td>");
+                                out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + brand + "</td></tr>");
+                            }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
                             response.sendError(500);
@@ -128,6 +127,11 @@
         <%
             }
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script src="${root}/scripts/sorttable.js"></script>
         <script>
 

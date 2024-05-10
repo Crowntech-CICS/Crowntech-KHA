@@ -43,4 +43,9 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

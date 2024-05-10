@@ -57,6 +57,11 @@
                 </form>
             </div>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);

@@ -46,6 +46,7 @@
             <div class="profileTextsmall">
                 <h1 class="h1-bold" id="profileHeader"><%=user.fullName()%></h1>
             </div>
+            <%--
             <div id="profileB" align="right">
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
                 <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
@@ -54,6 +55,7 @@
                 <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button>
                 <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
             </div>
+            --%>
         </div>
         <%
             if (((String) session.getAttribute("level")).equals("homeowner")) {
@@ -105,45 +107,52 @@
                                 + "</ul>"
                                 + "</br>");
                     }
+                    out.print("<li class=\"accordion-content-width\">"
+                            + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Vehicle Information</h1>"
+                            + "<div class=\"line\"></div><br>");
+
+                    /*ArrayList<Resident> lotResidents = lots.get(x).getResidents();*/
+                    for (int y = 0; y < lotResidents.size(); y++) {
+                        out.print("<ul>"
+                                + "<li class=\"accordion-content\">" + lotResidents.get(y).fullName() + "</li>"
+                                + "<li class=\"accordion-content\">Relationship: " + lotResidents.get(y).getRelationship() + "</li>"
+                                + "</ul>"
+                                + "</br>");
+                    }
                     out.print("<br>"
                             + "</li>"
                             + "<li class=\"accordion-content-width\">"
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Balance Dues</h1>"
                             + "<div class\"line\"></div><br>"
                             + "<ul>");
-                            
-                    ArrayList<MonthlyBalance> lotBalances = lots.get(x).getMonthlyBalances();
-                    if(!lotBalances.isEmpty()){
-                    out.print("<div id=\"moreinfo\" >"
-                                    + "<div style=\"padding-left: 2%;\">"
-                                    + "<table class=\"tableContentRecords\">"
-                                    + "<thead>"
-                                    + "<th> Balance Date:</th>"
-                                    + "<th> Balance:</th>"
-                                    + "</thead>"
-                                    + "<tbody>");
-
-                            for (MonthlyBalance lotBal : lotBalances) {
-                                out.print(
-                                        "<tr>"
-                                        + "<td>"
-                                        + lotBal.getBalanceDate()
-                                        + "</td>"
-                                        + "<td>"
-                                        + lotBal.getBalance()
-                                        + "</td>"
-                                        + "</tr>");
-                            }
-                            out.print(
-                                    "</tbody>"
-                                    + "</table> "
-                                    + "<br>"
-                                    + "</div></div>");
-                        }
-                            
                     out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
                             + numForm.format(lots.get(x).getBalance()) + "</h1><br>");
-                    out.print("<div class=\"line\"></div><br>");
+
+                    ArrayList<MonthlyBalance> lotBalances = lots.get(x).getMonthlyBalances();
+                    if (!lotBalances.isEmpty()) {
+                        out.print("<table class=\"tableContentProfile\">"
+                                + "<thead>"
+                                + "<th style=\"font-family: 'Inter'\"> Balance Date:</th>"
+                                + "<th style=\"font-family: 'Inter'\"> Balance:</th>"
+                                + "</thead>"
+                                + "<tbody>");
+
+                        for (MonthlyBalance lotBal : lotBalances) {
+                            out.print(
+                                    "<tr>"
+                                    + "<td style=\"font-family: 'Inter'\">"
+                                    + lotBal.getBalanceDate()
+                                    + "</td>"
+                                    + "<td style=\"font-family: 'Inter'\">"
+                                    + lotBal.getBalance()
+                                    + "</td>"
+                                    + "</tr>");
+                        }
+                        out.print(
+                                "</tbody>"
+                                + "</table> "
+                                + "<br>");
+                    }
                     out.print("<div class=\"button-container\">"
                             + "<button type=\"button\" class=\"button-design\" id=\"button-small\" onclick=\"location.href = 'payment-help.jsp'\">Pay Steps</button>"
                             + "</div></ul></li></div></ul>");
@@ -151,6 +160,11 @@
                 }
             }
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;

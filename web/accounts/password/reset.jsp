@@ -35,13 +35,18 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
     <script>
         window.onload = function () {
             var err = new URLSearchParams(window.location.search).get('err');
-            if(err == 0){
+            if (err == 0) {
                 alert("Password reset email has been sent to your email.");
                 window.location.href = "${root}";
-            }else if(err == 1)
+            } else if (err == 1)
             {
                 alert("The given email address is not registered in the system.");
             }

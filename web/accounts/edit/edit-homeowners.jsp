@@ -4,7 +4,7 @@
 <% request.setAttribute("root", request.getContextPath());%>
 <!DOCTYPE html>
 <%
-    
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
@@ -86,7 +86,7 @@
                 </form>
             </div>
         </div>
-        <%            
+        <%
             } catch (SQLException sqle) {
                 System.out.println("SQLException IN error occured - " + sqle.getMessage());
                 response.sendError(500);
@@ -105,8 +105,13 @@
                     System.out.println("SQLException OUT error occured - " + sqle.getMessage());
                     response.sendError(500);
                 }
-            }   
+            }
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 progress.style.width = "50%";

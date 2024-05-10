@@ -24,8 +24,7 @@
     </head>
     <body>
         <%@include file="/generalpurpose/navbar.jsp" %>
-        <% 
-            String vhid = request.getParameter("VHID");
+        <%            String vhid = request.getParameter("VHID");
             System.out.println("vhid = " + vhid);
         %>
         <div class="main-body">
@@ -48,14 +47,19 @@
                     <br>
                     <input type="hidden" name="VHID" value="<%=vhid%>">
                     <input type="hidden" name="FORM_NO" value="6"> 
-                <div class="button-container" >
-                    <%
-                        out.print("<input class=\"button-design-reject\" type=\"button\" value=\"Cancel\" id=\"button-small\" style=\"margin-right: 10%;\" onclick=\"location.href='" + goBack + "'\">");
-                    %>                                                   
-                    <input class="button-design" type="submit" value="Save" id="button-small">
-                </div>
+                    <div class="button-container" >
+                        <%
+                            out.print("<input class=\"button-design-reject\" type=\"button\" value=\"Cancel\" id=\"button-small\" style=\"margin-right: 10%;\" onclick=\"location.href='" + goBack + "'\">");
+                        %>                                                   
+                        <input class="button-design" type="submit" value="Save" id="button-small">
+                    </div>
                 </form> 
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

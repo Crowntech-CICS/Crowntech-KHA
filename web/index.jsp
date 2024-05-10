@@ -4,7 +4,7 @@
 <%
     response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     response.setHeader("Expires", "0");
-    
+
     String root = request.getContextPath();
     //Check Logged In State
     User user = new User();
@@ -12,7 +12,7 @@
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
     } else {
-        user = (User)session.getAttribute("currUser");
+        user = (User) session.getAttribute("currUser");
     }
 %>
 <!DOCTYPE html>
@@ -32,4 +32,9 @@
         <p style="text-align: center; color: #377d60; margin-top: 10%">Version 1.0.0</p>
         <p style="text-align: center; color: #377d60">Developed by CrownTech, 2024</p>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

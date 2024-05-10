@@ -9,15 +9,15 @@
     String query = "select propertyid,houseno,streetname from userlot order by streetname asc;";
     PreparedStatement ps = conn.prepareStatement(query);
     String area = request.getParameter("area");
-    if(area !=  null){
+    if (area != null) {
         query = "select propertyid,houseno,streetname from userlot where area = ? order by streetname asc;";
         ps = conn.prepareStatement(query);
         ps.setString(1, area);
         request.setAttribute("area", area);
-    }            
+    }
     ResultSet rs0 = ps.executeQuery();
-    String[] areas = {"1","1A","2","3","4","5","5A","6","7","8","9","10","11E","11W","12"};
-    
+    String[] areas = {"1", "1A", "2", "3", "4", "5", "5A", "6", "7", "8", "9", "10", "11E", "11W", "12"};
+
     ps = conn.prepareStatement("select u.*,r.* from users u join residents r on u.userid = r.userid where u.userid = ?");
     ps.setString(1, request.getParameter("r"));
     ResultSet rs = ps.executeQuery();
@@ -50,21 +50,21 @@
                     <label for="RES_PROP">Address</label>
                     <div style="display: flex;">
                         <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?r=<%=request.getParameter("r")%>&area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
-                            <% if(area != null){%>
-                                <option value="${area}">${area} - Selected</option>
-                            <%} else{%>
-                                <option value="">Area</option>
+                            <% if (area != null) {%>
+                            <option value="${area}">${area} - Selected</option>
+                            <%} else {%>
+                            <option value="">Area</option>
                             <%}
                                 for (int i = 0; i < areas.length; i++) {%>
-                                        <option value="<%= areas[i]%>"><%= areas[i]%></option>
+                            <option value="<%= areas[i]%>"><%= areas[i]%></option>
                             <%    }
                             %>
                         </select>
                         <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
                             <option value="<%= rs.getString("propertyid")%>" selected disabled><%= rs2.getString("houseno") + " " + rs2.getString("streetname")%></option>
-                        <%  while(rs0.next()){ %>
+                            <%  while (rs0.next()) {%>
                             <option value="<%= rs0.getString("propertyid")%>"><%= rs0.getString("houseno") + " " + rs0.getString("streetname")%></option>
-                        <%  } %>
+                            <%  }%>
 
                         </select>
                     </div>
@@ -103,13 +103,18 @@
                 </form>
             </div>
         </div>                         
-        <%   
+        <%
             rs0.close();
             rs.close();
             rs2.close();
             ps.close();
             conn.close();
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
@@ -148,11 +153,11 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                if (confirm('Are you sure these information you are trying to submit are correct?')) {
                     finalForm.submit();
                 }
             };
-            
+
         </script>      
     </body>
 </html>

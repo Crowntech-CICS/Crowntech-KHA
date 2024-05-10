@@ -149,12 +149,17 @@
                 </form>
             </div>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     alert('Successfully added Homeowner to the records.');
-                    window.location.href = '${root}/index.jsp';
+                                window.location.href = '${root}/index.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');

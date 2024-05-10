@@ -58,11 +58,16 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
     <script>
-        function disableButton(){
+        function disableButton() {
             const button = document.getElementById("login-button");
         }
-        
+
         window.onload = function () {
             var urlParam = new URLSearchParams(window.location.search);
             var err = urlParam.get('err');
@@ -79,9 +84,9 @@
                 alert('Your password is changed successfully you may now login.');
                 window.location = '${root}/accounts/login.jsp';
             }
-            
-            
-            
+
+
+
 //            setTimeout(function () {
 //                $("#login-button").prop("disabled", true).val("Wait...");
 //            }, 100);

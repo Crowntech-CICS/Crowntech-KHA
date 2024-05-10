@@ -94,6 +94,11 @@
                 </form>  
             </div>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 completed(new URLSearchParams(window.location.search));
@@ -172,7 +177,7 @@
              form4.style.left = "32.5%";
              progressSignup.style.width = "100%";
              };
-             
+                         
              Back4.onclick = function () {
              form3.style.left = "32.5%";
              form4.style.left = "1000px";
@@ -194,15 +199,15 @@
                     if (searchparam.get('err') > 2)
                     {
                         alert("Unknown error");
-                        window.location = '${root}/signup.jsp';
+                                    window.location = '${root}/signup.jsp';
                     } else if (searchparam.get('err') == 1)
                     {
                         alert("User is already registered. Please login your account using your email");
-                        window.location = '${root}/signup.jsp';
+                                    window.location = '${root}/signup.jsp';
                     } else if (searchparam.get('err') == 2)
                     {
                         alert("User is not found in the system, there may be incorrect inputs. Please try again. If you think this is an error please verify at the KHA office.");
-                        window.location = '${root}/signup.jsp';
+                                    window.location = '${root}/signup.jsp';
                     }
                 }
             }

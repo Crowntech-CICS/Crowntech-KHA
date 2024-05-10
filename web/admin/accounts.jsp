@@ -45,8 +45,13 @@
                         <a href="${root}/accounts/choose/admin.jsp"><input class="button-design" type="button" value="Edit Staff/Admin/Bod"></a>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

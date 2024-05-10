@@ -136,12 +136,12 @@
                             ResultSet rs4;
                             while (rs3.next()) {
                                 balQuery = "select m.balancedate, m.balance "
-                                + "from userlot p "
-                                + "inner join monthlybalance m USING (propertyid) "
-                                + "where p.userid = ? and p.propertyid = ?";
+                                        + "from userlot p "
+                                        + "inner join monthlybalance m USING (propertyid) "
+                                        + "where p.userid = ? and p.propertyid = ?";
                                 ps4 = con.prepareStatement(balQuery);
-                                ps4.setString(1,rs3.getString("userid"));
-                                ps4.setString(2,rs3.getString("propertyid"));
+                                ps4.setString(1, rs3.getString("userid"));
+                                ps4.setString(2, rs3.getString("propertyid"));
                                 System.out.println(ps4);
                                 rs4 = ps4.executeQuery();
                                 userLotID = rs3.getString("userid"); // Take homeownerid from USERLOT
@@ -166,34 +166,34 @@
                                     out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + nameDB + "</td>");
                                     // out.print("<td class=\"tableContentText\">" + addDB + "</td>");
                                     out.print("<td class=\"tableContentText\">"
-                                    + "<button class=\"accordion\" id=\"tableContentText\" style=\"margin-left: -2%; cursor: pointer;\">"
-                                    + addDB
-                                    + "<i class=\"fa fa-angle-down\"></i> </button>"
-                                    + "<div id=\"moreinfo\" style=\"display: none;\">"
-                                    + "<div style=\"padding-left: 2%;\">"
-                                    + "<table class=\"tableContentRecords\">"
-                                    + "<thead>"
-                                    + "<th> Balance Date:</th>"
-                                    + "<th> Balance:</th>"
-                                    + "</thead>"
-                                    + "<tbody>");
-                                    
-                                    while(rs4.next()){
-                                    out.print(
-                                    "<tr>"
-                                    + "<td>"
-                                    + rs4.getDate("balancedate")
-                                    + "</td>"
-                                    + "<td>"
-                                    + rs4.getDouble("balance")
-                                    + "</td>"
-                                    + "</tr>");
+                                            + "<button class=\"accordion\" id=\"tableContentText\" style=\"margin-left: -2%; cursor: pointer;\">"
+                                            + addDB
+                                            + "<i class=\"fa fa-angle-down\"></i> </button>"
+                                            + "<div id=\"moreinfo\" style=\"display: none;\">"
+                                            + "<div style=\"padding-left: 2%;\">"
+                                            + "<table class=\"tableContentRecords\">"
+                                            + "<thead>"
+                                            + "<th> Balance Date:</th>"
+                                            + "<th> Balance:</th>"
+                                            + "</thead>"
+                                            + "<tbody>");
+
+                                    while (rs4.next()) {
+                                        out.print(
+                                                "<tr>"
+                                                + "<td>"
+                                                + rs4.getDate("balancedate")
+                                                + "</td>"
+                                                + "<td>"
+                                                + rs4.getDouble("balance")
+                                                + "</td>"
+                                                + "</tr>");
                                     }
                                     out.print(
-                                     "</tbody>"
-                                    + "</table> "
-                                    + "<br>"
-                                    + "</div></div></td>");
+                                            "</tbody>"
+                                            + "</table> "
+                                            + "<br>"
+                                            + "</div></div></td>");
                                     out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + numDB + "</td>");
                                     // out.print("<td class=\"tableContentText\">" + resClass + "</td>");
                                     out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=\"payLot.jsp?propID=" + rs3.getString("PROPERTYID") + "\">" + "₱ " + numForm.format(balance) + "</a></td></tr>");
@@ -246,6 +246,11 @@
         <%
             }
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script src="${root}/scripts/sorttable.js"></script>
         <script>
 

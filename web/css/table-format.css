@@ -25,6 +25,13 @@
     border: 0px none;
 }
 
+.tableContentProfile {
+    font-size: 16px;
+    min-width: 100%;
+    width: 50%;
+    border: 0px none;
+}
+
 .tableContentR {
     margin: auto;
     border-collapse: collapse;
@@ -117,7 +124,7 @@ th, td {
 }
 
 .tableContentText2 {
-    text-align: left;
+    text-align: center;
     font-size: 20px;
     font-family: 'Inter';
     background-color: #D9D9D9;
@@ -209,7 +216,7 @@ tbody {
         width: 18%;
     }
 
-    .tableContentText, .tableContentText2, #tableContentText {
+    .tableContentText, .tableContentText2, #tableContentText, .tableContentRecords, .tableContentProfile {
         height: 34px;
     }
 
@@ -224,7 +231,7 @@ tbody {
         margin-top: -1.5%;
     }
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText, .tableContentRecords th td, .tableContentProfile th td {
         font-size: 14px;
     }
 
@@ -240,7 +247,7 @@ tbody {
 
 @media only screen and (max-width: 1200px) {
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText, .tableContentRecords th td, .tableContentProfile th td {
         font-size: 12px;
     }
 
@@ -252,7 +259,7 @@ tbody {
         font-size: 20px;
     }
 
-    .tableContentText, .tableContentText2, #tableContentText {
+    .tableContentText, .tableContentText2, #tableContentText, .tableContentRecords, .tableContentProfile {
         height: 25px;
     }
 
@@ -266,7 +273,7 @@ tbody {
 }
 
 @media only screen and (max-width: 1024px) {
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText, .tableContentRecords th td, .tableContentProfile th td {
         font-size: 12px;
     }
 
@@ -274,7 +281,7 @@ tbody {
         font-size: 14px;
     }
 
-    .tableContentText, .tableContentText2, #tableContentText {
+    .tableContentText, .tableContentText2, #tableContentText, .tableContentRecords, .tableContentProfile {
         height: 10px;
     }
 
@@ -293,7 +300,7 @@ tbody {
         height: 250px;
     }
 
-    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText {
+    .tableContent th, .tableContent tbody, .tableContentText, .tableContentText2, .tableContentText3, .tableContentText4, .tableContentText5, #tableContentText, .tableContentRecords th td, .tableContentProfile th td {
         font-size: 10px;
     }
 

@@ -50,9 +50,14 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
     <script>
-        function validate(){
-            if(document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value){               
+        function validate() {
+            if (document.getElementById('newPassword').value === document.getElementById('newPasswordConfirm').value) {
                 return true;
             } else {
                 alert("The two passwords inputted are not identical. Please recheck your inputs.");

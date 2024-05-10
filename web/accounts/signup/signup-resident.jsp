@@ -9,14 +9,14 @@
     String query = "select propertyid,houseno,streetname from userlot order by streetname asc;";
     PreparedStatement ps = conn.prepareStatement(query);
     String area = request.getParameter("area");
-    if(area !=  null){
+    if (area != null) {
         query = "select propertyid,houseno,streetname from userlot where area = ? order by streetname asc;";
         ps = conn.prepareStatement(query);
         ps.setString(1, area);
         request.setAttribute("area", area);
-    }            
+    }
     ResultSet rs = ps.executeQuery();
-    String[] areas = {"1","1A","2","3","4","5","5A","6","7","8","9","10","11E","11W","12"};
+    String[] areas = {"1", "1A", "2", "3", "4", "5", "5A", "6", "7", "8", "9", "10", "11E", "11W", "12"};
 %>
 <!DOCTYPE html>
 <html>
@@ -39,25 +39,25 @@
                     <label for="RES_PROP">Address</label>
                     <div style="display: flex;">
                         <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
-                            <% if(area != null){%>
-                                <option value="${area}">${area} - Selected</option>
-                            <%} else{%>
-                                <option value="">Area</option>
+                            <% if (area != null) {%>
+                            <option value="${area}">${area} - Selected</option>
+                            <%} else {%>
+                            <option value="">Area</option>
                             <%}
                                 for (int i = 0; i < areas.length; i++) {%>
-                                        <option value="<%= areas[i]%>"><%= areas[i]%></option>
+                            <option value="<%= areas[i]%>"><%= areas[i]%></option>
                             <%    }
                             %>
                         </select>
                         <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
                             <option value="" selected disabled>Address</option>
-                        <%  while(rs.next()){ %>
+                            <%  while (rs.next()) { %>
                             <option value="">Address</option>
-                        <%  }
-                            rs.close();
-                            ps.close();
-                            conn.close();
-                        %>
+                            <%  }
+                                rs.close();
+                                ps.close();
+                                conn.close();
+                            %>
                         </select>
                     </div>
                     <label for="RES_FN">First Name</label><input onchange="finalForm.RES_FN.value = this.value" type="text" name="RES_FN" placeholder="First Name" class="form"><br>
@@ -94,12 +94,17 @@
                 </form>
             </div>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     alert('Successfully added Resident in the records.');
-                    window.location.href = '${root}/admin/accounts.jsp';
+                                window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');
@@ -132,11 +137,11 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                if (confirm('Are you sure these information you are trying to submit are correct?')) {
                     finalForm.submit();
                 }
             };
-            
+
         </script>      
     </body>
 </html>

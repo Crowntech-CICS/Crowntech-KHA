@@ -28,13 +28,13 @@
 
     String lastname = "", firstname = "", middleInitial = "", address = "";
     double balance = 0;
-    
+
     try {
         con = ConnectionPoolManager.getDataSource().getConnection();
         ps = con.prepareStatement("SELECT H.USERID,L.PROPERTYID,L.BALANCE, (L.HOUSENO||' '||L.STREETNAME) AS ADDRESS FROM USERLOT L LEFT JOIN HOMEOWNER H ON H.USERID = L.USERID WHERE L.PROPERTYID = ?");
         ps.setString(1, propId);
         rs = ps.executeQuery();
-        if (rs.next()) {            
+        if (rs.next()) {
             String userId = rs.getString("USERID").trim();
             balance = rs.getDouble("BALANCE");
             address = rs.getString("ADDRESS").trim();
@@ -42,7 +42,7 @@
             ps = con.prepareStatement("select lastname,firstname,middleinitial from users where userid = ?");
             ps.setString(1, userId);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 lastname = rs.getString("LASTNAME").trim();
                 firstname = rs.getString("FIRSTNAME").trim();
                 middleInitial = rs.getString("MIDDLEINITIAL").trim();
@@ -101,4 +101,9 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

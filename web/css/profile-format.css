@@ -153,7 +153,6 @@
     border: none;
     outline: none;
     transition: 0.2s ease-out;
-    cursor: pointer;
 }
 
 .accordion:focus {
@@ -180,7 +179,7 @@
 
 .accordion-content-width{
     list-style: none;
-    width: 29.33%;
+    width: 21%;
     float: left;
     padding: 2%;
     background: white;
@@ -220,7 +219,7 @@
 /* Vehicles */
 .vehicle-box {
     background-color: #f0f5f3;
-    height: 450px;
+    height: 400px;
     width: 800px;
     border-radius: 1.5%;
     box-shadow: 0 6px 10px rgba(0,0,0,0.15);

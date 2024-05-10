@@ -98,6 +98,11 @@
                 </tbody>
             </table>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script src="scripts/sorttable.js"></script>
         <script>
                     function searchFunc() {

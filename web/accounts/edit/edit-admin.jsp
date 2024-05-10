@@ -62,7 +62,7 @@
                 </form>
             </div>
         </div>
-        <%            
+        <%
             } catch (SQLException sqle) {
                 System.out.println("SQLException IN error occured - " + sqle.getMessage());
                 response.sendError(500);
@@ -81,14 +81,19 @@
                     System.out.println("SQLException OUT error occured - " + sqle.getMessage());
                     response.sendError(500);
                 }
-            }   
+            }
         %>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     var level = params.get('l');
-                    alert('Successfully edited ' + level +' in the records.');
+                    alert('Successfully edited ' + level + ' in the records.');
                     window.location.href = '${root}/accounts/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
@@ -121,9 +126,9 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                if (confirm('Are you sure these information you are trying to submit are correct?')) {
                     finalForm.submit();
-                }               
+                }
 
             };
         </script>

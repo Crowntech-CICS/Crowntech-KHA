@@ -52,6 +52,11 @@
         </div>
     </body>
     <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
+    <style>
         p {
             margin-left: 2%;
             margin-bottom: 1.5%;

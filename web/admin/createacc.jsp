@@ -26,13 +26,12 @@
             <%@include file="/generalpurpose/navbar.jsp" %>
             <div class="main-body">
                 <div class="createacc-box">
-                    <h1 class="h1-bold">Create Account</h1><%
-            if (session.getAttribute("message") != null) {
-        %>
-        <h1 class="h1-bold">${message}</h1>
-        <%
-            }
-        %>
+                    <h1 class="h1-bold">Create Account</h1><%                        if (session.getAttribute("message") != null) {
+                    %>
+                    <h1 class="h1-bold">${message}</h1>
+                    <%
+                        }
+                    %>
                     <form action="CreateAcc"> <%--Create a CreateAcc servlet --%>
                         <div class="tableContain"> <%--dito yun table--%> 
                             <table class="tableContent" id="createAccWidth"> 
@@ -87,4 +86,9 @@
             </div>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>

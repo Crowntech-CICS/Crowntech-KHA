@@ -51,8 +51,7 @@
             ArrayList<Vehicle> cars = user.getCars();
 
         %>
-        <%                
-            out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 30%;\">");
+        <%            out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 30%;\">");
             for (int x = 0; x < cars.size(); x++) {
                 out.print(
                         "<div class=\"vehicle-box\">"
@@ -75,9 +74,9 @@
                         + "<p id=\"p-dark\" class=\"p-right\">" + cars.get(x).getType() + " " + cars.get(x).getModel() + "</p>"
                         + "</div>"
                         + "</div>"
-                    //    + " <div class=\"button-container\">"
-                    //    + "<button class=\"button-design\" onclick=\"location.href = 'edit-vehicle.jsp?VHID=" + cars.get(x).getVehicleID() + "'\">Edit Information</button>"
-                    //    + "</div>"
+                        //    + " <div class=\"button-container\">"
+                        //    + "<button class=\"button-design\" onclick=\"location.href = 'edit-vehicle.jsp?VHID=" + cars.get(x).getVehicleID() + "'\">Edit Information</button>"
+                        //    + "</div>"
                         + "<br>"
                         + "</div>"
                         + "<br>");
@@ -111,4 +110,9 @@
         </div>
     </div>
 </body>
+<style>
+    body {
+        zoom: 80%;
+    }
+</style>
 </html>

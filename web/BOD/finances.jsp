@@ -52,45 +52,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                        
-                        String Months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-                        double aPaid[] = (double[])session.getAttribute("memPaid");
-                        double mPaid[] = (double[])session.getAttribute("monPaid");
-                        double bPaid[] = (double[])session.getAttribute("balPaid");
-                        
-                        double aTotal=0;
-                        double mTotal=0;
-                        double bTotal=0;
-                        
-                        
-                        
-                        
-                        for(int i = 0 ; i < 12; i++){
-                            if(i%2!=0){
-                            out.print("<tr><td class=\"tableContentText\">" + Months[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">₱" + aPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">₱" + mPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText\">₱" + bPaid[i] + "</td></tr>");
-                            
-                            
-                        }
-                        else{
-                            out.print("<tr><td class=\"tableContentText2\" style=\"padding-left: 2%;\">" + Months[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + aPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + mPaid[i] + "</td>");
-                            out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + bPaid[i] + "</td></tr>");
-                        }
-                            aTotal+=aPaid[i];
-                            mTotal+=mPaid[i];
-                            bTotal+=bPaid[i];
-                            
-                            session.setAttribute("aTotal",aTotal);
-                            session.setAttribute("mTotal",mTotal);
-                            session.setAttribute("bTotal",bTotal);
+                    <%                        String Months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+                        double aPaid[] = (double[]) session.getAttribute("memPaid");
+                        double mPaid[] = (double[]) session.getAttribute("monPaid");
+                        double bPaid[] = (double[]) session.getAttribute("balPaid");
+
+                        double aTotal = 0;
+                        double mTotal = 0;
+                        double bTotal = 0;
+
+                        for (int i = 0; i < 12; i++) {
+                            if (i % 2 != 0) {
+                                out.print("<tr><td class=\"tableContentText\">" + Months[i] + "</td>");
+                                out.print("<td class=\"tableContentText\">₱" + aPaid[i] + "</td>");
+                                out.print("<td class=\"tableContentText\">₱" + mPaid[i] + "</td>");
+                                out.print("<td class=\"tableContentText\">₱" + bPaid[i] + "</td></tr>");
+
+                            } else {
+                                out.print("<tr><td class=\"tableContentText2\" style=\"padding-left: 2%;\">" + Months[i] + "</td>");
+                                out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + aPaid[i] + "</td>");
+                                out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + mPaid[i] + "</td>");
+                                out.print("<td class=\"tableContentText2\" style=\"padding-left: 2%;\">₱" + bPaid[i] + "</td></tr>");
+                            }
+                            aTotal += aPaid[i];
+                            mTotal += mPaid[i];
+                            bTotal += bPaid[i];
+
+                            session.setAttribute("aTotal", aTotal);
+                            session.setAttribute("mTotal", mTotal);
+                            session.setAttribute("bTotal", bTotal);
                         }
                     %>
-                    
+
                     <tr>
                         <td class="tableContentText">Total Funds</td>
                         <td class="tableContentText">₱${aTotal}</td>
@@ -99,7 +92,7 @@
                     </tr>
                 </tbody>
             </table>
-           
+
             <table class="tableContentR" id="financesRight">
                 <tr><td class="tableContentText3">Number of Paid Homeowners: <br><p class="financesP">${homeownerPaid}/${homeownerTotal}</p></td></tr>
                 <tr><td class="tableContentText4">Number of Paid Memberships: <br><p class="financesP">${membershipPaid}/${membershipTotal}</p></td></tr>
@@ -120,8 +113,13 @@
             </form>
         </div>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             form1.year.value = new URLSearchParams(window.location.search).get('year');
         }
     </script>

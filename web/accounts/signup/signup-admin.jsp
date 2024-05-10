@@ -47,13 +47,18 @@
                 </form>
             </div>
         </div>
+        <style>
+            body {
+                zoom: 80%;
+            }
+        </style>
         <script>
             window.onload = function () {
                 var params = new URLSearchParams(window.location.search);
                 if (params.get('suc') === 'true') {
                     var level = params.get('l');
-                    alert('Successfully added ' + level +' to the records.');
-                    window.location.href = '${root}/admin/accounts.jsp';
+                    alert('Successfully added ' + level + ' to the records.');
+                                window.location.href = '${root}/admin/accounts.jsp';
                 }
                 if (params.get('err') == 1) {
                     alert('Record already exists or there is a conflicting record in the database.');
@@ -85,9 +90,9 @@
                     }
                     finalForm[field.name].value = inputField.value;
                 }
-                if(confirm('Are you sure these information you are trying to submit are correct?')){
+                if (confirm('Are you sure these information you are trying to submit are correct?')) {
                     finalForm.submit();
-                }               
+                }
 
             };
         </script>

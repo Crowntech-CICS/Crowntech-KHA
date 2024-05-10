@@ -93,4 +93,9 @@
             }
         </script>
     </body>
+    <style>
+        body {
+            zoom: 80%;
+        }
+    </style>
 </html>
