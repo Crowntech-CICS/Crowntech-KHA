@@ -5,6 +5,8 @@ import java.util.Date;
 public class UserLot {
     ArrayList<Resident> residents = new ArrayList<>();
     ArrayList<MonthlyBalance> lotBalances = new ArrayList<>();
+     
+    protected ArrayList<Vehicle> cars = new ArrayList<>(); 
     private String propertyID,
             titleNo,
             registeredName,
@@ -120,10 +122,14 @@ public class UserLot {
     public void setResidents(ArrayList<Resident> residents) {
         this.residents = residents;
     }
+    
     public void setMonthlyBalances(ArrayList<MonthlyBalance> monBal) {
         this.lotBalances = monBal;
     }
     
+    public void setCars(ArrayList<Vehicle> cars) {
+        this.cars = cars;
+    }
     //getters
     public String getPropertyID(){
         return this.propertyID;
@@ -199,6 +205,14 @@ public class UserLot {
     
     public ArrayList<MonthlyBalance> getMonthlyBalances() {
         return this.lotBalances;
+    }
+    
+     public void addCar(Vehicle vehicle) {
+        this.cars.add(vehicle);
+    }
+    
+    public ArrayList getCars() {
+        return this.cars;
     }
     
     public String getAddress() {

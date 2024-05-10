@@ -179,7 +179,6 @@
                                     + "<tbody>");
                                     
                                     while(rs4.next()){
-                                     System.out.println(rs4.getDate("balancedate") +" " + rs4.getDouble("balance"));
                                     out.print(
                                     "<tr>"
                                     + "<td>"

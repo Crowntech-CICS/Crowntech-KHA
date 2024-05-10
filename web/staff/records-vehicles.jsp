@@ -73,7 +73,7 @@
                             rs = ps.executeQuery();
                             while (rs.next()) {     
                                 String vehID = rs.getString("vehicleid").trim(),
-                                       userID = rs.getString("userid").trim(),
+                                       propID = rs.getString("propertyid").trim(),
                                        type = rs.getString("type").trim(),
                                        plateNo = rs.getString("plateno").trim(),
                                        brand = rs.getString("brand").trim(),

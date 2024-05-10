@@ -13,8 +13,7 @@ public class User {
 
     protected int age;
 
-    protected ArrayList<UserLot> lots = new ArrayList<>(); 
-    protected ArrayList<Vehicle> cars = new ArrayList<>(); 
+    protected ArrayList<UserLot> lots = new ArrayList<>();
     
 //    protected ArrayList<String> lots = new ArrayList<>(); 
 //    protected ArrayList<String> cars = new ArrayList<>(); 
@@ -69,9 +68,9 @@ public class User {
         this.lots = lots;
     }
 
-    public void setCars(ArrayList<Vehicle> cars) {
-        this.cars = cars;
-    }
+//    public void setCars(ArrayList<Vehicle> cars) {
+//        this.cars = cars;
+//    }
     
 //    public void setLot(ArrayList<String> lots) {
 //        this.lots = lots;
@@ -86,9 +85,7 @@ public class User {
         this.lots.add(lot);
     }
 
-    public void addCar(Vehicle vehicle) {
-        this.cars.add(vehicle);
-    }
+   
 
 //        public void addLot(String id) {
 //            this.lots.add(id);
@@ -134,9 +131,9 @@ public class User {
         return this.lots;
     }
 
-    public ArrayList getCars() {
-        return this.cars;
-    }
+//    public ArrayList getCars() {
+//        return this.cars;
+//    }
     
     @Override
     public String toString() {

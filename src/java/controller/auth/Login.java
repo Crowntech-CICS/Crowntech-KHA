@@ -103,24 +103,7 @@ public class Login extends HttpServlet {
                                     mobNo, landNo, rep, repMobNo, houseNo,
                                     street, village, barangay, city, province, orNum);
                         }
-                        ps = con.prepareStatement("select * from vehicle where userid = ?");
-                        ps.setString(1, userID);
-                        rs = ps.executeQuery();
-                        ArrayList<Vehicle> cars = new ArrayList<>();
-                        while (rs.next()) {
-                            String vhID = rs.getString("vehicleid").trim();
-                            String type = rs.getString("type").trim();
-                            String plateno = rs.getString("plateno").trim();
-                            String brand = rs.getString("brand").trim();
-                            String model = rs.getString("model").trim();
-                            String vLN = rs.getString("lastname").trim();
-                            String vFN = rs.getString("firstname").trim();
-                            String vMN = rs.getString("middleinitial").trim();
-
-                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
-                            cars.add(car);
-                        }
-                        user.setCars(cars);
+                        
 
                         ps = con.prepareStatement("select * from userlot where userid = ?");
                         ps.setString(1, userID);
@@ -198,6 +181,25 @@ public class Login extends HttpServlet {
                             
                             lot.setMonthlyBalances(lotBalances);
                             
+                            //Setting Vehicles for Lots
+                            ps2 = con.prepareStatement("select * from vehicle where propertyid = ?");
+                        ps2.setString(1, userID);
+                        rs2 = ps2.executeQuery();
+                        ArrayList<Vehicle> cars = new ArrayList<>();
+                        while (rs2.next()) {
+                            String vhID = rs2.getString("vehicleid").trim();
+                            String type = rs2.getString("type").trim();
+                            String plateno = rs2.getString("plateno").trim();
+                            String brand = rs2.getString("brand").trim();
+                            String model = rs2.getString("model").trim();
+                            String vLN = rs2.getString("lastname").trim();
+                            String vFN = rs2.getString("firstname").trim();
+                            String vMN = rs2.getString("middleinitial").trim();
+
+                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
+                            cars.add(car);
+                        }
+                        lot.setCars(cars);
                             
                             
                             lots.add(lot);
@@ -245,27 +247,28 @@ public class Login extends HttpServlet {
                                     houseNo, street, barangay, area,
                                     surNo, lotNo, dateReg, balance, use, businessName, businessType,
                                     paymentDate, taxDecNo, propInNo);
-                            user.setResLot(lot);
                             
-                        }
-                        ps = con.prepareStatement("select * from vehicle where userid = ?");
-                        ps.setString(1, userID);
-                        rs = ps.executeQuery();
+                            PreparedStatement ps2 = con.prepareStatement("select * from vehicle where propertyid = ?");
+                        ps2.setString(1, propID);
+                        ResultSet rs2 = ps2.executeQuery();
                         ArrayList<Vehicle> cars = new ArrayList<>();
-                        while (rs.next()) {
-                            String vhID = rs.getString("vehicleid").trim();
-                            String type = rs.getString("type").trim();
-                            String plateno = rs.getString("plateno").trim();
-                            String brand = rs.getString("brand").trim();
-                            String model = rs.getString("model").trim();
-                            String vLN = rs.getString("lastname").trim();
-                            String vFN = rs.getString("firstname").trim();
-                            String vMN = rs.getString("middleinitial").trim();
+                        while (rs2.next()) {
+                            String vhID = rs2.getString("vehicleid").trim();
+                            String type = rs2.getString("type").trim();
+                            String plateno = rs2.getString("plateno").trim();
+                            String brand = rs2.getString("brand").trim();
+                            String model = rs2.getString("model").trim();
+                            String vLN = rs2.getString("lastname").trim();
+                            String vFN = rs2.getString("firstname").trim();
+                            String vMN = rs2.getString("middleinitial").trim();
 
                             Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
                             cars.add(car);
                         }
-                        user.setCars(cars);
+                        lot.setCars(cars);
+                            user.setResLot(lot);
+                            
+                        }
                         session.setAttribute("currUser", user);
                     } else if (levelDB.equals("staff") || levelDB.equals("admin")) {
                         User user = new User(userID, emailDB, lastName, userName, middleIni, age, resDB);
