@@ -66,7 +66,9 @@ public class UpdateInfo extends HttpServlet {
                 vhType = request.getParameter("VEH_TYPE"),
                 vhBrand = request.getParameter("VEH_BRAND"),
                 vhModel = request.getParameter("VEH_MODEL"),
-                vhOwner = request.getParameter("VEH_OWNER");
+                vhOwner = request.getParameter("VEH_OWNER"),
+                vhSticker = request.getParameter("VEH_STICK"),
+                vhProperty = request.getParameter("VEH_PROP");
         int page = 0;
         User user = (User)session.getAttribute("currUser");
         if (request.getParameter("FORM_NO") != null) {
@@ -240,42 +242,51 @@ public class UpdateInfo extends HttpServlet {
                         }
                     }
                     System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
-                    PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ? WHERE VEHICLEID = ?");
+                    PreparedStatement psUpdate = con.prepareStatement("UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ?, hassticker = ? WHERE VEHICLEID = ?");
                     psUpdate.setString(1, vhType);
                     psUpdate.setString(2, vhBrand);
                     psUpdate.setString(3, vhModel);
                     psUpdate.setString(4, vhOwner);
                     psUpdate.setString(5, vhPlate);
-                    psUpdate.setString(6, vhID);
+                    psUpdate.setString(6, vhSticker);
+                    psUpdate.setString(7, vhID);
                     psUpdate.executeUpdate();
                     new DBLogger().log(user.getID(), user.fullName() + " edited the car with the vehicleID = " + vhID);
                     break;
-                case 7: // updates the current other users (residents)
-                    // p7Inputs = {otherID, lnB, fnB, miB, resRel, lnC, fnC, miC, resRelC}
-                    if (lnB.trim().equals("")) {
-                        lnB = lnC;
+                case 7: // adds a vehicle
+                    // p7Inputs = {vhID, vhType, vhBrand, vhModel, vhOwner};
+                    ps = con.prepareStatement("SELECT * FROM VEHICLE WHERE VEHICLEID = ?");
+                    ps.setString(1, vhID);
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        if (vhType.trim().equals("")) {
+                            vhType = rs.getString("TYPE");
+                        }
+                        if (vhBrand.trim().equals("")) {
+                            vhBrand = rs.getString("BRAND");
+                        }
+                        if (vhModel.trim().equals("")) {
+                            vhModel = rs.getString("MODEL");
+                        }
+                        if (vhOwner.trim().equals("")) {
+                            vhOwner = rs.getString("registeredname");
+                        }
+                        if(vhPlate.trim().equals("")) {
+                            vhPlate = rs.getString("plateno");
+                        }
                     }
-                    if (fnB.trim().equals("")) {
-                        fnB = fnC;
-                    }
-                    if (miB.trim().equals("")) {
-                        miB = miC;
-                    }
-                    if (resRel.trim().equals("")) {
-                        resRel = resRelC;
-                    }
-                    psUpdate = con.prepareStatement("UPDATE USEROTHER SET LASTNAME = ?, FIRSTNAME = ?, MIDDLEINITIAL = ?, RELATIONSHIP = ? WHERE PROPERTYID = ? AND LASTNAME = ? AND FIRSTNAME = ? AND MIDDLEINITIAL = ? AND RELATIONSHIP = ?");
-                    psUpdate.setString(1, lnB);
-                    psUpdate.setString(2, fnB);
-                    psUpdate.setString(3, miB);
-                    psUpdate.setString(4, resRel);
-                    psUpdate.setString(5, otherID);
-                    psUpdate.setString(6, lnC);
-                    psUpdate.setString(7, fnC);
-                    psUpdate.setString(8, miC);
-                    psUpdate.setString(9, resRelC);
-                    psUpdate.executeUpdate();
-                    
+                    System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
+                    PreparedStatement psInsert = con.prepareStatement("insert into vehicle(vehicleid, type, plateno, brand, model, registeredname, hasSticker, propertyID) values (?, ?, ?, ?, ?, ?, ?, ?)");
+                    psInsert.setString(1, vhType);                          // UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ?, hassticker = ? WHERE VEHICLEID = ?"
+                    psInsert.setString(2, vhBrand);                         // "INSERT INTO USEROTHER (PROPERTYID, LASTNAME, FIRSTNAME, MIDDLEINITIAL, RELATIONSHIP) VALUES (?, ?, ?, ?, ?)"
+                    psInsert.setString(3, vhModel);
+                    psInsert.setString(4, vhOwner);
+                    psInsert.setString(5, vhPlate);
+                    psInsert.setString(6, vhSticker);
+                    psInsert.setString(7, vhID);
+                    psInsert.setString(8, vhID);
+                    psInsert.executeUpdate();
+                    new DBLogger().log(user.getID(), user.fullName() + " edited the car with the vehicleID = " + vhID);
                     break;
                 default:
                     response.sendRedirect("edit-homeowners.jsp");
@@ -301,7 +312,7 @@ public class UpdateInfo extends HttpServlet {
                 response.sendError(500);
             }
         }
-        if(page == 6){
+        if(page == 6 || page == 7){
             response.sendRedirect(request.getContextPath() + "/staff/records-vehicles.jsp");
         }else {
             response.sendRedirect("profile.jsp");
