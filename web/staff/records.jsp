@@ -173,18 +173,18 @@
                                             + "<div style=\"padding-left: 2%;\">"
                                             + "<table class=\"tableContentRecords\">"
                                             + "<thead>"
-                                            + "<th> Balance Date:</th>"
-                                            + "<th> Balance:</th>"
+                                            + "<th style=\"font-family: 'Inter'\"> Balance Date:</th>"
+                                            + "<th style=\"font-family: 'Inter'\"> Balance:</th>"
                                             + "</thead>"
                                             + "<tbody>");
 
                                     while (rs4.next()) {
                                         out.print(
                                                 "<tr>"
-                                                + "<td>"
+                                                + "<td style=\"font-family: 'Inter'\">"
                                                 + rs4.getDate("balancedate")
                                                 + "</td>"
-                                                + "<td>"
+                                                + "<td style=\"font-family: 'Inter'\">"
                                                 + rs4.getDouble("balance")
                                                 + "</td>"
                                                 + "</tr>");
