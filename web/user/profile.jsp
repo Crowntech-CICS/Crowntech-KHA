@@ -47,16 +47,6 @@
             <div class="profileTextsmall">
                 <h1 class="h1-bold" id="profileHeader"><%=user.fullName()%></h1>
             </div>
-            <%--
-            <div id="profileB" align="right">
-                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button><br/><br/>
-                <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
-            </div>
-            <div id="profileBsmall">
-                <button class="buttonP" onclick="location.href = 'vehicles.jsp'">Vehicles Information</button>
-                <button class="buttonP" onclick="location.href = 'edit-homeowners.jsp'">Edit Information</button>
-            </div>
-            --%>
         </div>
         <%
             if (((String) session.getAttribute("level")).equals("homeowner")) {
@@ -118,7 +108,7 @@
                         System.out.println("Check car: " + lotCars.get(y).getSticker());
                         if (lotCars.get(y).getSticker()) {
                             out.print("<ul>"
-                                    + "<li class=\"accordion-content\">Plate No. :" + lotCars.get(y).getPlateNo() + "</li>"
+                                    + "<li class=\"accordion-content\">Plate No. : " + lotCars.get(y).getPlateNo() + "</li>"
                                     + "<li class=\"accordion-content\">Relationship: " + lotCars.get(y).getCarDetails() + "</li>"
                                     + "</ul>"
                                     + "</br>");
