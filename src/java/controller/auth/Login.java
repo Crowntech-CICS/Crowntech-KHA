@@ -146,6 +146,7 @@ public class Login extends HttpServlet {
                                         middleIniR = "",
                                         relationship = "";
                                 int ageR = 0;
+                                
                             while (rs2.next()) {
                                 relationship = rs2.getString("relationship").trim();
                                 PreparedStatement resiUser = con.prepareStatement("select * from users where userid = ?");
@@ -183,9 +184,9 @@ public class Login extends HttpServlet {
                             
                             //Setting Vehicles for Lots
                             ps2 = con.prepareStatement("select * from vehicle where propertyid = ?");
-                        ps2.setString(1, userID);
-                        rs2 = ps2.executeQuery();
-                        ArrayList<Vehicle> cars = new ArrayList<>();
+                            ps2.setString(1, propID);
+                            rs2 = ps2.executeQuery();
+                            ArrayList<Vehicle> cars = new ArrayList<>();
                         while (rs2.next()) {
                             String vhID = rs2.getString("vehicleid").trim();
                             String type = rs2.getString("type").trim();
@@ -195,11 +196,12 @@ public class Login extends HttpServlet {
                             String vLN = rs2.getString("lastname").trim();
                             String vFN = rs2.getString("firstname").trim();
                             String vMN = rs2.getString("middleinitial").trim();
-
-                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
+                            boolean stick = rs2.getBoolean("hassticker");
+                            
+                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN, stick);
                             cars.add(car);
                         }
-                        lot.setCars(cars);
+                            lot.setCars(cars);
                             
                             
                             lots.add(lot);
@@ -261,11 +263,12 @@ public class Login extends HttpServlet {
                             String vLN = rs2.getString("lastname").trim();
                             String vFN = rs2.getString("firstname").trim();
                             String vMN = rs2.getString("middleinitial").trim();
-
-                            Vehicle car = new Vehicle(vhID, userID, type, plateno, brand, model, vLN, vFN, vMN);
+                            boolean stick = rs2.getBoolean("hassticker");
+                            Vehicle car = new Vehicle(vhID, propID, type, plateno, brand, model, vLN, vFN, vMN, stick);
                             cars.add(car);
+                            System.out.println("Login car check: " + vhID);
                         }
-                        lot.setCars(cars);
+                            lot.setCars(cars);
                             user.setResLot(lot);
                             
                         }

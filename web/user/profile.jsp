@@ -1,3 +1,4 @@
+<%@page import="model.Vehicle"%>
 <%@page import="model.MonthlyBalance"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Iterator"%>
@@ -70,7 +71,6 @@
                             + lots.get(x).getHouseNo() + " " + lots.get(x).getStreet()
                             + "</h1>");
                     if ((int) lots.get(x).getBalance() <= 0.0) {
-                        System.out.println(lots.get(x).getBalance() < 0);
                         out.print("<div class=\"green\"><h1 class=\"panelText\"> PAID ");
                     } else if (lots.get(x).getBalance() > 0.0) {
                         out.print("<div class=\"red\"><h1 class=\"panelText\"> UNPAID");
@@ -111,13 +111,17 @@
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Vehicle Information</h1>"
                             + "<div class=\"line\"></div><br>");
 
-                    /*ArrayList<Resident> lotResidents = lots.get(x).getResidents();*/
-                    for (int y = 0; y < lotResidents.size(); y++) {
+                    ArrayList<Vehicle> lotCars = lots.get(x).getCars();
+                    System.out.println(lotCars);
+                    for (int y = 0; y < lotCars.size(); y++) {
+                    System.out.println("Check car: " + lotCars.get(y).getSticker());
+                    if(lotCars.get(y).getSticker()) {
                         out.print("<ul>"
-                                + "<li class=\"accordion-content\">" + lotResidents.get(y).fullName() + "</li>"
-                                + "<li class=\"accordion-content\">Relationship: " + lotResidents.get(y).getRelationship() + "</li>"
+                                + "<li class=\"accordion-content\">Plate No. :" + lotCars.get(y).getPlateNo() + "</li>"
+                                + "<li class=\"accordion-content\">Relationship: " + lotCars.get(y).getCarDetails() + "</li>"
                                 + "</ul>"
                                 + "</br>");
+                }
                     }
                     out.print("<br>"
                             + "</li>"

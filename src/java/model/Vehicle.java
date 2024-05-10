@@ -11,9 +11,11 @@ public class Vehicle {
             firstName,
             middleInitial;
     
+    boolean hasSticker;
+    
     public Vehicle(){}
     
-    public Vehicle(String vehicleID, String userID, String type, String plateNo, String brand, String model, String lastName, String firstName, String middleInitial){
+    public Vehicle(String vehicleID, String userID, String type, String plateNo, String brand, String model, String lastName, String firstName, String middleInitial, boolean sticker){
         this.vehicleID = vehicleID;
         this.userID = userID;
         this.type = type;
@@ -23,6 +25,7 @@ public class Vehicle {
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleInitial = middleInitial;
+        this.hasSticker = sticker;
     }
     
     //setters
@@ -60,6 +63,10 @@ public class Vehicle {
     
     public void setMiddleInitial(String middleInitial){
         this.middleInitial = middleInitial;
+    }
+    
+    public void setSticker(boolean sticker) {
+        this.hasSticker = sticker;
     }
     
     //getters
@@ -101,5 +108,12 @@ public class Vehicle {
     
     public String getRegisteredOwner() {
         return this.lastName + ", " + this.firstName + " " + this.middleInitial;
+    }
+    
+    public boolean getSticker() {
+        return hasSticker;
+    }
+    public String getCarDetails() {
+        return this.brand + " " + this.model + " " + this.type;
     }
 }

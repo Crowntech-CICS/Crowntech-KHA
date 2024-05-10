@@ -63,6 +63,7 @@
                         <th class="tableTitle">Vehicle Type</th>
                         <th class="tableTitle">Vehicle Model</th>
                         <th class="tableTitle">Vehicle Brand</th>
+                        <th class="tableTitle">Has Sticker?</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,12 +79,17 @@
                                         brand = rs.getString("brand").trim(),
                                         model = rs.getString("model").trim(),
                                         name = rs.getString("registeredname").trim();
+                                        boolean stick = rs.getBoolean("hassticker");
 
                                 out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/user/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
                                 out.print("<td class=\"tableContentText\">" + name + "</td>");
                                 out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + type + "</td>");
                                 out.print("<td class=\"tableContentText\">" + model + "</td>");
-                                out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + brand + "</td></tr>");
+                                out.println("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + brand + "</td>");
+                                if(stick)
+                                    out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"> Yes </td></tr>" );
+                                else
+                                    out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\"> No </td></tr>");  
                             }
                         } catch (SQLException sqle) {
                             System.out.println("SQLException IN error occured - " + sqle.getMessage());
@@ -112,18 +118,11 @@
         <%
             if (session.getAttribute("level").equals("staff")) {
         %>
-        <!--<div class="button-container">
-            <form action="${root}/UpdateBalance">
-                <button class="button-design" type="submit" style="margin-left: 10%;">
-                    Add Vehicles
-                </button>
-            </form>
-            <form action="${root}/AddMonthlyDues" method="POST" onsubmit="return confirm('Are you sure you want to add the monthly dues to all records');">
-                <button class="button-design" type="submit" style="margin-left: 30%;">
-                    Edit Vehicles
-                </button>
-            </form>
-        </div>-->
+        <div class="button-container">
+            <button class="button-design" style="margin-left: 10%;" onclick="location.href = 'add-vehicles.jsp'">
+                 Add Vehicles
+            </button>
+        </div>
         <%
             }
         %>

@@ -8,9 +8,12 @@
     boolean logState = session.getAttribute("level") != null ? true : false;
     if (!logState) {
         response.sendRedirect(root + "/accounts/login.jsp");
-    } else if (!session.getAttribute("level").equals("admin")) {
-        response.sendRedirect(root + "/index.jsp");
     }
+    if (session.getAttribute("level").equals("staff") || session.getAttribute("level").equals("admin")) {
+    //
+    } 
+    else
+     response.sendRedirect(root + "/index.jsp");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +44,7 @@
                             <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
                         </div>
                     </div>
+                    <input type="hidden" name="FORM_NO" value="7"> 
                     <br>
                     <div class="button-container">
                         <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
@@ -48,7 +52,7 @@
                     </div>
                 </form>
 
-                <form id="finalForm" action="CreateVehicle" method="POST">
+                <form id="finalForm" action="${root}/UpdateInfo" method="POST">
                     <input type="hidden" name="VEH_OWNER"><!-- HOMEOWNER -->
                     <input type="hidden" name="VEH_PLATE"><!-- HOMEOWNER -->
                     <input type="hidden" name="VEH_TYPE"><!-- HOMEOWNER -->
