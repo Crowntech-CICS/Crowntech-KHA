@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class UserLot {
     ArrayList<Resident> residents = new ArrayList<>();
+    ArrayList<MonthlyBalance> lotBalances = new ArrayList<>();
     private String propertyID,
             titleNo,
             registeredName,
@@ -21,6 +22,7 @@ public class UserLot {
     
     private float balance;
     private Date dateRegistered, paymentDate;
+    
     
     public UserLot(){}
     
@@ -118,6 +120,9 @@ public class UserLot {
     public void setResidents(ArrayList<Resident> residents) {
         this.residents = residents;
     }
+    public void setMonthlyBalances(ArrayList<MonthlyBalance> monBal) {
+        this.lotBalances = monBal;
+    }
     
     //getters
     public String getPropertyID(){
@@ -190,6 +195,10 @@ public class UserLot {
     
     public ArrayList<Resident> getResidents() {
         return this.residents;
+    }
+    
+    public ArrayList<MonthlyBalance> getMonthlyBalances() {
+        return this.lotBalances;
     }
     
     public String getAddress() {

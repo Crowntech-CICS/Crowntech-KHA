@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Homeowner;
+import model.MonthlyBalance;
 import model.Resident;
 import model.User;
 import model.UserLot;
@@ -148,10 +149,12 @@ public class Login extends HttpServlet {
                                     houseNo, street, barangay, area,
                                     surNo, lotNo, dateReg, balance, use, businessName, businessType,
                                     paymentDate, taxDecNo, propInNo);
-
-                            PreparedStatement getResi = con.prepareStatement("select * from residents where propertyid = ?");
-                            getResi.setString(1, propID);
-                            ResultSet setResi = getResi.executeQuery();
+                            
+                            
+                            //Setting Residents for Lots
+                            PreparedStatement ps2 = con.prepareStatement("select * from residents where propertyid = ?");
+                            ps2.setString(1, propID);
+                            ResultSet rs2 = ps2.executeQuery();
                             ArrayList<Resident> lotResidents = new ArrayList<>();
                             String userR = "", 
                                         emailR = "", 
@@ -160,11 +163,11 @@ public class Login extends HttpServlet {
                                         middleIniR = "",
                                         relationship = "";
                                 int ageR = 0;
-                            while (setResi.next()) {
-                                relationship = setResi.getString("relationship").trim();
+                            while (rs2.next()) {
+                                relationship = rs2.getString("relationship").trim();
                                 PreparedStatement resiUser = con.prepareStatement("select * from users where userid = ?");
-                                userR = setResi.getString("userid").trim();
-                                resiUser.setString(1, setResi.getString("userid").trim());
+                                userR = rs2.getString("userid").trim();
+                                resiUser.setString(1, rs2.getString("userid").trim());
                                 ResultSet resUserInfo = resiUser.executeQuery();
                                 while (resUserInfo.next()) {
                                     emailR = resUserInfo.getString("EMAIL").trim().toLowerCase();
@@ -177,6 +180,26 @@ public class Login extends HttpServlet {
                                 lotResidents.add(lotRes);
                             }
                             lot.setResidents(lotResidents);
+                            
+                            //Setting Balances for Lots
+                            ps2  = con.prepareStatement("select * from monthlybalance where propertyid = ?");
+                            ps2.setString(1, propID);
+                            rs2 = ps2.executeQuery();
+                            ArrayList<MonthlyBalance> lotBalances = new ArrayList<>();
+                            Date balDate;
+                            double bal;
+                            
+                            while (rs2.next()){
+                                balDate = rs2.getDate("balancedate");
+                                bal = rs2.getDouble("balance");
+                                MonthlyBalance lotBal = new MonthlyBalance(propID, balDate, bal);
+                                lotBalances.add(lotBal);
+                            }
+                            
+                            lot.setMonthlyBalances(lotBalances);
+                            
+                            
+                            
                             lots.add(lot);
                         }
                         user.setLot(lots);
@@ -223,6 +246,7 @@ public class Login extends HttpServlet {
                                     surNo, lotNo, dateReg, balance, use, businessName, businessType,
                                     paymentDate, taxDecNo, propInNo);
                             user.setResLot(lot);
+                            
                         }
                         ps = con.prepareStatement("select * from vehicle where userid = ?");
                         ps.setString(1, userID);
