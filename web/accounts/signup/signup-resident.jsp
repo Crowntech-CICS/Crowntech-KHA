@@ -52,7 +52,7 @@
                         <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
                             <option value="" selected disabled>Address</option>
                             <%  while (rs.next()) { %>
-                            <option value="">Address</option>
+                            <option value="<%= rs.getString("propertyid")%>"><%= rs.getString("houseno") + " " + rs.getString("streetname")%></option>
                             <%  }
                                 rs.close();
                                 ps.close();

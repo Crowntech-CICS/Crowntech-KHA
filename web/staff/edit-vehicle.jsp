@@ -28,16 +28,11 @@
     ResultSet rs0 = ps.executeQuery();
     String[] areas = {"1", "1A", "2", "3", "4", "5", "5A", "6", "7", "8", "9", "10", "11E", "11W", "12"};
 
-    ps = conn.prepareStatement("select u.*,r.* from users u join residents r on u.userid = r.userid where u.userid = ?");
-    ps.setString(1, request.getParameter("r"));
+    ps = conn.prepareStatement("select v.*,p.* from vehicle v join userlot p on v.propertyid = p.propertyid where vehicleid = ?");
+    ps.setString(1, request.getParameter("VHID"));
     ResultSet rs = ps.executeQuery();
     rs.next();
-    ps = conn.prepareStatement("select * from userlot where propertyid = ?");
-    ps.setString(1, rs.getString("propertyid"));
-    ResultSet rs2 = ps.executeQuery();
-    rs2.next();
-    area = rs2.getString("area");
-    request.setAttribute("area", rs2.getString("area"));
+    System.out.println(rs.getBoolean("hassticker"));
 %>
 <!DOCTYPE html>
 <html>
@@ -62,17 +57,17 @@
                     <div class="line"></div><br>
                     <div class="changepass-label-container">
                         <label for="VEH_PLATE" id="label-margin-medium">Plate No.</label><label for="VEH_TYPE" class="marginVehicleType">Type of Vehicle</label><br>
-                        <input type="text" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input type="text" name="VEH_TYPE" placeholder="Vehicle Type" class="form-medium"><br>
-                        <label for="VEH_BRAND" id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
-                        <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" class="form-medium"><br>
-                        <label for="VEH_OWNER">Registered Owner</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" class="form"><br>  
+                        <input type="text" value="<%= rs.getString("plateno")%>" name="VEH_PLATE" placeholder="Plate No." class="form-medium" id="form-margin-medium"><input value="<%= rs.getString("type")%>" type="text" name="VEH_TYPE" placeholder="Vehicle Type" class="form-medium"><br>
+                        <label for="VEH_BRAND"  id="label-margin-medium">Brand</label><label for="VEH_MODEL" class="marginVehicleYear">Year/Model</label><br>
+                        <input type="text" value="<%= rs.getString("brand")%>" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input value="<%= rs.getString("model")%>" type="text" name="VEH_MODEL" placeholder="Vehicle Model" class="form-medium"><br>
+                        <label for="VEH_OWNER">Registered Owner</label><input value="<%= rs.getString("registeredname")%>" type="text" name="VEH_OWNER" placeholder="Vehicle Owner" class="form"><br>  
                         <label for="VEH_PROP">Address</label>
                         <div style="display: flex;">
-                            <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?r=<%=request.getParameter("r")%>&area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
+                            <select style="flex:20%;" onchange="window.location.href = '${root}/staff/edit-vehicle.jsp?<%if(request.getParameter("VHID") != null){out.print("VHID=" + request.getParameter("VHID") + "&");}%>area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
                                 <% if (area != null) {%>
                                 <option value="${area}">${area} - Selected</option>
                                 <%} else {%>
-                                <option value="">Area</option>
+                                <option value="<%= rs.getString("area")%>"><%= rs.getString("area")%></option>
                                 <%}
                                     for (int i = 0; i < areas.length; i++) {%>
                                 <option value="<%= areas[i]%>"><%= areas[i]%></option>
@@ -80,7 +75,7 @@
                                 %>
                             </select>
                             <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
-                                <option value="<%= rs.getString("propertyid")%>" selected disabled><%= rs2.getString("houseno") + " " + rs2.getString("streetname")%></option>
+                                <option value="<%= rs.getString("propertyid")%>" selected disabled><%= rs.getString("houseno") + " " + rs.getString("streetname")%></option>
                                 <%  while (rs0.next()) {%>
                                 <option value="<%= rs0.getString("propertyid")%>"><%= rs0.getString("houseno") + " " + rs0.getString("streetname")%></option>
                                 <%  }%>
@@ -89,8 +84,8 @@
                         </div>
                         <br><label for="VEH_BRAND" id="label-margin-medium">Does the vehicle has a sticker?</label>
                         <fieldset>  
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Yes </label>
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_BUS" value="Business">No</label>
+                            <label for="VEH_STICKER"><input <%if(rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Yes </label>
+                            <label for="VEH_STICKER"><input <%if(!rs.getBoolean("hassticker")) out.print("checked");%> type="radio" name="PRP_USE" id="PRP_BUS" value="Business">No</label>
                         </fieldset>
                         <div class="upload_files form_input_title" id="form_container">
                             <p style="text-align: center">Upload Digital Copy of Required Documents</p>
