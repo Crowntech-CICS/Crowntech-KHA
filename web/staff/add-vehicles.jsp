@@ -29,19 +29,8 @@
         ps.setString(1, area);
         request.setAttribute("area", area);
     }
-    ResultSet rs0 = ps.executeQuery();
-    String[] areas = {"1", "1A", "2", "3", "4", "5", "5A", "6", "7", "8", "9", "10", "11E", "11W", "12"};
-
-    ps = conn.prepareStatement("select u.*,r.* from users u join residents r on u.userid = r.userid where u.userid = ?");
-    ps.setString(1, request.getParameter("r"));
     ResultSet rs = ps.executeQuery();
-    rs.next();
-    ps = conn.prepareStatement("select * from userlot where propertyid = ?");
-    ps.setString(1, rs.getString("propertyid"));
-    ResultSet rs2 = ps.executeQuery();
-    rs2.next();
-    area = rs2.getString("area");
-    request.setAttribute("area", rs2.getString("area"));
+    String[] areas = {"1", "1A", "2", "3", "4", "5", "5A", "6", "7", "8", "9", "10", "11E", "11W", "12"};
 %>
 
 <!DOCTYPE html>
@@ -59,7 +48,7 @@
         <%@include file="/generalpurpose/navbar.jsp" %>
         <div class="main-body">
             <div class="signup-box-small">
-                <form id='form1'>
+                <form id='form1' action="${root}\UpdateInfo">
                     <h1 class="h1-bold">Vehicle Information</h1>
                     <div class="changepass-label-container">
                         <label for="VEH_OWNER">Registered Owner (Full Name)*</label><input type="text" name="VEH_OWNER" placeholder="Vehicle Owner" required class="form"><br>
@@ -68,42 +57,41 @@
                         <label for="VEH_BRAND" id="label-margin-medium">Brand*</label><label for="VEH_MODEL" style="margin-left: 10%;">Year/Model</label><br>
                         <input type="text" name="VEH_BRAND" placeholder="Vehicle Brand" class="form-medium" id="form-margin-medium"><input type="text" name="VEH_MODEL" placeholder="Vehicle Model" required class="form-medium"><br>
                         <label for="VEH_PROP">Address</label>
-                        <div style="display: flex;">
-                            <select style="flex:20%;" onchange="window.location.href = '${root}/accounts/signup/signup-resident.jsp?r=<%=request.getParameter("r")%>&area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
-                                <% if (area != null) {%>
-                                <option value="${area}">${area} - Selected</option>
-                                <%} else {%>
-                                <option value="">Area</option>
-                                <%}
+                    <div style="display: flex;">
+                        <select style="flex:20%;" onchange="window.location.href = '${root}/staff/add-vehicles.jsp?area=' + this.value" type="text" name="RES_AREA" placeholder="Area" class="form">
+                            <% if (area != null) {%>
+                            <option value="${area}">${area} - Selected</option>
+                            <%} else {%>
+                            <option value="">Area</option>
+                            <%}
                                 for (int i = 0; i < areas.length; i++) {%>
-                                <option value="<%= areas[i]%>"><%= areas[i]%></option>
-                                <%    }
-                                %>
-                            </select>
-                            <select onchange="finalForm.RES_PROP.value = this.value" type="text" name="RES_PROP" placeholder="Address" class="form">
-                                <option value="<%= rs.getString("propertyid")%>" selected disabled><%= rs2.getString("houseno") + " " + rs2.getString("streetname")%></option>
-                                <%  while (rs0.next()) {%>
-                                <option value="<%= rs0.getString("propertyid")%>"><%= rs0.getString("houseno") + " " + rs0.getString("streetname")%></option>
-                                <%  }%>
-
-                            </select>
-                        </div>
+                            <option value="<%= areas[i]%>"><%= areas[i]%></option>
+                            <%    }
+                            %>
+                        </select>
+                        <select onchange="finalForm.VEH_PROP.value = this.value" type="text" name="VEH_PROP" placeholder="Address" class="form">
+                            <option value="" selected disabled>Address</option>
+                            <%  while (rs.next()) { %>
+                            <option value="">Address</option>
+                            <%  }
+                                rs.close();
+                                ps.close();
+                                conn.close();
+                            %>
+                        </select>
+                    </div>
                         <br><label for="VEH_BRAND" id="label-margin-medium">Does the vehicle has a sticker?</label>
                         <fieldset>  
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_RES" value="Residential">Yes </label>
-                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_BUS" value="Business">No</label>
+                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_RES" value="true">Yes </label>
+                            <label for="VEH_STICKER"><input type="radio" name="PRP_USE" id="PRP_BUS" value="false">No</label>
                         </fieldset>
                         <br>
-                        <div class="upload_files" id="form_container" class="form_input_title">
-                            <p style="text-align: center">Upload Digital Copy of Required Documents</p>
-                            <input type="file" class="file_button" name="FILES_UPLOAD" id="input-none" accept="image/*,.pdf" multiple style="margin-left: 33%">
-                        </div>
                     </div>
                     <input type="hidden" name="FORM_NO" value="7"> 
                     <br>
                     <div class="button-container">
                         <input id="Next6" type="submit" class="button-design" value="Apply" style="margin-right: 10%;">
-                        <input id="Back6" class="button-design-reject" type="button" value="Cancel">
+                        <input id="Back6" class="button-design-reject" type="button" value="Cancel" onclick="location.href = 'records-vehicles.jsp'">
                     </div>
                 </form>
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DBLogger;
 import model.User;
+import model.uniqueId.UniqueIdGenerator;
 
 /**
  *
@@ -255,6 +256,7 @@ public class UpdateInfo extends HttpServlet {
                     break;
                 case 7: // adds a vehicle
                     // p7Inputs = {vhID, vhType, vhBrand, vhModel, vhOwner};
+                    System.out.println("ADDED A CAR >:)");
                     ps = con.prepareStatement("SELECT * FROM VEHICLE WHERE VEHICLEID = ?");
                     ps.setString(1, vhID);
                     rs = ps.executeQuery();
@@ -276,17 +278,19 @@ public class UpdateInfo extends HttpServlet {
                         }
                     }
                     System.out.println("Taken inputs: " + vhPlate + vhID + vhType + vhBrand + vhModel + vhOwner);
+                    UniqueIdGenerator uid = new UniqueIdGenerator();
+                    vhID =  uid.vehId();
                     PreparedStatement psInsert = con.prepareStatement("insert into vehicle(vehicleid, type, plateno, brand, model, registeredname, hasSticker, propertyID) values (?, ?, ?, ?, ?, ?, ?, ?)");
-                    psInsert.setString(1, vhType);                          // UPDATE VEHICLE SET TYPE = ?, brand = ?, model = ?, registeredname = ?, plateno = ?, hassticker = ? WHERE VEHICLEID = ?"
-                    psInsert.setString(2, vhBrand);                         // "INSERT INTO USEROTHER (PROPERTYID, LASTNAME, FIRSTNAME, MIDDLEINITIAL, RELATIONSHIP) VALUES (?, ?, ?, ?, ?)"
-                    psInsert.setString(3, vhModel);
-                    psInsert.setString(4, vhOwner);
-                    psInsert.setString(5, vhPlate);
-                    psInsert.setString(6, vhSticker);
-                    psInsert.setString(7, vhID);
-                    psInsert.setString(8, vhID);
+                    psInsert.setString(1, vhID);                          
+                    psInsert.setString(2, vhType);                         
+                    psInsert.setString(3, vhPlate);
+                    psInsert.setString(4, vhBrand);
+                    psInsert.setString(5, vhModel);
+                    psInsert.setString(6, vhOwner);
+                    psInsert.setString(7, vhSticker);
+                    psInsert.setString(8, vhProperty);
                     psInsert.executeUpdate();
-                    new DBLogger().log(user.getID(), user.fullName() + " edited the car with the vehicleID = " + vhID);
+                    new DBLogger().log(user.getID(), user.fullName() + " Added a new car with the plate number: " + vhPlate);
                     break;
                 default:
                     response.sendRedirect("edit-homeowners.jsp");

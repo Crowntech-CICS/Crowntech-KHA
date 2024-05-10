@@ -69,4 +69,22 @@ public class UniqueIdGenerator {
         conn.close();
         return logId;
     }
+    
+    public String vehId() throws SQLException {
+        String vhId = "";
+        conn = ConnectionPoolManager.getDataSource().getConnection();
+        vhId = "VH" + new IdGenerator().createFormatted("???-???");
+        ps = conn.prepareStatement("select vehicleid from vehicle where vehicleid = ?");
+        ps.setString(1, vhId);
+        rs = ps.executeQuery();
+        while(rs.next()){
+            vhId = "VH" + new IdGenerator().createFormatted("???-???");
+            logger.info("TEST LogID: " + vhId);
+            rs = ps.executeQuery();
+        }
+        rs.close();
+        ps.close();
+        conn.close();
+        return vhId;
+    }
 }

@@ -81,7 +81,7 @@
                                         name = rs.getString("registeredname").trim();
                                         boolean stick = rs.getBoolean("hassticker");
 
-                                out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/user/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
+                                out.print("<tr><td class=\"tableContentText\" style=\"padding-top: 0.8%\"><a style=\"text-decoration:none; color:inherit;\" href=" + root + "/staff/edit-vehicle.jsp?VHID=" + vehID + ">" + plateNo + "</a></td>");
                                 out.print("<td class=\"tableContentText\">" + name + "</td>");
                                 out.print("<td class=\"tableContentText\" style=\"padding-top: 0.8%\">" + type + "</td>");
                                 out.print("<td class=\"tableContentText\">" + model + "</td>");
