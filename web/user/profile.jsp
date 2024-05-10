@@ -1,3 +1,4 @@
+<%@page import="model.MonthlyBalance"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,6 +27,7 @@
         <title>KHA | Profile</title>
         <link rel="icon" type="image/x-icon" href="${root}/images/khaicon.png"/>
         <link href="${root}/css/main-format.css" rel="stylesheet"/>
+        <link href="${root}/css/table-format.css" rel="stylesheet"/>
         <link href="${root}/css/profile-format.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
@@ -109,6 +111,36 @@
                             + "<h1 class=\"h1-bold\" id=\"profileInfoHeader\">Balance Dues</h1>"
                             + "<div class\"line\"></div><br>"
                             + "<ul>");
+                            
+                    ArrayList<MonthlyBalance> lotBalances = lots.get(x).getMonthlyBalances();
+                    if(!lotBalances.isEmpty()){
+                    out.print("<div id=\"moreinfo\" >"
+                                    + "<div style=\"padding-left: 2%;\">"
+                                    + "<table class=\"tableContentRecords\">"
+                                    + "<thead>"
+                                    + "<th> Balance Date:</th>"
+                                    + "<th> Balance:</th>"
+                                    + "</thead>"
+                                    + "<tbody>");
+
+                            for (MonthlyBalance lotBal : lotBalances) {
+                                out.print(
+                                        "<tr>"
+                                        + "<td>"
+                                        + lotBal.getBalanceDate()
+                                        + "</td>"
+                                        + "<td>"
+                                        + lotBal.getBalance()
+                                        + "</td>"
+                                        + "</tr>");
+                            }
+                            out.print(
+                                    "</tbody>"
+                                    + "</table> "
+                                    + "<br>"
+                                    + "</div></div>");
+                        }
+                            
                     out.print("<h1 class=\"h1-bold\" id=\"profileCashHeader\">PHP "
                             + numForm.format(lots.get(x).getBalance()) + "</h1><br>");
                     out.print("<div class=\"line\"></div><br>");
