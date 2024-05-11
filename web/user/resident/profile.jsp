@@ -43,11 +43,11 @@
             </div>
         </div>
         <%
-            ArrayList<Vehicle> cars = user.getCars();
+            ArrayList<Vehicle> cars = user.getResLot().getCars();
             if (cars.size() > 0) {
                 out.print("<div class=\"main-body\" id=\"vehicle-body\" style=\"height: 60%; top: 37%;\">"
                         + "<h1 class=\"h1-bold\">Vehicle List</h1>");
-                for (int x = 0; x < cars.size(); x++) {
+                for (int x = 0; x < cars.size() && cars.get(x).getSticker(); x++) {
                     out.print(
                             "<div class=\"vehicle-box\">"
                             + "<p style=\"text-align: center;padding-top: 2%\">"
