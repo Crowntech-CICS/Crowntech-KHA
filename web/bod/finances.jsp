@@ -101,12 +101,12 @@
         </div>
         <br><br>
         <div class="button-container">
-            <form action="FinanceTrack">
+            <form action="${root}\FinanceTrack">
                 <button class="button-design" type="submit" id="button-small" >
                     Refresh
                 </button>
             </form>
-            <form action="ExportPDF">
+            <form action="${root}\ExportPDF">
                 <button class="button-design" type="submit" id="button-small" style="margin-left: 20%;">
                     Export
                 </button>
