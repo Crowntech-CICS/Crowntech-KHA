@@ -32,17 +32,17 @@
                     <div class="line"></div>
                     <h1 id="h1small" class="h1-bold">Create Accounts</h1>
                     <div style="display:grid; gap:0.5rem;justify-content: center">
-                        <a href="${root}/accounts/signup/signup-homeowners.jsp"><input class="button-design" type="button" value="Create Homeowner"></a>
-                        <a href="${root}/accounts/signup/signup-resident.jsp"><input class="button-design" type="button" value="Create Resident"></a>
-                        <a href="${root}/accounts/signup/signup-admin.jsp"><input class="button-design" type="button" value="Create Staff/Admin/Bod"></a>
+                        <a href="${root}/accounts/signup/signup-homeowners.jsp"><input class="button-design-account" type="button" value="Create Homeowner"></a>
+                        <a href="${root}/accounts/signup/signup-resident.jsp"><input class="button-design-account" type="button" value="Create Resident"></a>
+                        <a href="${root}/accounts/signup/signup-admin.jsp"><input class="button-design-account" type="button" value="Create Staff/Admin/Bod"></a>
                     </div>
                     <br>
                     <div class="line"></div>
                     <h1 id="h1small" class="h1-bold">Edit Accounts</h1>
                     <div style="display:grid; gap:0.5rem;justify-content: center">
-                        <a href="${root}/accounts/choose/homeowners.jsp"><input class="button-design" type="button" value="Edit Homeowner"></a>
-                        <a href="${root}/accounts/choose/residents.jsp"><input class="button-design" type="button" value="Edit Resident"></a>
-                        <a href="${root}/accounts/choose/admin.jsp"><input class="button-design" type="button" value="Edit Staff/Admin/Bod"></a>
+                        <a href="${root}/accounts/choose/homeowners.jsp"><input class="button-design-account" type="button" value="Edit Homeowner"></a>
+                        <a href="${root}/accounts/choose/residents.jsp"><input class="button-design-account" type="button" value="Edit Resident"></a>
+                        <a href="${root}/accounts/choose/admin.jsp"><input class="button-design-account" type="button" value="Edit Staff/Admin/Bod"></a>
                     </div>
                 </form>
 
